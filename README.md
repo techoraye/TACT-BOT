@@ -26,7 +26,7 @@ To invite TechActivity to your server:
 - **Bot Name:** TechActivity  
 - **Bot Tag:** `TechActivity#7599`  
 - **Category:** Multi-Purpose / Utility / Moderation  
-- **Developer:** [techarye](https://github.com/techarye/)
+- **Developer:** [techarye](https://discord.com/users/1132413940693995541)
 
 ---
 
