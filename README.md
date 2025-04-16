@@ -10,7 +10,6 @@
 - 🎉 **Entertainment Commands** – Fun and engaging commands to keep your server lively.
 - 📈 **Activity Monitoring** – Track server events, log actions, and keep things organized.
 - 🛠️ **Custom Embeds & Utilities** – Create custom messages, use utilities like polls and timers.
-- 💬 **Premium Features** – Extra functionality for users who support the bot.
 
 ---
 
@@ -18,7 +17,7 @@
 
 To invite TechActivity to your server:
 
-🔗 [Invite Link](#) *(replace with actual link)*
+🔗 [Invite Link](https://discordapp.com/oauth2/authorize?client_id=1351789668030480394)
 
 ---
 
@@ -27,7 +26,7 @@ To invite TechActivity to your server:
 - **Bot Name:** TechActivity  
 - **Bot Tag:** `TechActivity#7599`  
 - **Category:** Multi-Purpose / Utility / Moderation  
-- **Developer:** [techarye](#)
+- **Developer:** [techarye](https://github.com/techarye/)
 
 ---
 
