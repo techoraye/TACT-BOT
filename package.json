@@ -13,15 +13,15 @@
     "start": "node .",
     "format": "prettier --write src",
     "docker:package": "tar -cf techactivitybot.tar dashboard logs src bot.js config.js dockerfile package.json package-lock.json",
-    "docker:build": "docker build -t saitejamadha/techactivitybot:Beta0.6."
+    "docker:build": "docker build -t techarye/techactivitybot:Beta0.6."
   },
-  "homepage": "https://github.com/saiteja-madha/techactivitybot#readme",
+  "homepage": "https://github.com/techarye/techactivitybot#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/saiteja-madha/techactivitybot.git"
+    "url": "git+https://github.com/techarye/techactivitybot.git"
   },
   "bugs": {
-    "url": "https://github.com/saiteja-madha/techactivitybot/issues"
+    "url": "https://github.com/techarye/techactivitybot/issues"
   },
   "dependencies": {
     "@lavaclient/queue": "^2.1.1",
