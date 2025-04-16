@@ -30,13 +30,6 @@ module.exports = {
 
   // PLUGINS
 
-  DASHBOARD: {
-    enabled: false, // enable or disable dashboard
-    baseURL: "http://localhost:8082", // base url
-    failureURL: "http://localhost:8082", // failure redirect url
-    port: "8082", // port to run the bot on
-  },
-
   ECONOMY: {
     ENABLED: true,
     CURRENCY: "$",

@@ -25,35 +25,6 @@ const client = new BotClient();
 client.loadCommands("src/commands");
 client.loadContexts("src/contexts");
 client.loadEvents("src/events");
-<<<<<<< HEAD
-client.once("ready", async () => {
-  client.logger.log(`Logged in as ${client.user.tag}`);
-
-  updatePresence();
-
-  // Load the slash commands
-  const slashCommands = loadSlashCommands(client);
-
-  // Log how many slash commands were found and loaded
-  client.logger.log(`Loaded ${slashCommands.length} slash commands.`);
-
-  try {
-    // GLOBAL registration (may take up to 1 hour to appear)
-    await client.application.commands.set(slashCommands);
-
-    // ALTERNATIVE: Faster for dev/testing (use your dev server ID)
-    // await client.guilds.cache.get("1352089320093122561").commands.set(slashCommands); DEV SERVER ONLY
-
-    client.logger.log(`✅ Successfully registered ${slashCommands.length} slash commands.`);
-  } catch (error) {
-    client.logger.error("❌ Failed to register slash commands:", error);
-  }
-});
-
-// Handle unhandled promise rejections
-process.on("unhandledRejection", (err) => client.logger.error("Unhandled exception", err));
-=======
->>>>>>> 68ea410b (Beta0.6)
 
 // Ensure presence settings exist
 if (!config.PRESENCE || typeof config.PRESENCE.ENABLED === "undefined") {
@@ -99,35 +70,12 @@ const updatePresence = () => {
   }, 20_000);
 };
 
-<<<<<<< HEAD
-=======
-// Handle unhandled promise rejections
-process.on("unhandledRejection", (err) => client.logger.error("Unhandled exception", err));
-
->>>>>>> 68ea410b (Beta0.6)
 // Initialize bot
 (async () => {
   await checkForUpdates();
-
-  if (config.DASHBOARD.enabled) {
-    client.logger.log("Launching dashboard...");
-    try {
-      const { launch } = require("@root/dashboard/app");
-      await launch(client);
-    } catch (err) {
-      client.logger.error("Failed to launch dashboard", err);
-    }
-  } else {
     await initializeMongoose();
-  }
 
   await client.login(process.env.BOT_TOKEN);
-
-<<<<<<< HEAD
-  client.once("ready", () => {
-    client.logger.log(`Logged in as ${client.user.tag}`);
-    updatePresence();
-=======
   client.once("ready", async () => {
     client.logger.log(`Logged in as ${client.user.tag}`);
 
@@ -142,6 +90,5 @@ process.on("unhandledRejection", (err) => client.logger.error("Unhandled excepti
     } catch (error) {
       client.logger.error("❌ Failed to register slash commands:", error);
     }
->>>>>>> 68ea410b (Beta0.6)
   });
 })();
