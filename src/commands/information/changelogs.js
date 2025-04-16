@@ -13,7 +13,7 @@ module.exports = {
   command: {
     enabled: true,
     aliases: ["updates", "news"],
-    usage: "!changelogs",
+    usage: "/changelogs",
     minArgsCount: 0,
     subcommands: [],
   },
@@ -22,30 +22,82 @@ module.exports = {
     ephemeral: false,
     options: [],
   },
+
   messageRun: async (message) => {
     const embed = new EmbedBuilder()
       .setTitle("📢 Bot Changelogs")
       .setColor("#FFA500")
       .setDescription("Here are the latest updates and changes:")
       .addFields(
-        { name: "🔧 Fixed", value: "- Slash command fixed" }, // Only "Slash command fixed"
-        { name: "📌 Coming Soon", value: "- More moderation features\n- Customizable status messages" },
-        { name: "🚀 Beta Version", value: `Currently running **Beta${config.BETA_VERSION}**` }
+        {
+          name: "✨ Added",
+          value:
+            "- `devprofile` command to display GitHub, TikTok, and Discord socials\n" +
+            "- `botinfo` command with dev info, repo, and hosting credits",
+        },
+        {
+          name: "🎨 Improvements",
+          value:
+            "- Cleaner descriptions for embeds\n" +
+            "- Structured command format for consistency",
+        },
+        {
+          name: "🆓 Open Source",
+          value:
+            "The bot is now **open source**! Check it out on [GitHub Repository](https://github.com/techarye/techactivitybot)",
+        },
+        {
+          name: "📌 Coming Soon",
+          value:
+            "- More moderation features\n" +
+            "- Customizable status messages\n" +
+            "- Interactive dashboards and stats",
+        },
+        {
+          name: "🚀 Beta Version",
+          value: `Currently running **v${config.BETA_VERSION}**`,
+        }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })
       .setTimestamp();
 
     message.channel.send({ embeds: [embed] });
   },
+
   interactionRun: async (interaction) => {
     const embed = new EmbedBuilder()
       .setTitle("📢 Bot Changelogs")
       .setColor("#FFA500")
       .setDescription("Here are the latest updates and changes:")
       .addFields(
-        { name: "🔧 Fixed", value: "- Slash command fixed" }, // Only "Slash command fixed"
-        { name: "📌 Coming Soon", value: "- More moderation features\n- Customizable status messages" },
-        { name: "🚀 Beta Version", value: `Currently running **v${config.BETA_VERSION}**` }
+        {
+          name: "✨ Added",
+          value:
+            "- `devprofile` command to display GitHub, TikTok, and Discord socials\n" +
+            "- `botinfo` command with dev info, repo, and hosting credits",
+        },
+        {
+          name: "🎨 Improvements",
+          value:
+            "- Cleaner descriptions for embeds\n" +
+            "- Structured command format for consistency",
+        },
+        {
+          name: "🆓 Open Source",
+          value:
+            "The bot is now **open source**! Check it out on [GitHub Repository](https://github.com/techarye/techactivitybot)",
+        },
+        {
+          name: "📌 Coming Soon",
+          value:
+            "- More moderation features\n" +
+            "- Customizable status messages\n" +
+            "- Interactive dashboards and stats",
+        },
+        {
+          name: "🚀 Beta Version",
+          value: `Currently running **v${config.BETA_VERSION}**`,
+        }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })
       .setTimestamp();

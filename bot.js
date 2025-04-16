@@ -44,6 +44,7 @@ const presenceOptions = [
   { text: () => "Collecting members", type: ActivityType.Playing, status: "dnd" },
   { text: () => "Replying to staff members", type: ActivityType.Watching, status: "idle" },
   { text: () => "AutoMod Beta 1.0", type: ActivityType.Playing, status: "online" },
+  { text: () => "Now open source on github!", type: ActivityType.Playing, status: "dnd" },
 ];
 
 // Function to update bot presence (timer)
