@@ -1,118 +1,119 @@
-const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
-const { getUser } = require("@schemas/User");
+const { EmbedBuilder } = require("discord.js");
 const { EMBED_COLORS, ECONOMY } = require("@root/config.js");
-const { getRandomInt } = require("@helpers/Utils");
+const { readData, writeData } = require("@helpers/economy");
+const path = require("path");
+
+const dataPath = path.join(__dirname, "../../data.json");
 
 /**
  * @type {import("@structures/Command")}
  */
 module.exports = {
   name: "gamble",
-  description: "try your luck by gambling",
+  description: "gamble your coins",
   category: "ECONOMY",
   botPermissions: ["EmbedLinks"],
   command: {
     enabled: true,
     usage: "<amount>",
+    aliases: ["bet"],
     minArgsCount: 1,
-    aliases: ["slot"],
   },
   slashCommand: {
     enabled: true,
     options: [
       {
-        name: "coins",
-        description: "number of coins to bet",
+        name: "amount",
+        description: "the amount of coins to gamble",
+        type: 3, // STRING
         required: true,
-        type: ApplicationCommandOptionType.Integer,
       },
     ],
   },
 
   async messageRun(message, args) {
-    const betAmount = parseInt(args[0]);
-    if (isNaN(betAmount)) return message.safeReply("Bet amount needs to be a valid number input");
-    const response = await gamble(message.author, betAmount);
+    const amount = args[0];
+    const response = await gamble(message.author, amount, message.guild.id);
     await message.safeReply(response);
   },
 
   async interactionRun(interaction) {
-    const betAmount = interaction.options.getInteger("coins");
-    const response = await gamble(interaction.user, betAmount);
+    const amount = interaction.options.getString("amount");
+    const response = await gamble(interaction.user, amount, interaction.guild.id);
     await interaction.followUp(response);
   },
 };
 
-function getEmoji() {
-  const ran = getRandomInt(9);
-  switch (ran) {
-    case 1:
-      return "\uD83C\uDF52";
-    case 2:
-      return "\uD83C\uDF4C";
-    case 3:
-      return "\uD83C\uDF51";
-    case 4:
-      return "\uD83C\uDF45";
-    case 5:
-      return "\uD83C\uDF49";
-    case 6:
-      return "\uD83C\uDF47";
-    case 7:
-      return "\uD83C\uDF53";
-    case 8:
-      return "\uD83C\uDF50";
-    case 9:
-      return "\uD83C\uDF4D";
-    default:
-      return "\uD83C\uDF52";
+async function gamble(user, amountArg, serverId) {
+  const data = await readData();
+
+  // Ensure the servers data structure exists
+  if (!data.servers) {
+    data.servers = {};
   }
-}
 
-function calculateReward(amount, var1, var2, var3) {
-  if (var1 === var2 && var2.equals === var3) return 3 * amount;
-  if (var1 === var2 || var2 === var3 || var1 === var3) return 2 * amount;
-  return 0;
-}
+  // Ensure the specific server exists
+  if (!data.servers[serverId]) {
+    data.servers[serverId] = { users: {} };
+  }
 
-async function gamble(user, betAmount) {
-  if (isNaN(betAmount)) return "Bet amount needs to be a valid number input";
-  if (betAmount < 0) return "Bet amount cannot be negative";
-  if (betAmount < 10) return "Bet amount cannot be less than 10";
+  // Initialize user data for this server if not exists
+  if (!data.servers[serverId].users[user.id]) {
+    data.servers[serverId].users[user.id] = {
+      coins: 0,
+      bank: 0,
+      daily: {
+        streak: 0,
+        timestamp: null,
+      },
+    };
+  }
 
-  const userDb = await getUser(user);
-  if (userDb.coins < betAmount)
-    return `You do not have sufficient coins to gamble!\n**Coin balance:** ${userDb.coins || 0}${ECONOMY.CURRENCY}`;
+  const userDb = data.servers[serverId].users[user.id];
+  const coins = userDb.coins;
 
-  const slot1 = getEmoji();
-  const slot2 = getEmoji();
-  const slot3 = getEmoji();
+  // Handle 'all' or 'half'
+  let amount;
+  if (amountArg.toLowerCase() === "all") {
+    amount = coins;
+  } else if (amountArg.toLowerCase() === "half") {
+    amount = Math.floor(coins / 2);
+  } else {
+    amount = parseInt(amountArg, 10);
+    if (isNaN(amount) || amount < 1) return "Please provide a valid amount to gamble.";
+  }
 
-  const str = `
-    **Gamble Amount:** ${betAmount}${ECONOMY.CURRENCY}
-    **Multiplier:** 2x
-    ╔══════════╗
-    ║ ${getEmoji()} ║ ${getEmoji()} ║ ${getEmoji()} ‎‎‎‎║
-    ╠══════════╣
-    ║ ${slot1} ║ ${slot2} ║ ${slot3} ⟸
-    ╠══════════╣
-    ║ ${getEmoji()} ║ ${getEmoji()} ║ ${getEmoji()} ║
-    ╚══════════╝
-    `;
+  if (amount > coins) return "You don't have enough coins to gamble that much!";
+  if (amount <= 0) return "You must gamble more than 0 coins.";
 
-  const reward = calculateReward(betAmount, slot1, slot2, slot3);
-  const result = (reward > 0 ? `You won: ${reward}` : `You lost: ${betAmount}`) + ECONOMY.CURRENCY;
-  const balance = reward - betAmount;
+  // Win or lose logic
+  const win = Math.random() < 0.5;
+  const resultAmount = amount;
 
-  userDb.coins += balance;
-  await userDb.save();
+  let description;
+  if (win) {
+    userDb.coins += resultAmount;
+    description = `You gambled ${amount}${ECONOMY.CURRENCY} and **won** 🎉\n` +
+                  `You now have **${userDb.coins}${ECONOMY.CURRENCY}**`;
+  } else {
+    userDb.coins -= resultAmount;
+    description = `You gambled ${amount}${ECONOMY.CURRENCY} and **lost** 😢\n` +
+                  `You now have **${userDb.coins}${ECONOMY.CURRENCY}**`;
+  }
 
+  // Write the updated data back to the file
+  try {
+    await writeData(data);
+    console.log("Data saved successfully!");
+  } catch (error) {
+    console.error("Error saving data:", error);
+  }
+
+  // Create an embed to show the result
   const embed = new EmbedBuilder()
+    .setColor(win ? EMBED_COLORS.SUCCESS : EMBED_COLORS.ERROR)
     .setAuthor({ name: user.username, iconURL: user.displayAvatarURL() })
-    .setColor(EMBED_COLORS.TRANSPARENT)
-    .setThumbnail("https://i.pinimg.com/originals/9a/f1/4e/9af14e0ae92487516894faa9ea2c35dd.gif")
-    .setDescription(str)
-    .setFooter({ text: `${result}\nUpdated Wallet balance: ${userDb?.coins}${ECONOMY.CURRENCY}` });
+    .setDescription(description);
 
   return { embeds: [embed] };
 }

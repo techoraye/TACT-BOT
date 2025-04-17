@@ -87,4 +87,10 @@ module.exports = {
     image: "https://icons.iconarchive.com/icons/blackvariant/button-ui-system-folders-alt/128/Utilities-icon.png",
     emoji: "🛠",
   },
+  NSFW: {
+    name: "NSFW",
+    enabled: config.NSFW.ENABLED,
+    image: "https://www.pngitem.com/pimgs/m/87-879525_nsfw-logo-a-logo-for-an-appropriation-movie.png",
+    emoji: "🔞",
+  },
 };

@@ -2,7 +2,7 @@ const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
   name: "botinfo",
-  description: "Displays information about the bot, hosting, and developer.",
+  description: "Displays information about the bot.",
   cooldown: 5,
   isPremium: false,
   category: "INFORMATION",
@@ -11,8 +11,8 @@ module.exports = {
   validations: [],
   command: {
     enabled: true,
-    aliases: ["credits"],
-    usage: "/botinfo",
+    aliases: ["info", "aboutbot"],
+    usage: "*botinfo",
     minArgsCount: 0,
     subcommands: [],
   },
@@ -24,22 +24,22 @@ module.exports = {
 
   messageRun: async (message) => {
     const embed = new EmbedBuilder()
-      .setTitle("🤖 TechActivityBot Information")
-      .setColor("#7289DA")
-      .setDescription("Here's everything you need to know about this bot!")
+      .setTitle("🤖 Bot Information")
+      .setDescription("Here is some information about the bot.")
+      .setColor("#5865F2")
       .addFields(
         {
-          name: "👨‍💻 Developer",
+          name: "👤 Developer",
           value: "[techarye](https://github.com/techarye)",
           inline: true,
         },
         {
-          name: "📂 GitHub Repository",
+          name: "📚 GitHub Repo",
           value: "[techactivitybot](https://github.com/techarye/techactivitybot)",
           inline: true,
         },
         {
-          name: "🖥️ Hosting",
+          name: "🌍 Hosting",
           value: "[bot-hosting.net](http://bot-hosting.net/)",
           inline: true,
         }
@@ -51,23 +51,30 @@ module.exports = {
   },
 
   interactionRun: async (interaction) => {
+    if (interaction.replied || interaction.deferred) {
+      return interaction.followUp({
+        content: "It seems the interaction has already been responded to.",
+        ephemeral: true,
+      });
+    }
+
     const embed = new EmbedBuilder()
-      .setTitle("🤖 TechActivityBot Information")
-      .setColor("#7289DA")
-      .setDescription("Here's everything you need to know about this bot!")
+      .setTitle("🤖 Bot Information")
+      .setDescription("Here is some information about the bot.")
+      .setColor("#5865F2")
       .addFields(
         {
-          name: "👨‍💻 Developer",
+          name: "👤 Developer",
           value: "[techarye](https://github.com/techarye)",
           inline: true,
         },
         {
-          name: "📂 GitHub Repository",
+          name: "📚 GitHub Repo",
           value: "[techactivitybot](https://github.com/techarye/techactivitybot)",
           inline: true,
         },
         {
-          name: "🖥️ Hosting",
+          name: "🌍 Hosting",
           value: "[bot-hosting.net](http://bot-hosting.net/)",
           inline: true,
         }
@@ -75,6 +82,6 @@ module.exports = {
       .setFooter({ text: `Requested by ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL() })
       .setTimestamp();
 
-    interaction.reply({ embeds: [embed], ephemeral: false });
+    await interaction.reply({ embeds: [embed], ephemeral: false });
   },
 };

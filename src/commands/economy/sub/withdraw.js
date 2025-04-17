@@ -1,38 +1,50 @@
+const { getBalance, updateUser } = require("@helpers/economy");
 const { EmbedBuilder } = require("discord.js");
-const { getUser } = require("@schemas/User");
-const { EMBED_COLORS, ECONOMY } = require("@root/config");
+const { ECONOMY, EMBED_COLORS } = require("../../../../config");
 
-module.exports = async (user, coins) => {
-  if (isNaN(coins) || coins <= 0) return "Please enter a valid amount of coins to deposit";
-  const userDb = await getUser(user);
+/**
+ * @param {import("discord.js").User} user - The target user
+ * @param {number} coins - Amount of coins to withdraw
+ * @param {string} serverId - The guild ID
+ */
+module.exports = async (user, coins, serverId) => {
+  try {
+    // Validate amount
+    if (isNaN(coins) || coins <= 0) {
+      return "Please enter a valid amount of coins to withdraw.";
+    }
 
-  if (coins > userDb.bank) return `You only have ${userDb.bank}${ECONOMY.CURRENCY} coins in your bank`;
+    // Fetch user data
+    const { bank } = await getBalance(user.id, serverId);
 
-  userDb.bank -= coins;
-  userDb.coins += coins;
-  await userDb.save();
+    // Check if the user has enough coins in the bank
+    if (coins > bank) {
+      return `You only have ${bank}${ECONOMY.CURRENCY} in your bank.`;
+    }
 
-  const embed = new EmbedBuilder()
-    .setColor(EMBED_COLORS.BOT_EMBED)
-    .setAuthor({ name: "New Balance" })
-    .setThumbnail(user.displayAvatarURL())
-    .addFields(
-      {
-        name: "Wallet",
-        value: `${userDb.coins}${ECONOMY.CURRENCY}`,
-        inline: true,
-      },
-      {
-        name: "Bank",
-        value: `${userDb.bank}${ECONOMY.CURRENCY}`,
-        inline: true,
-      },
-      {
-        name: "Net Worth",
-        value: `${userDb.coins + userDb.bank}${ECONOMY.CURRENCY}`,
-        inline: true,
-      }
-    );
+    // Perform withdrawal: move coins from bank to wallet
+    await updateUser(serverId, user.id, (u) => {
+      u.coins += coins;  // Add coins to wallet
+      u.bank -= coins;   // Remove coins from bank
+    });
 
-  return { embeds: [embed] };
+    // Fetch updated user balance
+    const { coins: updatedCoins, bank: updatedBank } = await getBalance(user.id, serverId);
+
+    // Create embed message to show updated balances
+    const embed = new EmbedBuilder()
+      .setColor(EMBED_COLORS.BOT_EMBED)
+      .setAuthor({ name: "New Balance", iconURL: user.displayAvatarURL() })
+      .setThumbnail(user.displayAvatarURL())
+      .addFields(
+        { name: "Wallet", value: `${updatedCoins}${ECONOMY.CURRENCY}`, inline: true },
+        { name: "Bank", value: `${updatedBank}${ECONOMY.CURRENCY}`, inline: true },
+        { name: "Net Worth", value: `${updatedCoins + updatedBank}${ECONOMY.CURRENCY}`, inline: true }
+      );
+
+    return { embeds: [embed] };
+  } catch (err) {
+    console.error(`❌ Withdrawal error for ${user.id} in server ${serverId}:`, err);
+    return "There was an error processing the withdrawal. Please try again later.";
+  }
 };

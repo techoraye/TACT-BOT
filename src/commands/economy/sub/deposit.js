@@ -1,38 +1,40 @@
+// src/commands/economy/sub/deposit.js
+const { depositCoins, getBalance } = require("@helpers/economy");
 const { EmbedBuilder } = require("discord.js");
-const { getUser } = require("@schemas/User");
-const { ECONOMY, EMBED_COLORS } = require("@root/config");
+const { ECONOMY, EMBED_COLORS } = require("../../../../config");
 
-module.exports = async (user, coins) => {
-  if (isNaN(coins) || coins <= 0) return "Please enter a valid amount of coins to deposit";
-  const userDb = await getUser(user);
+/**
+ * @param {import("discord.js").User} user
+ * @param {number} amount
+ * @param {string} serverId
+ */
+module.exports = async (user, amount, serverId) => {
+  try {
+    // Validate amount
+    if (isNaN(amount) || amount <= 0) {
+      return "Please enter a valid amount of coins to deposit.";
+    }
 
-  if (coins > userDb.coins) return `You only have ${userDb.coins}${ECONOMY.CURRENCY} coins in your wallet`;
+    // Perform the deposit
+    await depositCoins(user.id, amount, serverId);
 
-  userDb.coins -= coins;
-  userDb.bank += coins;
-  await userDb.save();
+    // Fetch the updated balances
+    const { coins: wallet, bank } = await getBalance(user.id, serverId);
 
-  const embed = new EmbedBuilder()
-    .setColor(EMBED_COLORS.BOT_EMBED)
-    .setAuthor({ name: "New Balance" })
-    .setThumbnail(user.displayAvatarURL())
-    .addFields(
-      {
-        name: "Wallet",
-        value: `${userDb.coins}${ECONOMY.CURRENCY}`,
-        inline: true,
-      },
-      {
-        name: "Bank",
-        value: `${userDb.bank}${ECONOMY.CURRENCY}`,
-        inline: true,
-      },
-      {
-        name: "Net Worth",
-        value: `${userDb.coins + userDb.bank}${ECONOMY.CURRENCY}`,
-        inline: true,
-      }
-    );
+    // Build the embed
+    const embed = new EmbedBuilder()
+      .setColor(EMBED_COLORS.BOT_EMBED)
+      .setAuthor({ name: "New Balance", iconURL: user.displayAvatarURL() })
+      .setThumbnail(user.displayAvatarURL())
+      .addFields(
+        { name: "Wallet", value: `${wallet}${ECONOMY.CURRENCY}`, inline: true },
+        { name: "Bank", value: `${bank}${ECONOMY.CURRENCY}`, inline: true },
+        { name: "Net Worth", value: `${wallet + bank}${ECONOMY.CURRENCY}`, inline: true }
+      );
 
-  return { embeds: [embed] };
+    return { embeds: [embed] };
+  } catch (err) {
+    console.error(`❌ Deposit error for user ${user.id} in server ${serverId}:`, err);
+    return "There was an error processing your deposit. Please try again later.";
+  }
 };

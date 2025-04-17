@@ -12,7 +12,7 @@ module.exports = {
   command: {
     enabled: true,
     aliases: ["socials", "aboutme"],
-    usage: "!devprofile",
+    usage: "*devprofile",
     minArgsCount: 0,
     subcommands: [],
   },
@@ -47,10 +47,26 @@ module.exports = {
       .setFooter({ text: `Requested by ${message.author.tag}`, iconURL: message.author.displayAvatarURL() })
       .setTimestamp();
 
+    // Ensure we reply only once
+    if (message.replied || message.deferred) {
+      return message.followUp({
+        content: "It seems the interaction has already been responded to.",
+        ephemeral: true,
+      });
+    }
+
     message.channel.send({ embeds: [embed] });
   },
 
   interactionRun: async (interaction) => {
+    // Prevent multiple replies to the interaction
+    if (interaction.replied || interaction.deferred) {
+      return interaction.followUp({
+        content: "It seems the interaction has already been responded to.",
+        ephemeral: true,
+      });
+    }
+
     const embed = new EmbedBuilder()
       .setTitle("🌐 Developer Socials")
       .setDescription("Stay connected and check out my online presence across platforms.")
@@ -75,6 +91,7 @@ module.exports = {
       .setFooter({ text: `Requested by ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL() })
       .setTimestamp();
 
-    interaction.reply({ embeds: [embed], ephemeral: false });
+    // Send reply to the interaction
+    await interaction.reply({ embeds: [embed], ephemeral: false });
   },
 };

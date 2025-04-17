@@ -12,6 +12,7 @@ module.exports = {
   description: "access to bank operations",
   category: "ECONOMY",
   botPermissions: ["EmbedLinks"],
+
   command: {
     enabled: true,
     minArgsCount: 1,
@@ -34,6 +35,7 @@ module.exports = {
       },
     ],
   },
+
   slashCommand: {
     enabled: true,
     options: [
@@ -99,75 +101,93 @@ module.exports = {
   },
 
   async messageRun(message, args) {
-    const sub = args[0];
+    const sub = args[0]?.toLowerCase();
+    const serverId = message.guild.id;
     let response;
 
-    if (sub === "balance") {
-      const resolved = (await message.guild.resolveMember(args[1])) || message.member;
-      response = await balance(resolved.user);
+    switch (sub) {
+      case "balance": {
+        const target = await message.guild.resolveMember(args[1]) || message.member;
+        response = await balance(target.user, serverId);
+        break;
+      }
+
+      case "deposit": {
+        const coins = parseInt(args[1]);
+        if (isNaN(coins) || coins <= 0) return message.safeReply("Please enter a valid number of coins to deposit.");
+        response = await deposit(message.author, coins, serverId);
+        break;
+      }
+
+      case "withdraw": {
+        const coins = parseInt(args[1]);
+        if (isNaN(coins) || coins <= 0) return message.safeReply("Please enter a valid number of coins to withdraw.");
+        response = await withdraw(message.author, coins, serverId);
+        break;
+      }
+
+      case "transfer": {
+        if (args.length < 3) return message.safeReply("Usage: `transfer <user> <coins>`");
+
+        const target = await message.guild.resolveMember(args[1]);
+        if (!target) return message.safeReply("That user doesn't exist.");
+
+        const coins = parseInt(args[2]);
+        if (isNaN(coins) || coins <= 0) return message.safeReply("Please enter a valid number of coins to transfer.");
+
+        response = await transfer(message.author, target.user, coins, serverId);
+        break;
+      }
+
+      default:
+        return message.safeReply("Invalid subcommand. Use `balance`, `deposit`, `withdraw`, or `transfer`.");
     }
 
-    //
-    else if (sub === "deposit") {
-      const coins = args.length && parseInt(args[1]);
-      if (isNaN(coins)) return message.safeReply("Provide a valid number of coins you wish to deposit");
-      response = await deposit(message.author, coins);
-    }
-
-    //
-    else if (sub === "withdraw") {
-      const coins = args.length && parseInt(args[1]);
-      if (isNaN(coins)) return message.safeReply("Provide a valid number of coins you wish to withdraw");
-      response = await withdraw(message.author, coins);
-    }
-
-    //
-    else if (sub === "transfer") {
-      if (args.length < 3) return message.safeReply("Provide a valid user and coins to transfer");
-      const target = await message.guild.resolveMember(args[1], true);
-      if (!target) return message.safeReply("Provide a valid user to transfer coins to");
-      const coins = parseInt(args[2]);
-      if (isNaN(coins)) return message.safeReply("Provide a valid number of coins you wish to transfer");
-      response = await transfer(message.author, target.user, coins);
-    }
-
-    //
-    else {
-      return message.safeReply("Invalid command usage");
-    }
-
-    await message.safeReply(response);
+    return message.safeReply(response);
   },
 
   async interactionRun(interaction) {
     const sub = interaction.options.getSubcommand();
+    const serverId = interaction.guild.id;
     let response;
 
-    // balance
-    if (sub === "balance") {
-      const user = interaction.options.getUser("user") || interaction.user;
-      response = await balance(user);
+    switch (sub) {
+      case "balance": {
+        const user = interaction.options.getUser("user") || interaction.user;
+        if (!user) return interaction.followUp("Unable to fetch user.");
+        response = await balance(user, serverId);
+        break;
+      }
+
+      case "deposit": {
+        const coins = interaction.options.getInteger("coins");
+        if (!coins || coins <= 0) return interaction.followUp("Please enter a valid number of coins to deposit.");
+        response = await deposit(interaction.user, coins, serverId);
+        break;
+      }
+
+      case "withdraw": {
+        const coins = interaction.options.getInteger("coins");
+        if (!coins || coins <= 0) return interaction.followUp("Please enter a valid number of coins to withdraw.");
+        response = await withdraw(interaction.user, coins, serverId);
+        break;
+      }
+
+      case "transfer": {
+        const target = interaction.options.getUser("user");
+        const coins = interaction.options.getInteger("coins");
+
+        if (!target) return interaction.followUp("Invalid user provided.");
+        if (!coins || coins <= 0) return interaction.followUp("Please enter a valid number of coins to transfer.");
+
+        response = await transfer(interaction.user, target, coins, serverId);
+        break;
+      }
+
+      default:
+        return interaction.followUp("Invalid subcommand.");
     }
 
-    // deposit
-    else if (sub === "deposit") {
-      const coins = interaction.options.getInteger("coins");
-      response = await deposit(interaction.user, coins);
-    }
-
-    // withdraw
-    else if (sub === "withdraw") {
-      const coins = interaction.options.getInteger("coins");
-      response = await withdraw(interaction.user, coins);
-    }
-
-    // transfer
-    else if (sub === "transfer") {
-      const user = interaction.options.getUser("user");
-      const coins = interaction.options.getInteger("coins");
-      response = await transfer(interaction.user, user, coins);
-    }
-
-    await interaction.followUp(response);
+    return interaction.followUp(response);
   },
 };

@@ -1,33 +1,42 @@
+const { transferCoins, getBalance } = require("@helpers/economy");
 const { EmbedBuilder } = require("discord.js");
-const { getUser } = require("@schemas/User");
-const { ECONOMY, EMBED_COLORS } = require("@root/config");
+const { ECONOMY, EMBED_COLORS } = require("../../../../config");
 
-module.exports = async (self, target, coins) => {
-  if (isNaN(coins) || coins <= 0) return "Please enter a valid amount of coins to transfer";
-  if (target.bot) return "You cannot transfer coins to bots!";
-  if (target.id === self.id) return "You cannot transfer coins to self!";
+/**
+ * @param {import("discord.js").User} sender
+ * @param {import("discord.js").User} receiver
+ * @param {number} coins
+ * @param {string} serverId
+ */
+module.exports = async (sender, receiver, coins, serverId) => {
+  try {
+    // Validate amount
+    if (isNaN(coins) || coins <= 0) {
+      return "Please enter a valid amount of coins to transfer.";
+    }
 
-  const userDb = await getUser(self);
+    // Perform the transfer
+    await transferCoins(sender.id, receiver.id, coins, serverId);
 
-  if (userDb.bank < coins) {
-    return `Insufficient bank balance! You only have ${userDb.bank}${ECONOMY.CURRENCY} in your bank account.${
-      userDb.coins > 0 && "\nYou must deposit your coins in bank before you can transfer"
-    } `;
+    // Fetch updated balances for both sender and receiver
+    const { coins: senderCoins, bank: senderBank } = await getBalance(sender.id, serverId);
+    const { coins: receiverCoins, bank: receiverBank } = await getBalance(receiver.id, serverId);
+
+    // Create the embed response
+    const embed = new EmbedBuilder()
+      .setColor(EMBED_COLORS.BOT_EMBED)
+      .setAuthor({ name: `${sender.username} transferred coins to ${receiver.username}` })
+      .setThumbnail(sender.displayAvatarURL())
+      .addFields(
+        { name: "Sender's New Wallet", value: `${senderCoins}${ECONOMY.CURRENCY}`, inline: true },
+        { name: "Receiver's New Wallet", value: `${receiverCoins}${ECONOMY.CURRENCY}`, inline: true },
+        { name: "Sender's Net Worth", value: `${senderCoins + senderBank}${ECONOMY.CURRENCY}`, inline: true },
+        { name: "Receiver's Net Worth", value: `${receiverCoins + receiverBank}${ECONOMY.CURRENCY}`, inline: true }
+      );
+
+    return { embeds: [embed] };
+  } catch (err) {
+    console.error(`❌ Transfer error for ${sender.id} to ${receiver.id} in server ${serverId}:`, err);
+    return "There was an error processing the transfer. Please try again later.";
   }
-
-  const targetDb = await getUser(target);
-
-  userDb.bank -= coins;
-  targetDb.bank += coins;
-
-  await userDb.save();
-  await targetDb.save();
-
-  const embed = new EmbedBuilder()
-    .setColor(EMBED_COLORS.BOT_EMBED)
-    .setAuthor({ name: "Updated Balance" })
-    .setDescription(`You have successfully transferred ${coins}${ECONOMY.CURRENCY} to ${target.username}`)
-    .setTimestamp(Date.now());
-
-  return { embeds: [embed] };
 };

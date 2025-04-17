@@ -1,100 +1,140 @@
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, InteractionFlagsBits } = require("discord.js");
 const { EMBED_COLORS, SUPPORT_SERVER, DASHBOARD } = require("@root/config");
 const { timeformat } = require("@helpers/Utils");
 const os = require("os");
 const { stripIndent } = require("common-tags");
 
 /**
+ * Génère un embed très complet avec des stats système & bot.
  * @param {import('@structures/BotClient')} client
+ * @returns {{ embeds: EmbedBuilder[], components: ActionRowBuilder[] }}
  */
 module.exports = (client) => {
-  // STATS
+  // === GENERAL BOT STATS ===
   const guilds = client.guilds.cache.size;
   const channels = client.channels.cache.size;
-  const users = client.guilds.cache.reduce((size, g) => size + g.memberCount, 0);
+  const users = client.guilds.cache.reduce((acc, g) => acc + g.memberCount, 0);
+  const ping = client.ws.ping;
+  const uptime = timeformat(process.uptime());
+  const nodeVersion = process.version;
 
-  // CPU
-  const platform = process.platform.replace(/win32/g, "Windows");
-  const architecture = os.arch();
-  const cores = os.cpus().length;
-  const cpuUsage = `${(process.cpuUsage().user / 1024 / 1024).toFixed(2)} MB`;
+  // === CPU ===
+  const cpus = os.cpus();
+  const cpuModel = cpus[0].model;
+  const cpuCores = cpus.length;
+  const cpuSpeed = cpus[0].speed;
+  const cpuArch = os.arch();
+  const cpuPlatform = process.platform === "win32" ? "Windows" : process.platform;
+  const loadAverage = os.loadavg().map((n) => n.toFixed(2)).join(" / ");
+  const cpuUsage = (process.cpuUsage().user / 1024 / 1024).toFixed(2) + " MB";
 
-  // RAM
-  const botUsed = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`;
-  const botAvailable = `${(os.totalmem() / 1024 / 1024 / 1024).toFixed(2)} GB`;
-  const botUsage = `${((process.memoryUsage().heapUsed / os.totalmem()) * 100).toFixed(1)}%`;
+  // === MEMORY ===
+  const totalMem = os.totalmem();
+  const freeMem = os.freemem();
+  const usedMem = totalMem - freeMem;
+  const usedGB = (usedMem / 1024 / 1024 / 1024).toFixed(2);
+  const totalGB = (totalMem / 1024 / 1024 / 1024).toFixed(2);
+  const memUsagePercent = ((usedMem / totalMem) * 100).toFixed(1);
 
-  const overallUsed = `${((os.totalmem() - os.freemem()) / 1024 / 1024 / 1024).toFixed(2)} GB`;
-  const overallAvailable = `${(os.totalmem() / 1024 / 1024 / 1024).toFixed(2)} GB`;
-  const overallUsage = `${Math.floor(((os.totalmem() - os.freemem()) / os.totalmem()) * 100)}%`;
+  // === BOT MEMORY ===
+  const heapUsed = process.memoryUsage().heapUsed;
+  const heapTotal = process.memoryUsage().heapTotal;
+  const externalMem = process.memoryUsage().external;
+  const botUsedMB = (heapUsed / 1024 / 1024).toFixed(2);
+  const botTotalMB = (heapTotal / 1024 / 1024).toFixed(2);
+  const externalMB = (externalMem / 1024 / 1024).toFixed(2);
+  const botMemPercent = ((heapUsed / totalMem) * 100).toFixed(2);
 
-  let desc = "";
-  desc += `❒ Total guilds: ${guilds}\n`;
-  desc += `❒ Total users: ${users}\n`;
-  desc += `❒ Total channels: ${channels}\n`;
-  desc += `❒ Websocket Ping: ${client.ws.ping} ms\n`;
-  desc += "\n";
-
+  // === EMBED CONTENT ===
   const embed = new EmbedBuilder()
-    .setTitle("Bot Information")
-    .setColor(EMBED_COLORS.BOT_EMBED)
+    .setTitle("🧠 Bot & System Statistics")
+    .setColor(EMBED_COLORS.BOT_EMBED || "#5865F2")
     .setThumbnail(client.user.displayAvatarURL())
-    .setDescription(desc)
     .addFields(
       {
-        name: "CPU",
+        name: "📊 General Bot Info",
         value: stripIndent`
-        ❯ **OS:** ${platform} [${architecture}]
-        ❯ **Cores:** ${cores}
-        ❯ **Usage:** ${cpuUsage}
+          ❯ Servers: \`${guilds}\`
+          ❯ Users: \`${users}\`
+          ❯ Channels: \`${channels}\`
+          ❯ WebSocket Ping: \`${ping}ms\`
+          ❯ Node.js: \`${nodeVersion}\`
+          ❯ Uptime: \`${uptime}\`
+        `,
+      },
+      {
+        name: "🧠 CPU Information",
+        value: stripIndent`
+          ❯ Model: \`${cpuModel}\`
+          ❯ Cores: \`${cpuCores}\` @ \`${cpuSpeed} MHz\`
+          ❯ Architecture: \`${cpuArch}\`
+          ❯ Platform: \`${cpuPlatform}\`
+          ❯ Load Average: \`${loadAverage}\`
+          ❯ Bot CPU Usage: \`${cpuUsage}\`
+        `,
+      },
+      {
+        name: "💾 Memory (System)",
+        value: stripIndent`
+          ❯ Used: \`${usedGB} GB\`
+          ❯ Total: \`${totalGB} GB\`
+          ❯ Usage: \`${memUsagePercent}%\`
         `,
         inline: true,
       },
       {
-        name: "Bot's RAM",
+        name: "📦 Memory (Bot Process)",
         value: stripIndent`
-        ❯ **Used:** ${botUsed}
-        ❯ **Available:** ${botAvailable}
-        ❯ **Usage:** ${botUsage}
+          ❯ Heap Used: \`${botUsedMB} MB\`
+          ❯ Heap Total: \`${botTotalMB} MB\`
+          ❯ External: \`${externalMB} MB\`
+          ❯ Usage: \`${botMemPercent}% of system RAM\`
         `,
         inline: true,
       },
       {
-        name: "Overall RAM",
-        value: stripIndent`
-        ❯ **Used:** ${overallUsed}
-        ❯ **Available:** ${overallAvailable}
-        ❯ **Usage:** ${overallUsage}
-        `,
-        inline: true,
-      },
-      {
-        name: "Node Js version",
-        value: process.versions.node,
-        inline: false,
-      },
-      {
-        name: "Uptime",
-        value: "```" + timeformat(process.uptime()) + "```",
-        inline: false,
+        name: "🧩 Sharding",
+        value: `❯ This bot is **${client.shard ? "sharded" : "not sharded"}**${
+          client.shard ? ` (Shard ${client.shard.ids[0]})` : ""
+        }`,
       }
-    );
+    )
+    .setFooter({
+      text: `Requested by ${client.user.username}`,
+      iconURL: client.user.displayAvatarURL(),
+    })
+    .setTimestamp();
 
-  // Buttons
-  let components = [];
-  components.push(new ButtonBuilder().setLabel("Invite Link").setURL(client.getInvite()).setStyle(ButtonStyle.Link));
+  // === BUTTONS ===
+  const buttonsList = [];
+
+  buttonsList.push(
+    new ButtonBuilder().setLabel("🔗 Invite Me").setURL(client.getInvite()).setStyle(ButtonStyle.Link)
+  );
 
   if (SUPPORT_SERVER) {
-    components.push(new ButtonBuilder().setLabel("Support Server").setURL(SUPPORT_SERVER).setStyle(ButtonStyle.Link));
-  }
-
-  if (DASHBOARD.enabled) {
-    components.push(
-      new ButtonBuilder().setLabel("Dashboard Link").setURL(DASHBOARD.baseURL).setStyle(ButtonStyle.Link)
+    buttonsList.push(
+      new ButtonBuilder().setLabel("💬 Support").setURL(SUPPORT_SERVER).setStyle(ButtonStyle.Link)
     );
   }
 
-  let buttonsRow = new ActionRowBuilder().addComponents(components);
+  if (DASHBOARD?.enabled) {
+    buttonsList.push(
+      new ButtonBuilder().setLabel("📊 Dashboard").setURL(DASHBOARD.baseURL).setStyle(ButtonStyle.Link)
+    );
+  }
 
-  return { embeds: [embed], components: [buttonsRow] };
+  // Split buttons into rows
+  const rows = [];
+  for (let i = 0; i < buttonsList.length; i += 5) {
+    const row = new ActionRowBuilder().addComponents(buttonsList.slice(i, i + 5));
+    rows.push(row);
+  }
+
+  // Return the embed and buttons
+  return {
+    embeds: [embed],
+    components: rows,
+    flags: InteractionFlagsBits.Ephemeral, // Add ephemeral flag for hidden replies
+  };
 };
