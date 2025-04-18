@@ -47,7 +47,7 @@ module.exports = {
 
   messageRun: async (message) => {
     // New economy update
-    const totalEconomy = ECONOMY.STARTING_BALANCE || 250; // default starting balance
+    const totalEconomy = ECONOMY.STARTING_BALANCE || 1000; // default starting balance
 
     const embed = new EmbedBuilder()
       .setTitle("📢 Bot Changelogs")
@@ -59,8 +59,20 @@ module.exports = {
           value: `Currently running **v${config.BETA_VERSION}**`,
         },
         {
+          name: "✅ Improved Database System",
+          value: "Switched to a more optimized structure for per-server data management.",
+        },
+        {
+          name: "🛠️ Fixed Economy System",
+          value: "All economy commands now use the new per-server & per-user data format properly.",
+        },
+        {
           name: "💰 Economy System Update",
           value: `The new economy system has been implemented! Every user now starts with **${formatCurrency(totalEconomy)}** ${ECONOMY.CURRENCY}.`,
+        },
+        {
+          name: "🔜 Coming Soon: Economy Commands",
+          value: `Stay tuned! We will soon be rolling out new economy-related commands like **/beg**, **/work**, and more to help you grow your wealth!`,
         }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })
@@ -71,7 +83,7 @@ module.exports = {
 
   interactionRun: async (interaction) => {
     // New economy update
-    const totalEconomy = ECONOMY.STARTING_BALANCE || 250; // default starting balance
+    const totalEconomy = ECONOMY.STARTING_BALANCE || 1000; // default starting balance
 
     const embed = new EmbedBuilder()
       .setTitle("📢 Bot Changelogs")
@@ -83,8 +95,20 @@ module.exports = {
           value: `Currently running **v${config.BETA_VERSION}**`,
         },
         {
+          name: "✅ Improved Database System",
+          value: "Switched to a more optimized structure for per-server data management.",
+        },
+        {
+          name: "🛠️ Fixed Economy System",
+          value: "All economy commands now use the new per-server & per-user data format properly.",
+        },
+        {
           name: "💰 Economy System Update",
           value: `The new economy system has been implemented! Every user now starts with **${formatCurrency(totalEconomy)}** ${ECONOMY.CURRENCY}.`,
+        },
+        {
+          name: "🔜 Coming Soon: Economy Commands",
+          value: `Stay tuned! We will soon be rolling out new economy-related commands like **/beg**, **/work**, and more to help you grow your wealth!`,
         }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })
