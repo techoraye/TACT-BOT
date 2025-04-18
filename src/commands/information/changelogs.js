@@ -47,7 +47,7 @@ module.exports = {
 
   messageRun: async (message) => {
     // New economy update
-    const totalEconomy = ECONOMY.STARTING_BALANCE || 1000; // default starting balance
+    const totalEconomy = ECONOMY.STARTING_BALANCE || 250; // default starting balance
 
     const embed = new EmbedBuilder()
       .setTitle("📢 Bot Changelogs")
@@ -83,7 +83,7 @@ module.exports = {
 
   interactionRun: async (interaction) => {
     // New economy update
-    const totalEconomy = ECONOMY.STARTING_BALANCE || 1000; // default starting balance
+    const totalEconomy = ECONOMY.STARTING_BALANCE || 250; // default starting balance
 
     const embed = new EmbedBuilder()
       .setTitle("📢 Bot Changelogs")
