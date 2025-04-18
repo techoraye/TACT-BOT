@@ -1,5 +1,27 @@
 const { EmbedBuilder } = require("discord.js");
 const config = require("@root/config.js");
+const { ECONOMY } = require("@root/config.js");
+
+/**
+ * Format numbers into compact human-readable strings
+ * e.g., 1.2K, 3.5M, 7.1B, 2.3T, etc.
+ * Shows "0" if value is 0.
+ * @param {number} amount
+ * @returns {string}
+ */
+function formatCurrency(amount) {
+  if (amount === 0) return "0";
+
+  const suffixes = ["", "K", "M", "B", "T", "Q", "Qn", "Sx", "Sp", "Oc", "No", "Dc"];
+  let tier = Math.floor(Math.log10(Math.abs(amount)) / 3);
+  if (tier === 0) return amount.toString();
+
+  const suffix = suffixes[tier] || `e${tier * 3}`;
+  const scale = Math.pow(10, tier * 3);
+  const scaled = (amount / scale).toFixed(1);
+
+  return `${scaled}${suffix}`;
+}
 
 module.exports = {
   name: "changelogs",
@@ -24,6 +46,9 @@ module.exports = {
   },
 
   messageRun: async (message) => {
+    // New economy update
+    const totalEconomy = ECONOMY.STARTING_BALANCE || 250; // default starting balance
+
     const embed = new EmbedBuilder()
       .setTitle("📢 Bot Changelogs")
       .setColor("#FFA500")
@@ -34,12 +59,8 @@ module.exports = {
           value: `Currently running **v${config.BETA_VERSION}**`,
         },
         {
-          name: "✅ Improved Database System",
-          value: "Switched to a more optimized structure for per-server data management.",
-        },
-        {
-          name: "🛠️ Fixed Economy System",
-          value: "All economy commands now use the new per-server & per-user data format properly.",
+          name: "💰 Economy System Update",
+          value: `The new economy system has been implemented! Every user now starts with **${formatCurrency(totalEconomy)}** ${ECONOMY.CURRENCY}.`,
         }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })
@@ -49,6 +70,9 @@ module.exports = {
   },
 
   interactionRun: async (interaction) => {
+    // New economy update
+    const totalEconomy = ECONOMY.STARTING_BALANCE || 250; // default starting balance
+
     const embed = new EmbedBuilder()
       .setTitle("📢 Bot Changelogs")
       .setColor("#FFA500")
@@ -59,12 +83,8 @@ module.exports = {
           value: `Currently running **v${config.BETA_VERSION}**`,
         },
         {
-          name: "✅ Improved Database System",
-          value: "Switched to a more optimized structure for per-server data management.",
-        },
-        {
-          name: "🛠️ Fixed Economy System",
-          value: "All economy commands now use the new per-server & per-user data format properly.",
+          name: "💰 Economy System Update",
+          value: `The new economy system has been implemented! Every user now starts with **${formatCurrency(totalEconomy)}** ${ECONOMY.CURRENCY}.`,
         }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })

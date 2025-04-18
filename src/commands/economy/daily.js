@@ -1,8 +1,33 @@
 const { EmbedBuilder } = require("discord.js");
-const { ECONOMY, EMBED_COLORS } = require("@root/config.js");
-const { writeData, readData } = require("@helpers/economy.js");
+const { ECONOMY, EMBED_COLORS } = require("../../../../config");
+const { writeData, readData } = require("@helpers/economy");
 const path = require("path");
 
+/**
+ * Format numbers into compact human-readable strings
+ * e.g., 1.2K, 3.5M, 7.1B, 2.3T, etc.
+ * Shows "0" if value is 0.
+ * @param {number} amount
+ * @returns {string}
+ */
+function formatCurrency(amount) {
+  if (amount === 0) return "0";
+
+  const suffixes = ["", "K", "M", "B", "T", "Q", "Qn", "Sx", "Sp", "Oc", "No", "Dc"];
+  let tier = Math.floor(Math.log10(Math.abs(amount)) / 3);
+  if (tier === 0) return amount.toString();
+
+  const suffix = suffixes[tier] || `e${tier * 3}`;
+  const scale = Math.pow(10, tier * 3);
+  const scaled = (amount / scale).toFixed(1);
+
+  return `${scaled}${suffix}`;
+}
+
+/**
+ * @param {User} user - The target user
+ * @param {string} serverId - The guild ID
+ */
 async function daily(user, serverId) {
   const data = await readData();
 
@@ -57,21 +82,40 @@ async function daily(user, serverId) {
   // Save updated data
   await writeData(data);
 
+  const formattedCoins = formatCurrency(userDb.coins);
+  const formattedBank = formatCurrency(userDb.bank);
+  const formattedNetWorth = formatCurrency(userDb.coins + userDb.bank);
+
   const embed = new EmbedBuilder()
     .setColor(EMBED_COLORS.BOT_EMBED)
-    .setAuthor({ name: user.username, iconURL: user.displayAvatarURL() })
-    .setDescription(
-      `You got ${ECONOMY.DAILY_COINS}${ECONOMY.CURRENCY} as your daily reward\n` +
-      `**Updated Balance:** ${userDb.coins}${ECONOMY.CURRENCY}\n` +
-      `**Bank Balance:** ${userDb.bank}${ECONOMY.CURRENCY}`
-    );
+    .setTitle(`💰 ${user.username}'s Daily Reward`)
+    .setThumbnail(user.displayAvatarURL())
+    .addFields(
+      {
+        name: "🪙 Wallet",
+        value: `\`\`\`${formattedCoins}${ECONOMY.CURRENCY}\`\`\``,
+        inline: true,
+      },
+      {
+        name: "🏦 Bank",
+        value: `\`\`\`${formattedBank}${ECONOMY.CURRENCY}\`\`\``,
+        inline: true,
+      },
+      {
+        name: "📊 Net Worth",
+        value: `\`\`\`${formattedNetWorth}${ECONOMY.CURRENCY}\`\`\``,
+        inline: false,
+      }
+    )
+    .setFooter({ text: `📅 Streak: ${streak} days` })
+    .setTimestamp();
 
   return { embeds: [embed] };
 }
 
 module.exports = {
   name: "daily",
-  description: "receive a daily bonus",
+  description: "Receive your daily bonus and view your current streak.",
   category: "ECONOMY",
   botPermissions: ["EmbedLinks"],
   command: { enabled: true },

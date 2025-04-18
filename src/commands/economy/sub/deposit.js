@@ -1,7 +1,27 @@
-// src/commands/economy/sub/deposit.js
 const { depositCoins, getBalance } = require("@helpers/economy");
 const { EmbedBuilder } = require("discord.js");
 const { ECONOMY, EMBED_COLORS } = require("../../../../config");
+
+/**
+ * Format numbers into compact human-readable strings
+ * e.g., 1.2K, 3.5M, 7.1B, 2.3T, etc.
+ * Shows "0" if value is 0.
+ * @param {number} amount
+ * @returns {string}
+ */
+function formatCurrency(amount) {
+  if (amount === 0) return "0";
+
+  const suffixes = ["", "K", "M", "B", "T", "Q", "Qn", "Sx", "Sp", "Oc", "No", "Dc"];
+  let tier = Math.floor(Math.log10(Math.abs(amount)) / 3);
+  if (tier === 0) return amount.toString();
+
+  const suffix = suffixes[tier] || `e${tier * 3}`;
+  const scale = Math.pow(10, tier * 3);
+  const scaled = (amount / scale).toFixed(1);
+
+  return `${scaled}${suffix}`;
+}
 
 /**
  * @param {import("discord.js").User} user
@@ -10,31 +30,44 @@ const { ECONOMY, EMBED_COLORS } = require("../../../../config");
  */
 module.exports = async (user, amount, serverId) => {
   try {
-    // Validate amount
     if (isNaN(amount) || amount <= 0) {
-      return "Please enter a valid amount of coins to deposit.";
+      return "🚫 Please enter a valid amount of coins to deposit.";
     }
 
-    // Perform the deposit
     await depositCoins(user.id, amount, serverId);
-
-    // Fetch the updated balances
     const { coins: wallet, bank } = await getBalance(user.id, serverId);
 
-    // Build the embed
+    const formattedWallet = formatCurrency(wallet);
+    const formattedBank = formatCurrency(bank);
+    const formattedNet = formatCurrency(wallet + bank);
+
     const embed = new EmbedBuilder()
       .setColor(EMBED_COLORS.BOT_EMBED)
-      .setAuthor({ name: "New Balance", iconURL: user.displayAvatarURL() })
+      .setTitle("🏦 Deposit Successful")
       .setThumbnail(user.displayAvatarURL())
       .addFields(
-        { name: "Wallet", value: `${wallet}${ECONOMY.CURRENCY}`, inline: true },
-        { name: "Bank", value: `${bank}${ECONOMY.CURRENCY}`, inline: true },
-        { name: "Net Worth", value: `${wallet + bank}${ECONOMY.CURRENCY}`, inline: true }
-      );
+        {
+          name: "🪙 Wallet",
+          value: `\`\`\`${formattedWallet}${ECONOMY.CURRENCY}\`\`\``,
+          inline: true,
+        },
+        {
+          name: "🏛️ Bank",
+          value: `\`\`\`${formattedBank}${ECONOMY.CURRENCY}\`\`\``,
+          inline: true,
+        },
+        {
+          name: "📊 Net Worth",
+          value: `\`\`\`${formattedNet}${ECONOMY.CURRENCY}\`\`\``,
+          inline: false,
+        }
+      )
+      .setFooter({ text: 'Use "/bank balance" to check your account anytime.' })
+      .setTimestamp();
 
     return { embeds: [embed] };
   } catch (err) {
     console.error(`❌ Deposit error for user ${user.id} in server ${serverId}:`, err);
-    return "There was an error processing your deposit. Please try again later.";
+    return "❌ There was an error processing your deposit. Please try again later.";
   }
 };

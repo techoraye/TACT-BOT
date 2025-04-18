@@ -6,6 +6,27 @@ const path = require("path");
 const dataPath = path.join(__dirname, "../../database/economy.json");
 
 /**
+ * Format numbers into compact human-readable strings
+ * e.g., 1.2K, 3.5M, 7.1B, 2.3T, etc.
+ * Shows "0" if value is 0.
+ * @param {number} amount
+ * @returns {string}
+ */
+function formatCurrency(amount) {
+  if (amount === 0) return "0";
+
+  const suffixes = ["", "K", "M", "B", "T", "Q", "Qn", "Sx", "Sp", "Oc", "No", "Dc"];
+  let tier = Math.floor(Math.log10(Math.abs(amount)) / 3);
+  if (tier === 0) return amount.toString();
+
+  const suffix = suffixes[tier] || `e${tier * 3}`;
+  const scale = Math.pow(10, tier * 3);
+  const scaled = (amount / scale).toFixed(1);
+
+  return `${scaled}${suffix}`;
+}
+
+/**
  * @type {import("@structures/Command")}
  */
 module.exports = {
@@ -99,11 +120,24 @@ async function addRemoveCoins(sender, receiver, amount, serverId, action) {
   // Save the updated data
   await writeData(data);
 
+  // Format the amount to include money prefixes like K, M, B, etc.
+  const formattedAmount = formatCurrency(amount);
+  const formattedCoins = formatCurrency(data.servers[serverId].users[receiver.id].coins);
+
   // Create the embed response
   const embed = new EmbedBuilder()
     .setColor(EMBED_COLORS.SUCCESS)
     .setAuthor({ name: sender.username, iconURL: sender.displayAvatarURL() })
-    .setDescription(`${action === "add" ? "Added" : "Removed"} **${amount}${ECONOMY.CURRENCY}** from **${receiver.username}** 💸`);
+    .setDescription(`${action === "add" ? "Added" : "Removed"} **${formattedAmount}${ECONOMY.CURRENCY}** to/from **${receiver.username}** 💸`)
+    .addFields(
+      {
+        name: "Updated Balance",
+        value: `**${receiver.username}** now has **${formattedCoins}${ECONOMY.CURRENCY}** in their wallet.`,
+        inline: false,
+      }
+    )
+    .setFooter({ text: "Admin action performed." })
+    .setTimestamp();
 
   return { embeds: [embed] };
 }
