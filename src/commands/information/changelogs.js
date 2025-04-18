@@ -34,13 +34,6 @@ module.exports = {
           value: `Currently running **v${config.BETA_VERSION}**`,
         },
         {
-          name: "🛠️ Fixes and Improvements",
-          value:
-            "- **Database System**: Switched from MongoDB to a local JSON-based storage system for improved reliability and speed.\n" +
-            "- **Economy System**: Refined economy system to read/write from `data.json` with better performance.\n" +
-            "- **Schema Logic**: Simplified schema logic to enhance security and maintainability.",
-        },
-        {
           name: "📌 Upcoming Features",
           value:
             "- **Moderation Tools**: Expanded moderation capabilities, including more customizable bans and warnings.\n" +
@@ -48,10 +41,10 @@ module.exports = {
             "- **Customizable Statuses**: Ability to set your own status messages for the bot.",
         },
         {
-          name: "🗄️ Database Changes",
+          name: "⚙️ New Feature: Auto-Leave System",
           value:
-            "- **Switch to JSON**: Switched from MongoDB to a local JSON file system for faster, simpler, and more secure data access.\n" +
-            "- **Reduced External Dependencies**: The bot is now more lightweight with fewer external libraries.",
+            "- **Auto-Leave**: The bot will now automatically leave inactive servers after 2 weeks of no interaction. A warning will be sent 1 day before leaving to allow server owners to engage the bot and prevent leaving.\n" +
+            "- **Time-based Leave**: The bot checks server activity every 30 minutes and leaves servers with no activity for 14 days.",
         }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })
@@ -71,13 +64,6 @@ module.exports = {
           value: `Currently running **v${config.BETA_VERSION}**`,
         },
         {
-          name: "🛠️ Fixes and Improvements",
-          value:
-            "- **Database System**: Switched from MongoDB to a local JSON-based storage system for improved reliability and speed.\n" +
-            "- **Economy System**: Refined economy system to read/write from `data.json` with better performance.\n" +
-            "- **Schema Logic**: Simplified schema logic to enhance security and maintainability.",
-        },
-        {
           name: "📌 Upcoming Features",
           value:
             "- **Moderation Tools**: Expanded moderation capabilities, including more customizable bans and warnings.\n" +
@@ -85,10 +71,10 @@ module.exports = {
             "- **Customizable Statuses**: Ability to set your own status messages for the bot.",
         },
         {
-          name: "🗄️ Database Changes",
+          name: "⚙️ New Feature: Auto-Leave System",
           value:
-            "- **Switch to JSON**: Switched from MongoDB to a local JSON file system for faster, simpler, and more secure data access.\n" +
-            "- **Reduced External Dependencies**: The bot is now more lightweight with fewer external libraries.",
+            "- **Auto-Leave**: The bot will now automatically leave inactive servers after 2 weeks of no interaction. A warning will be sent 1 day before leaving to allow server owners to engage the bot and prevent leaving.\n" +
+            "- **Time-based Leave**: The bot checks server activity every 30 minutes and leaves servers with no activity for 14 days.",
         }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })
