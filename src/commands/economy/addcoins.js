@@ -3,7 +3,7 @@ const { ECONOMY, EMBED_COLORS } = require("@root/config");
 const { readData, writeData } = require("@helpers/economy");
 const path = require("path");
 
-const dataPath = path.join(__dirname, "../../data.json");
+const dataPath = path.join(__dirname, "../../database/economy.json");
 
 /**
  * @type {import("@structures/Command")}

@@ -20,7 +20,6 @@ module.exports = {
   },
 
   schemas: {
-    Giveaways: require("./schemas/Giveaways"),
     Guild: require("./schemas/Guild"),
     Member: require("./schemas/Member"),
     ReactionRoles: require("./schemas/ReactionRoles").model,

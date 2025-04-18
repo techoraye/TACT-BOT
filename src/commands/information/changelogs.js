@@ -34,17 +34,8 @@ module.exports = {
           value: `Currently running **v${config.BETA_VERSION}**`,
         },
         {
-          name: "📌 Upcoming Features",
-          value:
-            "- **Moderation Tools**: Expanded moderation capabilities, including more customizable bans and warnings.\n" +
-            "- **Interactive Dashboards**: A new stats dashboard to track bot performance in real time.\n" +
-            "- **Customizable Statuses**: Ability to set your own status messages for the bot.",
-        },
-        {
-          name: "⚙️ New Feature: Auto-Leave System",
-          value:
-            "- **Auto-Leave**: The bot will now automatically leave inactive servers after 2 weeks of no interaction. A warning will be sent 1 day before leaving to allow server owners to engage the bot and prevent leaving.\n" +
-            "- **Time-based Leave**: The bot checks server activity every 30 minutes and leaves servers with no activity for 14 days.",
+          name: "✅ Improved Database System",
+          value: "Switched to a more optimized structure for per-server data management.",
         }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })
@@ -64,23 +55,13 @@ module.exports = {
           value: `Currently running **v${config.BETA_VERSION}**`,
         },
         {
-          name: "📌 Upcoming Features",
-          value:
-            "- **Moderation Tools**: Expanded moderation capabilities, including more customizable bans and warnings.\n" +
-            "- **Interactive Dashboards**: A new stats dashboard to track bot performance in real time.\n" +
-            "- **Customizable Statuses**: Ability to set your own status messages for the bot.",
-        },
-        {
-          name: "⚙️ New Feature: Auto-Leave System",
-          value:
-            "- **Auto-Leave**: The bot will now automatically leave inactive servers after 2 weeks of no interaction. A warning will be sent 1 day before leaving to allow server owners to engage the bot and prevent leaving.\n" +
-            "- **Time-based Leave**: The bot checks server activity every 30 minutes and leaves servers with no activity for 14 days.",
+          name: "✅ Improved Database System",
+          value: "Switched to a more optimized structure for per-server data management.",
         }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })
       .setTimestamp();
 
-    // Prevent multiple replies to the interaction
     if (!interaction.replied && !interaction.deferred) {
       await interaction.reply({ embeds: [embed] });
     } else {

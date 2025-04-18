@@ -23,12 +23,6 @@ module.exports = {
     image: "https://icons.iconarchive.com/icons/flameia/aqua-smiles/128/make-fun-icon.png",
     emoji: "😂",
   },
-  GIVEAWAY: {
-    name: "Giveaway",
-    enabled: config.GIVEAWAYS.ENABLED,
-    image: "https://cdn-icons-png.flaticon.com/512/4470/4470928.png",
-    emoji: "🎉",
-  },
   IMAGE: {
     name: "Image",
     enabled: config.IMAGE.ENABLED,
@@ -86,11 +80,5 @@ module.exports = {
     enabled: config.TICKET.ENABLED,
     image: "https://icons.iconarchive.com/icons/blackvariant/button-ui-system-folders-alt/128/Utilities-icon.png",
     emoji: "🛠",
-  },
-  NSFW: {
-    name: "NSFW",
-    enabled: config.NSFW.ENABLED,
-    image: "https://www.pngitem.com/pimgs/m/87-879525_nsfw-logo-a-logo-for-an-appropriation-movie.png",
-    emoji: "🔞",
   },
 };

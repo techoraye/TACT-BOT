@@ -13,9 +13,6 @@ const { BotClient } = require("@src/structures");
 const { validateConfiguration } = require("@helpers/Validator");
 const loadSlashCommands = require("@helpers/SlashCommandLoader");
 
-const fs = require("fs");
-const path = require("path");
-
 // Load config
 const config = require("@root/config.js");
 
@@ -56,115 +53,29 @@ const updatePresence = () => {
   if (!client.user) return;
 
   let index = 0;
-  let previousPresence = ''; // Store the previous presence to compare
-
   setInterval(() => {
     if (!client.user) return;
 
     const option = presenceOptions[index % presenceOptions.length];
-    const currentPresence = option.text();
 
-    if (currentPresence !== previousPresence) {
-      client.user.setPresence({
-        status: option.status,
-        activities: [{
-          name: currentPresence,
-          type: option.type,
-          url: option.url || undefined,
-        }],
-      });
-
-      client.logger.log(`Presence updated: "${currentPresence}" | Status: ${option.status.toUpperCase()}`);
-      previousPresence = currentPresence; // Update the previous presence
-    }
-    
-    index++;
-  }, 60_000); // Update every 60 seconds (increased from 20 seconds)
-};
-
-// Function to remove the server data from data.json
-const removeServerData = (guildId) => {
-  const dataFilePath = path.join(__dirname, "../data.json");
-  try {
-    // Read data from the file
-    const data = require(dataFilePath);
-
-    // Check if the server data exists
-    if (data[guildId]) {
-      // Delete the server data entirely
-      delete data[guildId]; 
-      
-      // Write the updated data back to the file
-      fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2)); 
-      client.logger.log(`Data removed for guild ${guildId} from data.json.`);
-    } else {
-      client.logger.warn(`No data found for guild ${guildId} in data.json.`);
-    }
-  } catch (error) {
-    client.logger.error(`Failed to remove data for guild ${guildId}:`, error);
-  }
-};
-
-// Auto-leave system (checking for inactive servers)
-const startAutoLeaveChecker = async () => {
-  const leaveThreshold = 14 * 24 * 60 * 60 * 1000; // 2 weeks (in milliseconds)
-  const warningThreshold = leaveThreshold - 24 * 60 * 60 * 1000; // 1 day before the 2 weeks, send a warning
-
-  setInterval(async () => {
-    const now = Date.now();
-    const inactiveGuilds = client.guilds.cache.filter((guild) => {
-      const lastMessageTime = guild.lastMessage ? guild.lastMessage.createdTimestamp : 0;
-      return now - lastMessageTime > leaveThreshold;
+    client.user.setPresence({
+      status: option.status,
+      activities: [{
+        name: option.text(),
+        type: option.type,
+        url: option.url || undefined,
+      }],
     });
 
-    // If no guilds to leave, skip
-    if (inactiveGuilds.size === 0) {
-      client.logger.log('No inactive guilds to leave.');
-      return;
-    }
-
-    // Warn about inactivity 1 day before leaving
-    for (const guild of inactiveGuilds.values()) {
-      const lastMessageTime = guild.lastMessage ? guild.lastMessage.createdTimestamp : 0;
-      if (now - lastMessageTime > warningThreshold && now - lastMessageTime < leaveThreshold) {
-        // Send a warning message to the guild (if possible)
-        try {
-          const defaultChannel = guild.channels.cache.find(c => c.type === 'GUILD_TEXT');
-          if (defaultChannel) {
-            await defaultChannel.send("🚨 **Warning**: This server has been inactive for almost 2 weeks and will be automatically left if inactivity continues. Please engage to avoid this.");
-            client.logger.log(`Warning sent to guild: ${guild.name} | Guild ID: ${guild.id}`);
-          }
-        } catch (error) {
-          client.logger.error(`Failed to send warning to guild ${guild.name} | Guild ID: ${guild.id}:`, error);
-        }
-      }
-    }
-
-    // Leave guilds after 2 weeks of inactivity
-    for (const guild of inactiveGuilds.values()) {
-      const lastMessageTime = guild.lastMessage ? guild.lastMessage.createdTimestamp : 0;
-      if (now - lastMessageTime > leaveThreshold) {
-        try {
-          // Remove server data 5 seconds before leaving
-          removeServerData(guild.id);
-
-          // Wait 5 seconds before leaving the guild
-          setTimeout(async () => {
-            await guild.leave(); // The bot leaves the inactive guild
-            client.logger.log(`Left inactive guild: ${guild.name} | Guild ID: ${guild.id}`);
-          }, 5000); // 5 seconds delay before leaving
-        } catch (error) {
-          client.logger.error(`Failed to leave inactive guild ${guild.name} | Guild ID: ${guild.id}:`, error);
-        }
-      }
-    }
-  }, 30 * 60 * 1000); // Check every 30 minutes (increased from 15 minutes)
+    client.logger.log(`Presence updated: "${option.text()}" | Status: ${option.status.toUpperCase()}`);
+    index++;
+  }, 20_000);
 };
 
 // Initialize bot
 (async () => {
   await checkForUpdates();
-  await initializeMongoose();
+    await initializeMongoose();
 
   await client.login(process.env.BOT_TOKEN);
   client.once("ready", async () => {
@@ -172,14 +83,8 @@ const startAutoLeaveChecker = async () => {
 
     updatePresence(); // Called only once here
 
-    // Start the auto-leave checker
-    startAutoLeaveChecker(); // Start the auto-leave process
-
     const slashCommands = loadSlashCommands(client);
-    // Log only if slash commands are successfully loaded
-    if (slashCommands.length > 0) {
-      client.logger.log(`Successfully loaded ${slashCommands.length} slash commands.`);
-    }
+    client.logger.log(`Loaded ${slashCommands.length} slash commands.`);
 
     try {
       await client.application.commands.set(slashCommands);

@@ -32,7 +32,7 @@ module.exports = {
 // Main beg function to handle the begging process
 async function beg(user, serverId) {
   // Read data from the file
-  const data = await readData(); // Read the data from data.json
+  const data = await readData(); // Read the data from database.json
 
   // Ensure servers object exists
   if (!data.servers) {
@@ -85,7 +85,7 @@ async function beg(user, serverId) {
 
   // Save the updated data to the file
   data.servers[serverId].users[user.id] = userDb; // Update the user's data in the server
-  const dataFilePath = require("path").resolve(__dirname, "../../data.json");
+  const dataFilePath = require("path").resolve(__dirname, "../../database/economy.json");
   console.log(`Writing data to file at: ${dataFilePath}`);
 
   try {

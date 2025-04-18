@@ -5,7 +5,7 @@ const { getUser, writeData, readData } = require("@helpers/economy.js"); // Impo
 // Function to handle the daily reward
 async function daily(user, serverId) {
   // Read data from the file
-  const data = await readData(); // Read the data from data.json
+  const data = await readData(); // Read the data from database.json
 
   // Check if the server exists, if not, initialize it
   if (!data.servers) {
@@ -71,7 +71,7 @@ async function daily(user, serverId) {
   console.log("After update: User Data:", userDb);
 
   // Path of the data file
-  const dataFilePath = require("path").resolve(__dirname, "../../data.json");
+  const dataFilePath = require("path").resolve(__dirname, "../../database/economy.json");
   console.log(`Writing data to file at: ${dataFilePath}`);
 
   // Save the updated user data
