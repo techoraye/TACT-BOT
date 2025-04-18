@@ -36,6 +36,10 @@ module.exports = {
         {
           name: "✅ Improved Database System",
           value: "Switched to a more optimized structure for per-server data management.",
+        },
+        {
+          name: "🛠️ Fixed Economy System",
+          value: "All economy commands now use the new per-server & per-user data format properly.",
         }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })
@@ -57,6 +61,10 @@ module.exports = {
         {
           name: "✅ Improved Database System",
           value: "Switched to a more optimized structure for per-server data management.",
+        },
+        {
+          name: "🛠️ Fixed Economy System",
+          value: "All economy commands now use the new per-server & per-user data format properly.",
         }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })
