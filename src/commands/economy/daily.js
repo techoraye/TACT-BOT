@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require("discord.js");
-const { ECONOMY, EMBED_COLORS } = require("../../../../config");
+const { ECONOMY, EMBED_COLORS } = require("../../../config");
 const { writeData, readData } = require("@helpers/economy");
 const path = require("path");
 

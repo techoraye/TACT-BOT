@@ -1,27 +1,5 @@
 const { EmbedBuilder } = require("discord.js");
 const config = require("@root/config.js");
-const { ECONOMY } = require("@root/config.js");
-
-/**
- * Format numbers into compact human-readable strings
- * e.g., 1.2K, 3.5M, 7.1B, 2.3T, etc.
- * Shows "0" if value is 0.
- * @param {number} amount
- * @returns {string}
- */
-function formatCurrency(amount) {
-  if (amount === 0) return "0";
-
-  const suffixes = ["", "K", "M", "B", "T", "Q", "Qn", "Sx", "Sp", "Oc", "No", "Dc"];
-  let tier = Math.floor(Math.log10(Math.abs(amount)) / 3);
-  if (tier === 0) return amount.toString();
-
-  const suffix = suffixes[tier] || `e${tier * 3}`;
-  const scale = Math.pow(10, tier * 3);
-  const scaled = (amount / scale).toFixed(1);
-
-  return `${scaled}${suffix}`;
-}
 
 module.exports = {
   name: "changelogs",
@@ -46,9 +24,6 @@ module.exports = {
   },
 
   messageRun: async (message) => {
-    // New economy update
-    const totalEconomy = ECONOMY.STARTING_BALANCE || 250; // default starting balance
-
     const embed = new EmbedBuilder()
       .setTitle("📢 Bot Changelogs")
       .setColor("#FFA500")
@@ -59,20 +34,36 @@ module.exports = {
           value: `Currently running **v${config.BETA_VERSION}**`,
         },
         {
-          name: "✅ Improved Database System",
-          value: "Switched to a more optimized structure for per-server data management.",
+          name: "🛠️ Fixes and Improvements",
+          value:
+            "- **Database System**: Switched from MongoDB to a local JSON-based storage system for improved reliability and speed.\n" +
+            "- **Economy System**: Refined economy system to read/write from `data.json` with better performance.\n" +
+            "- **Schema Logic**: Simplified schema logic to enhance security and maintainability.",
         },
         {
-          name: "🛠️ Fixed Economy System",
-          value: "All economy commands now use the new per-server & per-user data format properly.",
+          name: "💸 Economy System",
+          value:
+            "- **New Economy System Added**: Now using a per-server and per-user system with improved performance.\n" +
+            "- **Coming Soon**: New economy commands like `work`, `beg`, `shop`, `inventory`, and more!",
         },
         {
-          name: "💰 Economy System Update",
-          value: `The new economy system has been implemented! Every user now starts with **${formatCurrency(totalEconomy)}** ${ECONOMY.CURRENCY}.`,
+          name: "📌 Upcoming Features",
+          value:
+            "- **Moderation Tools**: Expanded moderation capabilities, including more customizable bans and warnings.\n" +
+            "- **Interactive Dashboards**: A new stats dashboard to track bot performance in real time.\n" +
+            "- **Customizable Statuses**: Ability to set your own status messages for the bot.",
         },
         {
-          name: "🔜 Coming Soon: Economy Commands",
-          value: `Stay tuned! We will soon be rolling out new economy-related commands like **/beg**, **/work**, and more to help you grow your wealth!`,
+          name: "🗄️ Database Changes",
+          value:
+            "- **Switch to JSON**: Switched from MongoDB to a local JSON file system for faster, simpler, and more secure data access.\n" +
+            "- **Reduced External Dependencies**: The bot is now more lightweight with fewer external libraries.",
+        },
+        {
+          name: "⚙️ New Feature: Auto-Leave System",
+          value:
+            "- **Auto-Leave**: The bot will now automatically leave inactive servers after 2 weeks of no interaction. A warning will be sent 1 day before leaving to allow server owners to engage the bot and prevent leaving.\n" +
+            "- **Time-based Leave**: The bot checks server activity every 30 minutes and leaves servers with no activity for 14 days.",
         }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })
@@ -82,9 +73,6 @@ module.exports = {
   },
 
   interactionRun: async (interaction) => {
-    // New economy update
-    const totalEconomy = ECONOMY.STARTING_BALANCE || 250; // default starting balance
-
     const embed = new EmbedBuilder()
       .setTitle("📢 Bot Changelogs")
       .setColor("#FFA500")
@@ -95,20 +83,36 @@ module.exports = {
           value: `Currently running **v${config.BETA_VERSION}**`,
         },
         {
-          name: "✅ Improved Database System",
-          value: "Switched to a more optimized structure for per-server data management.",
+          name: "🛠️ Fixes and Improvements",
+          value:
+            "- **Database System**: Switched from MongoDB to a local JSON-based storage system for improved reliability and speed.\n" +
+            "- **Economy System**: Refined economy system to read/write from `data.json` with better performance.\n" +
+            "- **Schema Logic**: Simplified schema logic to enhance security and maintainability.",
         },
         {
-          name: "🛠️ Fixed Economy System",
-          value: "All economy commands now use the new per-server & per-user data format properly.",
+          name: "💸 Economy System",
+          value:
+            "- **New Economy System Added**: Now using a per-server and per-user system with improved performance.\n" +
+            "- **Coming Soon**: New economy commands like `work`, `beg`, `shop`, `inventory`, and more!",
         },
         {
-          name: "💰 Economy System Update",
-          value: `The new economy system has been implemented! Every user now starts with **${formatCurrency(totalEconomy)}** ${ECONOMY.CURRENCY}.`,
+          name: "📌 Upcoming Features",
+          value:
+            "- **Moderation Tools**: Expanded moderation capabilities, including more customizable bans and warnings.\n" +
+            "- **Interactive Dashboards**: A new stats dashboard to track bot performance in real time.\n" +
+            "- **Customizable Statuses**: Ability to set your own status messages for the bot.",
         },
         {
-          name: "🔜 Coming Soon: Economy Commands",
-          value: `Stay tuned! We will soon be rolling out new economy-related commands like **/beg**, **/work**, and more to help you grow your wealth!`,
+          name: "🗄️ Database Changes",
+          value:
+            "- **Switch to JSON**: Switched from MongoDB to a local JSON file system for faster, simpler, and more secure data access.\n" +
+            "- **Reduced External Dependencies**: The bot is now more lightweight with fewer external libraries.",
+        },
+        {
+          name: "⚙️ New Feature: Auto-Leave System",
+          value:
+            "- **Auto-Leave**: The bot will now automatically leave inactive servers after 2 weeks of no interaction. A warning will be sent 1 day before leaving to allow server owners to engage the bot and prevent leaving.\n" +
+            "- **Time-based Leave**: The bot checks server activity every 30 minutes and leaves servers with no activity for 14 days.",
         }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })
