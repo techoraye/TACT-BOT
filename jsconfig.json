@@ -1,16 +1,8 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
-    "baseUrl": "./",
-    "paths": {
-      "@root/*": ["./*"],
-      "@handlers/*": ["./src/handlers/*"],
-      "@helpers/*": ["./src/helpers/*"],
-      "@schemas/*": ["./src/database/schemas/*"],
-      "@src/*": ["./src/*"],
-      "@structures/*": ["./src/structures/*"]
+    "compilerOptions": {
+      "baseUrl": "./",
+      "paths": {
+        "@src/*": ["src/*"]
+      }
     }
-  },
-  "exclude": ["node_modules", "**/node_modules/*"]
-}
+  }

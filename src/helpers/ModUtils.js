@@ -10,7 +10,7 @@ const { getSettings } = require("@schemas/Guild");
 const { getMember } = require("@schemas/Member");
 const { addModLogToDb } = require("@schemas/ModLog");
 
-const DEFAULT_TIMEOUT_HOURS = 24; //hours
+const DEFAULT_TIMEOUT_HOURS = 24; // hours
 
 const memberInteract = (issuer, target) => {
   const { guild } = issuer;
@@ -19,14 +19,6 @@ const memberInteract = (issuer, target) => {
   return issuer.roles.highest.position > target.roles.highest.position;
 };
 
-/**
- * Send logs to the configured channel and stores in the database
- * @param {import('discord.js').GuildMember} issuer
- * @param {import('discord.js').GuildMember|import('discord.js').User} target
- * @param {string} reason
- * @param {string} type
- * @param {Object} data
- */
 const logModeration = async (issuer, target, reason, type, data = {}) => {
   if (!type) return;
   const { guild } = issuer;
@@ -101,7 +93,7 @@ const logModeration = async (issuer, target, reason, type, data = {}) => {
   }
 
   if (type.toUpperCase() !== "PURGE") {
-    embed.setAuthor({ name: `Moderation - ${type}` }).setThumbnail(target.displayAvatarURL());
+    embed.setAuthor({ name: `Moderation - ${type}` }).setThumbnail(target.displayAvatarURL?.());
 
     if (target instanceof GuildMember) {
       fields.push({ name: "Member", value: `${target.displayName} [${target.id}]`, inline: false });
@@ -125,88 +117,50 @@ const logModeration = async (issuer, target, reason, type, data = {}) => {
 
   embed.setFields(fields);
   await addModLogToDb(issuer, target, reason, type.toUpperCase());
-  if (logChannel) logChannel.safeSend({ embeds: [embed] });
+  if (logChannel) logChannel.safeSend?.({ embeds: [embed] });
 };
 
 module.exports = class ModUtils {
-  /**
-   * @param {import('discord.js').GuildMember} issuer
-   * @param {import('discord.js').GuildMember} target
-   */
   static canModerate(issuer, target) {
     return memberInteract(issuer, target);
   }
 
-  /**
-   * @param {import('discord.js').GuildMember} issuer
-   * @param {import('discord.js').GuildMember} target
-   * @param {string} reason
-   * @param {"TIMEOUT"|"KICK"|"SOFTBAN"|"BAN"} action
-   */
   static async addModAction(issuer, target, reason, action) {
     switch (action) {
       case "TIMEOUT":
         return ModUtils.timeoutTarget(issuer, target, DEFAULT_TIMEOUT_HOURS * 60 * 60 * 1000, reason);
-
       case "KICK":
         return ModUtils.kickTarget(issuer, target, reason);
-
       case "SOFTBAN":
         return ModUtils.softbanTarget(issuer, target, reason);
-
       case "BAN":
         return ModUtils.banTarget(issuer, target, reason);
     }
   }
-  /**
-   * Delete the specified number of messages matching the type
-   * @param {import('discord.js').GuildMember} issuer
-   * @param {import('discord.js').BaseGuildTextChannel} channel
-   * @param {"ATTACHMENT"|"BOT"|"LINK"|"TOKEN"|"USER"|"ALL"} type
-   * @param {number} amount
-   * @param {any} argument
-   */
-  static async purgeMessages(issuer, channel, type, amount, argument) {
-    if (!channel.permissionsFor(issuer).has(["ManageMessages", "ReadMessageHistory"])) {
-      return "MEMBER_PERM";
-    }
 
-    if (!channel.permissionsFor(issuer.guild.members.me).has(["ManageMessages", "ReadMessageHistory"])) {
-      return "BOT_PERM";
-    }
+  static async purgeMessages(issuer, channel, type, amount, argument) {
+    if (!channel.permissionsFor(issuer).has(["ManageMessages", "ReadMessageHistory"])) return "MEMBER_PERM";
+    if (!channel.permissionsFor(issuer.guild.members.me).has(["ManageMessages", "ReadMessageHistory"])) return "BOT_PERM";
 
     const toDelete = new Collection();
 
     try {
-      const messages = await channel.messages.fetch({ limit: amount, cache: false, force: true });
+      const messages = await channel.messages.fetch({ limit: amount });
 
       for (const message of messages.values()) {
         if (toDelete.size >= amount) break;
         if (!message.deletable) continue;
-        if (message.createdTimestamp < Date.now() - 1209600000) continue; // skip messages older than 14 days
+        if (message.createdTimestamp < Date.now() - 1209600000) continue;
 
-        if (type === "ALL") {
+        if (
+          type === "ALL" ||
+          (type === "ATTACHMENT" && message.attachments.size > 0) ||
+          (type === "BOT" && message.author.bot) ||
+          (type === "LINK" && containsLink(message.content)) ||
+          (type === "TOKEN" && message.content.includes(argument)) ||
+          (type === "USER" && message.author.id === argument)
+        ) {
           toDelete.set(message.id, message);
-        } else if (type === "ATTACHMENT") {
-          if (message.attachments.size > 0) {
-            toDelete.set(message.id, message);
-          }
-        } else if (type === "BOT") {
-          if (message.author.bot) {
-            toDelete.set(message.id, message);
-          }
-        } else if (type === "LINK") {
-          if (containsLink(message.content)) {
-            toDelete.set(message.id, message);
-          }
-        } else if (type === "TOKEN") {
-          if (message.content.includes(argument)) {
-            toDelete.set(message.id, message);
-          }
-        } else if (type === "USER") {
-          if (message.author.id === argument) {
-            toDelete.set(message.id, message);
-          }
         }
       }
 
@@ -230,12 +184,6 @@ module.exports = class ModUtils {
     }
   }
 
-  /**
-   * warns the target and logs to the database, channel
-   * @param {import('discord.js').GuildMember} issuer
-   * @param {import('discord.js').GuildMember} target
-   * @param {string} reason
-   */
   static async warnTarget(issuer, target, reason) {
     if (!memberInteract(issuer, target)) return "MEMBER_PERM";
     if (!memberInteract(issuer.guild.members.me, target)) return "BOT_PERM";
@@ -246,10 +194,9 @@ module.exports = class ModUtils {
       memberDb.warnings += 1;
       const settings = await getSettings(issuer.guild);
 
-      // check if max warnings are reached
       if (memberDb.warnings >= settings.max_warn.limit) {
-        await ModUtils.addModAction(issuer.guild.members.me, target, "Max warnings reached", settings.max_warn.action); // moderate
-        memberDb.warnings = 0; // reset warnings
+        await ModUtils.addModAction(issuer.guild.members.me, target, "Max warnings reached", settings.max_warn.action);
+        memberDb.warnings = 0;
       }
 
       await memberDb.save();
@@ -260,13 +207,6 @@ module.exports = class ModUtils {
     }
   }
 
-  /**
-   * Timeouts(aka mutes) the target and logs to the database, channel
-   * @param {import('discord.js').GuildMember} issuer
-   * @param {import('discord.js').GuildMember} target
-   * @param {number} ms
-   * @param {string} reason
-   */
   static async timeoutTarget(issuer, target, ms, reason) {
     if (!memberInteract(issuer, target)) return "MEMBER_PERM";
     if (!memberInteract(issuer.guild.members.me, target)) return "BOT_PERM";
@@ -282,12 +222,6 @@ module.exports = class ModUtils {
     }
   }
 
-  /**
-   * UnTimeouts(aka mutes) the target and logs to the database, channel
-   * @param {import('discord.js').GuildMember} issuer
-   * @param {import('discord.js').GuildMember} target
-   * @param {string} reason
-   */
   static async unTimeoutTarget(issuer, target, reason) {
     if (!memberInteract(issuer, target)) return "MEMBER_PERM";
     if (!memberInteract(issuer.guild.members.me, target)) return "BOT_PERM";
@@ -303,12 +237,6 @@ module.exports = class ModUtils {
     }
   }
 
-  /**
-   * kicks the target and logs to the database, channel
-   * @param {import('discord.js').GuildMember} issuer
-   * @param {import('discord.js').GuildMember} target
-   * @param {string} reason
-   */
   static async kickTarget(issuer, target, reason) {
     if (!memberInteract(issuer, target)) return "MEMBER_PERM";
     if (!memberInteract(issuer.guild.members.me, target)) return "BOT_PERM";
@@ -323,19 +251,13 @@ module.exports = class ModUtils {
     }
   }
 
-  /**
-   * Softbans the target and logs to the database, channel
-   * @param {import('discord.js').GuildMember} issuer
-   * @param {import('discord.js').GuildMember} target
-   * @param {string} reason
-   */
   static async softbanTarget(issuer, target, reason) {
     if (!memberInteract(issuer, target)) return "MEMBER_PERM";
     if (!memberInteract(issuer.guild.members.me, target)) return "BOT_PERM";
 
     try {
-      await target.ban({ deleteMessageDays: 7, reason });
-      await issuer.guild.members.unban(target.user);
+      await target.ban({ reason, deleteMessageDays: 1 });
+      await issuer.guild.members.unban(target.id, "Softban - unban after 1 day ban");
       logModeration(issuer, target, reason, "Softban");
       return true;
     } catch (ex) {
@@ -344,181 +266,16 @@ module.exports = class ModUtils {
     }
   }
 
-  /**
-   * Bans the target and logs to the database, channel
-   * @param {import('discord.js').GuildMember} issuer
-   * @param {import('discord.js').User} target
-   * @param {string} reason
-   */
   static async banTarget(issuer, target, reason) {
-    const targetMem = await issuer.guild.members.fetch(target.id).catch(() => {});
-
-    if (targetMem && !memberInteract(issuer, targetMem)) return "MEMBER_PERM";
-    if (targetMem && !memberInteract(issuer.guild.members.me, targetMem)) return "BOT_PERM";
+    if (!memberInteract(issuer, target)) return "MEMBER_PERM";
+    if (!memberInteract(issuer.guild.members.me, target)) return "BOT_PERM";
 
     try {
-      await issuer.guild.bans.create(target.id, { days: 0, reason });
+      await target.ban({ reason });
       logModeration(issuer, target, reason, "Ban");
       return true;
     } catch (ex) {
-      error(`banTarget`, ex);
-      return "ERROR";
-    }
-  }
-
-  /**
-   * Bans the target and logs to the database, channel
-   * @param {import('discord.js').GuildMember} issuer
-   * @param {import('discord.js').User} target
-   * @param {string} reason
-   */
-  static async unBanTarget(issuer, target, reason) {
-    try {
-      await issuer.guild.bans.remove(target, reason);
-      logModeration(issuer, target, reason, "UnBan");
-      return true;
-    } catch (ex) {
-      error(`unBanTarget`, ex);
-      return "ERROR";
-    }
-  }
-
-  /**
-   * Voice mutes the target and logs to the database, channel
-   * @param {import('discord.js').GuildMember} issuer
-   * @param {import('discord.js').GuildMember} target
-   * @param {string} reason
-   */
-  static async vMuteTarget(issuer, target, reason) {
-    if (!memberInteract(issuer, target)) return "MEMBER_PERM";
-    if (!memberInteract(issuer.guild.members.me, target)) return "BOT_PERM";
-
-    if (!target.voice.channel) return "NO_VOICE";
-    if (target.voice.mute) return "ALREADY_MUTED";
-
-    try {
-      await target.voice.setMute(true, reason);
-      logModeration(issuer, target, reason, "Vmute");
-      return true;
-    } catch (ex) {
-      error(`vMuteTarget`, ex);
-      return "ERROR";
-    }
-  }
-
-  /**
-   * Voice unmutes the target and logs to the database, channel
-   * @param {import('discord.js').GuildMember} issuer
-   * @param {import('discord.js').GuildMember} target
-   * @param {string} reason
-   */
-  static async vUnmuteTarget(issuer, target, reason) {
-    if (!memberInteract(issuer, target)) return "MEMBER_PERM";
-    if (!memberInteract(issuer.guild.members.me, target)) return "BOT_PERM";
-
-    if (!target.voice.channel) return "NO_VOICE";
-    if (!target.voice.mute) return "NOT_MUTED";
-
-    try {
-      await target.voice.setMute(false, reason);
-      logModeration(issuer, target, reason, "Vmute");
-      return true;
-    } catch (ex) {
-      error(`vUnmuteTarget`, ex);
-      return "ERROR";
-    }
-  }
-
-  /**
-   * Deafens the target and logs to the database, channel
-   * @param {import('discord.js').GuildMember} issuer
-   * @param {import('discord.js').GuildMember} target
-   * @param {string} reason
-   */
-  static async deafenTarget(issuer, target, reason) {
-    if (!memberInteract(issuer, target)) return "MEMBER_PERM";
-    if (!memberInteract(issuer.guild.members.me, target)) return "BOT_PERM";
-
-    if (!target.voice.channel) return "NO_VOICE";
-    if (target.voice.deaf) return "ALREADY_DEAFENED";
-
-    try {
-      await target.voice.setDeaf(true, reason);
-      logModeration(issuer, target, reason, "Deafen");
-      return true;
-    } catch (ex) {
-      error(`deafenTarget`, ex);
-      return `Failed to deafen ${target.user.tag}`;
-    }
-  }
-
-  /**
-   * UnDeafens the target and logs to the database, channel
-   * @param {import('discord.js').GuildMember} issuer
-   * @param {import('discord.js').GuildMember} target
-   * @param {string} reason
-   */
-  static async unDeafenTarget(issuer, target, reason) {
-    if (!memberInteract(issuer, target)) return "MEMBER_PERM";
-    if (!memberInteract(issuer.guild.members.me, target)) return "BOT_PERM";
-
-    if (!target.voice.channel) return "NO_VOICE";
-    if (!target.voice.deaf) return "NOT_DEAFENED";
-
-    try {
-      await target.voice.setDeaf(false, reason);
-      logModeration(issuer, target, reason, "unDeafen");
-      return true;
-    } catch (ex) {
-      error(`unDeafenTarget`, ex);
-      return "ERROR";
-    }
-  }
-
-  /**
-   * Disconnects the target from voice channel and logs to the database, channel
-   * @param {import('discord.js').GuildMember} issuer
-   * @param {import('discord.js').GuildMember} target
-   * @param {string} reason
-   */
-  static async disconnectTarget(issuer, target, reason) {
-    if (!memberInteract(issuer, target)) return "MEMBER_PERM";
-    if (!memberInteract(issuer.guild.members.me, target)) return "BOT_PERM";
-
-    if (!target.voice.channel) return "NO_VOICE";
-
-    try {
-      await target.voice.disconnect(reason);
-      logModeration(issuer, target, reason, "Disconnect");
-      return true;
-    } catch (ex) {
-      error(`unDeafenTarget`, ex);
-      return "ERROR";
-    }
-  }
-
-  /**
-   * Moves the target to another voice channel and logs to the database, channel
-   * @param {import('discord.js').GuildMember} issuer
-   * @param {import('discord.js').GuildMember} target
-   * @param {string} reason
-   * @param {import('discord.js').VoiceChannel|import('discord.js').StageChannel} channel
-   */
-  static async moveTarget(issuer, target, reason, channel) {
-    if (!memberInteract(issuer, target)) return "MEMBER_PERM";
-    if (!memberInteract(issuer.guild.members.me, target)) return "BOT_PERM";
-
-    if (!target.voice?.channel) return "NO_VOICE";
-    if (target.voice.channelId === channel.id) return "ALREADY_IN_CHANNEL";
-
-    if (!channel.permissionsFor(target).has(["ViewChannel", "Connect"])) return "TARGET_PERM";
-
-    try {
-      await target.voice.setChannel(channel, reason);
-      logModeration(issuer, target, reason, "Move", { channel });
-      return true;
-    } catch (ex) {
-      error(`moveTarget`, ex);
+      error("banTarget", ex);
       return "ERROR";
     }
   }

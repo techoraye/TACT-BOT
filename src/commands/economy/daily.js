@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require("discord.js");
-const { ECONOMY, EMBED_COLORS } = require("../../../config");
+const { ECONOMY, EMBED_COLORS, OWNER_IDS } = require("../../../config"); // Make sure OWNER_IDS is defined in your config
 const { writeData, readData } = require("@helpers/economy");
 const path = require("path");
 
@@ -55,7 +55,10 @@ async function daily(user, serverId) {
 
   let streak = userDb.daily.streak || 0;
 
-  if (userDb.daily.timestamp) {
+  // Owner bypass cooldown logic
+  const isOwner = OWNER_IDS?.includes(user.id);
+
+  if (!isOwner && userDb.daily.timestamp) {
     const lastUpdated = new Date(userDb.daily.timestamp);
     const difference = (new Date() - lastUpdated) / (1000 * 60 * 60); // in hours
 
