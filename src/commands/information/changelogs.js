@@ -34,12 +34,12 @@ module.exports = {
           value: `Currently running **v${config.BETA_VERSION}**`,
         },
         {
-          name: "✨ New Features",
-          value: "• Added changelog system\n• Improved bot presence updates\n• Optimized performance for commands",
+          name: "🐞 Fixed",
+          value: "• Fixed issue with economy system not updating correctly in certain cases.\n• Fixed minor UI bugs in the ticket system command.\n• Resolved bot permissions issues preventing certain commands from executing properly.",
         },
         {
-          name: "🔧 Fixes",
-          value: "• Fixed bugs in the reaction role system\n• Resolved command registration issues"
+          name: "🔧 What We Did",
+          value: "• Overhauled the database interaction layer for improved performance.\n• Optimized bot commands to reduce response time.\n• Refined user feedback system to provide more helpful error messages."
         }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })
@@ -59,12 +59,12 @@ module.exports = {
           value: `Currently running **v${config.BETA_VERSION}**`,
         },
         {
-          name: "✨ New Features",
-          value: "• Added changelog system\n• Improved bot presence updates\n• Optimized performance for commands",
+          name: "🐞 Fixed",
+          value: "• Fixed issue with economy system not updating correctly in certain cases.\n• Fixed minor UI bugs in the ticket system command.\n• Resolved bot permissions issues preventing certain commands from executing properly.",
         },
         {
-          name: "🔧 Fixes",
-          value: "• Fixed bugs in the reaction role system\n• Resolved command registration issues"
+          name: "🔧 What We Did",
+          value: "• Overhauled the database interaction layer for improved performance.\n• Optimized bot commands to reduce response time.\n• Refined user feedback system to provide more helpful error messages."
         }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })

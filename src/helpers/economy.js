@@ -1,6 +1,6 @@
 const fs = require('fs').promises;
 const path = require('path');
-const dataFilePath = path.resolve(__dirname, '../../database/economy.json'); // Use the correct path pointing to the root of your project
+const dataFilePath = path.resolve(__dirname, '../../database/economy.json'); // Ensure the correct path
 
 // Ensure the data file exists
 async function checkDataFile() {

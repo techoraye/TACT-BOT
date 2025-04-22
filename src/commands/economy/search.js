@@ -1,13 +1,12 @@
 const { EmbedBuilder } = require("discord.js");
 const { ECONOMY, EMBED_COLORS, OWNER_IDS } = require("@root/config.js");
 const { writeData, readData } = require("@helpers/economy.js");
-const path = require("path");
 
 module.exports = {
-  name: "beg",
-  description: "beg from someone",
+  name: "search",
+  description: "Search a random location to find money",
   category: "ECONOMY",
-  cooldown: 21600, // applies to non-owners
+  cooldown: 18000, // 5 hours
   botPermissions: ["EmbedLinks"],
   command: {
     enabled: true,
@@ -17,22 +16,21 @@ module.exports = {
   },
 
   async messageRun(message) {
-    const response = await beg(message.author, message.guild.id);
+    const response = await handleSearch(message.author, message.guild.id);
     await message.safeReply(response);
   },
 
   async interactionRun(interaction) {
-    const response = await beg(interaction.user, interaction.guild.id);
+    const response = await handleSearch(interaction.user, interaction.guild.id);
     await interaction.followUp(response);
   },
 
-  // ⛔ Override cooldown for owners
   async cooldownCheck(user) {
     return OWNER_IDS.includes(user.id) ? false : true;
   },
 };
 
-async function beg(user, serverId) {
+async function handleSearch(user, serverId) {
   const data = await readData();
 
   if (!data.servers) data.servers = {};
@@ -46,51 +44,49 @@ async function beg(user, serverId) {
       bank: 0,
       daily: { timestamp: null, streak: 0 },
     };
-
     data.servers[serverId].users[user.id] = userDb;
   }
 
   if (typeof userDb.coins !== "number") userDb.coins = 0;
   if (typeof userDb.bank !== "number") userDb.bank = 0;
 
-  const donors = [
-    "PewDiePie", "T-Series", "Sans", "RLX", "Pro Gamer 711", "Zenitsu",
-    "Jake Paul", "Kaneki Ken", "KSI", "Naruto", "Mr. Beast", "Ur Mom",
-    "A Broke Person", "Giyu Tomiaka", "Bejing Embacy", "A Random Asian Mom",
-    "Ur Step Sis", "Jin Mori", "Sakura (AKA Trash Can)", "Hammy The Hamster",
-    "Kakashi Sensei", "Minato", "Tanjiro", "ZHC", "The IRS", "Joe Mama",
+  const locations = [
+    "the Dumpster", "an Abandoned House", "a Bus Station", "a Back Alley", "the Supermarket",
+    "the Library", "a Gas Station", "a Parking Lot", "the Sewer", "the Park", "a Garage",
+    "a Rooftop", "an Old Car", "a Dusty Couch"
   ];
 
-  const min = ECONOMY.MIN_BEG_AMOUNT || 10;
-  const max = ECONOMY.MAX_BEG_AMOUNT || 100;
+  const min = ECONOMY.MIN_SEARCH_AMOUNT || 50;
+  const max = ECONOMY.MAX_SEARCH_AMOUNT || 300;
   const amount = Math.floor(Math.random() * (max - min + 1)) + min;
 
+  const location = locations[Math.floor(Math.random() * locations.length)];
   userDb.coins += amount;
+
+  data.servers[serverId].users[user.id] = userDb;
 
   try {
     await writeData(data);
   } catch (error) {
-    console.error("Error saving data:", error);
+    console.error("Failed to write data:", error);
   }
-
-  const currency = ECONOMY.CURRENCY ?? "$";
-  const donor = donors[Math.floor(Math.random() * donors.length)];
 
   const embed = new EmbedBuilder()
     .setColor(EMBED_COLORS.BOT_EMBED)
     .setAuthor({ name: user.username, iconURL: user.displayAvatarURL() })
+    .setTitle("🔍 Search Success!")
     .setDescription(
-      `**${donor}** donated you **${formatCurrency(amount)}${currency}**\n` +
-      `**Updated Balance:** **${formatCurrency(userDb.coins)}${currency}**`
-    );
+      `You searched **${location}** and found **${formatCurrency(amount)} ${ECONOMY.CURRENCY}**!\n` +
+      `💰 **New Balance:** ${formatCurrency(userDb.coins)} ${ECONOMY.CURRENCY}`
+    )
+    .setTimestamp();
 
   return { embeds: [embed] };
 }
 
 function formatCurrency(amount) {
-  if (amount === 0) return "0";
   const suffixes = ["", "K", "M", "B", "T", "Q", "Qn", "Sx", "Sp", "Oc", "No", "Dc"];
-  let tier = Math.floor(Math.log10(Math.abs(amount)) / 3);
+  const tier = Math.floor(Math.log10(Math.abs(amount)) / 3);
   if (tier === 0) return amount.toString();
 
   const suffix = suffixes[tier] || `e${tier * 3}`;

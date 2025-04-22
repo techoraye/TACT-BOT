@@ -90,28 +90,29 @@ async function daily(user, serverId) {
   const formattedNetWorth = formatCurrency(userDb.coins + userDb.bank);
 
   const embed = new EmbedBuilder()
-    .setColor(EMBED_COLORS.BOT_EMBED)
-    .setTitle(`💰 ${user.username}'s Daily Reward`)
-    .setThumbnail(user.displayAvatarURL())
-    .addFields(
-      {
-        name: "🪙 Wallet",
-        value: `\`\`\`${formattedCoins}${ECONOMY.CURRENCY}\`\`\``,
-        inline: true,
-      },
-      {
-        name: "🏦 Bank",
-        value: `\`\`\`${formattedBank}${ECONOMY.CURRENCY}\`\`\``,
-        inline: true,
-      },
-      {
-        name: "📊 Net Worth",
-        value: `\`\`\`${formattedNetWorth}${ECONOMY.CURRENCY}\`\`\``,
-        inline: false,
-      }
-    )
-    .setFooter({ text: `📅 Streak: ${streak} days` })
-    .setTimestamp();
+  .setColor(EMBED_COLORS.BOT_EMBED)
+  .setTitle("🎁 Daily Reward Collected!")
+  .setDescription(`You claimed your daily reward and earned **${ECONOMY.DAILY_COINS}${ECONOMY.CURRENCY}**.`)
+  .setThumbnail(user.displayAvatarURL())
+  .addFields(
+    {
+      name: "🪙 Wallet",
+      value: `${formattedCoins}${ECONOMY.CURRENCY}`,
+      inline: true,
+    },
+    {
+      name: "🏦 Bank",
+      value: `${formattedBank}${ECONOMY.CURRENCY}`,
+      inline: true,
+    },
+    {
+      name: "📊 Net Worth",
+      value: `${formattedNetWorth}${ECONOMY.CURRENCY}`,
+      inline: false,
+    }
+  )
+  .setFooter({ text: `🔥 Streak: ${streak} day${streak === 1 ? "" : "s"}` })
+  .setTimestamp();
 
   return { embeds: [embed] };
 }

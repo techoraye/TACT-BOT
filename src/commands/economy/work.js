@@ -10,7 +10,7 @@ const dataPath = path.join(__dirname, "../../database/economy.json");
  */
 module.exports = {
   name: "work",
-  description: "work to earn some coins",
+  description: "Work to earn some coins",
   category: "ECONOMY",
   cooldown: 3600, // 1 hour
   botPermissions: ["EmbedLinks"],
@@ -28,20 +28,36 @@ module.exports = {
   },
 
   async messageRun(message) {
-    const response = await doWork(message.author, message.guild.id);
-    await message.safeReply(response);
+    try {
+      const response = await doWork(message.author, message.guild.id);
+      await message.safeReply(response);
+    } catch (error) {
+      console.error("Error in messageRun:", error);
+      await message.reply("An error occurred while processing your request.");
+    }
   },
 
   async interactionRun(interaction) {
-    const response = await doWork(interaction.user, interaction.guild.id);
-    await interaction.followUp(response);
+    try {
+      const response = await doWork(interaction.user, interaction.guild.id);
+      await interaction.followUp(response);
+    } catch (error) {
+      console.error("Error in interactionRun:", error);
+      await interaction.followUp("An error occurred while processing your request.");
+    }
   },
 };
 
 async function doWork(user, guildId) {
-  const data = await readData();
+  let data;
+  try {
+    data = await readData();
+  } catch (error) {
+    console.error("Error reading data:", error);
+    return { content: "There was an error accessing the economy data." };
+  }
 
-  // Ensure server & user structure
+  // Ensure data structure
   if (!data.servers) data.servers = {};
   if (!data.servers[guildId]) data.servers[guildId] = { users: {} };
   if (!data.servers[guildId].users[user.id]) {
@@ -49,16 +65,19 @@ async function doWork(user, guildId) {
       coins: 0,
       bank: 0,
       daily: { streak: 0, timestamp: null },
-      work: { lastUsed: null },
+      work: { lastUsed: 0 },
     };
   }
 
   const userDb = data.servers[guildId].users[user.id];
+  if (!userDb.work) userDb.work = {};
+  if (typeof userDb.work.lastUsed !== "number") userDb.work.lastUsed = 0;
+
   const now = Date.now();
-  const lastUsed = userDb.work?.lastUsed || 0;
   const cooldown = 3600000; // 1 hour
-  const isOwner = OWNER_IDS?.includes(user.id);
+  const lastUsed = userDb.work.lastUsed;
   const timeLeft = cooldown - (now - lastUsed);
+  const isOwner = OWNER_IDS?.includes(user.id);
 
   if (!isOwner && timeLeft > 0) {
     const minutes = Math.floor(timeLeft / 60000);
@@ -76,7 +95,7 @@ async function doWork(user, guildId) {
     "🛠️ repaired a broken bicycle",
     "🎸 played music on the street",
     "📚 helped at the local library",
-    "🚗 washed some cars"
+    "🚗 washed some cars",
   ];
 
   const job = jobs[Math.floor(Math.random() * jobs.length)];
@@ -89,25 +108,34 @@ async function doWork(user, guildId) {
   userDb.coins += amount;
   userDb.work.lastUsed = now;
 
-  await writeData(data);
+  try {
+    await writeData(data);
+  } catch (error) {
+    console.error("Error writing data:", error);
+    return { content: "An error occurred while updating your data." };
+  }
 
   const embed = new EmbedBuilder()
     .setColor(EMBED_COLORS.SUCCESS || "#00FF00")
     .setAuthor({ name: user.username, iconURL: user.displayAvatarURL() })
     .setTitle("💼 You Worked!")
-    .setDescription(`${job} and earned **${formatNumberWithSuffix(amount)}${currency}**!`)
-    .setFooter({ text: `Wallet: ${formatNumberWithSuffix(userDb.coins)}${currency}` })
+    .setDescription(`${job} and earned **${formatCurrency(amount)}${currency}**!`)
+    .setFooter({ text: `Wallet: ${formatCurrency(userDb.coins)}${currency}` })
     .setTimestamp();
 
   return { embeds: [embed] };
 }
 
-function formatNumberWithSuffix(number) {
+function formatCurrency(amount) {
+  if (amount === 0) return "0";
+
   const suffixes = ["", "K", "M", "B", "T", "Q", "Qn", "Sx", "Sp", "Oc", "No", "Dc"];
-  if (number < 1000) return number.toString();
-  const tier = Math.floor(Math.log10(number) / 3);
-  const suffix = suffixes[tier] || "";
+  let tier = Math.floor(Math.log10(Math.abs(amount)) / 3);
+  if (tier === 0) return amount.toString();
+
+  const suffix = suffixes[tier] || `e${tier * 3}`;
   const scale = Math.pow(10, tier * 3);
-  const scaled = number / scale;
-  return `${scaled.toFixed(1)}${suffix}`;
+  const scaled = (amount / scale).toFixed(1);
+
+  return `${scaled}${suffix}`;
 }

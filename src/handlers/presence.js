@@ -2,7 +2,7 @@
 const { ActivityType } = require('discord.js');
 
 function updatePresence(client) {
-  let message = client.config.PRESENCE.MESSAGE || 'Default message';
+  let message = client.config.PRESENCE.MESSAGE || 'Loading...';
 
   if (message.includes("{servers}")) {
     message = message.replaceAll("{servers}", client.guilds.cache.size);
