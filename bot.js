@@ -1,96 +1,132 @@
+// bot.js
+
 require("dotenv").config();
 require("module-alias/register");
 
-// Register extenders
+const mongoose = require("mongoose");
+const { ActivityType } = require("discord.js");
+
+const { BotClient } = require("@src/structures");
+const { checkForUpdates } = require("@helpers/BotUtils");
+const { initializeMongoose } = require("@src/database/mongoose");
+const { validateConfiguration } = require("@helpers/Validator");
+const loadSlashCommands = require("@helpers/SlashCommandLoader");
+
 require("@helpers/extenders/Message");
 require("@helpers/extenders/Guild");
 require("@helpers/extenders/GuildChannel");
 
-const { ActivityType } = require("discord.js");
-const { checkForUpdates } = require("@helpers/BotUtils");
-const { initializeMongoose } = require("@src/database/mongoose");
-const { BotClient } = require("@src/structures");
-const { validateConfiguration } = require("@helpers/Validator");
-const loadSlashCommands = require("@helpers/SlashCommandLoader");
-
-// Load config
 const config = require("@root/config.js");
 
+// Validate configuration
 validateConfiguration();
 
-// Initialize client
+// Initialize bot client
 const client = new BotClient();
 
-// Load bot features
-client.loadCommands("src/commands");
-client.loadContexts("src/contexts");
-client.loadEvents("src/events");
-
-// Ensure presence settings exist
-if (!config.PRESENCE || typeof config.PRESENCE.ENABLED === "undefined") {
-  throw new Error("PRESENCE.ENABLED is not defined in config.js");
-}
-
-// Status messages rotation
+// Define rotating presence options
 const presenceOptions = [
   { text: () => `Watching ${client.guilds.cache.size} servers`, type: ActivityType.Watching, status: "dnd" },
   { text: () => `Serving ${client.guilds.cache.reduce((acc, g) => acc + g.memberCount, 0)} members`, type: ActivityType.Watching, status: "idle" },
   { text: () => "Developed by @techarye", type: ActivityType.Playing, status: "online" },
   { text: () => "Use /help for commands", type: ActivityType.Listening, status: "dnd" },
   { text: () => `Beta Version: ${config.BETA_VERSION}`, type: ActivityType.Watching, status: "idle" },
-  { text: () => `*changelogs to see changelogs`, type: ActivityType.Watching, status: "online" },
+  { text: () => "*changelogs to see changelogs", type: ActivityType.Watching, status: "online" },
   { text: () => "sudo su", type: ActivityType.Playing, status: "dnd" },
   { text: () => "New update soon?", type: ActivityType.Watching, status: "idle" },
   { text: () => "Collecting members", type: ActivityType.Playing, status: "dnd" },
   { text: () => "Replying to staff members", type: ActivityType.Watching, status: "idle" },
   { text: () => "AutoMod Beta 1.0", type: ActivityType.Playing, status: "online" },
-  { text: () => "Now open source on github!", type: ActivityType.Playing, status: "dnd" },
+  { text: () => "Now open source on GitHub!", type: ActivityType.Playing, status: "dnd" },
   { text: () => "Fixing issues", type: ActivityType.Playing, status: "dnd" },
 ];
 
-// Function to update bot presence (timer)
-const updatePresence = () => {
+let presenceInterval;
+
+// Presence updater
+function startPresenceUpdater() {
   if (!client.user) return;
 
   let index = 0;
-  setInterval(() => {
-    if (!client.user) return;
+  presenceInterval = setInterval(() => {
+    if (!client.isReady()) return; // Ensure client is fully ready
 
     const option = presenceOptions[index % presenceOptions.length];
 
-    client.user.setPresence({
-      status: option.status,
-      activities: [{
-        name: option.text(),
-        type: option.type,
-        url: option.url || undefined,
-      }],
-    });
+    try {
+      client.user.setPresence({
+        status: option.status,
+        activities: [{ name: option.text(), type: option.type }],
+      });
 
-    client.logger.log(`Presence updated: "${option.text()}" | Status: ${option.status.toUpperCase()}`);
+      client.logger.log(`Presence updated: "${option.text()}" | Status: ${option.status.toUpperCase()}`);
+    } catch (err) {
+      client.logger.error("Failed to update presence:", err);
+    }
+
     index++;
-  }, 20_000);
-};
+  }, 20_000); // 20 seconds
+}
 
-// Initialize bot
+// Graceful shutdown
+async function shutdown(signal) {
+  console.log(`Received ${signal}. Shutting down gracefully...`);
+
+  try {
+    clearInterval(presenceInterval);
+
+    if (client.isReady()) {
+      await client.destroy();
+    }
+
+    if (mongoose.connection.readyState === 1) {
+      await mongoose.connection.close();
+    }
+
+    console.log("✅ Shutdown complete.");
+    process.exit(0);
+  } catch (err) {
+    console.error("❌ Error during shutdown:", err);
+    process.exit(1);
+  }
+}
+
+process.on("SIGINT", () => shutdown("SIGINT"));
+process.on("SIGTERM", () => shutdown("SIGTERM"));
+
+// Startup logic
 (async () => {
-  await checkForUpdates();
+  try {
+    await checkForUpdates();
     await initializeMongoose();
 
-  await client.login(process.env.BOT_TOKEN);
-  client.once("ready", async () => {
-    client.logger.log(`Logged in as ${client.user.tag}`);
+    await client.login(process.env.BOT_TOKEN);
 
-    updatePresence(); // Called only once here
+    client.once("ready", async () => {
+      client.logger.log(`✅ Logged in as ${client.user.tag}`);
+      
+      // Wait 5 seconds to ensure Discord API is ready
+      setTimeout(() => {
+        startPresenceUpdater();
+      }, 5000);
 
-    const slashCommands = loadSlashCommands(client);
-    client.logger.log(`Loaded ${slashCommands.length} slash commands.`);
+      try {
+        const slashCommands = loadSlashCommands(client);
+        client.logger.log(`✅ Loaded ${slashCommands.length} slash commands.`);
 
-    try {
-      await client.application.commands.set(slashCommands);
-      client.logger.log(`✅ Successfully registered ${slashCommands.length} slash commands.`);
-    } catch (error) {
-      client.logger.error("❌ Failed to register slash commands:", error);
-    }
-  });
+        await client.application.commands.set(slashCommands);
+        client.logger.log(`✅ Successfully registered slash commands.`);
+      } catch (slashErr) {
+        client.logger.error("❌ Slash command registration failed:", slashErr);
+      }
+    });
+
+    // Load handlers
+    client.loadCommands("src/commands");
+    client.loadContexts("src/contexts");
+    client.loadEvents("src/events");
+  } catch (initErr) {
+    console.error("❌ Bot failed to initialize:", initErr);
+    process.exit(1);
+  }
 })();

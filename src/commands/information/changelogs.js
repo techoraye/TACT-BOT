@@ -27,19 +27,42 @@ module.exports = {
     const embed = new EmbedBuilder()
       .setTitle("📢 Bot Changelogs")
       .setColor("#FFA500")
-      .setDescription("Here are the latest updates and changes:")
+      .setDescription(`Here are the latest updates and changes:`)
       .addFields(
         {
           name: "🚀 Beta Version",
           value: `Currently running **v${config.BETA_VERSION}**`,
         },
         {
-          name: "🐞 Fixed",
-          value: "• Fixed issue with economy system not updating correctly in certain cases.\n• Fixed minor UI bugs in the ticket system command.\n• Resolved bot permissions issues preventing certain commands from executing properly.",
+          name: "🛠 Major Enhancements",
+          value:
+            "• **Presence System Revamp**: Rotating presence with dynamic stats every 20s.\n" +
+            "• **Config Validation**: Checks for presence settings before startup.\n" +
+            "• **Slash Command Loader**: Auto-registers all slash commands at launch.\n" +
+            "• **Improved Startup Sequence**: Clean boot flow with logging.\n" +
+            "• **Auto Updater Coming Soon**: One-command update check and implementation from GitHub.",
         },
         {
           name: "🔧 What We Did",
-          value: "• Overhauled the database interaction layer for improved performance.\n• Optimized bot commands to reduce response time.\n• Refined user feedback system to provide more helpful error messages."
+          value:
+            "• Optimized the database interaction layer for better performance.\n" +
+            "• Refined internal command handling to reduce latency.\n" +
+            "• Added detailed logging for presence and slash command loading.\n" +
+            "• Improved error handling and feedback for failed interactions.",
+        },
+        {
+          name: "🐞 Bug Fixes",
+          value:
+            "• Fixed balance not updating correctly in the economy system.\n" +
+            "• Resolved embed formatting issues in the ticket system.\n" +
+            "• Fixed bot permissions bug blocking command execution.",
+        },
+        {
+          name: "📘 Minor Updates",
+          value:
+            "• `/changelogs` now shows detailed logs categorized by type.\n" +
+            "• Added support for aliases like `/updates` and `/news`.\n" +
+            "• Cleaner formatting with emojis and embed design.",
         }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })
@@ -52,19 +75,42 @@ module.exports = {
     const embed = new EmbedBuilder()
       .setTitle("📢 Bot Changelogs")
       .setColor("#FFA500")
-      .setDescription("Here are the latest updates and changes:")
+      .setDescription(`Here are the latest updates and changes:`)
       .addFields(
         {
           name: "🚀 Beta Version",
           value: `Currently running **v${config.BETA_VERSION}**`,
         },
         {
-          name: "🐞 Fixed",
-          value: "• Fixed issue with economy system not updating correctly in certain cases.\n• Fixed minor UI bugs in the ticket system command.\n• Resolved bot permissions issues preventing certain commands from executing properly.",
+          name: "🛠 Major Enhancements",
+          value:
+            "• **Presence System Revamp**: Rotating presence with dynamic stats every 20s.\n" +
+            "• **Config Validation**: Checks for presence settings before startup.\n" +
+            "• **Slash Command Loader**: Auto-registers all slash commands at launch.\n" +
+            "• **Improved Startup Sequence**: Clean boot flow with logging.\n" +
+            "• **Auto Updater Coming Soon**: One-command update check and implementation from GitHub.",
         },
         {
           name: "🔧 What We Did",
-          value: "• Overhauled the database interaction layer for improved performance.\n• Optimized bot commands to reduce response time.\n• Refined user feedback system to provide more helpful error messages."
+          value:
+            "• Optimized the database interaction layer for better performance.\n" +
+            "• Refined internal command handling to reduce latency.\n" +
+            "• Added detailed logging for presence and slash command loading.\n" +
+            "• Improved error handling and feedback for failed interactions.",
+        },
+        {
+          name: "🐞 Bug Fixes",
+          value:
+            "• Fixed balance not updating correctly in the economy system.\n" +
+            "• Resolved embed formatting issues in the ticket system.\n" +
+            "• Fixed bot permissions bug blocking command execution.",
+        },
+        {
+          name: "📘 Minor Updates",
+          value:
+            "• `/changelogs` now shows detailed logs categorized by type.\n" +
+            "• Added support for aliases like `/updates` and `/news`.\n" +
+            "• Cleaner formatting with emojis and embed design.",
         }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })
