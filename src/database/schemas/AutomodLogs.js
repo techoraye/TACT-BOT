@@ -5,25 +5,27 @@ const reqString = {
   required: true,
 };
 
-const Schema = new mongoose.Schema(
-  {
-    guild_id: reqString,
-    member_id: reqString,
-    content: String,
-    reason: String,
-    strikes: Number,
-  },
-  {
-    versionKey: false,
-    autoIndex: false,
-    timestamps: {
-      createdAt: "created_at",
-      updatedAt: false,
+// Check if the model is already defined to avoid overwriting
+const Model = mongoose.models["automod-logs"] || mongoose.model(
+  "automod-logs",
+  new mongoose.Schema(
+    {
+      guild_id: reqString,
+      member_id: reqString,
+      content: String,
+      reason: String,
+      strikes: Number,
     },
-  }
+    {
+      versionKey: false,
+      autoIndex: false,
+      timestamps: {
+        createdAt: "created_at",
+        updatedAt: false,
+      },
+    }
+  )
 );
-
-const Model = mongoose.model("automod-logs", Schema);
 
 module.exports = {
   addAutoModLogToDb: async (member, content, reason, strikes) => {

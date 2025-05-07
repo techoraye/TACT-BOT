@@ -21,51 +21,58 @@ const Schema = new mongoose.Schema(
   {
     timestamps: {
       createdAt: "created_at",
-      updatedAt: false,
+      updatedAt: false, // Avoid tracking the 'updatedAt' field, since it's not needed.
     },
   }
 );
 
-const Model = mongoose.model("reaction-roles", Schema);
+// Check if model is already compiled to prevent "OverwriteModelError" on reload.
+const Model = mongoose.models["reaction-roles"] || mongoose.model("reaction-roles", Schema);
 
-// Cache
+// Cache for reaction roles
 const rrCache = new Map();
 const getKey = (guildId, channelId, messageId) => `${guildId}|${channelId}|${messageId}`;
 
 module.exports = {
   model: Model,
 
+  // Cache reaction roles from the database and validate them.
   cacheReactionRoles: async (client) => {
-    // clear previous cache
+    // Clear previous cache
     rrCache.clear();
 
-    // load all docs from database
+    // Load all documents from the database
     const docs = await Model.find().lean();
 
-    // validate and cache docs
+    // Validate and cache documents
     for (const doc of docs) {
       const guild = client.guilds.cache.get(doc.guild_id);
       if (!guild) {
-        // await Model.deleteMany({ guild_id: doc.guild_id });
+        // No need to remove from database here; handle missing guild gracefully
         continue;
       }
       if (!guild.channels.cache.has(doc.channel_id)) {
-        // await Model.deleteMany({ guild_id: doc.guild_id, channel_id: doc.channel_id });
+        // No need to remove from database here; handle missing channel gracefully
         continue;
       }
+
+      // Cache the roles for this message
       const key = getKey(doc.guild_id, doc.channel_id, doc.message_id);
       rrCache.set(key, doc.roles);
     }
   },
 
+  // Get reaction roles from cache, or return an empty array if not cached
   getReactionRoles: (guildId, channelId, messageId) => rrCache.get(getKey(guildId, channelId, messageId)) || [],
 
+  // Add a reaction role for a given guild, channel, message, emote, and role
   addReactionRole: async (guildId, channelId, messageId, emote, roleId) => {
     const filter = { guild_id: guildId, channel_id: channelId, message_id: messageId };
 
-    // Pull if existing configuration is present
+    // Pull existing roles if this emote already exists
     await Model.updateOne(filter, { $pull: { roles: { emote } } });
 
+    // Add the new emote and role
     const data = await Model.findOneAndUpdate(
       filter,
       {
@@ -76,17 +83,21 @@ module.exports = {
       { upsert: true, new: true }
     ).lean();
 
-    // update cache
+    // Update cache with the new roles
     const key = getKey(guildId, channelId, messageId);
     rrCache.set(key, data.roles);
   },
 
+  // Remove reaction role configuration for a specific guild, channel, and message
   removeReactionRole: async (guildId, channelId, messageId) => {
+    // Remove from the database
     await Model.deleteOne({
       guild_id: guildId,
       channel_id: channelId,
       message_id: messageId,
     });
+
+    // Remove from cache
     rrCache.delete(getKey(guildId, channelId, messageId));
   },
 };

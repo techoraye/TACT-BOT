@@ -45,7 +45,8 @@ const Schema = new mongoose.Schema(
   }
 );
 
-const Model = mongoose.model("mod-logs", Schema);
+// Check if the model already exists before defining it
+const Model = mongoose.models["mod-logs"] || mongoose.model("mod-logs", Schema);
 
 module.exports = {
   model: Model,

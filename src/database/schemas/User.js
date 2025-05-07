@@ -30,7 +30,8 @@ const Schema = new mongoose.Schema(
   }
 );
 
-const Model = mongoose.model("user", Schema);
+// Check if the model exists before creating it to avoid recompilation errors
+const User = mongoose.models.User || mongoose.model("User", Schema);
 
 module.exports = {
   /**
@@ -43,18 +44,17 @@ module.exports = {
     const cached = cache.get(user.id);
     if (cached) return cached;
 
-    let userDb = await Model.findById(user.id);
+    let userDb = await User.findById(user.id);
     if (!userDb) {
-      userDb = new Model({
+      userDb = new User({
         _id: user.id,
         username: user.username,
         discriminator: user.discriminator,
       });
     }
 
-    // Temporary fix for users who where added to DB before v5.0.0
-    // Update username and discriminator in previous DB
-    else if (!userDb.username || !userDb.discriminator) {
+    // Temporary fix for users who were added to DB before v5.0.0
+    if (!userDb.username || !userDb.discriminator) {
       userDb.username = user.username;
       userDb.discriminator = user.discriminator;
     }
@@ -64,7 +64,7 @@ module.exports = {
   },
 
   getReputationLb: async (limit = 10) => {
-    return Model.find({ "reputation.received": { $gt: 0 } })
+    return User.find({ "reputation.received": { $gt: 0 } })
       .sort({ "reputation.received": -1, "reputation.given": 1 })
       .limit(limit)
       .lean();

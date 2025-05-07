@@ -6,10 +6,10 @@
 
 ### 🔧 Features
 
-- 🎛️ **Moderation Tools** – Kick, ban, mute, clear messages, and more.
-- 🎉 **Entertainment Commands** – Fun and engaging commands to keep your server lively.
-- 📈 **Activity Monitoring** – Track server events, log actions, and keep things organized.
-- 🛠️ **Custom Embeds & Utilities** – Create custom messages, use utilities like polls and timers.
+* 🎛️ **Moderation Tools** – Kick, ban, mute, clear messages, and more.
+* 🎉 **Entertainment Commands** – Fun and engaging commands to keep your server lively.
+* 📈 **Activity Monitoring** – Track server events, log actions, and keep things organized.
+* 🛠️ **Custom Embeds & Utilities** – Create custom messages, use utilities like polls and timers.
 
 ---
 
@@ -23,19 +23,19 @@ To invite TechActivity to your server:
 
 ### 📌 About
 
-- **Bot Name:** TechActivity  
-- **Bot Tag:** `TechActivity#7599`  
-- **Category:** Multi-Purpose / Utility / Moderation  
-- **Developer:** [techarye](https://discord.com/users/1132413940693995541)
+* **Bot Name:** TechActivity
+* **Bot Tag:** `TechActivity#7599`
+* **Category:** Multi-Purpose / Utility / Moderation
+* **Developer:** [techarye](https://discord.com/users/1132413940693995541)
 
 ---
 
 ### 💡 Future Plans
 
-- Full slash command rewrite
-- Improved customization
-- AI integration for smarter responses
-- Web dashboard *(coming soon!)*
+* Full slash command rewrite
+* Improved customization
+* AI integration for smarter responses
+* Web dashboard *(coming soon!)*
 
 ---
 
@@ -48,6 +48,13 @@ Contributions are welcome! If you'd like to help improve TechActivity, feel free
 ### 📜 License
 
 This project is licensed under the [MIT License](LICENSE).
+
+---
+
+### 🌐 Links
+
+* 📱 [TikTok Account](https://www.tiktok.com/@techactivitybot)
+* 🔗 [Discord Server Invite](https://discord.gg/M7yyGfKdKx)
 
 ---
 

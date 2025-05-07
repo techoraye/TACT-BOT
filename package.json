@@ -1,8 +1,8 @@
 {
   "name": "techactivitybot",
-  "version": "Beta0.9.1",
+  "version": "V1.0",
   "description": "An open-source, multipurpose discord bot built using discord-js",
-  "main": "bot.js",
+  "main": "bash start.sh",
   "author": "Sai Teja M",
   "license": "ISC",
   "engines": {
@@ -10,10 +10,10 @@
   },
   "scripts": {
     "dev": "nodemon .",
-    "start": "node .",
+    "start": "sudo bash ./start.sh",
     "format": "prettier --write src",
     "docker:package": "tar -cf techactivitybot.tar dashboard logs src bot.js config.js dockerfile package.json package-lock.json",
-    "docker:build": "docker build -t techarye/techactivitybot:Beta0.9.1."
+    "docker:build": "docker build -t techarye/techactivitybot:V1."
   },
   "homepage": "https://github.com/techarye/techactivitybot#readme",
   "repository": {
@@ -55,6 +55,7 @@
     "os": "^0.1.2",
     "pino": "^8.18.0",
     "pino-pretty": "^10.3.1",
+    "pm2": "^6.0.5",
     "pretty-ms": "^7.0.1",
     "snakecord": "^1.0.9",
     "sourcebin_js": "^0.0.3-ignore",

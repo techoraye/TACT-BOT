@@ -37,7 +37,8 @@ const Schema = new mongoose.Schema(
   }
 );
 
-const Model = mongoose.model("suggestions", Schema);
+// Check if the model already exists before defining it
+const Model = mongoose.models["suggestions"] || mongoose.model("suggestions", Schema);
 
 module.exports = {
   model: Model,

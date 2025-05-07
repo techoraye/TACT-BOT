@@ -1,5 +1,5 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, InteractionFlagsBits } = require("discord.js");
-const { EMBED_COLORS, SUPPORT_SERVER, DASHBOARD } = require("@root/config");
+const { EMBED_COLORS, SUPPORT_SERVER, INVITE_URL } = require("@root/config");
 const { timeformat } = require("@helpers/Utils");
 const os = require("os");
 const { stripIndent } = require("common-tags");
@@ -110,18 +110,12 @@ module.exports = (client, isInteraction = false) => {
   const buttonsList = [];
 
   buttonsList.push(
-    new ButtonBuilder().setLabel("🔗 Invite Me").setURL(client.getInvite()).setStyle(ButtonStyle.Link)
+    new ButtonBuilder().setLabel("🔗 Invite Me").setURL(INVITE_URL).setStyle(ButtonStyle.Link) // ✅ updated here
   );
 
   if (SUPPORT_SERVER) {
     buttonsList.push(
       new ButtonBuilder().setLabel("💬 Support").setURL(SUPPORT_SERVER).setStyle(ButtonStyle.Link)
-    );
-  }
-
-  if (DASHBOARD?.enabled) {
-    buttonsList.push(
-      new ButtonBuilder().setLabel("📊 Dashboard").setURL(DASHBOARD.baseURL).setStyle(ButtonStyle.Link)
     );
   }
 

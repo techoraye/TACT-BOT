@@ -11,9 +11,7 @@ module.exports = {
   botPermissions: ["ManageMessages"],
 
   command: {
-    enabled: true,
-    usage: "<amount> [@user]",
-    minArgsCount: 1,
+    enabled: false,  // Disable the message command as it's only for slash commands
   },
 
   slashCommand: {
@@ -34,29 +32,6 @@ module.exports = {
     ],
   },
 
-  async messageRun(message, args) {
-    const amount = parseInt(args[0], 10);
-    if (isNaN(amount) || amount < 1 || amount > 100) {
-      return message.safeReply("Please provide a number between 1 and 100.");
-    }
-
-    const user = message.mentions.users.first();
-
-    try {
-      const deleted = await fetchAndDelete(message.channel, amount, user);
-      const response = buildSuccessResponse(deleted);
-      const sent = await message.channel.send(response);
-      setTimeout(() => sent.delete().catch(() => {}), 3000);
-
-      // delete user's command message
-      await message.delete().catch(() => {});
-    } catch (ex) {
-      const response = buildErrorResponse(ex);
-      const sent = await message.channel.send(response);
-      setTimeout(() => sent.delete().catch(() => {}), 3000);
-    }
-  },
-
   async interactionRun(interaction) {
     const amount = interaction.options.getInteger("amount");
     const user = interaction.options.getUser("user");
@@ -64,12 +39,12 @@ module.exports = {
     try {
       const deleted = await fetchAndDelete(interaction.channel, amount, user);
       const response = buildSuccessResponse(deleted);
-      const sent = await interaction.followUp(response);
-      setTimeout(() => sent.delete().catch(() => {}), 3000);
+
+      // Send an embed for the result, but no reply is necessary
+      await interaction.followUp(response); // This sends the response
     } catch (ex) {
       const response = buildErrorResponse(ex);
-      const sent = await interaction.followUp(response);
-      setTimeout(() => sent.delete().catch(() => {}), 3000);
+      await interaction.followUp(response); // Send the error response
     }
   },
 };
@@ -92,7 +67,7 @@ function buildSuccessResponse(count) {
     .setAuthor({ name: "🗑️ Messages Deleted" })
     .setDescription(`Successfully deleted **${count}** messages.`)
     .setColor("Green")
-    .setTimestamp(Date.now());
+    .setTimestamp();
 
   return { embeds: [embed] };
 }
@@ -102,7 +77,7 @@ function buildErrorResponse(error) {
     .setAuthor({ name: "⚠️ Error" })
     .setDescription("```js\n" + error.toString().substring(0, 4000) + "\n```")
     .setColor(EMBED_COLORS.ERROR)
-    .setTimestamp(Date.now());
+    .setTimestamp();
 
   return { embeds: [embed] };
 }

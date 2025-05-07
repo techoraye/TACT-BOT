@@ -1,4 +1,4 @@
-const { commandHandler, automodHandler, statsHandler } = require("@src/handlers");
+const { commandHandler, automodHandler } = require("@src/handlers");
 const { PREFIX_COMMANDS } = require("@root/config");
 const { getSettings } = require("@schemas/Guild");
 
@@ -8,12 +8,13 @@ const { getSettings } = require("@schemas/Guild");
  */
 module.exports = async (client, message) => {
   if (!message.guild || message.author.bot) return;
+
   const settings = await getSettings(message.guild);
 
-  // command handler
+  // Command handler
   let isCommand = false;
   if (PREFIX_COMMANDS.ENABLED) {
-    // check for bot mentions
+    // Respond to bot mentions
     if (message.content.includes(`${client.user.id}`)) {
       message.channel.safeSend(`> My prefix is \`${settings.prefix}\``);
     }
@@ -28,9 +29,8 @@ module.exports = async (client, message) => {
     }
   }
 
-  // stats handler
-  if (settings.stats.enabled) await statsHandler.trackMessageStats(message, isCommand, settings);
-
-  // if not a command
-  if (!isCommand) await automodHandler.performAutomod(message, settings);
+  // Automod handler
+  if (!isCommand) {
+    await automodHandler.performAutomod(message, settings);
+  }
 };

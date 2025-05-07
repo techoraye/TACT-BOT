@@ -32,7 +32,8 @@ const Schema = new mongoose.Schema(
   }
 );
 
-const Model = mongoose.model("members", Schema);
+// Check if the 'members' model already exists to prevent overwriting it
+const Model = mongoose.models.members || mongoose.model("members", Schema);
 
 module.exports = {
   getMember: async (guildId, memberId) => {

@@ -37,9 +37,8 @@ module.exports = {
       mongoStatus = `❌ Error: ${error.message}`;
     }
 
-    // 2. Ping external node (103.60.13.254)
-    const host = "103.60.13.254";
-    const port = 8080;
+    const host = "37.27.141.177";
+    const port = 22348;
 
     try {
       const start = Date.now();

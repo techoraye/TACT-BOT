@@ -1,7 +1,9 @@
 module.exports = {
   OWNER_IDS: ["1132413940693995541"], // Bot owner ID's
-  SUPPORT_SERVER: "https://discord.gg/ndjQU5zw7F", // Your bot support server
-  BETA_VERSION: "0.9.1",
+  LOG_CHANNEL_ID: "1363598444387631104",
+  SUPPORT_SERVER: "https://discord.gg/M7yyGfKdKx", // Your bot support server
+  INVITE_URL: "https://discord.com/oauth2/authorize?client_id=1351789668030480394",
+  STABLE_VERSION: "1.0",
   PREFIX_COMMANDS: {
     ENABLED: true, // Enable/Disable prefix commands
     DEFAULT_PREFIX: "*", // Default prefix for the bot (changed to a typical prefix)
@@ -46,10 +48,6 @@ module.exports = {
     ENABLED: true,
   },
 
-  SOCIAL: {
-    ENABLED: true,
-  },
-
   IMAGE: {
     ENABLED: false,
     BASE_API: "https://strangeapi.hostz.me/api",
@@ -84,27 +82,6 @@ module.exports = {
 
   PRESENCE: {
     ENABLED: true, // Whether or not the bot should update its status
-  },
-
-  NSFW: {
-    ENABLED: true,
-  },
-
-  STATS: {
-    ENABLED: true,
-    XP_COOLDOWN: 5, // Cooldown in seconds between messages
-    DEFAULT_LVL_UP_MSG: "{member:tag}, You just advanced to **Level {level}**",
-  },
-
-  SUGGESTIONS: {
-    ENABLED: true, // Should the suggestion system be enabled
-    EMOJI: {
-      UP_VOTE: "⬆️",
-      DOWN_VOTE: "⬇️",
-    },
-    DEFAULT_EMBED: "#4F545C",
-    APPROVED_EMBED: "#43B581",
-    DENIED_EMBED: "#F04747",
   },
 
   TICKET: {

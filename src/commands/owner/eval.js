@@ -34,6 +34,9 @@ module.exports = {
 
     if (!input) return message.safeReply("Please provide code to eval");
 
+    // Start typing indicator
+    message.channel.sendTyping();
+
     let response;
     try {
       const output = eval(input);
@@ -46,6 +49,9 @@ module.exports = {
 
   async interactionRun(interaction) {
     const input = interaction.options.getString("expression");
+
+    // Start typing indicator
+    await interaction.channel.sendTyping();
 
     let response;
     try {

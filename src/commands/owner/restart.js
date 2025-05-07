@@ -1,63 +1,67 @@
-const { EmbedBuilder } = require("discord.js");
-const { OWNER_IDS } = require("../../../config.js"); // Adjust path as needed
-const path = require("path");
+const { EmbedBuilder, Colors } = require("discord.js");
+const { OWNER_IDS } = require("../../../config.js");
+const { spawn } = require("child_process");
 
 module.exports = {
-    name: "restart",
-    description: "Restarts the bot internally (Owner only)",
-    category: "OWNER",
-    botPermissions: ["SendMessages", "EmbedLinks"],
-    command: {
-        enabled: true,
-        aliases: ["reboot", "reload"],
-        usage: "",
-        cooldown: 300, // 5-minute cooldown to prevent accidental restarts
-    },
-    slashCommand: {
-        enabled: false, // Disabled for now, enable if you plan to implement slash commands
-    },
+  name: "restart",
+  description: "Restarts the bot (Owner only)",
+  category: "OWNER",
+  botPermissions: ["SendMessages", "EmbedLinks"],
+  command: {
+    enabled: true,
+    aliases: ["reboot", "reload"],
+    usage: "",
+    cooldown: 300,
+  },
 
-    async messageRun(message) {
-        // Check if the author is the bot owner
-        if (!OWNER_IDS.includes(message.author.id)) {
-            return message.reply("❌ You are not authorized to use this command.");
-        }
+  async messageRun(message) {
+    if (!OWNER_IDS.includes(message.author.id)) {
+      return message.reply("❌ **You are not authorized to use this command.**");
+    }
 
-        // Access the client instance via message.client
-        const client = message.client;
+    const client = message.client;
 
-        // Create an embed to inform the user
-        const embed = new EmbedBuilder()
-            .setColor(client.config?.EMBED_COLORS?.BOT_EMBED || '#0099ff') // Fallback color
-            .setTitle("Bot Internal Restart")
-            .setDescription("The bot is restarting internally... Please wait a moment.")
-            .setFooter({ text: `Requested by ${message.author.tag}` });
+    // Start typing indicator
+    message.channel.sendTyping();
 
-        // Send the embed to the channel
-        await message.reply({ embeds: [embed] });
+    const embed = new EmbedBuilder()
+      .setColor(client.config?.EMBED_COLORS?.BOT_EMBED || Colors.Blue)
+      .setTitle("🔄 Bot Restarting...")
+      .setDescription("Spawning a new bot instance⏳")
+      .setFooter({ text: `Requested by ${message.author.tag}` });
 
-        console.log(`[INTERNAL RESTART] Restart command triggered by ${message.author.tag} (${message.author.id}).`);
+    await message.reply({ embeds: [embed] });
 
-        try {
-            // 1. Gracefully destroy the current client connection
-            console.log('[INTERNAL RESTART] Destroying Discord client...');
-            await client.destroy();
-            console.log('[INTERNAL RESTART] Discord client destroyed.');
+    console.log(`[RESTART] Triggered by ${message.author.tag} (${message.author.id})`);
 
-            // 2. Re-require the bot entry point to "restart" the bot using absolute path
-            setTimeout(() => {
-                try {
-                    console.log('[INTERNAL RESTART] Re-initializing bot...');
-                    const botPath = path.resolve(__dirname, '../../../bot.js'); // Use absolute path to bot.js
-                    delete require.cache[require.resolve(botPath)]; // Clear the cache to re-require the bot file
-                    require(botPath); // Re-require the bot.js to restart the bot without exiting
-                    console.log('[INTERNAL RESTART] Bot re-initialized successfully.');
-                } catch (error) {
-                    console.error('[INTERNAL RESTART] Error during bot re-initialization:', error);
-                }
-            }, 5000); // Delay to ensure the bot is disconnected before re-initializing
-        } catch (error) {
-            console.error('[INTERNAL RESTART] Unhandled error during internal restart process:', error);
-        }
-    },
+    try {
+      // Using 'spawn' to execute a shell command to run the bash script
+      const restartCommand = spawn("bash", ["-c", "./restart.sh"]);
+
+      // Handle output from the script
+      restartCommand.stdout.on("data", (data) => {
+        console.log(`stdout: ${data}`);
+      });
+
+      restartCommand.stderr.on("data", (data) => {
+        console.error(`stderr: ${data}`);
+      });
+
+      restartCommand.on("close", (code) => {
+        console.log(`Child process exited with code ${code}`);
+      });
+
+      console.log("[RESTART] Bot process will now exit...");
+      process.exit(0);  // Clean shutdown
+
+    } catch (err) {
+      console.error("❌ Restart error:", err);
+      const errorEmbed = new EmbedBuilder()
+        .setColor(Colors.Red)
+        .setTitle("❌ Restart Failed")
+        .setDescription("There was an error while trying to restart the bot.")
+        .setFooter({ text: `Requested by ${message.author.tag}` });
+      return message.reply({ embeds: [errorEmbed] });
+    }
+  },
 };

@@ -1,5 +1,8 @@
-const { getSettings } = require("@schemas/Guild");
-const { commandHandler, contextHandler, statsHandler, suggestionHandler, ticketHandler } = require("@src/handlers");
+const {
+  commandHandler,
+  contextHandler,
+  ticketHandler,
+} = require("@src/handlers");
 const { InteractionType } = require("discord.js");
 
 /**
@@ -9,7 +12,10 @@ const { InteractionType } = require("discord.js");
 module.exports = async (client, interaction) => {
   if (!interaction.guild) {
     return interaction
-      .reply({ content: "Command can only be executed in a discord server", ephemeral: true })
+      .reply({
+        content: "Command can only be executed in a discord server",
+        ephemeral: true,
+      })
       .catch(() => {});
   }
 
@@ -21,8 +27,12 @@ module.exports = async (client, interaction) => {
   // Context Menu
   else if (interaction.isContextMenuCommand()) {
     const context = client.contextMenus.get(interaction.commandName);
-    if (context) await contextHandler.handleContext(interaction, context);
-    else return interaction.reply({ content: "An error has occurred", ephemeral: true }).catch(() => {});
+    if (context)
+      await contextHandler.handleContext(interaction, context);
+    else
+      return interaction
+        .reply({ content: "An error has occurred", ephemeral: true })
+        .catch(() => {});
   }
 
   // Buttons
@@ -33,34 +43,6 @@ module.exports = async (client, interaction) => {
 
       case "TICKET_CLOSE":
         return ticketHandler.handleTicketClose(interaction);
-
-      case "SUGGEST_APPROVE":
-        return suggestionHandler.handleApproveBtn(interaction);
-
-      case "SUGGEST_REJECT":
-        return suggestionHandler.handleRejectBtn(interaction);
-
-      case "SUGGEST_DELETE":
-        return suggestionHandler.handleDeleteBtn(interaction);
     }
   }
-
-  // Modals
-  else if (interaction.type === InteractionType.ModalSubmit) {
-    switch (interaction.customId) {
-      case "SUGGEST_APPROVE_MODAL":
-        return suggestionHandler.handleApproveModal(interaction);
-
-      case "SUGGEST_REJECT_MODAL":
-        return suggestionHandler.handleRejectModal(interaction);
-
-      case "SUGGEST_DELETE_MODAL":
-        return suggestionHandler.handleDeleteModal(interaction);
-    }
-  }
-
-  const settings = await getSettings(interaction.guild);
-
-  // track stats
-  if (settings.stats.enabled) statsHandler.trackInteractionStats(interaction).catch(() => {});
 };

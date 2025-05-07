@@ -22,7 +22,8 @@ const Schema = new mongoose.Schema(
   }
 );
 
-const Model = mongoose.model("logs-translation", Schema);
+// Check if the model already exists before defining it
+const Model = mongoose.models["logs-translation"] || mongoose.model("logs-translation", Schema);
 
 module.exports = {
   model: Model,

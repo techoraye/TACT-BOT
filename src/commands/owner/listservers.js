@@ -71,7 +71,7 @@ module.exports = {
       for (let i = start; i < end; i++) {
         const server = servers[i];
         fields.push({
-          name: server.name,
+          name: `${server.name} (${server.memberCount} members)`,
           value: server.id,
           inline: true,
         });
@@ -86,6 +86,9 @@ module.exports = {
       buttonsRow = new ActionRowBuilder().addComponents(components);
       return embed;
     };
+
+    // Start typing indicator
+    message.channel.sendTyping();
 
     // Send Message
     const embed = buildEmbed();
@@ -102,6 +105,9 @@ module.exports = {
     collector.on("collect", async (response) => {
       if (!["prevBtn", "nxtBtn"].includes(response.customId)) return;
       await response.deferUpdate();
+
+      // Start typing indicator again when interacting with the buttons
+      message.channel.sendTyping();
 
       switch (response.customId) {
         case "prevBtn":

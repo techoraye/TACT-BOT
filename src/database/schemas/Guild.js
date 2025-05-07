@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
-const { CACHE_SIZE, PREFIX_COMMANDS, STATS } = require("@root/config.js");
+const { CACHE_SIZE, PREFIX_COMMANDS } = require("@root/config.js");
 const FixedSizeMap = require("fixedsize-map");
 const { getUser } = require("./User");
 
 const cache = new FixedSizeMap(CACHE_SIZE.GUILDS);
 
+// Define the schema for the guild data
 const Schema = new mongoose.Schema({
   _id: String,
   data: {
@@ -16,13 +17,6 @@ const Schema = new mongoose.Schema({
     bots: { type: Number, default: 0 },
   },
   prefix: { type: String, default: PREFIX_COMMANDS.DEFAULT_PREFIX },
-  stats: {
-    enabled: Boolean,
-    xp: {
-      message: { type: String, default: STATS.DEFAULT_LVL_UP_MSG },
-      channel: String,
-    },
-  },
   ticket: {
     log_channel: String,
     limit: { type: Number, default: 10 },
@@ -110,7 +104,8 @@ const Schema = new mongoose.Schema({
   },
 });
 
-const Model = mongoose.model("guild", Schema);
+// Check if the model exists before defining it
+const Model = mongoose.models.guild || mongoose.model("guild", Schema);
 
 module.exports = {
   /**
@@ -125,7 +120,7 @@ module.exports = {
 
     let guildData = await Model.findById(guild.id);
     if (!guildData) {
-      // save owner details
+      // Save owner details
       guild
         .fetchOwner()
         .then(async (owner) => {
@@ -134,7 +129,7 @@ module.exports = {
         })
         .catch((ex) => {});
 
-      // create a new guild model
+      // Create a new guild model
       guildData = new Model({
         _id: guild.id,
         data: {

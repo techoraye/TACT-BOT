@@ -26,6 +26,10 @@ module.exports = {
     }
 
     const name = guild.name;
+
+    // Start typing indicator
+    message.channel.sendTyping();
+
     try {
       await guild.leave();
       return message.safeReply(`Successfully Left \`${name}\``);
