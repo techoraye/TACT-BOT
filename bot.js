@@ -26,7 +26,7 @@ const presenceOptions = [
   { text: () => `Serving ${client.guilds.cache.reduce((acc, g) => acc + g.memberCount, 0)} members`, type: ActivityType.Watching, status: "idle" },
   { text: () => "Developed by @techarye", type: ActivityType.Playing, status: "online" },
   { text: () => "Use /help for commands", type: ActivityType.Listening, status: "dnd" },
-  { text: () => `Version: V${config.BETA_VERSION}`, type: ActivityType.Watching, status: "idle" },
+  { text: () => `Version: V${config.STABLE_VERSION}`, type: ActivityType.Watching, status: "idle" },
   { text: () => "*changelogs to see changelogs", type: ActivityType.Watching, status: "online" },
   { text: () => "Stable version finally arrived!", type: ActivityType.Playing, status: "dnd" },
   { text: () => "AutoMod Beta 1.0", type: ActivityType.Playing, status: "online" },

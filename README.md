@@ -1,10 +1,10 @@
-# TechActivity 🤖
+# TACT 🤖
 
-**TechActivity** is a powerful, multi-purpose Discord bot designed to bring utility, moderation, and entertainment to your server. Whether you're managing a large community or a small group of friends, TechActivity delivers a suite of tools that enhance your server experience.
+**TACT** is a powerful, multi-purpose Discord bot designed to bring utility, moderation, and entertainment to your server. Whether you're managing a large community or a small group of friends, TACT delivers a suite of tools that enhance your server experience.
 
 ---
 
-### 🔧 Features
+## 🔧 Features
 
 * 🎛️ **Moderation Tools** – Kick, ban, mute, clear messages, and more.
 * 🎉 **Entertainment Commands** – Fun and engaging commands to keep your server lively.
@@ -13,49 +13,49 @@
 
 ---
 
-### 🚀 Get Started
+## 🚀 Get Started
 
-To invite TechActivity to your server:
+To invite TACT to your server:
 
 🔗 [Invite Link](https://discordapp.com/oauth2/authorize?client_id=1351789668030480394)
 
 ---
 
-### 📌 About
+## 📌 About
 
-* **Bot Name:** TechActivity
-* **Bot Tag:** `TechActivity#7599`
-* **Category:** Multi-Purpose / Utility / Moderation
-* **Developer:** [techarye](https://discord.com/users/1132413940693995541)
+* **Bot Name:** TACT  
+* **Bot Username:** `@TACT#7599`  
+* **Category:** Multi-Purpose / Utility / Moderation  
+* **Developer:** [![Developer Github](https://img.shields.io/badge/Developer-techarye-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/techarye)
 
 ---
 
-### 💡 Future Plans
+## 💡 Future Plans
 
-* Full slash command rewrite
-* Improved customization
-* AI integration for smarter responses
+* Full slash command rewrite  
+* Improved customization  
+* AI integration for smarter responses  
 * Web dashboard *(coming soon!)*
 
 ---
 
-### 🤝 Contributing
+## 🤝 Contributing
 
-Contributions are welcome! If you'd like to help improve TechActivity, feel free to fork the project and submit a pull request. Bug reports and feature requests are also appreciated.
+Contributions are welcome! If you'd like to help improve TACT, feel free to fork the project and submit a pull request. Bug reports and feature requests are also appreciated.
 
 ---
 
-### 📜 License
+## 📜 License
 
 This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-### 🌐 Links
+## 🌐 Links
 
-* 📱 [TikTok Account](https://www.tiktok.com/@techactivitybot)
-* 🔗 [Discord Server Invite](https://discord.gg/M7yyGfKdKx)
+[![Join our Discord](https://img.shields.io/badge/Join%20Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/M7yyGfKdKx)
+[![Follow on TikTok](https://img.shields.io/badge/Follow%20on%20TikTok-010101?style=for-the-badge&logo=tiktok&logoColor=white)](https://www.tiktok.com/@techactivitybot)
 
 ---
 
-*Thank you for checking out TechActivity – a bot built for community, growth, and simplicity.*
+*Thank you for checking out TACT – a bot built for community, growth, and simplicity.*
