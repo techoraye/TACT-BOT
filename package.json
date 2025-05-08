@@ -1,6 +1,6 @@
 {
   "name": "techactivitybot",
-  "version": "V1.0.2",
+  "version": "V1.3.0",
   "description": "An open-source, multipurpose discord bot built using discord-js",
   "main": "bash start.sh",
   "author": "Sai Teja M",
@@ -13,7 +13,7 @@
     "start": "sudo bash ./start.sh",
     "format": "prettier --write src",
     "docker:package": "tar -cf techactivitybot.tar dashboard logs src bot.js config.js dockerfile package.json package-lock.json",
-    "docker:build": "docker build -t techarye/techactivitybot:V1."
+    "docker:build": "docker build -t techarye/techactivitybot:V1.3.0"
   },
   "homepage": "https://github.com/techarye/techactivitybot#readme",
   "repository": {
@@ -86,11 +86,13 @@
     "multi-purpose-bot"
   ],
   "_moduleAliases": {
-    "@root": ".",
-    "@handlers": "src/handlers/",
-    "@helpers": "src/helpers/",
-    "@schemas": "src/database/schemas/",
-    "@src": "src/",
-    "@structures": "src/structures/"
-  }
+  "@root": ".",
+  "@handlers": "src/handlers/",
+  "@helpers": "src/helpers/",
+  "@schemas": "src/database/schemas/",
+  "@src": "src/",
+  "@structures": "src/structures/",
+  "@functions": "functions/"
+}
+
 }

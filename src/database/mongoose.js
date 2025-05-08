@@ -8,7 +8,12 @@ module.exports = {
     log(`Connecting to MongoDb...`);
 
     try {
-      await mongoose.connect(process.env.MONGO_CONNECTION);
+      // Use serverSelectionTimeoutMS for a longer connection timeout (default is 30 seconds)
+      await mongoose.connect(process.env.MONGO_CONNECTION, {
+        serverSelectionTimeoutMS: 30000,  // 30 seconds timeout
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
 
       success("Mongoose: Database connection established");
 

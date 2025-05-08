@@ -1,4 +1,5 @@
 const { ApplicationCommandOptionType } = require("discord.js");
+const getTogetherInvite = require("./functions/together/getTogetherInvite");
 
 const discordTogether = [
   "askaway",
@@ -25,9 +26,6 @@ const discordTogether = [
   "youtubedev",
 ];
 
-/**
- * @type {import("@structures/Command")}
- */
 module.exports = {
   name: "together",
   description: "discord together",
@@ -64,17 +62,3 @@ module.exports = {
     await interaction.followUp(response);
   },
 };
-
-async function getTogetherInvite(member, choice) {
-  choice = choice.toLowerCase();
-
-  const vc = member.voice.channel?.id;
-  if (!vc) return "You must be in a voice channel to use this command.";
-
-  if (!discordTogether.includes(choice)) {
-    return `Invalid game.\nValid games: ${discordTogether.join(", ")}`;
-  }
-
-  const invite = await member.client.discordTogether.createTogetherCode(vc, choice);
-  return `${invite.code}`;
-}

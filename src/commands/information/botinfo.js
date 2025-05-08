@@ -35,7 +35,7 @@ module.exports = {
         },
         {
           name: "📚 GitHub Repo",
-          value: "[techactivitybot](https://github.com/techarye/techactivitybot)",
+          value: "[TACT-BOT](https://github.com/techarye/TACT-BOT)",
           inline: true,
         },
         {
@@ -63,7 +63,7 @@ module.exports = {
         },
         {
           name: "📚 GitHub Repo",
-          value: "[techactivitybot](https://github.com/techarye/techactivitybot)",
+          value: "[TACT-BOT](https://github.com/techarye/TACT-BOT)",
           inline: true,
         },
         {

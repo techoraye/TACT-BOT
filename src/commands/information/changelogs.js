@@ -31,7 +31,7 @@ module.exports = {
     const embed = new EmbedBuilder()
       .setTitle("📢 Bot Changelogs")
       .setColor("#FFA500")
-      .setDescription(`Here are the latest updates and changes:`)
+      .setDescription(`Stay updated with the latest changes and improvements to the bot.`)
       .addFields(
         {
           name: "🚀 Stable Version",
@@ -40,10 +40,16 @@ module.exports = {
         {
           name: "🆕 New Additions",
           value: [
-            "✅ **Bot name changed** from **TechActivity Bot** to **TACT**",
-            "🖼️ **New logo added** featuring a sword in a modern, bold design",
-            "🔐 **Owner-only command fixed**: `*potential`"
+            "• **Counting System**: Global counting using a local database.",
+            "• **Command Refactor**: Split functions into `/functions` and added some subcommands under `/sub/`.",
+            "• **Owner Commands**: `setversion`, `dev`, `commandpath`, `listinvites`.",
+            "• **Presence Handling**: Moved animated presence to root functions.",
+            "• **Wikipedia Fix**: Fixed and improved intelligent reply."
           ].join("\n"),
+        },
+        {
+          name: "🔜 Coming Soon",
+          value: "• `presence` command to add, remove, edit, and list presence options.",
         }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })
@@ -60,7 +66,7 @@ module.exports = {
     const embed = new EmbedBuilder()
       .setTitle("📢 Bot Changelogs")
       .setColor("#FFA500")
-      .setDescription(`Here are the latest updates and changes:`)
+      .setDescription(`Stay updated with the latest changes and improvements to the bot.`)
       .addFields(
         {
           name: "🚀 Stable Version",
@@ -69,10 +75,16 @@ module.exports = {
         {
           name: "🆕 New Additions",
           value: [
-            "✅ **Bot name changed** from **TechActivity Bot** to **TACT**",
-            "🖼️ **New logo added** featuring a sword in a modern, bold design",
-            "🔐 **Owner-only command fixed**: `*potential`"
+            "• **Counting System**: Global counting using a local database.",
+            "• **Command Refactor**: Split functions into `/functions` and added some subcommands under `/sub/`.",
+            "• **Owner Commands**: `setversion`, `dev`, `commandpath`, `listinvites`.",
+            "• **Presence Handling**: Moved animated presence to root functions.",
+            "• **Wikipedia Fix**: Fixed and improved intelligent reply."
           ].join("\n"),
+        },
+        {
+          name: "🔜 Coming Soon",
+          value: "• `presence` command to add, remove, edit, and list presence options.",
         }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })
