@@ -1,14 +1,19 @@
 const { EmbedBuilder } = require("discord.js");
-const { saveCountData } = require("./saveCountData");
+const saveCountData = require("./saveCountData.js");
 
 module.exports = async function handleCountingMessage(message, countData, serverId) {
-  if (!countData[serverId].channelId || message.channel.id !== countData[serverId].channelId) return;
+  if (!countData[serverId]?.channelId || message.channel.id !== countData[serverId].channelId) return;
   if (message.author.bot) return;
 
   const content = message.content.trim();
   const number = parseInt(content, 10);
 
   if (isNaN(number)) return message.delete().catch(() => {});
+
+  // Flag to check if highscore message was already sent
+  if (!countData[serverId].highScoreMessageSent) {
+    countData[serverId].highScoreMessageSent = false; // Reset when count data is reloaded
+  }
 
   if (number === countData[serverId].lastNumber + 1 && message.author.id !== countData[serverId].lastUserId) {
     countData[serverId].lastNumber = number;
@@ -18,21 +23,24 @@ module.exports = async function handleCountingMessage(message, countData, server
       countData[serverId].highScore = number;
       countData[serverId].highScoreUserId = message.author.id;
 
+      // Always react with "🏅" to new high score
       try {
         await message.react("🏅");
       } catch (err) {
         console.error("Failed to react with 🏅", err);
       }
 
-      const embed = new EmbedBuilder()
-        .setColor("Green")
-        .setTitle("🏅 New High Score!")
-        .setDescription(`**${message.author.tag}** reached the highest count: **${number}**!`)
-        .setFooter({ text: `Last valid number was ${countData[serverId].lastNumber}` });
+      // Send high score message only if it hasn't been sent yet
+      if (!countData[serverId].highScoreMessageSent) {
+        const embed = new EmbedBuilder()
+          .setColor("Green")
+          .setTitle("🏅 New High Score!")
+          .setDescription(`**${message.author.tag}** reached the highest count: **${number}**!`)
+          .setFooter({ text: `Last valid number was ${countData[serverId].lastNumber}` });
 
-      await message.channel.send({ embeds: [embed] });
-
-      saveCountData(countData);
+        await message.channel.send({ embeds: [embed] });
+        countData[serverId].highScoreMessageSent = true; // Mark the high score message as sent
+      }
     } else {
       try {
         await message.react("✔️");
@@ -40,6 +48,17 @@ module.exports = async function handleCountingMessage(message, countData, server
         console.error("Failed to react with ✔️", err);
       }
     }
+
+    try {
+      if (typeof saveCountData === "function") {
+        saveCountData(countData);
+      } else {
+        console.error("saveCountData is not a function");
+      }
+    } catch (err) {
+      console.error("Error saving count data:", err);
+    }
+
     return;
   }
 
@@ -59,6 +78,17 @@ module.exports = async function handleCountingMessage(message, countData, server
 
   countData[serverId].lastNumber = 0;
   countData[serverId].lastUserId = null;
+  countData[serverId].highScoreMessageSent = false; // Reset the flag after a ruined count
+
+  try {
+    if (typeof saveCountData === "function") {
+      saveCountData(countData);
+    } else {
+      console.error("saveCountData is not a function");
+    }
+  } catch (err) {
+    console.error("Error saving count data:", err);
+  }
 
   message.delete().catch(() => {});
 };

@@ -1,12 +1,15 @@
 const fs = require("fs");
-const countingDataPath = "./database/counting.json";
+const countingDataPath = require("./countingDataPath");
 
-module.exports = function loadCountData() {
-  if (fs.existsSync(countingDataPath)) {
-    return JSON.parse(fs.readFileSync(countingDataPath, "utf-8"));
-  } else {
-    const initialData = {};
-    fs.writeFileSync(countingDataPath, JSON.stringify(initialData, null, 2));
-    return initialData;
+function loadCountData() {
+  try {
+    const raw = fs.readFileSync(countingDataPath, "utf8");
+    if (!raw.trim()) return {};
+    return JSON.parse(raw);
+  } catch (err) {
+    console.error("Failed to load counting data:", err);
+    return {};
   }
-};
+}
+
+module.exports = loadCountData;

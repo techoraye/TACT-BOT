@@ -1,0 +1,11 @@
+server:
+  port: 2333
+lavalink:
+  server:
+    password: "youshallnotpass"
+    sources:
+      youtube: true
+      bandcamp: true
+      soundcloud: true
+      http: true
+      twitch: true

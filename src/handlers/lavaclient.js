@@ -1,83 +1,55 @@
-const { EmbedBuilder } = require("discord.js");
-const { Cluster } = require("lavaclient");
-const prettyMs = require("pretty-ms");
-const { load, SpotifyItemType } = require("@lavaclient/spotify");
-require("@lavaclient/queue/register");
+const { Manager, Erela } = require('erela.js');
 
-/**
- * @param {import("@structures/BotClient")} client
- */
-module.exports = (client) => {
-  load({
-    client: {
-      id: process.env.SPOTIFY_CLIENT_ID,
-      secret: process.env.SPOTIFY_CLIENT_SECRET,
-    },
-    autoResolveYoutubeTracks: false,
-    loaders: [SpotifyItemType.Album, SpotifyItemType.Artist, SpotifyItemType.Playlist, SpotifyItemType.Track],
-  });
-
-  const lavaclient = new Cluster({
-    nodes: client.config.MUSIC.LAVALINK_NODES,
-    sendGatewayPayload: (id, payload) => client.guilds.cache.get(id)?.shard?.send(payload),
-  });
-
-  client.ws.on("VOICE_SERVER_UPDATE", (data) => lavaclient.handleVoiceUpdate(data));
-  client.ws.on("VOICE_STATE_UPDATE", (data) => lavaclient.handleVoiceUpdate(data));
-
-  lavaclient.on("nodeConnect", (node, event) => {
-    client.logger.log(`Node "${node.id}" connected`);
-  });
-
-  lavaclient.on("nodeDisconnect", (node, event) => {
-    client.logger.log(`Node "${node.id}" disconnected`);
-  });
-
-  lavaclient.on("nodeError", (node, error) => {
-    client.logger.error(`Node "${node.id}" encountered an error: ${error.message}.`, error);
-  });
-
-  lavaclient.on("nodeDebug", (node, message) => {
-    client.logger.debug(`Node "${node.id}" debug: ${message}`);
-  });
-
-  lavaclient.on("nodeTrackStart", (_node, queue, song) => {
-    const fields = [];
-
-    const embed = new EmbedBuilder()
-      .setAuthor({ name: "Now Playing" })
-      .setColor(client.config.EMBED_COLORS.BOT_EMBED)
-      .setDescription(`[${song.title}](${song.uri})`)
-      .setFooter({ text: `Requested By: ${song.requester}` });
-
-    if (song.sourceName === "youtube") {
-      const identifier = song.identifier;
-      const thumbnail = `https://img.youtube.com/vi/${identifier}/hqdefault.jpg`;
-      embed.setThumbnail(thumbnail);
-    }
-
-    fields.push({
-      name: "Song Duration",
-      value: "`" + prettyMs(song.length, { colonNotation: true }) + "`",
-      inline: true,
+module.exports = class LavalinkClient {
+  constructor(client) {
+    this.client = client;
+    this.manager = new Manager({
+      nodes: [
+        {
+          host: 'localhost',
+          port: 2333, // Lavalink server port
+          password: 'youshallnotpass', // Lavalink password
+        },
+      ],
+      send: (id, payload) => {
+        const guild = this.client.guilds.cache.get(id);
+        if (guild) {
+          guild.shard.send(payload);
+        }
+      },
+    });
+    
+    this.manager.on('nodeConnect', (node) => {
+      console.log(`Node ${node.options.identifier} connected`);
     });
 
-    if (queue.tracks.length > 0) {
-      fields.push({
-        name: "Position in Queue",
-        value: (queue.tracks.length + 1).toString(),
-        inline: true,
-      });
-    }
+    this.manager.on('nodeDisconnect', (node) => {
+      console.log(`Node ${node.options.identifier} disconnected`);
+    });
 
-    embed.setFields(fields);
-    queue.data.channel.safeSend({ embeds: [embed] });
-  });
+    this.manager.on('trackStart', (player, track) => {
+      console.log(`Now playing: ${track.title}`);
+    });
 
-  lavaclient.on("nodeQueueFinish", async (_node, queue) => {
-    queue.data.channel.safeSend("Queue has ended.");
-    await client.musicManager.destroyPlayer(queue.player.guildId).then(queue.player.disconnect());
-  });
+    this.manager.on('trackEnd', (player, track) => {
+      if (!player.queue.size) player.destroy();
+    });
 
-  return lavaclient;
+    this.manager.on('queueEnd', (player) => {
+      player.destroy();
+    });
+  }
+
+  // Connects a player to a voice channel
+  connect(guildId, channelId) {
+    const player = this.manager.create(guildId);
+    player.connect(channelId);
+    return player;
+  }
+
+  // Disconnects a player from the voice channel
+  disconnect(guildId) {
+    const player = this.manager.get(guildId);
+    if (player) player.destroy();
+  }
 };

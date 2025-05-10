@@ -46,6 +46,12 @@ module.exports = {
     image: "https://icons.iconarchive.com/icons/lawyerwordpress/law/128/Gavel-Law-icon.png",
     emoji: "🔨",
   },
+  MUSIC: {
+    name: "Music",
+    enabled: config.MUSIC.ENABLED,
+    image: "https://icons.iconarchive.com/icons/wwalczyszyn/iwindows/256/Music-Library-icon.png",
+    emoji: "🎵",
+  },
   OWNER: {
     name: "Owner",
     image: "https://www.pinclipart.com/picdir/middle/531-5318253_web-designing-icon-png-clipart.png",

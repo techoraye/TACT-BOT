@@ -40,16 +40,22 @@ module.exports = {
         {
           name: "🆕 New Additions",
           value: [
-            "• **Counting System**: Global counting using a local database.",
-            "• **Command Refactor**: Split functions into `/functions` and added some subcommands under `/sub/`.",
-            "• **Owner Commands**: `setversion`, `dev`, `commandpath`, `listinvites`.",
-            "• **Presence Handling**: Moved animated presence to root functions.",
-            "• **Wikipedia Fix**: Fixed and improved intelligent reply."
+            "• **Server Ban System**: Introduced a server blacklist feature (`serverban`) to manage banned servers. Only available to bot owners with commands like `list`, `add`, and `remove`.",
+            "• **Bot Introduction Message**: Added a welcome feature for when the bot joins new servers, providing a more engaging introduction.",
+            "• **Broadcast Command**: Bot owners can now send messages to all servers using the new `owner` command with a `broadcast` subcommand.",
+          ].join("\n"),
+        },
+        {
+          name: "🔧 Fixes & Enhancements",
+          value: [
+            "• **Help Menu Revamp**: The help menu now displays 7 commands per page, making it easier to navigate.",
+            "• **Bot Owner Command Fix**: Resolved an issue with certain bot owner commands causing unexpected behavior.",
+            "• **Counting System Fix**: Fixed high score saving to the database and adjusted message handling for new high score notifications. Now it only sends a single notification for new high scores.",
           ].join("\n"),
         },
         {
           name: "🔜 Coming Soon",
-          value: "• `presence` command to add, remove, edit, and list presence options.",
+          value: "• `presence` command: Manage the bot's presence with options to add, remove, edit, and list active presence settings.",
         }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })
@@ -75,16 +81,22 @@ module.exports = {
         {
           name: "🆕 New Additions",
           value: [
-            "• **Counting System**: Global counting using a local database.",
-            "• **Command Refactor**: Split functions into `/functions` and added some subcommands under `/sub/`.",
-            "• **Owner Commands**: `setversion`, `dev`, `commandpath`, `listinvites`.",
-            "• **Presence Handling**: Moved animated presence to root functions.",
-            "• **Wikipedia Fix**: Fixed and improved intelligent reply."
+            "• **Server Ban System**: Introduced a server blacklist feature (`serverban`) for bot owners to manage banned servers.",
+            "• **Bot Introduction Message**: When the bot joins a server, it now sends a friendly introduction message.",
+            "• **Broadcast Command**: Added the `broadcast` command for bot owners to send messages to all servers.",
+          ].join("\n"),
+        },
+        {
+          name: "🔧 Fixes & Enhancements",
+          value: [
+            "• **Help Menu Revamp**: The help menu now displays 7 commands per page for improved navigation.",
+            "• **Bot Owner Command Fix**: Fixed an issue that was causing bot owner commands to misbehave.",
+            "• **Counting System Fix**: High score saving and notification handling have been fixed. The bot will now notify users of new high scores just once.",
           ].join("\n"),
         },
         {
           name: "🔜 Coming Soon",
-          value: "• `presence` command to add, remove, edit, and list presence options.",
+          value: "• `presence` command: Add, remove, edit, and list the bot's presence options.",
         }
       )
       .setFooter({ text: "Stay updated with the latest changes!" })

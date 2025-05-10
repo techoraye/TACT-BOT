@@ -1,169 +1,77 @@
-const { EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle, ComponentType } = require("discord.js");
-const { OWNER_IDS } = require('../../../config.js'); // Assuming OWNER_IDS is defined in config.js
+const {
+  EmbedBuilder,
+} = require("discord.js");
+const { OWNER_IDS } = require("../../../config.js");
 
-const IDLE_TIMEOUT = 30; // in seconds
-const MAX_PER_PAGE = 10; // max number of embed fields per page
-
-/**
- * @type {import("@structures/Command")}
- */
 module.exports = {
   name: "potential",
-  description: "Evaluate the bot's success potential based on all servers.",
+  description: "Evaluate the bot's global success potential.",
   category: "OWNER",
   botPermissions: ["EmbedLinks"],
   command: {
     enabled: true,
     aliases: ["botpotential", "successpotential"],
-    usage: "[match]",
+    usage: "",
   },
   slashCommand: {
     enabled: false,
   },
 
-  async messageRun(message, args) {
-    // Check if the user is the bot owner
+  async messageRun(message) {
     if (!OWNER_IDS.includes(message.author.id)) {
       return message.reply("You don't have permission to use this command.");
     }
 
-    const { client, channel, member } = message;
-    const match = args.join(" ") || null;
-    const matchedGuilds = [];
+    const { client } = message;
 
-    if (match) {
-      // Match by ID or name
-      if (client.guilds.cache.has(match)) {
-        matchedGuilds.push(client.guilds.cache.get(match));
-      } else {
-        client.guilds.cache
-          .filter(guild => guild.name.toLowerCase().includes(match.toLowerCase()))
-          .forEach(guild => matchedGuilds.push(guild));
-      }
-    }
-
-    const servers = match ? matchedGuilds : Array.from(client.guilds.cache.values());
+    const servers = Array.from(client.guilds.cache.values());
     const totalServers = servers.length;
-    const totalMembers = servers.reduce((acc, guild) => acc + guild.memberCount, 0);
-    const maxPerPage = MAX_PER_PAGE;
-    const totalPages = Math.ceil(totalServers / maxPerPage);
+    const totalMembers = servers.reduce((acc, g) => acc + g.memberCount, 0);
 
-    if (totalPages === 0) return message.safeReply("No servers found.");
-    let currentPage = 1;
-
-    // Pagination buttons
-    let components = [
-      new ButtonBuilder().setCustomId("prevBtn").setEmoji("⬅️").setStyle(ButtonStyle.Secondary).setDisabled(true),
-      new ButtonBuilder().setCustomId("nxtBtn").setEmoji("➡️").setStyle(ButtonStyle.Secondary).setDisabled(totalPages === 1),
-    ];
-    let buttonsRow = new ActionRowBuilder().addComponents(components);
-
-    // Embed Builder
-    const buildEmbed = () => {
-      const start = (currentPage - 1) * maxPerPage;
-      const end = Math.min(start + maxPerPage, totalServers);
-      const serversOnPage = servers.slice(start, end);
-
-      const embed = new EmbedBuilder()
-        .setColor(client.config.EMBED_COLORS.BOT_EMBED)
-        .setAuthor({ name: "Bot Success Potential Evaluation", iconURL: client.user.avatarURL() })
-        .setFooter({ text: `Page ${currentPage} of ${totalPages} • Total Servers: ${totalServers}` });
-
-      const fields = [
+    const embed = new EmbedBuilder()
+      .setColor(client.config.EMBED_COLORS.BOT_EMBED)
+      .setTitle("🤖 Bot Success Potential Overview")
+      .setDescription(
+        `Here's a global view of the bot's current performance and potential.`
+      )
+      .addFields(
         {
-          name: "Bot's Success Potential",
-          value: `**Total Members:** ${totalMembers}\n**Servers Count:** ${totalServers}\n` +
-            `**Success Potential:** ${calculateSuccessPotential(totalMembers, totalServers)}%\n` +
-            `**Estimated Time to Success:** ${calculateTimeToSuccess(totalMembers, totalServers)}`
+          name: "📊 Global Stats",
+          value:
+            `• **Servers Count:** ${totalServers}\n` +
+            `• **Total Members:** ${totalMembers}`,
         },
         {
-          name: "Detailed Server Metrics",
-          value: serversOnPage.map(guild => {
-            const creationDate = guild.createdAt.toLocaleDateString();
-            const botJoinDate = guild.members.cache.get(client.user.id)?.joinedAt?.toLocaleDateString() || "N/A";
-            const activeMembers = guild.members.cache.filter(m => m.presence?.status === "online").size;
-            return `**${guild.name}**\n` +
-              `• Created: ${creationDate}\n` +
-              `• Bot Join Date: ${botJoinDate}\n` +
-              `• Active Members: ${activeMembers}\n` +
-              `• Total Members: ${guild.memberCount}`;
-          }).join("\n") || "No servers to display."
+          name: "📈 Potential Estimate",
+          value:
+            `• **Success Potential Score:** ${calculateSuccessPotential(totalMembers, totalServers)}%\n` +
+            `• **ETA to Success:** ${calculateTimeToSuccess(totalMembers, totalServers)}`,
         },
         {
-          name: "Success Potential Breakdown",
-          value: `**Average Members Per Server:** ${(totalMembers / totalServers).toFixed(2)}\n` +
-            `• Potential is correlated with average server size.\n` +
-            `• The larger the servers, the higher the potential for growth.`
-        },
-        {
-          name: "Estimated Growth",
-          value: `Based on current member count and server size, we estimate:\n` +
-            `• **Short-term Growth (3-6 Months):** Expect a steady increase in member count and engagement.\n` +
-            `• **Long-term Growth (1-3 Years):** Potential to expand significantly if activity and engagement remain stable.`
+          name: "📉 Growth Forecast",
+          value:
+            `• **Short-term:** Increase engagement.\n` +
+            `• **Long-term:** Strong if maintained.`,
         }
-      ];
+      )
+      .setFooter({ text: `Requested by ${message.author.tag}` });
 
-      embed.addFields(fields);
-      return embed;
-    };
-
-    // Start typing indicator
-    message.channel.sendTyping();
-
-    // Send initial message with embed and buttons
-    const sentMsg = await channel.send({ embeds: [buildEmbed()], components: [buttonsRow] });
-
-    // Collector for button interactions
-    const collector = channel.createMessageComponentCollector({
-      filter: (interaction) => interaction.user.id === member.id && interaction.message.id === sentMsg.id,
-      idle: IDLE_TIMEOUT * 1000,
-      dispose: true,
-      componentType: ComponentType.Button,
-    });
-
-    collector.on("collect", async (interaction) => {
-      if (!["prevBtn", "nxtBtn"].includes(interaction.customId)) return;
-      await interaction.deferUpdate();
-
-      // Update pagination buttons
-      switch (interaction.customId) {
-        case "prevBtn":
-          if (currentPage > 1) currentPage--;
-          break;
-        case "nxtBtn":
-          if (currentPage < totalPages) currentPage++;
-          break;
-      }
-
-      // Rebuild and edit the embed with new page data
-      const embed = buildEmbed();
-      buttonsRow = new ActionRowBuilder().addComponents(
-        new ButtonBuilder().setCustomId("prevBtn").setEmoji("⬅️").setStyle(ButtonStyle.Secondary).setDisabled(currentPage === 1),
-        new ButtonBuilder().setCustomId("nxtBtn").setEmoji("➡️").setStyle(ButtonStyle.Secondary).setDisabled(currentPage === totalPages)
-      );
-
-      await sentMsg.edit({ embeds: [embed], components: [buttonsRow] });
-    });
-
-    collector.on("end", async () => {
-      await sentMsg.edit({ components: [] }); // Disable buttons when the collector ends
-    });
+    return message.safeReply({ embeds: [embed] });
   },
 };
 
-// Helper function to calculate the bot's success potential based on total members and servers
+// Helpers
 function calculateSuccessPotential(totalMembers, totalServers) {
-  const averageMembersPerServer = totalMembers / totalServers;
-  return Math.min((averageMembersPerServer / 100) * 100, 100); // Success potential capped at 100%
+  const avg = totalMembers / totalServers;
+  return Math.min((avg / 100) * 100, 100).toFixed(2);
 }
 
-// Helper function to calculate the estimated time to success based on success potential
 function calculateTimeToSuccess(totalMembers, totalServers) {
-  const successPotential = calculateSuccessPotential(totalMembers, totalServers);
-
-  if (successPotential < 10) return "5+ Years";
-  if (successPotential < 30) return "1-3 Years";
-  if (successPotential < 50) return "6-12 Months";
-  if (successPotential < 70) return "3-6 Months";
+  const potential = calculateSuccessPotential(totalMembers, totalServers);
+  const p = parseFloat(potential);
+  if (p < 10) return "5+ Years";
+  if (p < 30) return "1-3 Years";
+  if (p < 50) return "6-12 Months";
+  if (p < 70) return "3-6 Months";
   return "1-3 Months";
 }

@@ -7,6 +7,8 @@ const { checkForUpdates } = require("@helpers/BotUtils");
 const { initializeMongoose } = require("@src/database/mongoose");
 const { validateConfiguration } = require("@helpers/Validator");
 const loadSlashCommands = require("@helpers/SlashCommandLoader");
+const fs = require("fs");
+const path = require("path");
 
 // Import functions from /functions/bot
 const { startPresenceUpdater } = require("@functions/bot/presenceUpdater");
@@ -21,6 +23,9 @@ const { LOG_CHANNEL_ID } = config;
 
 // Import counting message handler
 const { countingMessageHandler } = require("@src/commands/fun/counting");
+
+// Blacklist path
+const blacklistPath = path.join(__dirname, "./database/blacklist.json");
 
 validateConfiguration();
 
@@ -88,6 +93,7 @@ process.on("SIGTERM", () => shutdown("SIGTERM"));
       }
     });
 
+    // Load bot systems
     client.loadCommands("src/commands");
     client.loadContexts("src/contexts");
     client.loadEvents("src/events");
@@ -98,6 +104,69 @@ process.on("SIGTERM", () => shutdown("SIGTERM"));
         await countingMessageHandler(message);
       } catch (err) {
         client.logger.error("❌ Error in countingMessageHandler:", err);
+      }
+    });
+
+    // Guild Create Blacklist Handler
+    client.on("guildCreate", async (guild) => {
+      try {
+        const raw = fs.readFileSync(blacklistPath, "utf8");
+        const blacklist = JSON.parse(raw);
+
+        if (blacklist.servers.includes(guild.id)) {
+          client.logger.warn(`🚫 Blacklisted server (${guild.name} | ${guild.id}) attempted to invite the bot.`);
+          await guild.leave().catch((err) =>
+            client.logger.error("❌ Failed to leave blacklisted server:", err)
+          );
+        }
+      } catch (err) {
+        client.logger.error("❌ Error checking blacklist on guildCreate:", err);
+      }
+    });
+
+    client.on("guildCreate", async (guild) => {
+      try {
+        // Delay to make sure bot is fully ready before sending
+        setTimeout(async () => {
+          const embed = new EmbedBuilder()
+            .setTitle("🤖 Thanks for adding TACT!")
+            .setColor(Colors.Green)
+            .setDescription(
+              `Hello **${guild.name}**! 👋\n\n` +
+              `I'm **TACT**, your all-in-one Discord bot for moderation, utilities, fun, and more!\n\n` +
+              `📌 **Changelogs:** Use \`/changelogs\` to see the latest updates.\n` +
+              `📚 **Commands:** Use \`/help\` to view all available commands.\n` +
+              `ℹ️ **Bot Info:** Use \`/botinfo\` to learn more about what I can do.\n` +
+              `👨‍💻 **Developer Info:** Use \`/devinfo\` to find out who's behind TACT.\n\n` +
+              `Need help? Join our support server: [discord.gg/M7yyGfKdKx](https://discord.gg/M7yyGfKdKx)`
+            )
+            .setFooter({ text: "Welcome aboard!" })
+            .setTimestamp();
+    
+          // Try to send to system channel or fallback
+          let targetChannel = guild.systemChannel;
+    
+          if (
+            !targetChannel ||
+            !targetChannel.permissionsFor(guild.members.me).has("SendMessages")
+          ) {
+            targetChannel = guild.channels.cache.find(
+              (ch) =>
+                ch.isTextBased() &&
+                ch.permissionsFor(guild.members.me).has("SendMessages") &&
+                !ch.isThread()
+            );
+          }
+    
+          if (targetChannel) {
+            await targetChannel.send({ embeds: [embed] });
+            client.logger.log(`✅ Sent join message in ${guild.name}`);
+          } else {
+            client.logger.warn(`⚠️ Could not find a suitable channel in ${guild.name} to send the join message.`);
+          }
+        }, 3000);
+      } catch (err) {
+        client.logger.error("❌ Error sending welcome message on guildCreate:", err);
       }
     });
 
