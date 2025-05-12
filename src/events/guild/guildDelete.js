@@ -10,8 +10,16 @@ module.exports = async (client, guild) => {
   client.logger.log(`Guild Left: ${guild.name} Members: ${guild.memberCount}`);
 
   const settings = await getSettings(guild);
-  settings.data.leftAt = new Date();
-  await settings.save();
+
+  // Update the "leftAt" field without using `.save()`
+  await settings.updateOne(
+    { _id: settings._id },
+    {
+      $set: {
+        "data.leftAt": new Date(),
+      },
+    }
+  );
 
   if (!client.joinLeaveWebhook) return;
 

@@ -21,6 +21,7 @@ module.exports = {
   async messageRun(message, args) {
     const userId = message.author.id;
 
+    // Check if the user is an owner
     if (!OWNER_IDS.includes(userId)) {
       return message.reply({
         embeds: [
@@ -39,27 +40,28 @@ module.exports = {
       case "add": {
         if (!targetId) return sendUsage(message);
 
+        // Check if the user is already in the dev list
         if (OWNER_IDS.includes(targetId)) {
           return message.reply({
             embeds: [
               new EmbedBuilder()
                 .setColor("Orange")
                 .setTitle("⚠ Already Added")
-                .setDescription(`<@${targetId}> (ID: ${targetId}) is already in the DEV list.`),
+                .setDescription(`${targetId} (ID: ${targetId}) is already in the DEV list.`),
             ],
             allowedMentions: { users: [] },
           });
         }
 
-        OWNER_IDS.push(targetId);
-        updateConfig();
+        OWNER_IDS.push(targetId); // Add the user to the dev list
+        updateConfig(); // Update config.js with the new OWNER_IDS
 
         return message.reply({
           embeds: [
             new EmbedBuilder()
               .setColor("Green")
               .setTitle("✅ Developer Added")
-              .setDescription(`<@${targetId}> (ID: ${targetId}) was added to the DEV list.`),
+              .setDescription(`${targetId} (ID: ${targetId}) was added to the DEV list.`),
           ],
           allowedMentions: { users: [] },
         });
@@ -75,12 +77,13 @@ module.exports = {
               new EmbedBuilder()
                 .setColor("Red")
                 .setTitle("❌ Not Found")
-                .setDescription(`<@${targetId}> (ID: ${targetId}) is not in the DEV list.`),
+                .setDescription(`${targetId} (ID: ${targetId}) is not in the DEV list.`),
             ],
             allowedMentions: { users: [] },
           });
         }
 
+        // Prevent removal if only one owner remains
         if (OWNER_IDS.length <= 1) {
           return message.reply({
             embeds: [
@@ -93,15 +96,15 @@ module.exports = {
           });
         }
 
-        OWNER_IDS.splice(index, 1);
-        updateConfig();
+        OWNER_IDS.splice(index, 1); // Remove the user from the dev list
+        updateConfig(); // Update config.js with the new OWNER_IDS
 
         return message.reply({
           embeds: [
             new EmbedBuilder()
               .setColor("Red")
               .setTitle("🗑️ Developer Removed")
-              .setDescription(`<@${targetId}> (ID: ${targetId}) was removed from the DEV list.`),
+              .setDescription(`${targetId} (ID: ${targetId}) was removed from the DEV list.`),
           ],
           allowedMentions: { users: [] },
         });
@@ -119,7 +122,7 @@ module.exports = {
           });
         }
 
-        const lines = OWNER_IDS.map((id, i) => `\`${i + 1}.\` <@${id}> (ID: ${id})`);
+        const lines = OWNER_IDS.map((id, i) => `\`${i + 1}.\` ${id} (ID: ${id})`);
 
         return message.reply({
           embeds: [
@@ -138,6 +141,7 @@ module.exports = {
   },
 };
 
+// Function to send usage instructions
 function sendUsage(message) {
   return message.reply({
     embeds: [
@@ -151,33 +155,15 @@ function sendUsage(message) {
 
 // Function to update the config.js with proper formatting and comment preservation
 function updateConfig() {
-  const config = require(configPath); // Import config file
+  // Read the config.js file as a string to preserve comments
+  const configFile = fs.readFileSync(configPath, "utf8");
 
-  // Update OWNER_IDS while preserving other properties
-  config.OWNER_IDS = OWNER_IDS;
+  // Replace the OWNER_IDS array with the updated one
+  const updatedConfigFile = configFile.replace(
+    /OWNER_IDS: \[.*?\],/s, // Regex to find the OWNER_IDS definition
+    `OWNER_IDS: ${JSON.stringify(OWNER_IDS, null, 2)},` // Replace with the updated OWNER_IDS
+  );
 
-  // Convert the config object to a string with proper indentation, without adding quotes to other variables
-  const content = `module.exports = {
-  OWNER_IDS: ${JSON.stringify(OWNER_IDS, null, 2)},  // Owner IDs
-  LOG_CHANNEL_ID: "${config.LOG_CHANNEL_ID}",
-  SUPPORT_SERVER: "${config.SUPPORT_SERVER}",
-  INVITE_URL: "${config.INVITE_URL}",
-  STABLE_VERSION: "${config.STABLE_VERSION}",
-  PREFIX_COMMANDS: ${JSON.stringify(config.PREFIX_COMMANDS, null, 2)},
-  INTERACTIONS: ${JSON.stringify(config.INTERACTIONS, null, 2)},
-  EMBED_COLORS: ${JSON.stringify(config.EMBED_COLORS, null, 2)},
-  CACHE_SIZE: ${JSON.stringify(config.CACHE_SIZE, null, 2)},
-  MESSAGES: ${JSON.stringify(config.MESSAGES, null, 2)},
-  ECONOMY: ${JSON.stringify(config.ECONOMY, null, 2)},
-  UTILITY: ${JSON.stringify(config.UTILITY, null, 2)},
-  IMAGE: ${JSON.stringify(config.IMAGE, null, 2)},
-  INVITE: ${JSON.stringify(config.INVITE, null, 2)},
-  MODERATION: ${JSON.stringify(config.MODERATION, null, 2)},
-  AUTOMOD: ${JSON.stringify(config.AUTOMOD, null, 2)},
-  PRESENCE: ${JSON.stringify(config.PRESENCE, null, 2)},
-  TICKET: ${JSON.stringify(config.TICKET, null, 2)},
-};`;
-
-  // Write the updated content back to the config file
-  fs.writeFileSync(configPath, content, "utf8");
+  // Write the updated content back to the config file, preserving comments
+  fs.writeFileSync(configPath, updatedConfigFile, "utf8");
 }

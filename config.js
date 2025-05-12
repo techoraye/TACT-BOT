@@ -1,9 +1,11 @@
 module.exports = {
-  OWNER_IDS: ["1132413940693995541"], // Bot owner ID's
+  OWNER_IDS: [
+  "1132413940693995541"
+], // Bot owner ID's
   LOG_CHANNEL_ID: "1363598444387631104",
   SUPPORT_SERVER: "https://discord.gg/M7yyGfKdKx", // Your bot support server
   INVITE_URL: "https://discord.com/oauth2/authorize?client_id=1351789668030480394",
-  STABLE_VERSION: "1.3.2",
+  STABLE_VERSION: "1.3.2.3", // Stable version of the bot
   PREFIX_COMMANDS: {
     ENABLED: true, // Enable/Disable prefix commands
     DEFAULT_PREFIX: "*", // Default prefix for the bot (changed to a typical prefix)
@@ -20,7 +22,9 @@ module.exports = {
     SUCCESS: "#00A56A",
     ERROR: "#D61A3C",
     WARNING: "#F7E919",
+    info: "#00BFFF", // ✅ Add this line to fix the error
   },
+  
   CACHE_SIZE: {
     GUILDS: 100,
     USERS: 10000,

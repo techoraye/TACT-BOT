@@ -1,4 +1,3 @@
-
 const { OWNER_IDS } = require("@root/config");
 const { ApplicationCommandOptionType, EmbedBuilder } = require("discord.js");
 const path = require("path");
@@ -21,7 +20,10 @@ module.exports = {
     },
   ],
 
-  slashCommand: true,
+  // Removed or converted `slashCommand` to an object if necessary
+  slashCommand: {
+    enabled: true, // You can add other properties if needed, such as `enabled` for enabling/disabling the slash command
+  },
 
   /**
    * 
