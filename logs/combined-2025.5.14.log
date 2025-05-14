@@ -1,0 +1,90 @@
+{"level":30,"time":1747248193906,"pid":221021,"hostname":"techaryepc","msg":"Validating config file and environment variables"}
+{"level":30,"time":1747248194124,"pid":221021,"hostname":"techaryepc","msg":"VersionCheck: Your discord bot is up to date"}
+{"level":30,"time":1747248194124,"pid":221021,"hostname":"techaryepc","msg":"Connecting to MongoDb..."}
+{"level":30,"time":1747248194769,"pid":221021,"hostname":"techaryepc","msg":"Mongoose: Database connection established"}
+{"level":30,"time":1747248195225,"pid":221021,"hostname":"techaryepc","msg":"Loading commands..."}
+{"level":20,"time":1747248195271,"pid":221021,"hostname":"techaryepc","msg":"Skipping command pay. Disabled!"}
+{"level":20,"time":1747248195507,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command checkstatus. Disabled!"}
+{"level":20,"time":1747248195511,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command avatar. Disabled!"}
+{"level":20,"time":1747248195513,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command botstats. Disabled!"}
+{"level":20,"time":1747248195515,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command channelinfo. Disabled!"}
+{"level":20,"time":1747248195516,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command emojiinfo. Disabled!"}
+{"level":20,"time":1747248195523,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command guildinfo. Disabled!"}
+{"level":20,"time":1747248195524,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command uptime. Disabled!"}
+{"level":20,"time":1747248195525,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command userinfo. Disabled!"}
+{"level":20,"time":1747248195526,"pid":221021,"hostname":"techaryepc","msg":"Skipping command bot. Disabled!"}
+{"level":20,"time":1747248195527,"pid":221021,"hostname":"techaryepc","msg":"Skipping command info. Disabled!"}
+{"level":20,"time":1747248195529,"pid":221021,"hostname":"techaryepc","msg":"Skipping Command addinvites. Category INVITE is disabled"}
+{"level":20,"time":1747248195529,"pid":221021,"hostname":"techaryepc","msg":"Skipping Command invitecodes. Category INVITE is disabled"}
+{"level":20,"time":1747248195531,"pid":221021,"hostname":"techaryepc","msg":"Skipping Command inviter. Category INVITE is disabled"}
+{"level":20,"time":1747248195533,"pid":221021,"hostname":"techaryepc","msg":"Skipping Command inviterank. Category INVITE is disabled"}
+{"level":20,"time":1747248195534,"pid":221021,"hostname":"techaryepc","msg":"Skipping Command inviteranks. Category INVITE is disabled"}
+{"level":20,"time":1747248195535,"pid":221021,"hostname":"techaryepc","msg":"Skipping Command invites. Category INVITE is disabled"}
+{"level":20,"time":1747248195535,"pid":221021,"hostname":"techaryepc","msg":"Skipping Command invitesimport. Category INVITE is disabled"}
+{"level":20,"time":1747248195536,"pid":221021,"hostname":"techaryepc","msg":"Skipping Command invitetracker. Category INVITE is disabled"}
+{"level":20,"time":1747248195537,"pid":221021,"hostname":"techaryepc","msg":"Skipping Command resetinvites. Category INVITE is disabled"}
+{"level":20,"time":1747248195538,"pid":221021,"hostname":"techaryepc","msg":"Skipping command clear. Disabled!"}
+{"level":20,"time":1747248195540,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command deafen. Disabled!"}
+{"level":20,"time":1747248195541,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command disconnect. Disabled!"}
+{"level":20,"time":1747248195541,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command move. Disabled!"}
+{"level":20,"time":1747248195542,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command purge. Disabled!"}
+{"level":20,"time":1747248195542,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command purgeattach. Disabled!"}
+{"level":20,"time":1747248195543,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command purgebots. Disabled!"}
+{"level":20,"time":1747248195543,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command purgelinks. Disabled!"}
+{"level":20,"time":1747248195544,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command purgetoken. Disabled!"}
+{"level":20,"time":1747248195544,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command purgeuser. Disabled!"}
+{"level":20,"time":1747248195545,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command undeafen. Disabled!"}
+{"level":20,"time":1747248195545,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command vmute. Disabled!"}
+{"level":20,"time":1747248195546,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command vunmute. Disabled!"}
+{"level":20,"time":1747248195553,"pid":221021,"hostname":"techaryepc","msg":"Skipping command purge. Disabled!"}
+{"level":20,"time":1747248195554,"pid":221021,"hostname":"techaryepc","msg":"Skipping command voice. Disabled!"}
+{"level":20,"time":1747248195559,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command serverban. Disabled!"}
+{"level":20,"time":1747248195559,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command broadcast. Disabled!"}
+{"level":20,"time":1747248195560,"pid":221021,"hostname":"techaryepc","msg":"Skipping command commandpath. Disabled!"}
+{"level":20,"time":1747248195561,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command dev. Disabled!"}
+{"level":20,"time":1747248195561,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command leaveserver. Disabled!"}
+{"level":20,"time":1747248195562,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command listinvites. Disabled!"}
+{"level":20,"time":1747248195563,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command listservers. Disabled!"}
+{"level":20,"time":1747248195564,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command potential. Disabled!"}
+{"level":20,"time":1747248195565,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command restart. Disabled!"}
+{"level":20,"time":1747248195566,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command commandpath. Disabled!"}
+{"level":20,"time":1747248195567,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command shutdown. Disabled!"}
+{"level":20,"time":1747248195567,"pid":221021,"hostname":"techaryepc","msg":"Skipping command add. Disabled!"}
+{"level":20,"time":1747248195567,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command add. Disabled!"}
+{"level":20,"time":1747248195567,"pid":221021,"hostname":"techaryepc","msg":"Skipping command list. Disabled!"}
+{"level":20,"time":1747248195567,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command list. Disabled!"}
+{"level":20,"time":1747248195567,"pid":221021,"hostname":"techaryepc","msg":"Skipping command remove. Disabled!"}
+{"level":20,"time":1747248195568,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command remove. Disabled!"}
+{"level":20,"time":1747248195578,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command ipinfo. Disabled!"}
+{"level":20,"time":1747248195579,"pid":221021,"hostname":"techaryepc","msg":"Skipping slash command macinfo. Disabled!"}
+{"level":30,"time":1747248195585,"pid":221021,"hostname":"techaryepc","msg":"Loaded 92 commands"}
+{"level":30,"time":1747248195585,"pid":221021,"hostname":"techaryepc","msg":"Loaded 67 slash commands"}
+{"level":30,"time":1747248195585,"pid":221021,"hostname":"techaryepc","msg":"Loading contexts..."}
+{"level":30,"time":1747248195586,"pid":221021,"hostname":"techaryepc","msg":"Loaded 1 USER contexts"}
+{"level":30,"time":1747248195586,"pid":221021,"hostname":"techaryepc","msg":"Loaded 0 MESSAGE contexts"}
+{"level":30,"time":1747248195586,"pid":221021,"hostname":"techaryepc","msg":"Loading events..."}
+{"level":30,"time":1747248195623,"pid":221021,"hostname":"techaryepc","msg":"Loaded 14 events. Success (14) Failed (0)"}
+{"level":30,"time":1747248195630,"pid":221021,"hostname":"techaryepc","msg":"✅ Logged in as TACT-DEV#3843"}
+{"level":30,"time":1747248195631,"pid":221021,"hostname":"techaryepc","msg":"Logged in as TACT-DEV#3843! (1352089453077856348)"}
+{"level":30,"time":1747248195812,"pid":221021,"hostname":"techaryepc","msg":"✅ Loaded 76 slash commands."}
+{"level":30,"time":1747248196151,"pid":221021,"hostname":"techaryepc","msg":"Successfully registered interactions"}
+{"level":30,"time":1747248196633,"pid":221021,"hostname":"techaryepc","msg":"✅ Slash commands registered."}
+{"level":30,"time":1747248210807,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747248220808,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747248230808,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747248240808,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747248250808,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747248260808,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747248270809,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747248280809,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747248290811,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747248300811,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747248310812,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747248320814,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747248330813,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747248340813,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747248350813,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747248360814,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747248370815,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747248380815,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747248390816,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
