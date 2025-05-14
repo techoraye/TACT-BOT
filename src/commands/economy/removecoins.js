@@ -62,6 +62,15 @@ module.exports = {
 
     const target = message.mentions.users.first() || message.guild.members.cache.get(args[0])?.user;
     const amount = parseInt(args[1], 10);
+
+    if (!target) {
+      return message.safeReply("❌ Please mention a valid user.");
+    }
+
+    if (isNaN(amount) || amount <= 0) {
+      return message.safeReply("❌ Please specify a valid amount of coins.");
+    }
+
     const response = await addRemoveCoins(message.author, target, amount, message.guild.id, "remove");
     await message.safeReply(response);
   },
@@ -73,6 +82,15 @@ module.exports = {
 
     const target = interaction.options.getUser("user");
     const amount = interaction.options.getInteger("amount");
+
+    if (!target) {
+      return interaction.followUp("❌ Please mention a valid user.");
+    }
+
+    if (isNaN(amount) || amount <= 0) {
+      return interaction.followUp("❌ Please specify a valid amount of coins.");
+    }
+
     const response = await addRemoveCoins(interaction.user, target, amount, interaction.guild.id, "remove");
     await interaction.followUp(response);
   },

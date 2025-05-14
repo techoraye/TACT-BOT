@@ -88,3 +88,912 @@
 {"level":30,"time":1747248370815,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
 {"level":30,"time":1747248380815,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
 {"level":30,"time":1747248390816,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747248400817,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747248410819,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747248420820,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747248430821,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747248440821,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747248450822,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747248460822,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747248470823,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747248480825,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747248490826,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747248500826,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747248510826,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747248520826,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747248530827,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747248540829,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747248550829,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747248560829,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747248570830,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747248580829,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747248590830,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747248600831,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747248610831,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747248620832,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747248630832,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747248640832,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747248650833,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747248660833,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747248670834,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747248680834,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747248690835,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747248700835,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747248710836,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747248720836,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747248730837,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747248740837,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747248750837,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747248760837,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747248770838,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747248780838,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747248790839,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747248800840,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747248810839,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747248820840,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747248830840,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747248840841,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747248850841,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747248860841,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747248870842,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747248880843,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747248890843,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747248900843,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747248910844,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747248920844,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747248930844,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747248940844,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747248950845,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747248960846,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747248970846,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747248980847,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747248990848,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747249000848,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747249010849,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747249020849,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747249030849,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747249040850,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747249050850,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747249060850,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747249070851,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747249080853,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747249090853,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747249100853,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747249110854,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747249120854,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747249130855,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747249140855,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747249150856,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747249160855,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747249170857,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747249180857,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747249190858,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747249200859,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747249210859,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747249220861,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747249230861,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747249240861,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747249250861,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747249260862,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747249270862,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747249280862,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747249290862,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747249300862,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747249310863,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747249320863,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747249330864,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747249340865,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747249350865,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747249360865,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747249370865,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747249380865,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747249390865,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747249400866,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747249410868,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747249420868,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747249430868,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747249440870,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747249450870,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747249460874,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747249470875,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747249480876,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747249490876,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747249500876,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747249510876,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747249520876,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747249530876,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747249540877,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747249550878,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747249560879,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747249570879,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747249580881,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747249590881,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747249600881,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747249610881,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747249620881,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747249630880,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747249640881,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747249650881,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747249660881,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747249670881,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747249680881,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747249690881,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747249700880,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747249710881,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747249720882,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747249730882,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747249740884,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747249750884,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747249760885,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747249770886,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747249780886,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747249790886,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747249800886,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747249810887,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747249820887,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747249830888,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747249840889,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747249850889,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747249860889,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747249870889,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747249880889,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747249890890,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747249900890,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747249910890,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747249920891,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747249930891,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747249940891,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747249950891,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747249960892,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747249970892,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747249980892,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747249990892,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747250000892,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747250010894,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747250020894,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747250030894,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747250040894,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747250050895,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747250060896,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747250070896,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747250080896,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747250090896,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747250100896,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747250110896,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747250120897,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747250130897,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747250140897,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747250150897,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747250160897,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747250170897,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747250180897,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747250190897,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747250200898,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747250210898,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747250220898,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747250230898,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747250240899,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747250250900,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747250260901,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747250270901,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747250280901,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747250290901,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747250300900,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747250310901,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747250320903,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747250330903,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747250340904,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747250350904,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747250360904,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747250370903,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747250380904,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747250390904,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747250400905,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747250410905,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747250420905,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747250430905,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747250440905,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747250450905,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747250460909,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747250470910,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747250480911,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747250490912,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747250500912,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747250510913,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747250520913,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747250530913,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747250540914,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747250550915,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747250560916,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747250570916,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747250580917,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747250590917,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747250600917,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747250610917,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747250620918,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747250630919,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747250640920,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747250650922,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747250660923,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747250670924,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747250680924,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747250690924,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747250700924,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747250710925,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747250720926,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747250730926,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747250740926,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747250750926,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747250760927,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747250770927,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747250780928,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747250790928,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747250800929,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747250810930,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747250820930,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747250830931,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747250840933,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747250850933,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747250860933,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747250870933,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747250880933,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747250890934,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747250900934,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747250910934,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747250920934,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747250930934,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747250940934,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747250950934,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747250960934,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747250970935,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747250980936,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747250990936,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747251000938,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747251010938,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747251020939,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747251030939,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747251040940,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747251050940,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747251060941,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747251070941,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747251080941,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747251090942,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747251100942,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747251110943,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747251120943,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747251130943,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747251140943,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747251150945,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747251160945,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747251170945,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747251180946,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747251190946,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747251200946,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747251210947,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747251220948,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747251230948,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747251240948,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747251250949,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747251260949,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747251270949,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747251280950,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747251290950,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747251300951,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747251310951,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747251320952,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747251330952,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747251340952,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747251350952,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747251360952,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747251370952,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747251380952,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747251390953,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747251400954,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747251410955,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747251420955,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747251430955,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747251440956,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747251450958,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747251460958,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747251470958,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747251480960,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747251490960,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747251500961,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747251510961,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747251520961,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747251530961,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747251540961,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747251550963,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747251560963,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747251570963,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747251580963,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747251590963,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747251600964,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747251610965,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747251620965,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747251630965,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747251640965,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747251650967,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747251660967,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747251670967,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747251680968,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747251690968,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747251700969,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747251710969,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747251720969,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747251730969,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747251740970,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747251750970,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747251760971,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747251770972,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747251780972,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747251790973,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747251800973,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747251810973,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747251820974,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747251830974,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747251840974,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747251850974,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747251860974,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747251870974,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747251880975,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747251890975,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747251900974,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747251910975,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747251920975,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747251930975,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747251940975,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747251950976,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747251960976,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747251970977,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747251980977,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747251990976,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747252000978,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747252010979,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747252020980,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747252030982,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747252040982,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747252050983,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747252060983,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747252070983,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747252080983,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747252090984,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747252100985,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747252110987,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747252120987,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747252130987,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747252140987,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747252150987,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747252160988,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747252170988,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747252180988,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747252190987,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747252200988,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747252210988,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747252220988,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747252230988,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747252240988,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747252250988,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747252260988,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747252270988,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747252280988,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747252290989,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747252300990,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747252310990,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747252320990,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747252330990,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747252340991,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747252350991,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747252360991,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747252370992,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747252380992,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747252390993,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747252400993,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747252410994,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747252420994,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747252430994,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747252440994,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747252450994,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747252460994,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747252470995,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747252480996,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747252490996,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747252500996,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747252510997,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747252520997,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747252530997,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747252540999,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747252550999,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747252561000,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747252571001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747252581001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747252591001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747252601001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747252611001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747252621001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747252631001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747252641001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747252651001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747252661001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747252671001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747252681001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747252691001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747252701001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747252711001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747252721001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747252731001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747252741001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747252751001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747252761001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747252771001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747252781001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747252791001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747252801001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747252811000,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747252821001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747252831001,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747252841002,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747252851003,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747252861003,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747252871003,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747252881003,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747252891003,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747252901003,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747252911004,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747252921005,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747252931006,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747252941006,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747252951006,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747252961006,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747252971006,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747252981008,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747252991008,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747253001008,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747253011009,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747253021009,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747253031011,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747253041011,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747253051011,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747253061012,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747253071012,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747253081013,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747253091014,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747253101014,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747253111015,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747253121015,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747253131015,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747253141015,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747253151016,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747253161016,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747253171017,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747253181017,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747253191017,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747253201017,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747253211017,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747253221017,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747253231017,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747253241018,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747253251019,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747253261019,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747253271019,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747253281019,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747253291020,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747253301020,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747253311020,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747253321020,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747253331021,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747253341021,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747253351021,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747253361021,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747253371022,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747253381022,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747253391022,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747253401022,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747253411023,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747253421024,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747253431024,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747253441024,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747253451025,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747253461025,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747253471027,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747253481027,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747253491027,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747253501027,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747253511028,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747253521028,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747253531027,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747253541029,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747253551029,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747253561029,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747253571030,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747253581030,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747253591030,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747253601032,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747253611033,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747253621033,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747253631034,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747253641036,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747253651036,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747253661037,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747253671037,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747253681037,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747253691037,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747253701037,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747253711037,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747253721037,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747253731038,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747253741038,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747253751039,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747253761041,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747253771043,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747253781044,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747253791045,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747253801045,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747253811046,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747253821047,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747253831049,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747253841049,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747253851049,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747253861050,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747253871050,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747253881050,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747253891051,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747253901052,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747253911052,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747253921052,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747253931052,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747253941052,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747253951053,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747253961054,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747253971054,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747253981054,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747253991054,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747254001054,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747254011054,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747254021054,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747254031054,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747254041054,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747254051055,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747254061056,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747254071057,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747254081057,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747254091057,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747254101057,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747254111058,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747254121059,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747254131059,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747254141059,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747254151059,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747254161059,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747254171060,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747254181060,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747254191060,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747254201060,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747254211060,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747254221060,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747254231060,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747254241060,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747254251062,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747254261063,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747254271064,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747254281064,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747254291065,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747254301064,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747254311065,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747254321066,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747254331066,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747254341066,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747254351067,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747254361068,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747254371068,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747254381068,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747254391068,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747254401068,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747254411068,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747254421069,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747254431070,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747254441070,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747254451072,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747254461072,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747254471073,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747254481074,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747254491074,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747254501075,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747254511076,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747254521076,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747254531076,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747254541076,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747254551076,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747254561077,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747254571078,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747254581079,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747254591079,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747254601082,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747254611082,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747254621082,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747254631082,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747254641082,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747254651082,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747254661083,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747254671083,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747254681083,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747254691083,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747254701083,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747254711084,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747254721084,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747254731085,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747254741085,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747254751086,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747254761086,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747254771086,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747254781087,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747254791087,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747254801087,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747254811088,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747254821088,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747254831088,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747254841088,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747254851088,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747254861088,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747254871089,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747254881089,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747254891089,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747254901090,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747254911090,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747254921090,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747254931090,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747254941090,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747254951090,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747254961090,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747254971090,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747254981090,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747254991090,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747255001090,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747255011090,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747255021091,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747255031092,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747255041092,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747255051092,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747255061092,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747255071094,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747255081095,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747255091095,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747255101095,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747255111095,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747255121095,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747255131097,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747255141098,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747255151098,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747255161098,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747255171099,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747255181099,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747255191099,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747255201099,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747255211100,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747255221100,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747255231100,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747255241100,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747255251100,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747255261100,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747255271100,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747255281100,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747255291100,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747255301101,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747255311101,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747255321101,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747255331102,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747255341102,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747255351103,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747255361103,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747255371103,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747255381103,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747255391103,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747255401103,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747255411103,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747255421103,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747255431104,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747255441104,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747255451105,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747255461105,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747255471106,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747255481107,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747255491107,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747255501111,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747255511111,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747255521112,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747255531113,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747255541113,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747255551113,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747255561113,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747255571114,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747255581114,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747255591114,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747255601114,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747255611115,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747255621114,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747255631115,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747255641115,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747255651116,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747255661116,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747255671116,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747255681117,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747255691118,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747255701117,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747255711118,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747255721119,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747255731121,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747255741121,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747255751121,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747255761121,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747255771122,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747255781122,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747255791122,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747255801122,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747255811122,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747255821122,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747255831123,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747255841123,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747255851123,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747255861123,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747255871123,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747255881124,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747255891124,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747255901125,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747255911126,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747255921127,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747255931127,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747255941127,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747255951128,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747255961128,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747255971128,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747255981128,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747255991129,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747256001129,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747256011130,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747256021130,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747256031130,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747256041130,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747256051130,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747256061130,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747256071131,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747256081131,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747256091132,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747256101133,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747256111134,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747256121134,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747256131136,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747256141137,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747256151137,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747256161136,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747256171137,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747256181137,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747256191138,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747256201138,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747256211138,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747256221139,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747256231140,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747256241140,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747256251141,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747256261141,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747256271141,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747256281141,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747256291143,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747256301143,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747256311145,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747256321145,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747256331148,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747256341148,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747256351148,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747256361149,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747256371149,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747256381150,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747256391151,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747256401152,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747256411153,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747256421153,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747256431154,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747256441154,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747256451154,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747256461158,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747256471159,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747256481160,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747256491160,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747256501161,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747256511162,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747256521164,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747256531164,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747256541165,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747256551165,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747256561166,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747256571167,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747256581167,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747256591168,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747256601168,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747256611168,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747256621168,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747256631168,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747256641168,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747256651168,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747256661168,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747256671172,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747256681172,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747256691173,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747256701173,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747256711173,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747256721173,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747256731174,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747256741174,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747256751174,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Stable version finally arrived!\" | Status: DND"}
+{"level":30,"time":1747256761174,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"AutoMod Beta 1.0\" | Status: ONLINE"}
+{"level":30,"time":1747256771174,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Watching 1 servers\" | Status: DND"}
+{"level":30,"time":1747256781174,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Serving 2 members\" | Status: IDLE"}
+{"level":30,"time":1747256791176,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Developed by @techarye\" | Status: ONLINE"}
+{"level":30,"time":1747256801177,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Use /help for commands\" | Status: DND"}
+{"level":30,"time":1747256811180,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"Version: v1.3.3\" | Status: IDLE"}
+{"level":30,"time":1747256821181,"pid":221021,"hostname":"techaryepc","msg":"Presence updated: \"*changelogs to see changelogs\" | Status: ONLINE"}
+{"level":30,"time":1747256832273,"pid":252438,"hostname":"techaryepc","msg":"Validating config file and environment variables"}
+{"level":30,"time":1747256832973,"pid":252438,"hostname":"techaryepc","msg":"VersionCheck: Your discord bot is up to date"}
+{"level":30,"time":1747256832975,"pid":252438,"hostname":"techaryepc","msg":"Connecting to MongoDb..."}
+{"level":30,"time":1747256833742,"pid":252438,"hostname":"techaryepc","msg":"Mongoose: Database connection established"}
+{"level":30,"time":1747256834287,"pid":252438,"hostname":"techaryepc","msg":"Loading commands..."}
+{"level":20,"time":1747256834327,"pid":252438,"hostname":"techaryepc","msg":"Skipping command pay. Disabled!"}
+{"level":20,"time":1747256834574,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command checkstatus. Disabled!"}
+{"level":20,"time":1747256834576,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command avatar. Disabled!"}
+{"level":20,"time":1747256834577,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command botstats. Disabled!"}
+{"level":20,"time":1747256834578,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command channelinfo. Disabled!"}
+{"level":20,"time":1747256834579,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command emojiinfo. Disabled!"}
+{"level":20,"time":1747256834587,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command guildinfo. Disabled!"}
+{"level":20,"time":1747256834587,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command uptime. Disabled!"}
+{"level":20,"time":1747256834588,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command userinfo. Disabled!"}
+{"level":20,"time":1747256834590,"pid":252438,"hostname":"techaryepc","msg":"Skipping command bot. Disabled!"}
+{"level":20,"time":1747256834591,"pid":252438,"hostname":"techaryepc","msg":"Skipping command info. Disabled!"}
+{"level":20,"time":1747256834592,"pid":252438,"hostname":"techaryepc","msg":"Skipping Command addinvites. Category INVITE is disabled"}
+{"level":20,"time":1747256834593,"pid":252438,"hostname":"techaryepc","msg":"Skipping Command invitecodes. Category INVITE is disabled"}
+{"level":20,"time":1747256834594,"pid":252438,"hostname":"techaryepc","msg":"Skipping Command inviter. Category INVITE is disabled"}
+{"level":20,"time":1747256834595,"pid":252438,"hostname":"techaryepc","msg":"Skipping Command inviterank. Category INVITE is disabled"}
+{"level":20,"time":1747256834595,"pid":252438,"hostname":"techaryepc","msg":"Skipping Command inviteranks. Category INVITE is disabled"}
+{"level":20,"time":1747256834596,"pid":252438,"hostname":"techaryepc","msg":"Skipping Command invites. Category INVITE is disabled"}
+{"level":20,"time":1747256834597,"pid":252438,"hostname":"techaryepc","msg":"Skipping Command invitesimport. Category INVITE is disabled"}
+{"level":20,"time":1747256834598,"pid":252438,"hostname":"techaryepc","msg":"Skipping Command invitetracker. Category INVITE is disabled"}
+{"level":20,"time":1747256834598,"pid":252438,"hostname":"techaryepc","msg":"Skipping Command resetinvites. Category INVITE is disabled"}
+{"level":20,"time":1747256834600,"pid":252438,"hostname":"techaryepc","msg":"Skipping command clear. Disabled!"}
+{"level":20,"time":1747256834602,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command deafen. Disabled!"}
+{"level":20,"time":1747256834603,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command disconnect. Disabled!"}
+{"level":20,"time":1747256834604,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command move. Disabled!"}
+{"level":20,"time":1747256834604,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command purge. Disabled!"}
+{"level":20,"time":1747256834605,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command purgeattach. Disabled!"}
+{"level":20,"time":1747256834605,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command purgebots. Disabled!"}
+{"level":20,"time":1747256834606,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command purgelinks. Disabled!"}
+{"level":20,"time":1747256834606,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command purgetoken. Disabled!"}
+{"level":20,"time":1747256834607,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command purgeuser. Disabled!"}
+{"level":20,"time":1747256834608,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command undeafen. Disabled!"}
+{"level":20,"time":1747256834608,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command vmute. Disabled!"}
+{"level":20,"time":1747256834609,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command vunmute. Disabled!"}
+{"level":20,"time":1747256834614,"pid":252438,"hostname":"techaryepc","msg":"Skipping command purge. Disabled!"}
+{"level":20,"time":1747256834615,"pid":252438,"hostname":"techaryepc","msg":"Skipping command voice. Disabled!"}
+{"level":20,"time":1747256834621,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command serverban. Disabled!"}
+{"level":20,"time":1747256834622,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command broadcast. Disabled!"}
+{"level":20,"time":1747256834623,"pid":252438,"hostname":"techaryepc","msg":"Skipping command commandpath. Disabled!"}
+{"level":20,"time":1747256834625,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command dev. Disabled!"}
+{"level":20,"time":1747256834626,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command leaveserver. Disabled!"}
+{"level":20,"time":1747256834627,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command listinvites. Disabled!"}
+{"level":20,"time":1747256834627,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command listservers. Disabled!"}
+{"level":20,"time":1747256834629,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command potential. Disabled!"}
+{"level":20,"time":1747256834629,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command restart. Disabled!"}
+{"level":20,"time":1747256834630,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command commandpath. Disabled!"}
+{"level":20,"time":1747256834631,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command shutdown. Disabled!"}
+{"level":20,"time":1747256834631,"pid":252438,"hostname":"techaryepc","msg":"Skipping command add. Disabled!"}
+{"level":20,"time":1747256834631,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command add. Disabled!"}
+{"level":20,"time":1747256834631,"pid":252438,"hostname":"techaryepc","msg":"Skipping command list. Disabled!"}
+{"level":20,"time":1747256834631,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command list. Disabled!"}
+{"level":20,"time":1747256834631,"pid":252438,"hostname":"techaryepc","msg":"Skipping command remove. Disabled!"}
+{"level":20,"time":1747256834631,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command remove. Disabled!"}
+{"level":20,"time":1747256834643,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command ipinfo. Disabled!"}
+{"level":20,"time":1747256834644,"pid":252438,"hostname":"techaryepc","msg":"Skipping slash command macinfo. Disabled!"}
+{"level":30,"time":1747256834648,"pid":252438,"hostname":"techaryepc","msg":"Loaded 92 commands"}
+{"level":30,"time":1747256834648,"pid":252438,"hostname":"techaryepc","msg":"Loaded 67 slash commands"}
+{"level":30,"time":1747256834649,"pid":252438,"hostname":"techaryepc","msg":"Loading contexts..."}
+{"level":30,"time":1747256834650,"pid":252438,"hostname":"techaryepc","msg":"Loaded 1 USER contexts"}
+{"level":30,"time":1747256834650,"pid":252438,"hostname":"techaryepc","msg":"Loaded 0 MESSAGE contexts"}
+{"level":30,"time":1747256834650,"pid":252438,"hostname":"techaryepc","msg":"Loading events..."}
+{"level":30,"time":1747256834681,"pid":252438,"hostname":"techaryepc","msg":"Loaded 14 events. Success (14) Failed (0)"}

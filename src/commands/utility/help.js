@@ -271,7 +271,10 @@ function paginate(commands, category, prefix) {
     const chunk = commands.slice(i, i + CMDS_PER_PAGE);
     const desc = chunk
       .map((cmd) => {
-        const subCmds = cmd.slashCommand.options?.filter((o) => o.type === ApplicationCommandOptionType.Subcommand);
+        // Safely access slashCommand and options with optional chaining
+        const subCmds = cmd.slashCommand?.options?.filter(
+          (o) => o.type === ApplicationCommandOptionType.Subcommand
+        );
         return `\`/${cmd.name}\`\n ❯ **Description**: ${cmd.description}\n${
           subCmds?.length ? ` ❯ **Subcommands**: ${subCmds.map((s) => s.name).join(", ")}\n` : ""
         }`;
@@ -290,6 +293,7 @@ function paginate(commands, category, prefix) {
 
   return pages;
 }
+
 
 // This code is a Discord bot command that provides a help menu for users. It allows users to view commands in different categories, and it supports pagination for long lists of commands. The bot can also handle slash commands and provides usage information for each command.
 // The help menu is interactive, allowing users to select categories and navigate through pages of commands. The code also includes functionality for image commands and provides information on how to use them. Overall, this command enhances user experience by making it easy to find and understand available commands.

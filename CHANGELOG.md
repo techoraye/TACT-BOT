@@ -1,6 +1,6 @@
 # 📢 **Bot Changelog**
 
-Keep track of all recent changes, improvements, and upcoming features for the bot. We’re always working behind the scenes to bring you better performance, more functionality, and a smoother experience.
+Stay up to date with the latest features, fixes, and upcoming enhancements. We’re constantly working to improve your experience.
 
 ---
 
@@ -8,49 +8,59 @@ Keep track of all recent changes, improvements, and upcoming features for the bo
 
 ### ✅ **New Features**
 
-* **`/pay` Command Added**
-  Users can now securely transfer coins to each other using the `/pay` command.
-  Includes validation for:
+* **`/pay` Command**
+  Secure coin transfers between users.
+  Includes:
 
-  * Preventing self-payments and bot transactions
-  * Ensuring sufficient wallet balance
-  * Real-time balance updates via embedded response
+  * Self-payment and bot protection
+  * Balance validation
+  * Real-time balance updates via embed
 
 ---
 
 ### 🛠️ **Fixes**
 
-* **`/wikipedia` Command Bug Fixed**
-  The Wikipedia command is now working correctly with improved error handling and cleaner output formatting.
+* **`/wikipedia` Command**
+  Improved error handling and cleaner output formatting.
 
-* **Console Logging Issue Resolved**
-  GitHub update alerts were previously logging unnecessary or duplicate messages to the console — now streamlined and silent unless relevant.
+* **Console Logging**
+  Removed redundant GitHub update logs. Only logs relevant info now.
+
+* **Help Menu Display**
+  Fixed layout and visibility issues in the help command/menu.
+
+* **`/removecoin` Command**
+  Fixed issue related to removing coins from a user’s balance.
 
 ---
 
 ### 🔄 **Changes**
 
-* **`embed/say` Command Temporarily Removed**
-  This command has been disabled due to internal issues and is currently undergoing rework.
-  ⚠️ *It will be reintroduced in an upcoming patch once fully fixed.*
+* **`embed/say` Command**
+  Temporarily disabled due to internal issues.
+  ⚠️ Will return in a future update after rework.
 
 ---
 
 ## 🔜 **Coming Soon**
 
-### 🌐 **`presence` Command (Bot Owner Only)**
+### 🌐 **`presence` Command** *(Bot Owner Only)*
 
-Manage the bot’s presence in real-time:
+Manage the bot’s presence dynamically:
 
-* `add`: Set a new custom status/activity (e.g., playing, watching, streaming)
-* `edit`: Modify an existing activity
+* `add`: Set a new status/activity
+* `edit`: Modify an existing one
 * `remove`: Clear current presence
-* `list`: View active presence settings
+* `list`: View active settings
 
 ### 📥 **Mod Inbox (DM Support)**
 
-Allow server members to DM the bot for help, reports, or modmail-like support. Great for handling issues privately and professionally.
+Let members DM the bot for:
+
+* Help requests
+* Reports
+* Private moderation support
 
 ---
 
-💡 **Stay tuned for more features, refinements, and performance improvements in the upcoming releases!**
+💡 **More updates, features, and improvements coming soon — stay tuned!**
