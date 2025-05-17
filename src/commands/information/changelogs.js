@@ -55,7 +55,7 @@ module.exports = {
 function createChangelogEmbeds(version, botAvatar) {
   const pages = [];
 
-  // Page 1: Platform Support
+  // Page 1: TACT Changelog (Title, intro, platform support)
   pages.push(
     new EmbedBuilder()
       .setTitle("📢 TACT Changelog")
@@ -70,84 +70,18 @@ function createChangelogEmbeds(version, botAvatar) {
         "",
         "**Platform Support:**",
         "- Compatible with **Linux**, **Windows**, and **WSL**.",
-      ].join("\n"))
-      .setFooter({ text: "Page 1/5 • Platform Support" })
-      .setTimestamp()
-  );
-
-  // Page 2: New & Improved
-  pages.push(
-    new EmbedBuilder()
-      .setTitle("✨ New & Improved")
-      .setColor("#22D3EE")
-      .setThumbnail(botAvatar)
-      .setDescription([
-        "- **/botinfo Command:**",
-        "  Expanded details and improved clarity.",
+        "",
+        "---",
+        "",
+        "### ✨ New & Improved",
         "",
         "- **Advanced Ticket System (Admin Only):**",
-        "  - Fully redesigned setup with interactive modals and buttons.",
-        "  - Customizable welcome and creator messages, with live preview/editing.",
-        "  - Optional role pings on ticket creation.",
-        "  - Set ticket log channels during setup or via command.",
-        "  - Limit concurrent open tickets per user.",
-        "  - Ticket channels now include action buttons: Close, Transcript, Lock, Pin, Owner.",
-        "  - Automatic transcript generation and logging on close.",
-        "  - All actions are permission-checked and admin-controlled.",
+        "  - Option to set multiple manager roles during setup. These roles will have access to and can manage all tickets.",
         "",
-        "- **Counting System:**",
-        "  - Improved error handling and feedback.",
-        "  - Visual cues for correct/incorrect entries.",
-      ].join("\n"))
-      .setFooter({ text: "Page 2/5 • New & Improved" })
-      .setTimestamp()
-  );
-
-  // Page 3: Fixes
-  pages.push(
-    new EmbedBuilder()
-      .setTitle("🛠️ Fixes")
-      .setColor("#4ADE80")
-      .setThumbnail(botAvatar)
-      .setDescription([
-        "- Resolved permission issues in ticket and counting systems.",
-        "- Improved error messages for restricted commands.",
-        "- Fixed rare bugs with ticket cleanup and database resets.",
-        "- Fixed: Server data is now properly removed from all databases when the bot leaves a guild.",
-      ].join("\n"))
-      .setFooter({ text: "Page 3/5 • Fixes" })
-      .setTimestamp()
-  );
-
-  // Page 4: Changes
-  pages.push(
-    new EmbedBuilder()
-      .setTitle("🔄 Changes")
-      .setColor("#F472B6")
-      .setThumbnail(botAvatar)
-      .setDescription([
-        "- **Command Cleanup:**",
-        "  Removed legacy and unused commands for a streamlined experience.",
+        "---",
         "",
-        "- **Owner-Only Commands:**",
-        "  Enhanced UI/UX for restricted access, making owner-only commands clearer.",
+        "## 🔜 Coming Soon",
         "",
-        "- **Ticket System:**",
-        "  - Simplified admin setup.",
-        "  - Added detailed logging and feedback for all ticket actions.",
-        "  - Improved database handling for ticket persistence and resets.",
-      ].join("\n"))
-      .setFooter({ text: "Page 4/5 • Changes" })
-      .setTimestamp()
-  );
-
-  // Page 5: Coming Soon
-  pages.push(
-    new EmbedBuilder()
-      .setTitle("🔜 Coming Soon")
-      .setColor("#FBBF24")
-      .setThumbnail(botAvatar)
-      .setDescription([
         "### 🌐 `/presence` Command *(Bot Owner Only)*",
         "- Manage the bot’s presence:",
         "  - `add`: Set a new status/activity",
@@ -165,7 +99,7 @@ function createChangelogEmbeds(version, botAvatar) {
         "",
         "💡 More updates and features are on the way — stay tuned!"
       ].join("\n"))
-      .setFooter({ text: "Page 5/5 • Coming Soon" })
+      .setFooter({ text: "TACT Changelog" })
       .setTimestamp()
   );
 

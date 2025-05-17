@@ -1,1 +1,12 @@
-{}
+{
+  "tickets": [
+    {
+      "channelId": "1373164747054256200",
+      "userId": "1132413940693995541",
+      "ticketNumber": "0001",
+      "createdAt": "2025-05-17T05:06:29.028Z",
+      "guildId": "1370610252587733024",
+      "category": "Default"
+    }
+  ]
+}

@@ -29,10 +29,18 @@ function ensureTicketDb() {
   }
 }
 
-// Load ticket database
 function loadTicketDb() {
   ensureTicketDb();
-  return JSON.parse(fs.readFileSync(TICKET_DB_PATH, "utf8"));
+  let data;
+  try {
+    data = JSON.parse(fs.readFileSync(TICKET_DB_PATH, "utf8"));
+    if (!data.tickets || !Array.isArray(data.tickets)) {
+      data.tickets = [];
+    }
+  } catch {
+    data = { tickets: [] };
+  }
+  return data;
 }
 
 // Save ticket database
@@ -43,6 +51,7 @@ function saveTicketDb(data) {
 // Add ticket info
 function addTicketInfo(ticketInfo) {
   const db = loadTicketDb();
+  if (!db.tickets) db.tickets = [];
   db.tickets.push(ticketInfo);
   saveTicketDb(db);
 }
@@ -514,6 +523,61 @@ async function ticketModalSetup({ guild, channel, member }, targetChannel, setti
     }
   }
 
+  // --- Step 1.7: Optional MANAGER ROLES SETUP ---
+  let managerRoles = [];
+  const managerRoleEmbed = new EmbedBuilder()
+    .setColor(EMBED_COLORS.BOT_EMBED)
+    .setTitle("Optional: Set Manager Roles")
+    .setDescription(
+      "Mention one or more roles that should have access to manage tickets (e.g. @Support @Admin).\n\n" +
+      "• Mention the roles in your next message.\n" +
+      "• Or type `skip` to continue without setting manager roles."
+    )
+    .setFooter({ text: "This step is optional." });
+
+  const managerRoleMsg = await channel.send({ embeds: [managerRoleEmbed] });
+
+  const managerRoleCollector = await channel.awaitMessages({
+    filter: m => m.author.id === member.id,
+    max: 1,
+    time: 30000
+  }).catch(() => {});
+
+  if (managerRoleCollector && managerRoleCollector.first()) {
+    const msg = managerRoleCollector.first();
+    if (msg.content.trim().toLowerCase() !== "skip" && msg.mentions.roles.size > 0) {
+      managerRoles = msg.mentions.roles.map(role => role.id);
+      await channel.send({
+        embeds: [
+          new EmbedBuilder()
+            .setColor(EMBED_COLORS.BOT_EMBED)
+            .setDescription(`Manager roles set: ${managerRoles.map(r => `<@&${r}>`).join(", ")}`)
+        ]
+      });
+    } else {
+      await channel.send({
+        embeds: [
+          new EmbedBuilder()
+            .setColor("Grey")
+            .setDescription("Manager role setup skipped.")
+        ]
+      });
+    }
+  } else {
+    await channel.send({
+      embeds: [
+        new EmbedBuilder()
+          .setColor("Red")
+          .setDescription("No response received. Skipping manager role setup.")
+      ]
+    });
+  }
+
+  // Save to settings
+  if (managerRoles.length > 0) settings.ticket.manager_roles = managerRoles;
+  else delete settings.ticket.manager_roles;
+  await settings.save();
+
   // --- Step 2: Welcome Modal ---
   const welcomeBtnRow = new ActionRowBuilder().addComponents(
     new ButtonBuilder().setCustomId("ticket_welcome_btn").setLabel("Setup Welcome Message").setStyle(ButtonStyle.Primary)
@@ -847,6 +911,7 @@ const handleTicketOpen = async function(interaction) {
   }
   const ticketNumber = (existing + 1).toString().padStart(4, "0");
 
+  // Add manager roles to permission overwrites
   const permissionOverwrites = [
     {
       id: guild.roles.everyone,
@@ -861,6 +926,16 @@ const handleTicketOpen = async function(interaction) {
       allow: ["ViewChannel", "SendMessages", "ReadMessageHistory"],
     },
   ];
+
+  // Add manager roles if set
+  if (settings.ticket.manager_roles && Array.isArray(settings.ticket.manager_roles)) {
+    for (const roleId of settings.ticket.manager_roles) {
+      permissionOverwrites.push({
+        id: roleId,
+        allow: ["ViewChannel", "SendMessages", "ReadMessageHistory", "ManageChannels", "ManageMessages"],
+      });
+    }
+  }
 
   let tktChannel;
   try {
