@@ -37,12 +37,22 @@ module.exports = async (client, interaction) => {
 
   // Buttons
   else if (interaction.isButton()) {
-    switch (interaction.customId) {
-      case "TICKET_CREATE":
+    // Route all ticket-related buttons to the ticket handler
+    const ticketButtonIds = [
+      "CREATE_TICKET",
+      "TICKET_CLOSE",
+      "TICKET_TRANSCRIPT",
+      "TICKET_LOCK",
+      "TICKET_PIN",
+      "TICKET_OWNER"
+    ];
+    if (ticketButtonIds.includes(interaction.customId)) {
+      // CREATE_TICKET is the open handler, others go to handleTicketButton
+      if (interaction.customId === "CREATE_TICKET") {
         return ticketHandler.handleTicketOpen(interaction);
-
-      case "TICKET_CLOSE":
-        return ticketHandler.handleTicketClose(interaction);
+      } else {
+        return ticketHandler.handleTicketButton(interaction);
+      }
     }
   }
 };

@@ -116,7 +116,7 @@ module.exports = {
 
           await member.kick(reason);
           kicked++;
-          await new Promise(res => setTimeout(res, 2000)); // 2s cooldown per kick
+          if (!isBotOwner) await new Promise(res => setTimeout(res, 2000)); // 2s delay for admin, none for bot owner
         } catch {
           failed++;
         }

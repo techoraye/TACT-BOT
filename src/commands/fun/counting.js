@@ -93,7 +93,10 @@ module.exports = {
     const serverId = interaction.guild.id;
 
     try {
-      await interaction.deferReply({ ephemeral: false });
+      // Only defer if not already replied or deferred
+      if (!interaction.deferred && !interaction.replied) {
+        await interaction.deferReply();
+      }
 
       const sub = interaction.options.getSubcommand();
       initializeServerData(serverId, countData);
@@ -123,10 +126,11 @@ module.exports = {
       return interaction.followUp("❌ Invalid subcommand.");
     } catch (err) {
       console.error("Interaction error:", err);
+      // Always use followUp if already replied or deferred
       if (interaction.deferred || interaction.replied) {
-        return interaction.followUp({ content: "❌ An error occurred while executing the command.", ephemeral: true });
+        return interaction.followUp({ content: "❌ An error occurred while executing the command.", flags: 64 });
       } else {
-        return interaction.reply({ content: "❌ An error occurred while executing the command.", ephemeral: true });
+        return interaction.reply({ content: "❌ An error occurred while executing the command.", flags: 64 });
       }
     }
   },

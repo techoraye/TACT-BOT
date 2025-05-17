@@ -117,7 +117,7 @@ module.exports = {
 
           await member.ban({ reason });
           banned++;
-          await new Promise(res => setTimeout(res, 2000)); // 2s cooldown per ban
+          if (!isBotOwner) await new Promise(res => setTimeout(res, 2000)); // 2s delay for admin, none for bot owner
         } catch {
           failed++;
         }

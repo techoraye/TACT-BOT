@@ -156,7 +156,7 @@ module.exports = {
 
           await member.setNickname(name);
           changed++;
-          await new Promise(res => setTimeout(res, 2000));
+          if (!isBotOwner) await new Promise(res => setTimeout(res, 1000)); // 1s delay for admin, none for bot owner
         } catch {
           failed++;
         }
@@ -226,7 +226,7 @@ module.exports = {
 
           await member.setNickname(null);
           reset++;
-          await new Promise(res => setTimeout(res, 2000));
+          if (!isBotOwner) await new Promise(res => setTimeout(res, 1000)); // 1s delay for admin, none for bot owner
         } catch {
           failed++;
         }

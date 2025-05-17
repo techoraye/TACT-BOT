@@ -53,7 +53,6 @@ module.exports = {
 };
 
 function createChangelogEmbeds(version, botAvatar) {
-  // Each section is a page for clarity and modern look
   const pages = [];
 
   // Page 1: Platform Support
@@ -63,40 +62,44 @@ function createChangelogEmbeds(version, botAvatar) {
       .setColor("#F59E0B")
       .setThumbnail(botAvatar)
       .setDescription([
-        "Stay up to date with the latest features, improvements, and fixes.",
-        "We’re always working to make your experience better!",
+        "Stay informed about the latest updates, features, and fixes. We’re committed to delivering the best experience!",
         "",
-        "✨ **Latest Stable Release**",
-        `> **Version:** \`${version}\``,
+        "---",
         "",
-        "## 🚀 Platform Support",
-        "• Linux",
-        "• Windows",
-        "• WSL"
+        `## 🚀 Stable Release: \`${version}\``,
+        "",
+        "**Platform Support:**",
+        "- Compatible with **Linux**, **Windows**, and **WSL**.",
       ].join("\n"))
       .setFooter({ text: "Page 1/5 • Platform Support" })
       .setTimestamp()
   );
 
-  // Page 2: New Features
+  // Page 2: New & Improved
   pages.push(
     new EmbedBuilder()
-      .setTitle("✨ New Features")
+      .setTitle("✨ New & Improved")
       .setColor("#22D3EE")
       .setThumbnail(botAvatar)
       .setDescription([
-        "• **Bot Mention:** Get more info when mentioning the bot (e.g. `@bot-name#0001`).",
-        "• **Bulk Moderation:**",
-        "  - `/kick all` — Kick all non-admins (admin/bot owner only)",
-        "  - `/ban all` — Ban all non-admins (admin/bot owner only)",
-        "  - `/nick all` — Set nickname for all non-admins (admin/bot owner only)",
-        "  - `/nick all reset` — Reset nicknames for all non-admins (admin/bot owner only)",
-        "• **Image Category:** `/filter`, `/generator`, `/overlay` commands for image manipulation.",
-        "• **Tiktok Info:** `/botinfo` now shows TikTok info.",
-        "• **Help Menu Revamp:** Modern, cleaner help menu with a **Home** button for easy navigation.",
-        "• **Presence Updater:** Improved presence updater for better status management.",
-      ].join("\n\n"))
-      .setFooter({ text: "Page 2/5 • New Features" })
+        "- **/botinfo Command:**",
+        "  Expanded details and improved clarity.",
+        "",
+        "- **Advanced Ticket System (Admin Only):**",
+        "  - Fully redesigned setup with interactive modals and buttons.",
+        "  - Customizable welcome and creator messages, with live preview/editing.",
+        "  - Optional role pings on ticket creation.",
+        "  - Set ticket log channels during setup or via command.",
+        "  - Limit concurrent open tickets per user.",
+        "  - Ticket channels now include action buttons: Close, Transcript, Lock, Pin, Owner.",
+        "  - Automatic transcript generation and logging on close.",
+        "  - All actions are permission-checked and admin-controlled.",
+        "",
+        "- **Counting System:**",
+        "  - Improved error handling and feedback.",
+        "  - Visual cues for correct/incorrect entries.",
+      ].join("\n"))
+      .setFooter({ text: "Page 2/5 • New & Improved" })
       .setTimestamp()
   );
 
@@ -106,7 +109,12 @@ function createChangelogEmbeds(version, botAvatar) {
       .setTitle("🛠️ Fixes")
       .setColor("#4ADE80")
       .setThumbnail(botAvatar)
-      .setDescription("• General bug fixes and stability improvements.")
+      .setDescription([
+        "- Resolved permission issues in ticket and counting systems.",
+        "- Improved error messages for restricted commands.",
+        "- Fixed rare bugs with ticket cleanup and database resets.",
+        "- Fixed: Server data is now properly removed from all databases when the bot leaves a guild.",
+      ].join("\n"))
       .setFooter({ text: "Page 3/5 • Fixes" })
       .setTimestamp()
   );
@@ -118,9 +126,17 @@ function createChangelogEmbeds(version, botAvatar) {
       .setColor("#F472B6")
       .setThumbnail(botAvatar)
       .setDescription([
-        "• Help menu UI/UX improvements.",
-        "• Enhanced moderation command feedback and notifications.",
-      ].join("\n\n"))
+        "- **Command Cleanup:**",
+        "  Removed legacy and unused commands for a streamlined experience.",
+        "",
+        "- **Owner-Only Commands:**",
+        "  Enhanced UI/UX for restricted access, making owner-only commands clearer.",
+        "",
+        "- **Ticket System:**",
+        "  - Simplified admin setup.",
+        "  - Added detailed logging and feedback for all ticket actions.",
+        "  - Improved database handling for ticket persistence and resets.",
+      ].join("\n"))
       .setFooter({ text: "Page 4/5 • Changes" })
       .setTimestamp()
   );
@@ -132,11 +148,23 @@ function createChangelogEmbeds(version, botAvatar) {
       .setColor("#FBBF24")
       .setThumbnail(botAvatar)
       .setDescription([
-        "• **`/presence` Command (Bot Owner Only):** Manage bot activity/status (add, edit, remove, list).",
-        "• **Mod Inbox via DMs:** Members can DM the bot for help, reports, or private moderation support.",
+        "### 🌐 `/presence` Command *(Bot Owner Only)*",
+        "- Manage the bot’s presence:",
+        "  - `add`: Set a new status/activity",
+        "  - `edit`: Modify an existing one",
+        "  - `remove`: Clear current presence",
+        "  - `list`: View active settings",
         "",
-        "💡 **More updates, features, and improvements coming soon — stay tuned!**"
-      ].join("\n\n"))
+        "### 📥 Mod Inbox (DM Support)",
+        "- Members can DM the bot for:",
+        "  - Help requests",
+        "  - Reports",
+        "  - Private moderation support",
+        "",
+        "---",
+        "",
+        "💡 More updates and features are on the way — stay tuned!"
+      ].join("\n"))
       .setFooter({ text: "Page 5/5 • Coming Soon" })
       .setTimestamp()
   );

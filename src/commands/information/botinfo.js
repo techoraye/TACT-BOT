@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require("discord.js");
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 
 module.exports = {
   name: "botinfo",
@@ -32,27 +32,27 @@ module.exports = {
           name: "👤 Developer",
           value: "[techarye](https://github.com/techarye)",
           inline: true,
-        },
-           {
-          name: "🎵 TikTok",
-          value: "[tiktok.com/@techtact](https://www.tiktok.com/@techtact)",
-          inline: true,
-        },
-        {
-          name: "📚 GitHub Repo",
-          value: "[TACT-BOT](https://github.com/techarye/TACT-BOT)",
-          inline: true,
-        },
-        {
-          name: "🌍 Hosting",
-          value: "[bot-hosting.net](https://bot-hosting.net/?aff=1132413940693995541)",
-          inline: true,
         }
       )
       .setFooter({ text: `Requested by ${message.author.tag}`, iconURL: message.author.displayAvatarURL() })
       .setTimestamp();
 
-    await message.channel.send({ embeds: [embed] });
+    const row = new ActionRowBuilder().addComponents(
+      new ButtonBuilder()
+        .setLabel("TikTok")
+        .setStyle(ButtonStyle.Link)
+        .setURL("https://www.tiktok.com/@techtact"),
+      new ButtonBuilder()
+        .setLabel("GitHub Repo")
+        .setStyle(ButtonStyle.Link)
+        .setURL("https://github.com/techarye/TACT-BOT"),
+      new ButtonBuilder()
+        .setLabel("Hosting")
+        .setStyle(ButtonStyle.Link)
+        .setURL("https://bot-hosting.net/?aff=1132413940693995541")
+    );
+
+    await message.channel.send({ embeds: [embed], components: [row] });
   },
 
   interactionRun: async (interaction) => {
@@ -65,26 +65,31 @@ module.exports = {
           name: "👤 Developer",
           value: "[techarye](https://github.com/techarye)",
           inline: true,
-        },
-        {
-          name: "📚 GitHub Repo",
-          value: "[TACT-BOT](https://github.com/techarye/TACT-BOT)",
-          inline: true,
-        },
-        {
-          name: "🌍 Hosting",
-          value: "[bot-hosting.net](https://bot-hosting.net/?aff=1132413940693995541)",
-          inline: true,
         }
       )
       .setFooter({ text: `Requested by ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL() })
       .setTimestamp();
 
+    const row = new ActionRowBuilder().addComponents(
+      new ButtonBuilder()
+        .setLabel("TikTok")
+        .setStyle(ButtonStyle.Link)
+        .setURL("https://www.tiktok.com/@techtact"),
+      new ButtonBuilder()
+        .setLabel("GitHub Repo")
+        .setStyle(ButtonStyle.Link)
+        .setURL("https://github.com/techarye/TACT-BOT"),
+      new ButtonBuilder()
+        .setLabel("Hosting")
+        .setStyle(ButtonStyle.Link)
+        .setURL("https://bot-hosting.net/?aff=1132413940693995541")
+    );
+
     // Avoid replying twice
     if (!interaction.replied && !interaction.deferred) {
-      await interaction.reply({ embeds: [embed] });
+      await interaction.reply({ embeds: [embed], components: [row] });
     } else {
-      await interaction.followUp({ embeds: [embed], ephemeral: true });
+      await interaction.followUp({ embeds: [embed], components: [row], ephemeral: true });
     }
   },
 };

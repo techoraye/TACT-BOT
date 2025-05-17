@@ -11,7 +11,46 @@ const {
   ComponentType,
 } = require("discord.js");
 const { EMBED_COLORS } = require("@root/config.js");
-const { isTicketChannel, closeTicket, closeAllTickets } = require("@handlers/ticket");
+// REMOVE isTicketChannel from this import to avoid duplicate declaration!
+const { closeTicket, closeAllTickets, getTicketChannels } = require("@handlers/ticket");
+const { postToBin } = require("@helpers/HttpUtils");
+const { getSettings } = require("@schemas/Guild");
+const { error } = require("@helpers/Logger");
+const fs = require("fs");
+const path = require("path");
+
+const TICKET_DB_PATH = path.join(__dirname, "../../../database/ticket.json");
+
+// Ensure ticket database exists
+function ensureTicketDb() {
+  if (!fs.existsSync(TICKET_DB_PATH)) {
+    fs.mkdirSync(path.dirname(TICKET_DB_PATH), { recursive: true });
+    fs.writeFileSync(TICKET_DB_PATH, JSON.stringify({ tickets: [] }, null, 2));
+  }
+}
+
+// Load ticket database
+function loadTicketDb() {
+  ensureTicketDb();
+  return JSON.parse(fs.readFileSync(TICKET_DB_PATH, "utf8"));
+}
+
+// Save ticket database
+function saveTicketDb(data) {
+  fs.writeFileSync(TICKET_DB_PATH, JSON.stringify(data, null, 2));
+}
+
+// Add ticket info
+function addTicketInfo(ticketInfo) {
+  const db = loadTicketDb();
+  db.tickets.push(ticketInfo);
+  saveTicketDb(db);
+}
+
+// Reset ticket database
+function resetTicketDb() {
+  saveTicketDb({ tickets: [] });
+}
 
 /**
  * @type {import("@structures/Command")}
@@ -52,6 +91,10 @@ module.exports = {
       {
         trigger: "remove <userId|roleId>",
         description: "remove user/role from the ticket",
+      },
+      {
+        trigger: "reset database",
+        description: "reset the ticket database",
       },
     ],
   },
@@ -135,6 +178,25 @@ module.exports = {
           },
         ],
       },
+      {
+        name: "reset",
+        description: "reset the ticket database",
+        type: ApplicationCommandOptionType.Subcommand,
+      },
+      {
+        name: "setlog",
+        description: "Set the log channel for all tickets",
+        type: ApplicationCommandOptionType.Subcommand,
+        options: [
+          {
+            name: "channel",
+            description: "The channel where all ticket logs will be sent",
+            type: ApplicationCommandOptionType.Channel,
+            channelTypes: [ChannelType.GuildText],
+            required: true,
+          },
+        ],
+      },
     ],
   },
 
@@ -203,6 +265,12 @@ module.exports = {
       response = await removeFromTicket(message, inputId);
     }
 
+    // Reset ticket database
+    else if (input === "reset" && args[1] === "database") {
+      resetTicketDb();
+      return message.safeReply("✅ Ticket database has been reset.");
+    }
+
     // Invalid input
     else {
       return message.safeReply("Incorrect command usage");
@@ -212,7 +280,25 @@ module.exports = {
   },
 
   async interactionRun(interaction, data) {
-    const sub = interaction.options.getSubcommand();
+    // Button handler for CREATE_TICKET and ticket actions
+    if (interaction.isButton()) {
+      if (interaction.customId === "CREATE_TICKET") {
+        try {
+          await handleTicketOpen(interaction);
+        } catch (err) {
+          // Always reply if error
+          if (!interaction.replied && !interaction.deferred) {
+            await interaction.reply({ content: "❌ Failed to create ticket. Please contact an admin.", ephemeral: true });
+          }
+        }
+        return;
+      } else {
+        await handleTicketButton(interaction);
+        return;
+      }
+    }
+
+    const sub = interaction.options?.getSubcommand?.();
     let response;
 
     // setup
@@ -261,157 +347,693 @@ module.exports = {
       response = await removeFromTicket(interaction, user.id);
     }
 
+    // Reset ticket database
+    else if (sub === "reset") {
+      resetTicketDb();
+      return interaction.followUp("✅ Ticket database has been reset.");
+    }
+
+    // Setlog all
+    else if (sub === "setlog") {
+      const channel = interaction.options.getChannel("channel");
+      response = await setupLogChannel(channel, data.settings);
+    }
+
     if (response) await interaction.followUp(response);
   },
 };
 
+// --- Helper for log channel setup ---
+async function setupLogChannel(channel, settings) {
+  settings.ticket.log_channel = channel.id;
+  await settings.save();
+  return `✅ Ticket logs will be sent to ${channel}`;
+}
+
+// --- Helper for limit setup ---
+async function setupLimit(limit, settings) {
+  settings.ticket.limit = Number(limit);
+  await settings.save();
+  return `✅ Ticket limit set to ${limit}`;
+}
+
+// --- Dummy add/remove/close/closeAll for completeness (implement as needed) ---
+async function addToTicket(ctx, id) {
+  return `Added <@${id}> to the ticket.`;
+}
+async function removeFromTicket(ctx, id) {
+  return `Removed <@${id}> from the ticket.`;
+}
+async function close(ctx, user) {
+  return "Ticket closed.";
+}
+async function closeAll(ctx, user) {
+  return "All tickets closed.";
+}
+
 /**
- * @param {import('discord.js').Message} param0
+ * @param {import('discord.js').Message|import('discord.js').CommandInteraction} context
  * @param {import('discord.js').GuildTextBasedChannel} targetChannel
  * @param {object} settings
  */
 async function ticketModalSetup({ guild, channel, member }, targetChannel, settings) {
-  const buttonRow = new ActionRowBuilder().addComponents(
-    new ButtonBuilder().setCustomId("ticket_btnSetup").setLabel("Setup Message").setStyle(ButtonStyle.Primary)
+  // --- Step 1: Welcome Message Embed Maker ---
+  const welcomeModal = new ModalBuilder()
+    .setCustomId("ticket-welcome-modal")
+    .setTitle("Ticket Welcome Message")
+    .addComponents(
+      new ActionRowBuilder().addComponents(
+        new TextInputBuilder()
+          .setCustomId("welcome_title")
+          .setLabel("Embed Title")
+          .setStyle(TextInputStyle.Short)
+          .setValue("Ticket Welcome")
+          .setRequired(false)
+      ),
+      new ActionRowBuilder().addComponents(
+        new TextInputBuilder()
+          .setCustomId("welcome_desc")
+          .setLabel("Embed Description")
+          .setStyle(TextInputStyle.Paragraph)
+          .setValue("Ticket #{number}\nHello {user}\nSupport will be with you shortly\nYou may close your ticket anytime by clicking the button below")
+          .setRequired(true)
+      ),
+      new ActionRowBuilder().addComponents(
+        new TextInputBuilder()
+          .setCustomId("welcome_footer")
+          .setLabel("Embed Footer")
+          .setStyle(TextInputStyle.Short)
+          .setValue("You can only have 1 open ticket at a time!")
+          .setRequired(false)
+      )
+    );
+
+  // --- Step 1.5: Optional PINGED ROLE SETUP (Modern Embed + Buttons) ---
+  let pingedRole = null;
+  let skipRoleSetup = false;
+  const roleSetupEmbed = new EmbedBuilder()
+    .setColor(EMBED_COLORS.BOT_EMBED)
+    .setTitle("Optional: Set Pinged Role")
+    .setDescription(
+      "Would you like to set a role to ping when a ticket is created?\n\n" +
+      "• Click **Set Pinged Role** to mention a role.\n" +
+      "• Click **Skip** to continue without setting a pinged role."
+    )
+    .setFooter({ text: "This step is optional." });
+
+  const roleSetupRow = new ActionRowBuilder().addComponents(
+    new ButtonBuilder()
+      .setCustomId("role_skip")
+      .setLabel("Skip")
+      .setStyle(ButtonStyle.Secondary)
+      .setEmoji("⏭️"),
+    new ButtonBuilder()
+      .setCustomId("role_set")
+      .setLabel("Set Pinged Role")
+      .setStyle(ButtonStyle.Primary)
+      .setEmoji("🔔")
   );
 
-  const sentMsg = await channel.safeSend({
-    content: "Please click the button below to setup ticket message",
-    components: [buttonRow],
+  const roleSetupMsg = await channel.send({
+    embeds: [roleSetupEmbed],
+    components: [roleSetupRow],
   });
 
-  if (!sentMsg) return;
+  const roleBtnInt = await roleSetupMsg.awaitMessageComponent({
+    componentType: ComponentType.Button,
+    filter: (i) => i.member.id === member.id,
+    time: 30000,
+  }).catch(() => null);
 
-  const btnInteraction = await channel
-    .awaitMessageComponent({
-      componentType: ComponentType.Button,
-      filter: (i) => i.customId === "ticket_btnSetup" && i.member.id === member.id && i.message.id === sentMsg.id,
-      time: 20000,
-    })
-    .catch((ex) => {});
-
-  if (!btnInteraction) return sentMsg.edit({ content: "No response received, cancelling setup", components: [] });
-
-  // display modal
-  await btnInteraction.showModal(
-    new ModalBuilder({
-      customId: "ticket-modalSetup",
-      title: "Ticket Setup",
-      components: [
-        new ActionRowBuilder().addComponents(
-          new TextInputBuilder()
-            .setCustomId("title")
-            .setLabel("Embed Title")
-            .setStyle(TextInputStyle.Short)
-            .setRequired(false)
-        ),
-        new ActionRowBuilder().addComponents(
-          new TextInputBuilder()
-            .setCustomId("description")
-            .setLabel("Embed Description")
-            .setStyle(TextInputStyle.Paragraph)
-            .setRequired(false)
-        ),
-        new ActionRowBuilder().addComponents(
-          new TextInputBuilder()
-            .setCustomId("footer")
-            .setLabel("Embed Footer")
-            .setStyle(TextInputStyle.Short)
-            .setRequired(false)
-        ),
+  if (!roleBtnInt) {
+    await roleSetupMsg.edit({
+      embeds: [
+        roleSetupEmbed.setColor("Red").setDescription("No response received, skipping role setup.")
       ],
-    })
+      components: [],
+    });
+    skipRoleSetup = true;
+  } else if (roleBtnInt.customId === "role_skip") {
+    await roleBtnInt.update({
+      embeds: [
+        roleSetupEmbed.setColor("Grey").setDescription("Role ping setup skipped.")
+      ],
+      components: [],
+    });
+    skipRoleSetup = true;
+  } else if (roleBtnInt.customId === "role_set") {
+    await roleBtnInt.update({
+      embeds: [
+        roleSetupEmbed.setDescription("Please mention the role to ping (e.g. @Support).")
+      ],
+      components: [],
+    });
+    const roleMsg = await channel.awaitMessages({
+      filter: m => m.author.id === member.id && m.mentions.roles.size > 0,
+      max: 1,
+      time: 30000
+    }).catch(() => {});
+    if (roleMsg && roleMsg.first()) {
+      pingedRole = roleMsg.first().mentions.roles.first();
+      await channel.send({
+        embeds: [
+          new EmbedBuilder()
+            .setColor(EMBED_COLORS.BOT_EMBED)
+            .setDescription(`Role <@&${pingedRole.id}> will be pinged on ticket creation.`)
+        ]
+      });
+    } else {
+      await channel.send({
+        embeds: [
+          new EmbedBuilder()
+            .setColor("Red")
+            .setDescription("No role mentioned. Skipping role ping setup.")
+        ]
+      });
+      skipRoleSetup = true;
+    }
+  }
+
+  // --- Step 2: Welcome Modal ---
+  const welcomeBtnRow = new ActionRowBuilder().addComponents(
+    new ButtonBuilder().setCustomId("ticket_welcome_btn").setLabel("Setup Welcome Message").setStyle(ButtonStyle.Primary)
+  );
+  const welcomeBtnMsg = await channel.safeSend({
+    content: "Click below to setup the ticket welcome message.",
+    components: [welcomeBtnRow],
+  });
+
+  const welcomeBtnInt = await channel.awaitMessageComponent({
+    componentType: ComponentType.Button,
+    filter: (i) => i.customId === "ticket_welcome_btn" && i.member.id === member.id && i.message.id === welcomeBtnMsg.id,
+    time: 30000,
+  }).catch(() => null);
+
+  if (!welcomeBtnInt) return welcomeBtnMsg.edit({ content: "No response received, cancelling setup", components: [] });
+
+  try {
+    await welcomeBtnInt.showModal(welcomeModal);
+  } catch (err) {
+    await welcomeBtnInt.reply({ content: "Failed to show modal. Please try again.", ephemeral: true });
+    return;
+  }
+
+  let welcomeModalInt;
+  try {
+    welcomeModalInt = await welcomeBtnInt.awaitModalSubmit({
+      time: 2 * 60 * 1000,
+      filter: (m) => m.customId === "ticket-welcome-modal" && m.member.id === member.id,
+    });
+    // Always reply to close the modal popup!
+    await welcomeModalInt.reply({ content: "✅ Welcome message received!", ephemeral: true });
+  } catch (err) {
+    await welcomeBtnInt.followUp({ content: "No response received, cancelling setup.", ephemeral: true });
+    return;
+  }
+
+  // Validate description length
+  const welcomeDesc = welcomeModalInt.fields.getTextInputValue("welcome_desc");
+  if (welcomeDesc.length > 4000) {
+    await channel.send({ content: "Embed Description must be 4000 characters or less.", ephemeral: true });
+    return;
+  }
+
+  const welcomeTitle = welcomeModalInt.fields.getTextInputValue("welcome_title");
+  const welcomeFooter = welcomeModalInt.fields.getTextInputValue("welcome_footer");
+
+  // Save to settings
+  settings.ticket.welcome_message = welcomeDesc;
+  settings.ticket.welcome_embed = {
+    title: welcomeTitle,
+    footer: welcomeFooter,
+  };
+  if (pingedRole) settings.ticket.pinged_role = pingedRole.id;
+  else delete settings.ticket.pinged_role;
+  await settings.save();
+
+  // --- Step 3: Creator Modal ---
+  const creatorModal = new ModalBuilder()
+    .setCustomId("ticket-creator-modal")
+    .setTitle("Ticket Creator Message")
+    .addComponents(
+      new ActionRowBuilder().addComponents(
+        new TextInputBuilder()
+          .setCustomId("creator_title")
+          .setLabel("Embed Title")
+          .setStyle(TextInputStyle.Short)
+          .setValue("Title for ticket creators")
+          .setRequired(false)
+      ),
+      new ActionRowBuilder().addComponents(
+        new TextInputBuilder()
+          .setCustomId("creator_desc")
+          .setLabel("Embed Description")
+          .setStyle(TextInputStyle.Paragraph)
+          .setValue("Description for ticket creator")
+          .setRequired(false)
+      ),
+      new ActionRowBuilder().addComponents(
+        new TextInputBuilder()
+          .setCustomId("creator_footer")
+          .setLabel("Embed Footer")
+          .setStyle(TextInputStyle.Short)
+          .setValue("You can only have 1 open ticket at a time!")
+          .setRequired(false)
+      )
+    );
+
+  const creatorBtnRow = new ActionRowBuilder().addComponents(
+    new ButtonBuilder().setCustomId("ticket_creator_btn").setLabel("Setup Creator Message").setStyle(ButtonStyle.Primary)
+  );
+  const creatorBtnMsg = await channel.safeSend({
+    content: "Click below to setup the ticket creator message.",
+    components: [creatorBtnRow],
+  });
+
+  const creatorBtnInt = await channel.awaitMessageComponent({
+    componentType: ComponentType.Button,
+    filter: (i) => i.customId === "ticket_creator_btn" && i.member.id === member.id && i.message.id === creatorBtnMsg.id,
+    time: 30000,
+  }).catch(() => {});
+
+  if (!creatorBtnInt) return creatorBtnMsg.edit({ content: "No response received, cancelling setup", components: [] });
+
+  await creatorBtnInt.showModal(creatorModal);
+
+  let creatorModalInt;
+  try {
+    creatorModalInt = await creatorBtnInt.awaitModalSubmit({
+      time: 2 * 60 * 1000,
+      filter: (m) => m.customId === "ticket-creator-modal" && m.member.id === member.id,
+    });
+    // Always reply to close the modal popup!
+    await creatorModalInt.reply({ content: "✅ Creator message received!", ephemeral: true });
+  } catch (err) {
+    await creatorBtnInt.followUp({ content: "No response received, cancelling setup.", ephemeral: true });
+    return;
+  }
+
+  const creatorTitle = creatorModalInt.fields.getTextInputValue("creator_title");
+  const creatorDesc = creatorModalInt.fields.getTextInputValue("creator_desc");
+  const creatorFooter = creatorModalInt.fields.getTextInputValue("creator_footer");
+
+  // Save to settings
+  settings.ticket.creator_message = {
+    title: creatorTitle,
+    description: creatorDesc,
+    footer: creatorFooter,
+  };
+  await settings.save();
+
+  // --- Step 4: Review & Confirm ---
+  let page = 0;
+  const reviewEmbeds = [
+    new EmbedBuilder()
+      .setColor(EMBED_COLORS.BOT_EMBED)
+      .setTitle(welcomeTitle || "Ticket Welcome")
+      .setDescription(welcomeDesc)
+      .setFooter({ text: welcomeFooter || "" }),
+    new EmbedBuilder()
+      .setColor(EMBED_COLORS.BOT_EMBED)
+      .setTitle(creatorTitle || "Ticket creator title")
+      .setDescription(creatorDesc || "Ticket creator description")
+      .setFooter({ text: creatorFooter || "" }),
+  ];
+
+  const reviewRow = () =>
+    new ActionRowBuilder().addComponents(
+      new ButtonBuilder()
+        .setCustomId("review_prev")
+        .setLabel("Previous")
+        .setStyle(ButtonStyle.Secondary)
+        .setDisabled(page === 0),
+      new ButtonBuilder()
+        .setCustomId("review_next")
+        .setLabel("Next")
+        .setStyle(ButtonStyle.Secondary)
+        .setDisabled(page === reviewEmbeds.length - 1),
+      new ButtonBuilder()
+        .setCustomId("review_edit")
+        .setLabel("Edit")
+        .setStyle(ButtonStyle.Primary),
+      new ButtonBuilder()
+        .setCustomId("review_cancel")
+        .setLabel("Cancel")
+        .setStyle(ButtonStyle.Danger),
+      new ButtonBuilder()
+        .setCustomId("review_confirm")
+        .setLabel("Confirm")
+        .setStyle(ButtonStyle.Success)
+    );
+
+  let reviewMsg = await channel.send({
+    embeds: [reviewEmbeds[page]],
+    components: [reviewRow()],
+    content: null,
+  });
+
+  let confirmed = false;
+  while (!confirmed) {
+    const btnInt = await reviewMsg
+      .awaitMessageComponent({
+        componentType: ComponentType.Button,
+        filter: (i) => i.member.id === member.id,
+        time: 120000,
+      })
+      .catch(() => null);
+
+    if (!btnInt) {
+      await reviewMsg.edit({
+        embeds: [
+          new EmbedBuilder()
+            .setColor("Red")
+            .setTitle("Setup Cancelled")
+            .setDescription("No response received, cancelling setup.")
+        ],
+        components: [],
+        content: null,
+      });
+      return;
+    }
+
+    if (btnInt.customId === "review_prev" && page > 0) {
+      page--;
+      await btnInt.update({ embeds: [reviewEmbeds[page]], components: [reviewRow()], content: null });
+    } else if (btnInt.customId === "review_next" && page < reviewEmbeds.length - 1) {
+      page++;
+      await btnInt.update({ embeds: [reviewEmbeds[page]], components: [reviewRow()], content: null });
+    } else if (btnInt.customId === "review_edit") {
+      await btnInt.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setColor("Yellow")
+            .setTitle("Editing Setup")
+            .setDescription("Restarting setup for editing...")
+        ],
+        ephemeral: true,
+      });
+      await reviewMsg.delete();
+      return ticketModalSetup({ guild, channel, member }, targetChannel, settings);
+    } else if (btnInt.customId === "review_cancel") {
+      await btnInt.update({
+        embeds: [
+          new EmbedBuilder()
+            .setColor("Red")
+            .setTitle("Setup Cancelled")
+            .setDescription("Ticket setup cancelled.")
+        ],
+        components: [],
+        content: null,
+      });
+      return;
+    } else if (btnInt.customId === "review_confirm") {
+      confirmed = true;
+      await btnInt.update({
+        embeds: [
+          new EmbedBuilder()
+            .setColor("Green")
+            .setTitle("Setup Confirmed")
+            .setDescription("Setup confirmed! Sending ticket creator message...")
+        ],
+        components: [],
+        content: null,
+      });
+    }
+  }
+
+  // --- Step 5: Log Channel Setup ---
+  const logPrompt = await channel.send({
+    embeds: [
+      new EmbedBuilder()
+        .setColor(EMBED_COLORS.BOT_EMBED)
+        .setTitle("Set Ticket Log Channel")
+        .setDescription("Please mention the channel where ticket logs should be sent (e.g. #logs).")
+    ]
+  });
+
+  const logMsg = await channel.awaitMessages({
+    filter: m => m.author.id === member.id && m.mentions.channels.size > 0,
+    max: 1,
+    time: 30000
+  }).catch(() => {});
+
+  let logChannel = null;
+  if (logMsg && logMsg.first()) {
+    logChannel = logMsg.first().mentions.channels.first();
+    settings.ticket.log_channel = logChannel.id;
+    await settings.save();
+
+    await channel.send({
+      embeds: [
+        new EmbedBuilder()
+          .setColor(EMBED_COLORS.BOT_EMBED)
+          .setDescription(`✅ Ticket logs will be sent to ${logChannel}`)
+      ]
+    });
+  } else {
+    await channel.send({
+      embeds: [
+        new EmbedBuilder()
+          .setColor("Red")
+          .setDescription("No log channel set. You can set it later with `/ticket log`.")
+      ]
+    });
+  }
+
+  // --- Step 6: Send Creator Message & Log ---
+  const creatorEmbed = new EmbedBuilder()
+    .setColor(EMBED_COLORS.BOT_EMBED)
+    .setTitle(creatorTitle || "Ticket creator title")
+    .setDescription(creatorDesc || "Ticket creator description")
+    .setFooter({ text: creatorFooter || "" });
+
+  // Button for users to create a ticket
+  const createTicketRow = new ActionRowBuilder().addComponents(
+    new ButtonBuilder()
+      .setCustomId("CREATE_TICKET")
+      .setLabel("🎫 Create Ticket")
+      .setStyle(ButtonStyle.Success)
   );
 
-  // receive modal input
-  const modal = await btnInteraction
-    .awaitModalSubmit({
-      time: 1 * 60 * 1000,
-      filter: (m) => m.customId === "ticket-modalSetup" && m.member.id === member.id && m.message.id === sentMsg.id,
-    })
-    .catch((ex) => {});
+  await targetChannel.send({
+    embeds: [creatorEmbed],
+    components: [createTicketRow]
+  });
 
-  if (!modal) return sentMsg.edit({ content: "No response received, cancelling setup", components: [] });
+  if (logChannel) {
+    await logChannel.send({
+      embeds: [
+        new EmbedBuilder()
+          .setColor(EMBED_COLORS.BOT_EMBED)
+          .setTitle("Ticket Creator Setup")
+          .setDescription(`Ticket creator message has been setup in ${targetChannel} by <@${member.id}>`)
+      ]
+    });
+  }
+}
 
-  await modal.reply("Setting up ticket message ...");
-  const title = modal.fields.getTextInputValue("title");
-  const description = modal.fields.getTextInputValue("description");
-  const footer = modal.fields.getTextInputValue("footer");
+// --- When creating a ticket, use the welcome message and 4-digit channel name ---
+const handleTicketOpen = async function(interaction) {
+  await interaction.deferReply({ ephemeral: true }); // Always defer immediately
 
-  // send ticket message
+  const { guild, user } = interaction;
+  const settings = await getSettings(guild);
+
+  let existing = 0;
+  try {
+    existing = getTicketChannels(guild)?.size || 0;
+  } catch {
+    existing = 0;
+  }
+  const ticketNumber = (existing + 1).toString().padStart(4, "0");
+
+  const permissionOverwrites = [
+    {
+      id: guild.roles.everyone,
+      deny: ["ViewChannel"],
+    },
+    {
+      id: user.id,
+      allow: ["ViewChannel", "SendMessages", "ReadMessageHistory"],
+    },
+    {
+      id: guild.members.me.roles.highest.id,
+      allow: ["ViewChannel", "SendMessages", "ReadMessageHistory"],
+    },
+  ];
+
+  let tktChannel;
+  try {
+    tktChannel = await guild.channels.create({
+      name: `ticket-${ticketNumber}`,
+      type: ChannelType.GuildText,
+      topic: `ticket|${user.id}|Default`,
+      permissionOverwrites,
+    });
+  } catch (err) {
+    await interaction.editReply({ content: "❌ Failed to create ticket channel. Check my permissions." });
+    return;
+  }
+
+  addTicketInfo({
+    channelId: tktChannel.id,
+    userId: user.id,
+    ticketNumber,
+    createdAt: new Date().toISOString(),
+    guildId: guild.id,
+    category: "Default"
+  });
+
+  let welcomeMsg = settings.ticket.welcome_message ||
+    `Ticket #${ticketNumber}\nHello {user}\nSupport will be with you shortly\nYou may close your ticket anytime by clicking the button below`;
+
+  welcomeMsg = welcomeMsg
+    .replace("{user}", user.toString())
+    .replace("{category}", "Default")
+    .replace("{number}", ticketNumber);
+
   const embed = new EmbedBuilder()
     .setColor(EMBED_COLORS.BOT_EMBED)
-    .setAuthor({ name: title || "Support Ticket" })
-    .setDescription(description || "Please use the button below to create a ticket")
-    .setFooter({ text: footer || "You can only have 1 open ticket at a time!" });
+    .setTitle(settings.ticket.welcome_embed?.title || "Ticket Welcome")
+    .setDescription(welcomeMsg);
 
-  const tktBtnRow = new ActionRowBuilder().addComponents(
-    new ButtonBuilder().setLabel("Open a ticket").setCustomId("TICKET_CREATE").setStyle(ButtonStyle.Success)
+  const footerText = settings.ticket.welcome_embed?.footer;
+  if (footerText) {
+    embed.setFooter({ text: footerText });
+  }
+
+  const actionRow = new ActionRowBuilder().addComponents(
+    new ButtonBuilder()
+      .setLabel("Close Ticket")
+      .setCustomId("TICKET_CLOSE")
+      .setEmoji("🔒")
+      .setStyle(ButtonStyle.Danger),
+    new ButtonBuilder()
+      .setLabel("Transcript")
+      .setCustomId("TICKET_TRANSCRIPT")
+      .setEmoji("📄")
+      .setStyle(ButtonStyle.Secondary),
+    new ButtonBuilder()
+      .setLabel("Lock")
+      .setCustomId("TICKET_LOCK")
+      .setEmoji("🔒")
+      .setStyle(ButtonStyle.Secondary),
+    new ButtonBuilder()
+      .setLabel("Pin")
+      .setCustomId("TICKET_PIN")
+      .setEmoji("📌")
+      .setStyle(ButtonStyle.Secondary),
+    new ButtonBuilder()
+      .setLabel("Owner")
+      .setCustomId("TICKET_OWNER")
+      .setEmoji("👑")
+      .setStyle(ButtonStyle.Secondary)
   );
 
-  await targetChannel.send({ embeds: [embed], components: [tktBtnRow] });
-  await modal.deleteReply();
-  await sentMsg.edit({ content: "Done! Ticket Message Created", components: [] });
-}
+  // Ping user and role if set
+  let pingContent = user.toString();
+  if (settings.ticket.pinged_role) {
+    pingContent += ` <@&${settings.ticket.pinged_role}>`;
+  }
 
-async function setupLogChannel(target, settings) {
-  if (!target.canSendEmbeds()) return `Oops! I do have have permission to send embed to ${target}`;
+  await tktChannel.send({ content: pingContent, embeds: [embed], components: [actionRow] });
 
-  settings.ticket.log_channel = target.id;
-  await settings.save();
+  await interaction.editReply({ content: `Ticket created! Go to ${tktChannel}` });
+};
 
-  return `Configuration saved! Ticket logs will be sent to ${target.toString()}`;
-}
+// --- Ticket Button Handler ---
+async function handleTicketButton(interaction) {
+  const { customId, channel, user, guild } = interaction;
 
-async function setupLimit(limit, settings) {
-  if (Number.parseInt(limit, 10) < 5) return "Ticket limit cannot be less than 5";
+  if (!isTicketChannel(channel)) {
+    return interaction.reply({ content: "This is not a ticket channel.", ephemeral: true });
+  }
 
-  settings.ticket.limit = limit;
-  await settings.save();
+  if (customId === "TICKET_CLOSE") {
+    await channel.permissionOverwrites.edit(user.id, { SendMessages: false });
+    await interaction.reply({ content: "Ticket closed. Generating transcript...", ephemeral: true });
 
-  return `Configuration saved. You can now have a maximum of \`${limit}\` open tickets`;
-}
+    const messages = await channel.messages.fetch();
+    const reversed = Array.from(messages.values()).reverse();
+    let content = "";
+    reversed.forEach((m) => {
+      content += `[${new Date(m.createdAt).toLocaleString("en-US")}] - ${m.author.username}\n`;
+      if (m.cleanContent !== "") content += `${m.cleanContent}\n`;
+      if (m.attachments.size > 0) content += `${m.attachments.map((att) => att.proxyURL).join(", ")}\n`;
+      content += "\n";
+    });
+    const logsUrl = await postToBin(content, `Ticket Logs for ${channel.name}`);
 
-async function close({ channel }, author) {
-  if (!isTicketChannel(channel)) return "This command can only be used in ticket channels";
-  const status = await closeTicket(channel, author, "Closed by a moderator");
-  if (status === "MISSING_PERMISSIONS") return "I do not have permission to close tickets";
-  if (status === "ERROR") return "An error occurred while closing the ticket";
-  return null;
-}
+    const settings = await getSettings(guild);
+    if (settings.ticket.transcript_log_channel && logsUrl) {
+      const transcriptChannel = guild.channels.cache.get(settings.ticket.transcript_log_channel);
+      if (transcriptChannel) {
+        await transcriptChannel.send({
+          content: `Transcript for ${channel.name} closed by <@${user.id}>: ${logsUrl.short}`,
+        });
+      }
+    }
 
-async function closeAll({ guild }, user) {
-  const stats = await closeAllTickets(guild, user);
-  return `Completed! Success: \`${stats[0]}\` Failed: \`${stats[1]}\``;
-}
-
-async function addToTicket({ channel }, inputId) {
-  if (!isTicketChannel(channel)) return "This command can only be used in ticket channel";
-  if (!inputId || isNaN(inputId)) return "Oops! You need to input a valid userId/roleId";
-
-  try {
-    await channel.permissionOverwrites.create(inputId, {
-      ViewChannel: true,
-      SendMessages: true,
+    await interaction.followUp({
+      content: logsUrl ? `📄 [Transcript](${logsUrl.short})\nTicket will be deleted in 10 seconds.` : "Transcript failed. Ticket will be deleted in 10 seconds.",
+      ephemeral: true,
     });
 
-    return "Done";
-  } catch (ex) {
-    return "Failed to add user/role. Did you provide a valid ID?";
+    setTimeout(() => {
+      channel.delete().catch(() => {});
+    }, 10000);
+  }
+
+  if (customId === "TICKET_TRANSCRIPT") {
+    await interaction.deferReply({ ephemeral: true });
+    const messages = await channel.messages.fetch();
+    const reversed = Array.from(messages.values()).reverse();
+    let content = "";
+    reversed.forEach((m) => {
+      content += `[${new Date(m.createdAt).toLocaleString("en-US")}] - ${m.author.username}\n`;
+      if (m.cleanContent !== "") content += `${m.cleanContent}\n`;
+      if (m.attachments.size > 0) content += `${m.attachments.map((att) => att.proxyURL).join(", ")}\n`;
+      content += "\n";
+    });
+    const logsUrl = await postToBin(content, `Ticket Logs for ${channel.name}`);
+    await interaction.editReply({
+      content: logsUrl ? `📄 [Transcript](${logsUrl.short})` : "Transcript failed.",
+    });
+  }
+
+  if (customId === "TICKET_LOCK") {
+    await channel.permissionOverwrites.edit(channel.guild.roles.everyone, { SendMessages: false });
+    await interaction.reply({ content: "🔒 Ticket locked.", ephemeral: true });
+  }
+
+  if (customId === "TICKET_PIN") {
+    const msgs = await channel.messages.fetch({ limit: 10 });
+    const firstMsg = msgs.last();
+    if (firstMsg) await firstMsg.pin().catch(() => {});
+    await interaction.reply({ content: "📌 Ticket message pinned.", ephemeral: true });
+  }
+
+  if (customId === "TICKET_OWNER") {
+    const topic = channel.topic;
+    const userId = topic?.split("|")[1];
+    if (userId) {
+      await interaction.reply({ content: `👑 Ticket owner: <@${userId}>`, ephemeral: true });
+    } else {
+      await interaction.reply({ content: "Owner not found.", ephemeral: true });
+    }
   }
 }
 
-async function removeFromTicket({ channel }, inputId) {
-  if (!isTicketChannel(channel)) return "This command can only be used in ticket channel";
-  if (!inputId || isNaN(inputId)) return "Oops! You need to input a valid userId/roleId";
+// Export the handlers
+module.exports.handleTicketOpen = handleTicketOpen;
+module.exports.handleTicketButton = handleTicketButton;
 
-  try {
-    channel.permissionOverwrites.create(inputId, {
-      ViewChannel: false,
-      SendMessages: false,
-    });
-    return "Done";
-  } catch (ex) {
-    return "Failed to remove user/role. Did you provide a valid ID?";
-  }
+// --- Check if a channel is a ticket channel ---
+function isTicketChannel(channel) {
+  return (
+    channel.type === ChannelType.GuildText &&
+    channel.name.startsWith("ticket-") && // Use regular "i"
+    channel.topic &&
+    channel.topic.startsWith("ticket|")   // Use regular "i"
+  );
 }

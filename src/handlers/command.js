@@ -35,7 +35,21 @@ module.exports = {
 
     // Owner commands
     if (cmd.category === "OWNER" && !OWNER_IDS.includes(message.author.id)) {
-      return message.safeReply("This command is only accessible to bot owners");
+      const embed = new EmbedBuilder()
+        .setColor(EMBED_COLORS.BOT_EMBED)
+        .setTitle("⛔ Owner Only Command")
+        .setDescription("This command is only accessible to bot owners.")
+        .setFooter({ text: "Need help? Join our support server!" });
+
+      const row = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+          .setLabel("🌐 Support Server")
+          .setStyle(ButtonStyle.Link)
+          .setEmoji("🛠️")
+          .setURL("https://discord.gg/M7yyGfKdKx")
+      );
+
+      return message.safeReply({ embeds: [embed], components: [row] });
     }
 
     // check user permissions

@@ -1,50 +1,71 @@
-# 📢 **TACT-BOT Changelog**
+# 📢 TACT Changelog
 
-Stay up to date with the latest features, improvements, and fixes. We’re always working to make your experience better!
+Stay informed about the latest updates, features, and fixes. We’re committed to delivering the best experience!
 
 ---
 
-## 🚀 **Stable Release: `v1.4`**
+## 🚀 Stable Release: `v1.5`
 
 **Platform Support:**  
-- Runs on **Linux**, **Windows**, and **WSL**.
-
-**✨ New Features**
-- **Bot Mention:** Get more info when mentioning the bot (e.g. `@bot-name#0001`).
-- **Bulk Moderation:**  
-  - `/kick all` — Kick all non-admins (admin/bot owner only)
-  - `/ban all` — Ban all non-admins (admin/bot owner only)
-  - `/nick all` — Set nickname for all non-admins (admin/bot owner only)
-  - `/nick all reset` — Reset nicknames for all non-admins (admin/bot owner only)
-- **Image Category:**  
-  - Added `/filter`, `/generator`, `/overlay` commands for image manipulation.
-- **Tiktok Info:**  
-  - `/botinfo` now shows TikTok info.
-- **Help Menu Revamp:**  
-  - Modern, cleaner help menu with a **Home** button for easy navigation.
-- **Presence Updater:**  
-  - Improved presence updater for better status management.
-
-**🛠️ Fixes**
-- General bug fixes and stability improvements.
-
-**🔄 Changes**
-- Help menu UI/UX improvements.
-- Changelogs menu UI/UX improvements.
-- Enhanced moderation command feedback and notifications.
+- Compatible with **Linux**, **Windows**, and **WSL**.
 
 ---
 
-## 🔜 **Coming Soon**
+### ✨ New & Improved
 
-### 🌐 **`/presence` Command** *(Bot Owner Only)*
-- Dynamically manage the bot’s presence:
+- **/botinfo Command:**  
+  Expanded details and improved clarity.
+
+- **Advanced Ticket System (Admin Only):**
+  - Fully redesigned setup with interactive modals and buttons.
+  - Customizable welcome and creator messages, with live preview/editing.
+  - Optional role pings on ticket creation.
+  - Set ticket log channels during setup or via command.
+  - Limit concurrent open tickets per user.
+  - Ticket channels now include action buttons: Close, Transcript, Lock, Pin, Owner.
+  - Automatic transcript generation and logging on close.
+  - All actions are permission-checked and admin-controlled.
+
+- **Counting System:**
+  - Improved error handling and feedback.
+  - Visual cues for correct/incorrect entries.
+
+---
+
+### 🛠️ Fixes
+
+- Resolved permission issues in ticket and counting systems.
+- Improved error messages for restricted commands.
+- Fixed rare bugs with ticket cleanup and database resets.
+- Fixed: Server data is now properly removed from all databases when the bot leaves a guild.
+
+---
+
+### 🔄 Changes
+
+- **Command Cleanup:**  
+  Removed legacy and unused commands for a streamlined experience.
+
+- **Owner-Only Commands:**  
+  Enhanced UI/UX for restricted access, making owner-only commands clearer.
+
+- **Ticket System:**  
+  - Simplified admin setup.
+  - Added detailed logging and feedback for all ticket actions.
+  - Improved database handling for ticket persistence and resets.
+
+---
+
+## 🔜 Coming Soon
+
+### 🌐 `/presence` Command *(Bot Owner Only)*
+- Manage the bot’s presence:
   - `add`: Set a new status/activity
   - `edit`: Modify an existing one
   - `remove`: Clear current presence
   - `list`: View active settings
 
-### 📥 **Mod Inbox (DM Support)**
+### 📥 Mod Inbox (DM Support)
 - Members can DM the bot for:
   - Help requests
   - Reports
@@ -52,4 +73,4 @@ Stay up to date with the latest features, improvements, and fixes. We’re alway
 
 ---
 
-💡 **More updates, features, and improvements coming soon — stay tuned!**
+💡 More updates and features are on the way — stay tuned!
