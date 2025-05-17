@@ -55,51 +55,66 @@ module.exports = {
 function createChangelogEmbeds(version, botAvatar) {
   const pages = [];
 
-  // Page 1: TACT Changelog (Title, intro, platform support)
+  // Page 1: TACT Changelog (Platform Support & Release)
   pages.push(
     new EmbedBuilder()
       .setTitle("📢 TACT Changelog")
       .setColor("#F59E0B")
       .setThumbnail(botAvatar)
       .setDescription([
-        "Stay informed about the latest updates, features, and fixes. We’re committed to delivering the best experience!",
+        "Stay up to date with the latest features, improvements, and fixes for TACT. We're dedicated to delivering the best Discord experience for your community!",
         "",
         "---",
         "",
         `## 🚀 Stable Release: \`${version}\``,
         "",
         "**Platform Support:**",
-        "- Compatible with **Linux**, **Windows**, and **WSL**.",
-        "",
-        "---",
-        "",
-        "### ✨ New & Improved",
-        "",
+        "- Fully compatible with **Linux**, **Windows**, and **WSL**.",
+      ].join("\n"))
+      .setFooter({ text: "Page 1/3 • Platform Support" })
+      .setTimestamp()
+  );
+
+  // Page 2: New & Improved
+  pages.push(
+    new EmbedBuilder()
+      .setTitle("✨ New & Improved")
+      .setColor("#22D3EE")
+      .setThumbnail(botAvatar)
+      .setDescription([
         "- **Advanced Ticket System (Admin Only):**",
-        "  - Option to set multiple manager roles during setup. These roles will have access to and can manage all tickets.",
-        "",
-        "---",
-        "",
-        "## 🔜 Coming Soon",
-        "",
+        "  - Ticket setup is now **per server** (not global), allowing unique configurations for each server.",
+        "  - Tickets are now **automatically removed from the database** when closed, keeping your data clean and organized.",
+      ].join("\n"))
+      .setFooter({ text: "Page 2/3 • New & Improved" })
+      .setTimestamp()
+  );
+
+  // Page 3: Coming Soon
+  pages.push(
+    new EmbedBuilder()
+      .setTitle("🔜 Coming Soon")
+      .setColor("#FBBF24")
+      .setThumbnail(botAvatar)
+      .setDescription([
         "### 🌐 `/presence` Command *(Bot Owner Only)*",
-        "- Manage the bot’s presence:",
+        "- Manage the bot’s presence with new subcommands:",
         "  - `add`: Set a new status/activity",
-        "  - `edit`: Modify an existing one",
-        "  - `remove`: Clear current presence",
-        "  - `list`: View active settings",
+        "  - `edit`: Modify an existing status/activity",
+        "  - `remove`: Clear the current presence",
+        "  - `list`: View all active presence settings",
         "",
         "### 📥 Mod Inbox (DM Support)",
-        "- Members can DM the bot for:",
+        "- Members will soon be able to DM the bot for:",
         "  - Help requests",
-        "  - Reports",
+        "  - Reporting issues",
         "  - Private moderation support",
         "",
         "---",
         "",
-        "💡 More updates and features are on the way — stay tuned!"
+        "💡 Even more updates and features are on the way — stay tuned and thank you for using TACT!"
       ].join("\n"))
-      .setFooter({ text: "TACT Changelog" })
+      .setFooter({ text: "Page 3/3 • Coming Soon" })
       .setTimestamp()
   );
 

@@ -11,7 +11,6 @@ const {
   ComponentType,
 } = require("discord.js");
 const { EMBED_COLORS } = require("@root/config.js");
-// REMOVE isTicketChannel from this import to avoid duplicate declaration!
 const { closeTicket, closeAllTickets, getTicketChannels } = require("@handlers/ticket");
 const { postToBin } = require("@helpers/HttpUtils");
 const { getSettings } = require("@schemas/Guild");
@@ -25,7 +24,7 @@ const TICKET_DB_PATH = path.join(__dirname, "../../../database/ticket.json");
 function ensureTicketDb() {
   if (!fs.existsSync(TICKET_DB_PATH)) {
     fs.mkdirSync(path.dirname(TICKET_DB_PATH), { recursive: true });
-    fs.writeFileSync(TICKET_DB_PATH, JSON.stringify({ tickets: [] }, null, 2));
+    fs.writeFileSync(TICKET_DB_PATH, JSON.stringify({ tickets: [], settings: {} }, null, 2));
   }
 }
 
@@ -34,21 +33,45 @@ function loadTicketDb() {
   let data;
   try {
     data = JSON.parse(fs.readFileSync(TICKET_DB_PATH, "utf8"));
-    if (!data.tickets || !Array.isArray(data.tickets)) {
-      data.tickets = [];
-    }
+    if (!data.tickets || !Array.isArray(data.tickets)) data.tickets = [];
+    if (!data.settings || typeof data.settings !== "object") data.settings = {};
   } catch {
-    data = { tickets: [] };
+    data = { tickets: [], settings: {} };
   }
   return data;
 }
 
-// Save ticket database
 function saveTicketDb(data) {
   fs.writeFileSync(TICKET_DB_PATH, JSON.stringify(data, null, 2));
 }
 
-// Add ticket info
+// --- PER SERVER & PER CHANNEL SETTINGS ---
+function getChannelSettings(guildId, channelId) {
+  const db = loadTicketDb();
+  if (!db.settings[guildId]) db.settings[guildId] = {};
+  if (!db.settings[guildId][channelId]) db.settings[guildId][channelId] = {};
+  return db.settings[guildId][channelId];
+}
+
+function saveChannelSettings(guildId, channelId, settings) {
+  const db = loadTicketDb();
+  if (!db.settings[guildId]) db.settings[guildId] = {};
+  db.settings[guildId][channelId] = settings;
+  saveTicketDb(db);
+}
+
+function removeChannelSettings(guildId, channelId) {
+  const db = loadTicketDb();
+  if (db.settings[guildId] && db.settings[guildId][channelId]) {
+    delete db.settings[guildId][channelId];
+    if (Object.keys(db.settings[guildId]).length === 0) {
+      delete db.settings[guildId];
+    }
+    saveTicketDb(db);
+  }
+}
+
+// --- Save ticket info as before ---
 function addTicketInfo(ticketInfo) {
   const db = loadTicketDb();
   if (!db.tickets) db.tickets = [];
@@ -56,9 +79,15 @@ function addTicketInfo(ticketInfo) {
   saveTicketDb(db);
 }
 
-// Reset ticket database
+function removeTicketInfo(channelId) {
+  const db = loadTicketDb();
+  if (!db.tickets) db.tickets = [];
+  db.tickets = db.tickets.filter(t => t.channelId !== channelId);
+  saveTicketDb(db);
+}
+
 function resetTicketDb() {
-  saveTicketDb({ tickets: [] });
+  saveTicketDb({ tickets: [], settings: {} });
 }
 
 /**
@@ -374,6 +403,7 @@ module.exports = {
 
 // --- Helper for log channel setup ---
 async function setupLogChannel(channel, settings) {
+  // This should be updated to use per-channel settings if needed
   settings.ticket.log_channel = channel.id;
   await settings.save();
   return `✅ Ticket logs will be sent to ${channel}`;
@@ -406,6 +436,9 @@ async function closeAll(ctx, user) {
  * @param {object} settings
  */
 async function ticketModalSetup({ guild, channel, member }, targetChannel, settings) {
+  // --- Load per-channel settings from DB ---
+  let dbSettings = getChannelSettings(guild.id, targetChannel.id);
+
   // --- Step 1: Welcome Message Embed Maker ---
   const welcomeModal = new ModalBuilder()
     .setCustomId("ticket-welcome-modal")
@@ -504,6 +537,7 @@ async function ticketModalSetup({ guild, channel, member }, targetChannel, setti
     }).catch(() => {});
     if (roleMsg && roleMsg.first()) {
       pingedRole = roleMsg.first().mentions.roles.first();
+      dbSettings.pinged_role = pingedRole.id;
       await channel.send({
         embeds: [
           new EmbedBuilder()
@@ -522,6 +556,7 @@ async function ticketModalSetup({ guild, channel, member }, targetChannel, setti
       skipRoleSetup = true;
     }
   }
+  saveChannelSettings(guild.id, targetChannel.id, dbSettings);
 
   // --- Step 1.7: Optional MANAGER ROLES SETUP ---
   let managerRoles = [];
@@ -547,6 +582,7 @@ async function ticketModalSetup({ guild, channel, member }, targetChannel, setti
     const msg = managerRoleCollector.first();
     if (msg.content.trim().toLowerCase() !== "skip" && msg.mentions.roles.size > 0) {
       managerRoles = msg.mentions.roles.map(role => role.id);
+      dbSettings.manager_roles = managerRoles;
       await channel.send({
         embeds: [
           new EmbedBuilder()
@@ -572,17 +608,13 @@ async function ticketModalSetup({ guild, channel, member }, targetChannel, setti
       ]
     });
   }
-
-  // Save to settings
-  if (managerRoles.length > 0) settings.ticket.manager_roles = managerRoles;
-  else delete settings.ticket.manager_roles;
-  await settings.save();
+  saveChannelSettings(guild.id, targetChannel.id, dbSettings);
 
   // --- Step 2: Welcome Modal ---
   const welcomeBtnRow = new ActionRowBuilder().addComponents(
     new ButtonBuilder().setCustomId("ticket_welcome_btn").setLabel("Setup Welcome Message").setStyle(ButtonStyle.Primary)
   );
-  const welcomeBtnMsg = await channel.safeSend({
+  const welcomeBtnMsg = await channel.send({
     content: "Click below to setup the ticket welcome message.",
     components: [welcomeBtnRow],
   });
@@ -615,7 +647,6 @@ async function ticketModalSetup({ guild, channel, member }, targetChannel, setti
     return;
   }
 
-  // Validate description length
   const welcomeDesc = welcomeModalInt.fields.getTextInputValue("welcome_desc");
   if (welcomeDesc.length > 4000) {
     await channel.send({ content: "Embed Description must be 4000 characters or less.", ephemeral: true });
@@ -625,15 +656,10 @@ async function ticketModalSetup({ guild, channel, member }, targetChannel, setti
   const welcomeTitle = welcomeModalInt.fields.getTextInputValue("welcome_title");
   const welcomeFooter = welcomeModalInt.fields.getTextInputValue("welcome_footer");
 
-  // Save to settings
-  settings.ticket.welcome_message = welcomeDesc;
-  settings.ticket.welcome_embed = {
-    title: welcomeTitle,
-    footer: welcomeFooter,
-  };
-  if (pingedRole) settings.ticket.pinged_role = pingedRole.id;
-  else delete settings.ticket.pinged_role;
-  await settings.save();
+  dbSettings.guild_id = guild.id;
+  dbSettings.welcome_message = welcomeDesc;
+  dbSettings.welcome_embed = { title: welcomeTitle, footer: welcomeFooter };
+  saveChannelSettings(guild.id, targetChannel.id, dbSettings);
 
   // --- Step 3: Creator Modal ---
   const creatorModal = new ModalBuilder()
@@ -669,7 +695,7 @@ async function ticketModalSetup({ guild, channel, member }, targetChannel, setti
   const creatorBtnRow = new ActionRowBuilder().addComponents(
     new ButtonBuilder().setCustomId("ticket_creator_btn").setLabel("Setup Creator Message").setStyle(ButtonStyle.Primary)
   );
-  const creatorBtnMsg = await channel.safeSend({
+  const creatorBtnMsg = await channel.send({
     content: "Click below to setup the ticket creator message.",
     components: [creatorBtnRow],
   });
@@ -701,13 +727,12 @@ async function ticketModalSetup({ guild, channel, member }, targetChannel, setti
   const creatorDesc = creatorModalInt.fields.getTextInputValue("creator_desc");
   const creatorFooter = creatorModalInt.fields.getTextInputValue("creator_footer");
 
-  // Save to settings
-  settings.ticket.creator_message = {
+  dbSettings.creator_message = {
     title: creatorTitle,
     description: creatorDesc,
     footer: creatorFooter,
   };
-  await settings.save();
+  saveChannelSettings(guild.id, targetChannel.id, dbSettings);
 
   // --- Step 4: Review & Confirm ---
   let page = 0;
@@ -844,8 +869,8 @@ async function ticketModalSetup({ guild, channel, member }, targetChannel, setti
   let logChannel = null;
   if (logMsg && logMsg.first()) {
     logChannel = logMsg.first().mentions.channels.first();
-    settings.ticket.log_channel = logChannel.id;
-    await settings.save();
+    dbSettings.log_channel = logChannel.id;
+    saveChannelSettings(guild.id, targetChannel.id, dbSettings);
 
     await channel.send({
       embeds: [
@@ -898,10 +923,11 @@ async function ticketModalSetup({ guild, channel, member }, targetChannel, setti
 
 // --- When creating a ticket, use the welcome message and 4-digit channel name ---
 const handleTicketOpen = async function(interaction) {
-  await interaction.deferReply({ ephemeral: true }); // Always defer immediately
+  await interaction.deferReply({ ephemeral: true });
 
   const { guild, user } = interaction;
-  const settings = await getSettings(guild);
+  const setupChannelId = interaction.channelId; // The channel where the button was pressed
+  const dbSettings = getChannelSettings(guild.id, setupChannelId);
 
   let existing = 0;
   try {
@@ -928,8 +954,8 @@ const handleTicketOpen = async function(interaction) {
   ];
 
   // Add manager roles if set
-  if (settings.ticket.manager_roles && Array.isArray(settings.ticket.manager_roles)) {
-    for (const roleId of settings.ticket.manager_roles) {
+  if (dbSettings.manager_roles && Array.isArray(dbSettings.manager_roles)) {
+    for (const roleId of dbSettings.manager_roles) {
       permissionOverwrites.push({
         id: roleId,
         allow: ["ViewChannel", "SendMessages", "ReadMessageHistory", "ManageChannels", "ManageMessages"],
@@ -956,10 +982,10 @@ const handleTicketOpen = async function(interaction) {
     ticketNumber,
     createdAt: new Date().toISOString(),
     guildId: guild.id,
-    category: "Default"
+    setupChannelId // Save which panel/setup this ticket belongs to
   });
 
-  let welcomeMsg = settings.ticket.welcome_message ||
+  let welcomeMsg = dbSettings.welcome_message ||
     `Ticket #${ticketNumber}\nHello {user}\nSupport will be with you shortly\nYou may close your ticket anytime by clicking the button below`;
 
   welcomeMsg = welcomeMsg
@@ -969,10 +995,10 @@ const handleTicketOpen = async function(interaction) {
 
   const embed = new EmbedBuilder()
     .setColor(EMBED_COLORS.BOT_EMBED)
-    .setTitle(settings.ticket.welcome_embed?.title || "Ticket Welcome")
+    .setTitle(dbSettings.welcome_embed?.title || "Ticket Welcome")
     .setDescription(welcomeMsg);
 
-  const footerText = settings.ticket.welcome_embed?.footer;
+  const footerText = dbSettings.welcome_embed?.footer;
   if (footerText) {
     embed.setFooter({ text: footerText });
   }
@@ -1007,8 +1033,8 @@ const handleTicketOpen = async function(interaction) {
 
   // Ping user and role if set
   let pingContent = user.toString();
-  if (settings.ticket.pinged_role) {
-    pingContent += ` <@&${settings.ticket.pinged_role}>`;
+  if (dbSettings.pinged_role) {
+    pingContent += ` <@&${dbSettings.pinged_role}>`;
   }
 
   await tktChannel.send({ content: pingContent, embeds: [embed], components: [actionRow] });
@@ -1053,6 +1079,9 @@ async function handleTicketButton(interaction) {
       content: logsUrl ? `📄 [Transcript](${logsUrl.short})\nTicket will be deleted in 10 seconds.` : "Transcript failed. Ticket will be deleted in 10 seconds.",
       ephemeral: true,
     });
+
+    // Remove ticket from database
+    removeTicketInfo(channel.id);
 
     setTimeout(() => {
       channel.delete().catch(() => {});
@@ -1107,8 +1136,8 @@ module.exports.handleTicketButton = handleTicketButton;
 function isTicketChannel(channel) {
   return (
     channel.type === ChannelType.GuildText &&
-    channel.name.startsWith("ticket-") && // Use regular "i"
+    channel.name.startsWith("ticket-") &&
     channel.topic &&
-    channel.topic.startsWith("ticket|")   // Use regular "i"
+    channel.topic.startsWith("ticket|")
   );
 }

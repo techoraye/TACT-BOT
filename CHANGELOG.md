@@ -1,37 +1,39 @@
 # 📢 TACT Changelog
 
-Stay informed about the latest updates, features, and fixes. We’re committed to delivering the best experience!
+Stay up to date with the latest features, improvements, and fixes for TACT. We're dedicated to delivering the best Discord experience for your community!
 
 ---
 
-## 🚀 Stable Release: `v1.5.1`
+## 🚀 Stable Release: `v1.5.2`
 
 **Platform Support:**  
-- Compatible with **Linux**, **Windows**, and **WSL**.
+- Fully compatible with **Linux**, **Windows**, and **WSL**.
 
 ---
 
 ### ✨ New & Improved
 
 - **Advanced Ticket System (Admin Only):**
-  - Option to set multiple manager roles during setup. These roles will have access to and can manage all tickets.
+  - Ticket setup is now **per server** (not global), allowing unique configurations for each server.
+  - Tickets are now **automatically removed from the database** when closed, keeping your data clean and organized.
+
 ---
 
 ## 🔜 Coming Soon
 
 ### 🌐 `/presence` Command *(Bot Owner Only)*
-- Manage the bot’s presence:
+- Manage the bot’s presence with new subcommands:
   - `add`: Set a new status/activity
-  - `edit`: Modify an existing one
-  - `remove`: Clear current presence
-  - `list`: View active settings
+  - `edit`: Modify an existing status/activity
+  - `remove`: Clear the current presence
+  - `list`: View all active presence settings
 
 ### 📥 Mod Inbox (DM Support)
-- Members can DM the bot for:
+- Members will soon be able to DM the bot for:
   - Help requests
-  - Reports
+  - Reporting issues
   - Private moderation support
 
 ---
 
-💡 More updates and features are on the way — stay tuned!
+💡 Even more updates and features are on the way — stay tuned and thank you for using TACT!

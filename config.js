@@ -5,7 +5,7 @@ module.exports = {
   LOG_CHANNEL_ID: "1363598444387631104",
   SUPPORT_SERVER: "https://discord.gg/M7yyGfKdKx", // Your bot support server
   INVITE_URL: "https://discord.com/oauth2/authorize?client_id=1351789668030480394",
-  STABLE_VERSION: "1.5.1", // Stable version of the bot
+  STABLE_VERSION: "1.5.2", // Stable version of the bot
   PREFIX_COMMANDS: {
     ENABLED: true, // Enable/Disable prefix commands
     DEFAULT_PREFIX: "*", // Default prefix for the bot (changed to a typical prefix)
