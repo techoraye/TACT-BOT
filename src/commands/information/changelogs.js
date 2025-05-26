@@ -82,9 +82,9 @@ function createChangelogEmbeds(version, botAvatar) {
       .setColor("#22D3EE")
       .setThumbnail(botAvatar)
       .setDescription([
-        "- **Advanced Ticket System (Admin Only):**",
-        "  - Ticket setup is now **per server** (not global), allowing unique configurations for each server.",
-        "  - Tickets are now **automatically removed from the database** when closed, keeping your data clean and organized.",
+        "- **Rate Limit Fixes**: Resolved issues causing the bot to hit Discord's rate limits, ensuring smoother operation and better reliability.",
+        "- **Optimized Moderation Commands**: Removed unnecessary subcommands and improved efficiency to prevent excessive API calls.",
+        "- **Enhanced Stability**: Various under-the-hood improvements to reduce crashes and improve performance.",
       ].join("\n"))
       .setFooter({ text: "Page 2/3 • New & Improved" })
       .setTimestamp()
@@ -99,20 +99,21 @@ function createChangelogEmbeds(version, botAvatar) {
       .setDescription([
         "### 🌐 `/presence` Command *(Bot Owner Only)*",
         "- Manage the bot’s presence with new subcommands:",
-        "  - `add`: Set a new status/activity",
-        "  - `edit`: Modify an existing status/activity",
-        "  - `remove`: Clear the current presence",
-        "  - `list`: View all active presence settings",
+        "  - `add`: Set a new status/activity.",
+        "  - `edit`: Modify an existing status/activity.",
+        "  - `remove`: Clear the current presence.",
+        "  - `list`: View all active presence settings.",
         "",
         "### 📥 Mod Inbox (DM Support)",
         "- Members will soon be able to DM the bot for:",
-        "  - Help requests",
-        "  - Reporting issues",
-        "  - Private moderation support",
+        "  - Help requests.",
+        "  - Reporting issues.",
+        "  - Private moderation support.",
         "",
         "---",
         "",
-        "💡 Even more updates and features are on the way — stay tuned and thank you for using TACT!"
+        "💡 **Even more updates and features are on the way!**",
+        "Thank you for using TACT and being part of our journey to deliver the best Discord experience.",
       ].join("\n"))
       .setFooter({ text: "Page 3/3 • Coming Soon" })
       .setTimestamp()

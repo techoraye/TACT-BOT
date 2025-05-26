@@ -29,7 +29,7 @@ function startPresenceUpdater(client) {
     }
 
     index++;
-  }, 10_000);
+  }, 35_000); // DON'T DO LESS THAN 30 SECONDS
 }
 
 module.exports = { startPresenceUpdater };
