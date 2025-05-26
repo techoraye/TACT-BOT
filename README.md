@@ -17,7 +17,7 @@
 
 To invite TACT to your server:
 
-🔗 [Invite Link](https://discordapp.com/oauth2/authorize?client_id=1376465691221430372)
+🔗 [Invite Link](https://discordapp.com/oauth2/authorize?client_id=1376465691221430372))
 
 ---
 
