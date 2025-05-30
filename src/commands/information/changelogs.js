@@ -75,18 +75,17 @@ function createChangelogEmbeds(version, botAvatar) {
       .setTimestamp()
   );
 
-  // Page 2: New & Improved
+  // Page 2: Fixes
   pages.push(
     new EmbedBuilder()
-      .setTitle("✨ New & Improved")
+      .setTitle("🐞 Fixes")
       .setColor("#22D3EE")
       .setThumbnail(botAvatar)
       .setDescription([
-        "- **Rate Limit Fixes**: Resolved issues causing the bot to hit Discord's rate limits, ensuring smoother operation and better reliability.",
-        "- **Optimized Moderation Commands**: Removed unnecessary subcommands and improved efficiency to prevent excessive API calls.",
-        "- **Enhanced Stability**: Various under-the-hood improvements to reduce crashes and improve performance.",
+        "- Fixed `/clear` command spamming the Discord API by properly deferring interactions.",
+        "- Prevented \"Unknown Message\" errors during message deletions.",
       ].join("\n"))
-      .setFooter({ text: "Page 2/3 • New & Improved" })
+      .setFooter({ text: "Page 2/3 • Fixes" })
       .setTimestamp()
   );
 
@@ -97,18 +96,14 @@ function createChangelogEmbeds(version, botAvatar) {
       .setColor("#FBBF24")
       .setThumbnail(botAvatar)
       .setDescription([
-        "### 🌐 `/presence` Command *(Bot Owner Only)*",
-        "- Manage the bot’s presence with new subcommands:",
-        "  - `add`: Set a new status/activity.",
-        "  - `edit`: Modify an existing status/activity.",
-        "  - `remove`: Clear the current presence.",
-        "  - `list`: View all active presence settings.",
-        "",
         "### 📥 Mod Inbox (DM Support)",
         "- Members will soon be able to DM the bot for:",
         "  - Help requests.",
         "  - Reporting issues.",
         "  - Private moderation support.",
+        "",
+        "### 🤖 AI Integration",
+        "- Smarter moderation powered by AI is on its way!",
         "",
         "---",
         "",

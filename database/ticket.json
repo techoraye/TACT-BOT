@@ -1,1 +1,112 @@
-{}
+{
+  "tickets": [],
+  "settings": {
+    "1352089320093122561": {
+      "1369829608945487882": {
+        "pinged_role": "1371578611890651137",
+        "manager_roles": [
+          "1371578611890651137",
+          "1371407916581523468",
+          "1369443343515389972",
+          "1369442372408180757",
+          "1369442992796074075",
+          "1371922931172507678"
+        ],
+        "guild_id": "1352089320093122561",
+        "welcome_message": "Hi there! To help us assist you quickly and effectively, please answer the following questions:\n\n---\n\n**1️⃣ What type of help do you need?**\nPlease specify the category that best fits your issue:\n➤ Technical Support\n➤ Account or Access Issue\n➤ Feature Question\n➤ Bug Report\n➤ Other (please describe)\n\n---\n\n**2️⃣ Can you describe your issue or question in detail?**\nInclude any helpful information such as:\n\n* What you were trying to do\n* Any error messages or screenshots (if applicable)\n* Steps to reproduce the issue\n\n---\n\n**3️⃣ How urgent is your request?**\n🔹 Low – Just a question or minor issue\n🔸 Medium – Needs attention but not time-sensitive\n🔴 High – Urgent or blocking usage\n\n---\n\nOnce submitted, our support team will review your request and respond as soon as possible. Thank you for your patience and for reaching out! 💬",
+        "welcome_embed": {
+          "title": "📩 Help Center – Support Request Form",
+          "footer": "You can only have 1 open ticket at a time!"
+        },
+        "creator_message": {
+          "title": "Need help or you found a bug? Create a ticket.",
+          "description": "To create a ticket use the Create ticket button.",
+          "footer": "You can only have 1 open ticket at a time!"
+        },
+        "log_channel": "1371554088340295844"
+      },
+      "1371552766069182474": {
+        "pinged_role": "1371416000054038661",
+        "manager_roles": [
+          "1371416000054038661"
+        ],
+        "guild_id": "1352089320093122561",
+        "welcome_message": "Thank you for sharing your content! Please complete the following details so we can properly review your video:\n\n---\n\n**1️⃣ Title of the Video**\n\n> *Enter a clear and descriptive title.*\n\n---\n\n**2️⃣ Relevant Tags**\n\n> *List keywords or tags that describe your video (e.g., #funny, #tutorial, #gaming).*\n\n---\n\n**3️⃣ Music or Sound Used**\n\n> *Specify any background music, sound effects, or audio tracks used in your video (include credits if applicable).*\n\n---\n\n**4️⃣ Submit Your Video**\n\n> *Attach the file directly or provide a valid link (e.g., YouTube, Google Drive, Dropbox).*\n\n---\n\n📥 Once submitted, our team will review your video and get back to you shortly. Thank you for your contribution!",
+        "welcome_embed": {
+          "title": "🎬 Video Submission Form",
+          "footer": "You can only have 1 open ticket at a time!"
+        },
+        "creator_message": {
+          "title": "Video Submission",
+          "description": "To create a ticket use the Create ticket button.",
+          "footer": "You can only have 1 open ticket at a time!"
+        },
+        "log_channel": "1371554088340295844"
+      },
+      "1371555386448019507": {
+        "pinged_role": "1369442992796074075",
+        "manager_roles": [
+          "1371407916581523468",
+          "1369443343515389972",
+          "1369442372408180757",
+          "1369442992796074075",
+          "1371922931172507678"
+        ],
+        "guild_id": "1352089320093122561",
+        "welcome_message": "Interested in becoming a server admin? Please complete the application below with thoughtful and honest responses. This helps us understand your fit for the team.\n\n---\n\n**1️⃣ Why are you interested in becoming an admin?**\n\n> *Tell us what motivates you to join the staff team and what draws you to this role.*\n\n---\n\n**2️⃣ What is your experience with server moderation or management?**\n\n> *Include any relevant roles you've held, skills you've developed, and tools you're familiar with (e.g., bots, moderation systems, etc.).*\n\n---\n\n**3️⃣ How do you plan to contribute to the server community?**\n\n> *Share your ideas, strengths, and how you intend to support and improve the server.*\n\n---\n\n📬 Your application will be reviewed by the team, and we’ll reach out to you as soon as a decision has been made. Thanks for your interest!",
+        "welcome_embed": {
+          "title": "🛡️ Admin Application Form",
+          "footer": "You can only have 1 open ticket at a time!"
+        },
+        "creator_message": {
+          "title": "Admin Submission",
+          "description": "To create a ticket use the Create ticket button.",
+          "footer": "You can only have 1 open ticket at a time!"
+        },
+        "log_channel": "1371554088340295844"
+      },
+      "1371557318227005600": {
+        "pinged_role": "1369442992796074075",
+        "manager_roles": [
+          "1369442992796074075",
+          "1369443343515389972",
+          "1371407916581523468",
+          "1371922931172507678"
+        ],
+        "guild_id": "1352089320093122561",
+        "welcome_message": "Thank you for your interest in becoming a moderator! Please fill out the following questions to help us understand your qualifications and how you can support the community.\n\n---\n\n**1️⃣ Why do you want to become a moderator?**\n\n> *Share your motivation for applying and what interests you about this role.*\n\n---\n\n**2️⃣ What is your experience with moderation?**\n\n> *Include any past roles, skills, or tools you've used (e.g., Discord bots, handling reports, enforcing rules, etc.).*\n\n---\n\n**3️⃣ How do you plan to help and support the server?**\n\n> *Tell us how you’ll contribute to maintaining a positive, safe, and active community.*\n\n---\n\n📬 Once submitted, our team will review your application and contact you if we move forward. Thanks again for applying!",
+        "welcome_embed": {
+          "title": "🧰 Moderator Application Form",
+          "footer": "You can only have 1 open ticket at a time!"
+        },
+        "creator_message": {
+          "title": "Moderator Submission",
+          "description": "To create a ticket use the Create ticket button.",
+          "footer": "You can only have 1 open ticket at a time!"
+        },
+        "log_channel": "1371554088340295844"
+      },
+      "1371557553175265393": {
+        "pinged_role": "1369442992796074075",
+        "manager_roles": [
+          "1369442992796074075",
+          "1369443343515389972",
+          "1369442372408180757",
+          "1371407916581523468"
+        ],
+        "guild_id": "1352089320093122561",
+        "welcome_message": "Thanks for your interest in joining the Support Team! Please answer the questions below to help us better understand your skills and how you can contribute to the community.\n\n---\n\n**1️⃣ Why do you want to join the Support Team?**\n\n> *Explain your motivation for applying and why you’re interested in helping others in this role.*\n\n---\n\n**2️⃣ What experience do you have with providing support?**\n\n> *Mention any relevant roles, platforms, or situations where you’ve helped others—whether in tech support, customer service, or community assistance.*\n\n---\n\n**3️⃣ How do you plan to assist the community?**\n\n> *Share how you would contribute to answering questions, resolving issues, and fostering a welcoming environment.*\n\n---\n\n📬 Your application will be reviewed by the team, and we’ll get back to you shortly. Thank you for taking the initiative to support our community!",
+        "welcome_embed": {
+          "title": "🎧 Support Team Application Form",
+          "footer": "You can only have 1 open ticket at a time!"
+        },
+        "creator_message": {
+          "title": "Support Submission",
+          "description": "To create a ticket use the Create ticket button.",
+          "footer": "You can only have 1 open ticket at a time!"
+        },
+        "log_channel": "1371554088340295844"
+      }
+    }
+  }
+}

@@ -1,0 +1,284 @@
+{"level":30,"time":1748588990591,"pid":15384,"hostname":"Math-PC","msg":"Validating config file and environment variables"}
+{"level":30,"time":1748588990839,"pid":15384,"hostname":"Math-PC","msg":"VersionCheck: Your discord bot is up to date"}
+{"level":30,"time":1748588990839,"pid":15384,"hostname":"Math-PC","msg":"Connecting to MongoDb..."}
+{"level":30,"time":1748588991363,"pid":15384,"hostname":"Math-PC","msg":"Mongoose: Database connection established"}
+{"level":30,"time":1748588991744,"pid":15384,"hostname":"Math-PC","msg":"Loading commands..."}
+{"level":20,"time":1748588991841,"pid":15384,"hostname":"Math-PC","msg":"Skipping command pay. Disabled!"}
+{"level":20,"time":1748588992285,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command checkstatus. Disabled!"}
+{"level":20,"time":1748588992289,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command avatar. Disabled!"}
+{"level":20,"time":1748588992291,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command botstats. Disabled!"}
+{"level":20,"time":1748588992293,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command channelinfo. Disabled!"}
+{"level":20,"time":1748588992295,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command emojiinfo. Disabled!"}
+{"level":20,"time":1748588992302,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command guildinfo. Disabled!"}
+{"level":20,"time":1748588992303,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command uptime. Disabled!"}
+{"level":20,"time":1748588992304,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command userinfo. Disabled!"}
+{"level":20,"time":1748588992306,"pid":15384,"hostname":"Math-PC","msg":"Skipping command bot. Disabled!"}
+{"level":20,"time":1748588992308,"pid":15384,"hostname":"Math-PC","msg":"Skipping command info. Disabled!"}
+{"level":20,"time":1748588992310,"pid":15384,"hostname":"Math-PC","msg":"Skipping Command addinvites. Category INVITE is disabled"}
+{"level":20,"time":1748588992311,"pid":15384,"hostname":"Math-PC","msg":"Skipping Command invitecodes. Category INVITE is disabled"}
+{"level":20,"time":1748588992312,"pid":15384,"hostname":"Math-PC","msg":"Skipping Command inviter. Category INVITE is disabled"}
+{"level":20,"time":1748588992313,"pid":15384,"hostname":"Math-PC","msg":"Skipping Command inviterank. Category INVITE is disabled"}
+{"level":20,"time":1748588992314,"pid":15384,"hostname":"Math-PC","msg":"Skipping Command inviteranks. Category INVITE is disabled"}
+{"level":20,"time":1748588992315,"pid":15384,"hostname":"Math-PC","msg":"Skipping Command invites. Category INVITE is disabled"}
+{"level":20,"time":1748588992316,"pid":15384,"hostname":"Math-PC","msg":"Skipping Command invitesimport. Category INVITE is disabled"}
+{"level":20,"time":1748588992317,"pid":15384,"hostname":"Math-PC","msg":"Skipping Command invitetracker. Category INVITE is disabled"}
+{"level":20,"time":1748588992318,"pid":15384,"hostname":"Math-PC","msg":"Skipping Command resetinvites. Category INVITE is disabled"}
+{"level":20,"time":1748588992322,"pid":15384,"hostname":"Math-PC","msg":"Skipping command clear. Disabled!"}
+{"level":20,"time":1748588992325,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command deafen. Disabled!"}
+{"level":20,"time":1748588992326,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command disconnect. Disabled!"}
+{"level":20,"time":1748588992327,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command move. Disabled!"}
+{"level":20,"time":1748588992328,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command purge. Disabled!"}
+{"level":20,"time":1748588992329,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command purgeattach. Disabled!"}
+{"level":20,"time":1748588992330,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command purgebots. Disabled!"}
+{"level":20,"time":1748588992330,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command purgelinks. Disabled!"}
+{"level":20,"time":1748588992331,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command purgetoken. Disabled!"}
+{"level":20,"time":1748588992332,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command purgeuser. Disabled!"}
+{"level":20,"time":1748588992333,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command undeafen. Disabled!"}
+{"level":20,"time":1748588992334,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command vmute. Disabled!"}
+{"level":20,"time":1748588992336,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command vunmute. Disabled!"}
+{"level":20,"time":1748588992342,"pid":15384,"hostname":"Math-PC","msg":"Skipping command purge. Disabled!"}
+{"level":20,"time":1748588992344,"pid":15384,"hostname":"Math-PC","msg":"Skipping command voice. Disabled!"}
+{"level":20,"time":1748588992352,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command serverban. Disabled!"}
+{"level":20,"time":1748588992353,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command dev. Disabled!"}
+{"level":20,"time":1748588992354,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command leaveserver. Disabled!"}
+{"level":20,"time":1748588992355,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command listinvites. Disabled!"}
+{"level":20,"time":1748588992356,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command listservers. Disabled!"}
+{"level":20,"time":1748588992358,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command potential. Disabled!"}
+{"level":20,"time":1748588992359,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command restart. Disabled!"}
+{"level":50,"time":1748588992360,"pid":15384,"hostname":"Math-PC","msg":"Failed to load C:\\Users\\rapid\\Documents\\GitHub\\TACT-BOT\\src\\commands\\owner\\serverban.js Reason: Command serverban already registered"}
+{"level":20,"time":1748588992363,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command commandpath. Disabled!"}
+{"level":20,"time":1748588992364,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command shutdown. Disabled!"}
+{"level":20,"time":1748588992364,"pid":15384,"hostname":"Math-PC","msg":"Skipping command add. Disabled!"}
+{"level":20,"time":1748588992364,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command add. Disabled!"}
+{"level":20,"time":1748588992364,"pid":15384,"hostname":"Math-PC","msg":"Skipping command list. Disabled!"}
+{"level":20,"time":1748588992364,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command list. Disabled!"}
+{"level":20,"time":1748588992365,"pid":15384,"hostname":"Math-PC","msg":"Skipping command remove. Disabled!"}
+{"level":20,"time":1748588992365,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command remove. Disabled!"}
+{"level":20,"time":1748588992377,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command ipinfo. Disabled!"}
+{"level":20,"time":1748588992378,"pid":15384,"hostname":"Math-PC","msg":"Skipping slash command macinfo. Disabled!"}
+{"level":30,"time":1748588992385,"pid":15384,"hostname":"Math-PC","msg":"Loaded 91 commands"}
+{"level":30,"time":1748588992385,"pid":15384,"hostname":"Math-PC","msg":"Loaded 66 slash commands"}
+{"level":30,"time":1748588992385,"pid":15384,"hostname":"Math-PC","msg":"Loading contexts..."}
+{"level":30,"time":1748588992388,"pid":15384,"hostname":"Math-PC","msg":"Loaded 1 USER contexts"}
+{"level":30,"time":1748588992388,"pid":15384,"hostname":"Math-PC","msg":"Loaded 0 MESSAGE contexts"}
+{"level":30,"time":1748588992388,"pid":15384,"hostname":"Math-PC","msg":"Loading events..."}
+{"level":30,"time":1748588992422,"pid":15384,"hostname":"Math-PC","msg":"Loaded 14 events. Success (14) Failed (0)"}
+{"level":30,"time":1748588992525,"pid":15384,"hostname":"Math-PC","msg":"✅ Logged in as TACT V2#9915"}
+{"level":30,"time":1748588992525,"pid":15384,"hostname":"Math-PC","msg":"Logged in as TACT V2#9915! (1376465691221430372)"}
+{"level":30,"time":1748588992680,"pid":15384,"hostname":"Math-PC","msg":"✅ Loaded 75 slash commands."}
+{"level":30,"time":1748588992932,"pid":15384,"hostname":"Math-PC","msg":"Successfully registered interactions"}
+{"level":30,"time":1748588993258,"pid":15384,"hostname":"Math-PC","msg":"✅ Slash commands registered."}
+{"level":30,"time":1748589047694,"pid":17136,"hostname":"Math-PC","msg":"Validating config file and environment variables"}
+{"level":30,"time":1748589047918,"pid":17136,"hostname":"Math-PC","msg":"VersionCheck: Your discord bot is up to date"}
+{"level":30,"time":1748589047918,"pid":17136,"hostname":"Math-PC","msg":"Connecting to MongoDb..."}
+{"level":30,"time":1748589048309,"pid":17136,"hostname":"Math-PC","msg":"Mongoose: Database connection established"}
+{"level":30,"time":1748589048823,"pid":17136,"hostname":"Math-PC","msg":"Loading commands..."}
+{"level":20,"time":1748589048883,"pid":17136,"hostname":"Math-PC","msg":"Skipping command pay. Disabled!"}
+{"level":20,"time":1748589049181,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command checkstatus. Disabled!"}
+{"level":20,"time":1748589049183,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command avatar. Disabled!"}
+{"level":20,"time":1748589049185,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command botstats. Disabled!"}
+{"level":20,"time":1748589049187,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command channelinfo. Disabled!"}
+{"level":20,"time":1748589049188,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command emojiinfo. Disabled!"}
+{"level":20,"time":1748589049195,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command guildinfo. Disabled!"}
+{"level":20,"time":1748589049195,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command uptime. Disabled!"}
+{"level":20,"time":1748589049197,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command userinfo. Disabled!"}
+{"level":20,"time":1748589049198,"pid":17136,"hostname":"Math-PC","msg":"Skipping command bot. Disabled!"}
+{"level":20,"time":1748589049200,"pid":17136,"hostname":"Math-PC","msg":"Skipping command info. Disabled!"}
+{"level":20,"time":1748589049201,"pid":17136,"hostname":"Math-PC","msg":"Skipping Command addinvites. Category INVITE is disabled"}
+{"level":20,"time":1748589049202,"pid":17136,"hostname":"Math-PC","msg":"Skipping Command invitecodes. Category INVITE is disabled"}
+{"level":20,"time":1748589049203,"pid":17136,"hostname":"Math-PC","msg":"Skipping Command inviter. Category INVITE is disabled"}
+{"level":20,"time":1748589049204,"pid":17136,"hostname":"Math-PC","msg":"Skipping Command inviterank. Category INVITE is disabled"}
+{"level":20,"time":1748589049205,"pid":17136,"hostname":"Math-PC","msg":"Skipping Command inviteranks. Category INVITE is disabled"}
+{"level":20,"time":1748589049205,"pid":17136,"hostname":"Math-PC","msg":"Skipping Command invites. Category INVITE is disabled"}
+{"level":20,"time":1748589049206,"pid":17136,"hostname":"Math-PC","msg":"Skipping Command invitesimport. Category INVITE is disabled"}
+{"level":20,"time":1748589049207,"pid":17136,"hostname":"Math-PC","msg":"Skipping Command invitetracker. Category INVITE is disabled"}
+{"level":20,"time":1748589049208,"pid":17136,"hostname":"Math-PC","msg":"Skipping Command resetinvites. Category INVITE is disabled"}
+{"level":20,"time":1748589049211,"pid":17136,"hostname":"Math-PC","msg":"Skipping command clear. Disabled!"}
+{"level":20,"time":1748589049213,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command deafen. Disabled!"}
+{"level":20,"time":1748589049214,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command disconnect. Disabled!"}
+{"level":20,"time":1748589049215,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command move. Disabled!"}
+{"level":20,"time":1748589049216,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command purge. Disabled!"}
+{"level":20,"time":1748589049216,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command purgeattach. Disabled!"}
+{"level":20,"time":1748589049217,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command purgebots. Disabled!"}
+{"level":20,"time":1748589049217,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command purgelinks. Disabled!"}
+{"level":20,"time":1748589049218,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command purgetoken. Disabled!"}
+{"level":20,"time":1748589049218,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command purgeuser. Disabled!"}
+{"level":20,"time":1748589049219,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command undeafen. Disabled!"}
+{"level":20,"time":1748589049220,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command vmute. Disabled!"}
+{"level":20,"time":1748589049221,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command vunmute. Disabled!"}
+{"level":20,"time":1748589049226,"pid":17136,"hostname":"Math-PC","msg":"Skipping command purge. Disabled!"}
+{"level":20,"time":1748589049228,"pid":17136,"hostname":"Math-PC","msg":"Skipping command voice. Disabled!"}
+{"level":20,"time":1748589049234,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command serverban. Disabled!"}
+{"level":20,"time":1748589049235,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command dev. Disabled!"}
+{"level":20,"time":1748589049235,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command leaveserver. Disabled!"}
+{"level":20,"time":1748589049236,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command listinvites. Disabled!"}
+{"level":20,"time":1748589049237,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command listservers. Disabled!"}
+{"level":20,"time":1748589049238,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command potential. Disabled!"}
+{"level":20,"time":1748589049239,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command restart. Disabled!"}
+{"level":50,"time":1748589049240,"pid":17136,"hostname":"Math-PC","msg":"Failed to load C:\\Users\\rapid\\Documents\\GitHub\\TACT-BOT\\src\\commands\\owner\\serverban.js Reason: Command serverban already registered"}
+{"level":20,"time":1748589049243,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command commandpath. Disabled!"}
+{"level":20,"time":1748589049244,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command shutdown. Disabled!"}
+{"level":20,"time":1748589049244,"pid":17136,"hostname":"Math-PC","msg":"Skipping command add. Disabled!"}
+{"level":20,"time":1748589049244,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command add. Disabled!"}
+{"level":20,"time":1748589049244,"pid":17136,"hostname":"Math-PC","msg":"Skipping command list. Disabled!"}
+{"level":20,"time":1748589049244,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command list. Disabled!"}
+{"level":20,"time":1748589049244,"pid":17136,"hostname":"Math-PC","msg":"Skipping command remove. Disabled!"}
+{"level":20,"time":1748589049244,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command remove. Disabled!"}
+{"level":20,"time":1748589049253,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command ipinfo. Disabled!"}
+{"level":20,"time":1748589049254,"pid":17136,"hostname":"Math-PC","msg":"Skipping slash command macinfo. Disabled!"}
+{"level":30,"time":1748589049260,"pid":17136,"hostname":"Math-PC","msg":"Loaded 91 commands"}
+{"level":30,"time":1748589049260,"pid":17136,"hostname":"Math-PC","msg":"Loaded 66 slash commands"}
+{"level":30,"time":1748589049260,"pid":17136,"hostname":"Math-PC","msg":"Loading contexts..."}
+{"level":30,"time":1748589049261,"pid":17136,"hostname":"Math-PC","msg":"Loaded 1 USER contexts"}
+{"level":30,"time":1748589049261,"pid":17136,"hostname":"Math-PC","msg":"Loaded 0 MESSAGE contexts"}
+{"level":30,"time":1748589049261,"pid":17136,"hostname":"Math-PC","msg":"Loading events..."}
+{"level":30,"time":1748589049291,"pid":17136,"hostname":"Math-PC","msg":"Loaded 14 events. Success (14) Failed (0)"}
+{"level":30,"time":1748589049298,"pid":17136,"hostname":"Math-PC","msg":"✅ Logged in as TACT-DEV#3843"}
+{"level":30,"time":1748589049298,"pid":17136,"hostname":"Math-PC","msg":"Logged in as TACT-DEV#3843! (1352089453077856348)"}
+{"level":30,"time":1748589049428,"pid":17136,"hostname":"Math-PC","msg":"✅ Loaded 75 slash commands."}
+{"level":30,"time":1748589051253,"pid":17136,"hostname":"Math-PC","msg":"Successfully registered interactions"}
+{"level":30,"time":1748589051743,"pid":17136,"hostname":"Math-PC","msg":"✅ Slash commands registered."}
+{"level":30,"time":1748589054428,"pid":17136,"hostname":"Math-PC","msg":"Presence set to version: \"v1.5.3\""}
+{"level":50,"time":1748589070932,"pid":17136,"hostname":"Math-PC","err":{"type":"DiscordjsError","message":"The reply to this interaction has already been sent or deferred.","stack":"Error [InteractionAlreadyReplied]: The reply to this interaction has already been sent or deferred.\n    at ChatInputCommandInteraction.deferReply (C:\\Users\\rapid\\Documents\\GitHub\\TACT-BOT\\node_modules\\discord.js\\src\\structures\\interfaces\\InteractionResponses.js:94:46)\n    at Object.interactionRun (C:\\Users\\rapid\\Documents\\GitHub\\TACT-BOT\\src\\commands\\moderation\\clear.js:40:21)\n    at Object.handleSlashCommand (C:\\Users\\rapid\\Documents\\GitHub\\TACT-BOT\\src\\handlers\\command.js:154:17)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async module.exports (C:\\Users\\rapid\\Documents\\GitHub\\TACT-BOT\\src\\events\\interactions\\interactionCreate.js:24:5)","code":"InteractionAlreadyReplied"},"msg":"interactionRun: The reply to this interaction has already been sent or deferred."}
+{"level":30,"time":1748589133608,"pid":2264,"hostname":"Math-PC","msg":"Validating config file and environment variables"}
+{"level":30,"time":1748589133834,"pid":2264,"hostname":"Math-PC","msg":"VersionCheck: Your discord bot is up to date"}
+{"level":30,"time":1748589133834,"pid":2264,"hostname":"Math-PC","msg":"Connecting to MongoDb..."}
+{"level":30,"time":1748589134334,"pid":2264,"hostname":"Math-PC","msg":"Mongoose: Database connection established"}
+{"level":30,"time":1748589134729,"pid":2264,"hostname":"Math-PC","msg":"Loading commands..."}
+{"level":20,"time":1748589134793,"pid":2264,"hostname":"Math-PC","msg":"Skipping command pay. Disabled!"}
+{"level":20,"time":1748589135138,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command checkstatus. Disabled!"}
+{"level":20,"time":1748589135141,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command avatar. Disabled!"}
+{"level":20,"time":1748589135143,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command botstats. Disabled!"}
+{"level":20,"time":1748589135145,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command channelinfo. Disabled!"}
+{"level":20,"time":1748589135146,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command emojiinfo. Disabled!"}
+{"level":20,"time":1748589135153,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command guildinfo. Disabled!"}
+{"level":20,"time":1748589135154,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command uptime. Disabled!"}
+{"level":20,"time":1748589135155,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command userinfo. Disabled!"}
+{"level":20,"time":1748589135157,"pid":2264,"hostname":"Math-PC","msg":"Skipping command bot. Disabled!"}
+{"level":20,"time":1748589135159,"pid":2264,"hostname":"Math-PC","msg":"Skipping command info. Disabled!"}
+{"level":20,"time":1748589135161,"pid":2264,"hostname":"Math-PC","msg":"Skipping Command addinvites. Category INVITE is disabled"}
+{"level":20,"time":1748589135162,"pid":2264,"hostname":"Math-PC","msg":"Skipping Command invitecodes. Category INVITE is disabled"}
+{"level":20,"time":1748589135163,"pid":2264,"hostname":"Math-PC","msg":"Skipping Command inviter. Category INVITE is disabled"}
+{"level":20,"time":1748589135163,"pid":2264,"hostname":"Math-PC","msg":"Skipping Command inviterank. Category INVITE is disabled"}
+{"level":20,"time":1748589135164,"pid":2264,"hostname":"Math-PC","msg":"Skipping Command inviteranks. Category INVITE is disabled"}
+{"level":20,"time":1748589135165,"pid":2264,"hostname":"Math-PC","msg":"Skipping Command invites. Category INVITE is disabled"}
+{"level":20,"time":1748589135166,"pid":2264,"hostname":"Math-PC","msg":"Skipping Command invitesimport. Category INVITE is disabled"}
+{"level":20,"time":1748589135167,"pid":2264,"hostname":"Math-PC","msg":"Skipping Command invitetracker. Category INVITE is disabled"}
+{"level":20,"time":1748589135168,"pid":2264,"hostname":"Math-PC","msg":"Skipping Command resetinvites. Category INVITE is disabled"}
+{"level":20,"time":1748589135171,"pid":2264,"hostname":"Math-PC","msg":"Skipping command clear. Disabled!"}
+{"level":20,"time":1748589135174,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command deafen. Disabled!"}
+{"level":20,"time":1748589135176,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command disconnect. Disabled!"}
+{"level":20,"time":1748589135177,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command move. Disabled!"}
+{"level":20,"time":1748589135178,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command purge. Disabled!"}
+{"level":20,"time":1748589135178,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command purgeattach. Disabled!"}
+{"level":20,"time":1748589135179,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command purgebots. Disabled!"}
+{"level":20,"time":1748589135179,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command purgelinks. Disabled!"}
+{"level":20,"time":1748589135180,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command purgetoken. Disabled!"}
+{"level":20,"time":1748589135180,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command purgeuser. Disabled!"}
+{"level":20,"time":1748589135181,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command undeafen. Disabled!"}
+{"level":20,"time":1748589135182,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command vmute. Disabled!"}
+{"level":20,"time":1748589135183,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command vunmute. Disabled!"}
+{"level":20,"time":1748589135188,"pid":2264,"hostname":"Math-PC","msg":"Skipping command purge. Disabled!"}
+{"level":20,"time":1748589135190,"pid":2264,"hostname":"Math-PC","msg":"Skipping command voice. Disabled!"}
+{"level":20,"time":1748589135198,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command serverban. Disabled!"}
+{"level":20,"time":1748589135199,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command dev. Disabled!"}
+{"level":20,"time":1748589135200,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command leaveserver. Disabled!"}
+{"level":20,"time":1748589135200,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command listinvites. Disabled!"}
+{"level":20,"time":1748589135201,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command listservers. Disabled!"}
+{"level":20,"time":1748589135202,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command potential. Disabled!"}
+{"level":20,"time":1748589135204,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command restart. Disabled!"}
+{"level":50,"time":1748589135205,"pid":2264,"hostname":"Math-PC","msg":"Failed to load C:\\Users\\rapid\\Documents\\GitHub\\TACT-BOT\\src\\commands\\owner\\serverban.js Reason: Command serverban already registered"}
+{"level":20,"time":1748589135208,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command commandpath. Disabled!"}
+{"level":20,"time":1748589135209,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command shutdown. Disabled!"}
+{"level":20,"time":1748589135209,"pid":2264,"hostname":"Math-PC","msg":"Skipping command add. Disabled!"}
+{"level":20,"time":1748589135209,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command add. Disabled!"}
+{"level":20,"time":1748589135209,"pid":2264,"hostname":"Math-PC","msg":"Skipping command list. Disabled!"}
+{"level":20,"time":1748589135209,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command list. Disabled!"}
+{"level":20,"time":1748589135209,"pid":2264,"hostname":"Math-PC","msg":"Skipping command remove. Disabled!"}
+{"level":20,"time":1748589135209,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command remove. Disabled!"}
+{"level":20,"time":1748589135218,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command ipinfo. Disabled!"}
+{"level":20,"time":1748589135219,"pid":2264,"hostname":"Math-PC","msg":"Skipping slash command macinfo. Disabled!"}
+{"level":30,"time":1748589135227,"pid":2264,"hostname":"Math-PC","msg":"Loaded 91 commands"}
+{"level":30,"time":1748589135227,"pid":2264,"hostname":"Math-PC","msg":"Loaded 66 slash commands"}
+{"level":30,"time":1748589135227,"pid":2264,"hostname":"Math-PC","msg":"Loading contexts..."}
+{"level":30,"time":1748589135228,"pid":2264,"hostname":"Math-PC","msg":"Loaded 1 USER contexts"}
+{"level":30,"time":1748589135228,"pid":2264,"hostname":"Math-PC","msg":"Loaded 0 MESSAGE contexts"}
+{"level":30,"time":1748589135228,"pid":2264,"hostname":"Math-PC","msg":"Loading events..."}
+{"level":30,"time":1748589135258,"pid":2264,"hostname":"Math-PC","msg":"Loaded 14 events. Success (14) Failed (0)"}
+{"level":30,"time":1748589135266,"pid":2264,"hostname":"Math-PC","msg":"✅ Logged in as TACT-DEV#3843"}
+{"level":30,"time":1748589135266,"pid":2264,"hostname":"Math-PC","msg":"Logged in as TACT-DEV#3843! (1352089453077856348)"}
+{"level":30,"time":1748589135415,"pid":2264,"hostname":"Math-PC","msg":"✅ Loaded 75 slash commands."}
+{"level":30,"time":1748589135639,"pid":2264,"hostname":"Math-PC","msg":"Successfully registered interactions"}
+{"level":30,"time":1748589136052,"pid":2264,"hostname":"Math-PC","msg":"✅ Slash commands registered."}
+{"level":30,"time":1748589140413,"pid":2264,"hostname":"Math-PC","msg":"Presence set to version: \"v1.5.3\""}
+{"level":30,"time":1748589359872,"pid":16164,"hostname":"Math-PC","msg":"Validating config file and environment variables"}
+{"level":30,"time":1748589360123,"pid":16164,"hostname":"Math-PC","msg":"VersionCheck: Your discord bot is up to date"}
+{"level":30,"time":1748589360123,"pid":16164,"hostname":"Math-PC","msg":"Connecting to MongoDb..."}
+{"level":30,"time":1748589360596,"pid":16164,"hostname":"Math-PC","msg":"Mongoose: Database connection established"}
+{"level":30,"time":1748589361007,"pid":16164,"hostname":"Math-PC","msg":"Loading commands..."}
+{"level":20,"time":1748589361070,"pid":16164,"hostname":"Math-PC","msg":"Skipping command pay. Disabled!"}
+{"level":20,"time":1748589361373,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command checkstatus. Disabled!"}
+{"level":20,"time":1748589361375,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command avatar. Disabled!"}
+{"level":20,"time":1748589361377,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command botstats. Disabled!"}
+{"level":20,"time":1748589361379,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command channelinfo. Disabled!"}
+{"level":20,"time":1748589361380,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command emojiinfo. Disabled!"}
+{"level":20,"time":1748589361387,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command guildinfo. Disabled!"}
+{"level":20,"time":1748589361387,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command uptime. Disabled!"}
+{"level":20,"time":1748589361388,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command userinfo. Disabled!"}
+{"level":20,"time":1748589361390,"pid":16164,"hostname":"Math-PC","msg":"Skipping command bot. Disabled!"}
+{"level":20,"time":1748589361392,"pid":16164,"hostname":"Math-PC","msg":"Skipping command info. Disabled!"}
+{"level":20,"time":1748589361393,"pid":16164,"hostname":"Math-PC","msg":"Skipping Command addinvites. Category INVITE is disabled"}
+{"level":20,"time":1748589361394,"pid":16164,"hostname":"Math-PC","msg":"Skipping Command invitecodes. Category INVITE is disabled"}
+{"level":20,"time":1748589361395,"pid":16164,"hostname":"Math-PC","msg":"Skipping Command inviter. Category INVITE is disabled"}
+{"level":20,"time":1748589361396,"pid":16164,"hostname":"Math-PC","msg":"Skipping Command inviterank. Category INVITE is disabled"}
+{"level":20,"time":1748589361397,"pid":16164,"hostname":"Math-PC","msg":"Skipping Command inviteranks. Category INVITE is disabled"}
+{"level":20,"time":1748589361398,"pid":16164,"hostname":"Math-PC","msg":"Skipping Command invites. Category INVITE is disabled"}
+{"level":20,"time":1748589361399,"pid":16164,"hostname":"Math-PC","msg":"Skipping Command invitesimport. Category INVITE is disabled"}
+{"level":20,"time":1748589361400,"pid":16164,"hostname":"Math-PC","msg":"Skipping Command invitetracker. Category INVITE is disabled"}
+{"level":20,"time":1748589361401,"pid":16164,"hostname":"Math-PC","msg":"Skipping Command resetinvites. Category INVITE is disabled"}
+{"level":20,"time":1748589361403,"pid":16164,"hostname":"Math-PC","msg":"Skipping command clear. Disabled!"}
+{"level":20,"time":1748589361406,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command deafen. Disabled!"}
+{"level":20,"time":1748589361407,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command disconnect. Disabled!"}
+{"level":20,"time":1748589361408,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command move. Disabled!"}
+{"level":20,"time":1748589361409,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command purge. Disabled!"}
+{"level":20,"time":1748589361409,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command purgeattach. Disabled!"}
+{"level":20,"time":1748589361410,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command purgebots. Disabled!"}
+{"level":20,"time":1748589361410,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command purgelinks. Disabled!"}
+{"level":20,"time":1748589361410,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command purgetoken. Disabled!"}
+{"level":20,"time":1748589361411,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command purgeuser. Disabled!"}
+{"level":20,"time":1748589361412,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command undeafen. Disabled!"}
+{"level":20,"time":1748589361413,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command vmute. Disabled!"}
+{"level":20,"time":1748589361414,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command vunmute. Disabled!"}
+{"level":20,"time":1748589361419,"pid":16164,"hostname":"Math-PC","msg":"Skipping command purge. Disabled!"}
+{"level":20,"time":1748589361421,"pid":16164,"hostname":"Math-PC","msg":"Skipping command voice. Disabled!"}
+{"level":20,"time":1748589361427,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command serverban. Disabled!"}
+{"level":20,"time":1748589361430,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command dev. Disabled!"}
+{"level":20,"time":1748589361430,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command leaveserver. Disabled!"}
+{"level":20,"time":1748589361431,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command listinvites. Disabled!"}
+{"level":20,"time":1748589361432,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command listservers. Disabled!"}
+{"level":20,"time":1748589361433,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command potential. Disabled!"}
+{"level":20,"time":1748589361435,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command restart. Disabled!"}
+{"level":50,"time":1748589361435,"pid":16164,"hostname":"Math-PC","msg":"Failed to load C:\\Users\\rapid\\Documents\\GitHub\\TACT-BOT\\src\\commands\\owner\\serverban.js Reason: Command serverban already registered"}
+{"level":20,"time":1748589361438,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command commandpath. Disabled!"}
+{"level":20,"time":1748589361439,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command shutdown. Disabled!"}
+{"level":20,"time":1748589361439,"pid":16164,"hostname":"Math-PC","msg":"Skipping command add. Disabled!"}
+{"level":20,"time":1748589361439,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command add. Disabled!"}
+{"level":20,"time":1748589361439,"pid":16164,"hostname":"Math-PC","msg":"Skipping command list. Disabled!"}
+{"level":20,"time":1748589361439,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command list. Disabled!"}
+{"level":20,"time":1748589361439,"pid":16164,"hostname":"Math-PC","msg":"Skipping command remove. Disabled!"}
+{"level":20,"time":1748589361439,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command remove. Disabled!"}
+{"level":20,"time":1748589361448,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command ipinfo. Disabled!"}
+{"level":20,"time":1748589361449,"pid":16164,"hostname":"Math-PC","msg":"Skipping slash command macinfo. Disabled!"}
+{"level":30,"time":1748589361453,"pid":16164,"hostname":"Math-PC","msg":"Loaded 91 commands"}
+{"level":30,"time":1748589361453,"pid":16164,"hostname":"Math-PC","msg":"Loaded 66 slash commands"}
+{"level":30,"time":1748589361453,"pid":16164,"hostname":"Math-PC","msg":"Loading contexts..."}
+{"level":30,"time":1748589361454,"pid":16164,"hostname":"Math-PC","msg":"Loaded 1 USER contexts"}
+{"level":30,"time":1748589361454,"pid":16164,"hostname":"Math-PC","msg":"Loaded 0 MESSAGE contexts"}
+{"level":30,"time":1748589361454,"pid":16164,"hostname":"Math-PC","msg":"Loading events..."}
+{"level":30,"time":1748589361484,"pid":16164,"hostname":"Math-PC","msg":"Loaded 14 events. Success (14) Failed (0)"}
+{"level":30,"time":1748589361491,"pid":16164,"hostname":"Math-PC","msg":"✅ Logged in as TACT-DEV#3843"}
+{"level":30,"time":1748589361491,"pid":16164,"hostname":"Math-PC","msg":"Logged in as TACT-DEV#3843! (1352089453077856348)"}
+{"level":30,"time":1748589361612,"pid":16164,"hostname":"Math-PC","msg":"✅ Loaded 75 slash commands."}
+{"level":30,"time":1748589361887,"pid":16164,"hostname":"Math-PC","msg":"Successfully registered interactions"}
+{"level":30,"time":1748589362467,"pid":16164,"hostname":"Math-PC","msg":"✅ Slash commands registered."}
+{"level":30,"time":1748589366605,"pid":16164,"hostname":"Math-PC","msg":"Presence set to version: \"v1.5.4\""}

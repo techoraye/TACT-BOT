@@ -32,21 +32,21 @@ module.exports = {
     ],
   },
 
-  async interactionRun(interaction) {
-    const amount = interaction.options.getInteger("amount");
-    const user = interaction.options.getUser("user");
+ async interactionRun(interaction) {
+  const amount = interaction.options.getInteger("amount");
+  const user = interaction.options.getUser("user");
 
-    try {
-      const deleted = await fetchAndDelete(interaction.channel, amount, user);
-      const response = buildSuccessResponse(deleted);
+  try {
+    const deleted = await fetchAndDelete(interaction.channel, amount, user);
+    const response = buildSuccessResponse(deleted);
 
-      // Send an embed for the result, but no reply is necessary
-      await interaction.followUp(response); // This sends the response
-    } catch (ex) {
-      const response = buildErrorResponse(ex);
-      await interaction.followUp(response); // Send the error response
-    }
-  },
+    // Send embed directly to the channel, NOT as a reply or followUp
+    await interaction.channel.send(response);
+  } catch (ex) {
+    const response = buildErrorResponse(ex);
+    await interaction.channel.send(response);
+  }
+}
 };
 
 async function fetchAndDelete(channel, amount, user) {
