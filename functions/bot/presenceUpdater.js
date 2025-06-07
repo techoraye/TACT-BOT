@@ -7,12 +7,12 @@ function startPresenceUpdater(client) {
     client.user.setPresence({
       status: "idle",
       activities: [{
-        name: `v${client.config.STABLE_VERSION}`,
-        type: ActivityType.Watching
+        name: `v${client.config.STABLE_VERSION}`, // Custom status with verified badge emoji
+        type: ActivityType.Custom
       }]
     });
 
-    client.logger.log(`Presence set to version: "v${client.config.STABLE_VERSION}"`);
+    client.logger.log(`Presence set to custom status: "v${client.config.STABLE_VERSION}"`);
   } catch (err) {
     client.logger.error("Failed to set presence:", err);
   }

@@ -47,6 +47,7 @@ if (!fs.existsSync(blacklistPath)) {
 validateConfiguration();
 
 const client = new BotClient();
+const dashboard = require("./dashboard/index"); // Start the dashboard server
 
 async function shutdown(signal) {
   console.log(`Received ${signal}. Shutting down gracefully...`);

@@ -13,7 +13,8 @@
     "start": "start-wrapper.sh",
     "format": "prettier --write src",
     "docker:package": "tar -cf techactivitybot.tar dashboard logs src bot.js config.js dockerfile package.json package-lock.json",
-    "docker:build": "docker build -t techarye/techactivitybot:1.5.4"
+    "docker:build": "docker build -t techarye/techactivitybot:1.5.4",
+    "dashboard": "node dashboard/index.js"
   },
   "homepage": "https://github.com/techarye/TACT-BOT#readme",
   "repository": {
