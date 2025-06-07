@@ -7,7 +7,7 @@ function startPresenceUpdater(client) {
     client.user.setPresence({
       status: "idle",
       activities: [{
-        name: `v${client.config.STABLE_VERSION}`, // Custom status with verified badge emoji
+        name: `Version: v${client.config.STABLE_VERSION}`, // Custom status with verified badge emoji
         type: ActivityType.Custom
       }]
     });
