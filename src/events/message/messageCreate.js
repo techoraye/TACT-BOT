@@ -42,6 +42,8 @@ module.exports = async (client, message) => {
       }
     }
   }
+    // stats handler
+  if (settings.stats.enabled) await statsHandler.trackMessageStats(message, isCommand, settings);
 
   // Automod handler
   if (!isCommand) {

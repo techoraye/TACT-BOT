@@ -2,6 +2,7 @@ const {
   commandHandler,
   contextHandler,
   ticketHandler,
+  statsHandler
 } = require("@src/handlers");
 const { InteractionType } = require("discord.js");
 
@@ -55,4 +56,10 @@ module.exports = async (client, interaction) => {
       }
     }
   }
+
+  // Before line 60, ensure settings is defined, for example:
+  const settings = {}; // <-- Replace with actual settings retrieval logic
+
+  // track stats
+  if (settings.stats.enabled) statsHandler.trackInteractionStats(interaction).catch(() => {});
 };

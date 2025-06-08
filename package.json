@@ -1,8 +1,8 @@
 {
   "name": "tactbot",
-  "version": "1.5.4",
+  "version": "2.0",
   "description": "An open-source, multipurpose discord bot built using discord-js",
-  "main": "start-wrapper.sh",
+  "main": "node bot.js",
   "author": "TACT Team",
   "license": "MIT",
   "engines": {
@@ -10,11 +10,11 @@
   },
   "scripts": {
     "dev": "nodemon .",
-    "start": "start-wrapper.sh",
+    "start": "node bot.js",
     "format": "prettier --write src",
     "docker:package": "tar -cf techactivitybot.tar dashboard logs src bot.js config.js dockerfile package.json package-lock.json",
-    "docker:build": "docker build -t techarye/techactivitybot:1.5.4",
-    "dashboard": "node dashboard/index.js"
+    "docker:build": "docker build -t techarye/techactivitybot:2.0",
+    "dashboard": "node dashboard/client/src/App.js"
   },
   "homepage": "https://github.com/techarye/TACT-BOT#readme",
   "repository": {
@@ -57,6 +57,8 @@
     "node-fetch": "^2.7.0",
     "openai": "^4.98.0",
     "os": "^0.1.2",
+    "passport": "^0.7.0",
+    "passport-discord": "^0.1.4",
     "pino": "^8.18.0",
     "pino-pretty": "^10.3.1",
     "pm2": "^6.0.6",

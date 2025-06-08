@@ -5,7 +5,7 @@ module.exports = {
   LOG_CHANNEL_ID: "1363598444387631104",
   SUPPORT_SERVER: "https://discord.gg/M7yyGfKdKx", // Your bot support server
   INVITE_URL: "https://discord.com/oauth2/authorize?client_id=1376465691221430372",
-  STABLE_VERSION: "1.5.4", // Stable version of the bot
+  STABLE_VERSION: "2.0", // Stable version of the bot
   PREFIX_COMMANDS: {
     ENABLED: true, // Enable/Disable prefix commands
     DEFAULT_PREFIX: "*", // Default prefix for the bot (changed to a typical prefix)
@@ -33,11 +33,18 @@ module.exports = {
 
   // MUSIC
   MUSIC: {
-    ENABLED: true,
+    ENABLED: false,
   },
   
   MESSAGES: {
     API_ERROR: "Unexpected Backend Error! Try again later or contact support server",
+  },
+
+  DASHBOARD: {
+    enabled: true, // enable or disable dashboard
+    baseURL: "http://localhost:3001", // base url
+    failureURL: "http://localhost:3001", // failure redirect url
+    port: "3001", // port to run the bot on
   },
 
   // PLUGINS
@@ -98,5 +105,20 @@ module.exports = {
     ENABLED: true,
     CREATE_EMBED: "#068ADD",
     CLOSE_EMBED: "#068ADD",
+  },
+   STATS: {
+    ENABLED: true,
+    XP_COOLDOWN: 5, // Cooldown in seconds between messages
+    DEFAULT_LVL_UP_MSG: "{member:tag}, You just advanced to **Level {level}**",
+  },
+    SUGGESTIONS: {
+    ENABLED: true, // Should the suggestion system be enabled
+    EMOJI: {
+      UP_VOTE: "⬆️",
+      DOWN_VOTE: "⬇️",
+    },
+    DEFAULT_EMBED: "#4F545C",
+    APPROVED_EMBED: "#43B581",
+    DENIED_EMBED: "#F04747",
   },
 };

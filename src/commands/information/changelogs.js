@@ -55,7 +55,7 @@ module.exports = {
 function createChangelogEmbeds(version, botAvatar) {
   const pages = [];
 
-  // Page 1: TACT Changelog (Platform Support & Release)
+  // Page 1: TACT Changelog (Platform Support & Release + Dashboard Beta)
   pages.push(
     new EmbedBuilder()
       .setTitle("📢 TACT Changelog")
@@ -70,8 +70,21 @@ function createChangelogEmbeds(version, botAvatar) {
         "",
         "**Platform Support:**",
         "- Fully compatible with **Linux**, **Windows**, and **WSL**.",
+        "",
+        "### 🖥️ Dashboard (Beta)",
+        "- We are excited to introduce the **TACT Dashboard**, now available in beta!",
+        "  The dashboard brings a powerful, intuitive web interface for managing your server’s moderation, configuration, and analytics.",
+        "  - **Features:**",
+        "    - Real-time moderation controls and logs.",
+        "    - Effortless role and permission management.",
+        "    - Customizable automod and filter settings.",
+        "    - Visual analytics for server activity and moderation actions.",
+        "    - Secure authentication and granular access controls.",
+        "  - **Status:**",
+        "    - The dashboard is currently in beta. Some features may be limited or subject to change as we gather feedback and improve stability.",
+        "    - We encourage you to try it out and share your feedback to help us shape the final experience!",
       ].join("\n"))
-      .setFooter({ text: "Page 1/3 • Platform Support" })
+      .setFooter({ text: "Page 1/3 • Platform Support & Dashboard" })
       .setTimestamp()
   );
 

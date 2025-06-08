@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<%- include('../includes/head') %>
+<body class="hold-transition skin-blue sidebar-mini" style="background: linear-gradient(135deg, #232336 0%, #5865F2 100%); min-height: 100vh;">
+<div class="wrapper">
+    <%- include('../includes/header') %>
+    <%- include('../includes/sidebar') %>
+    <div class="content-wrapper" style="background: transparent;">
+        <section class="content-header" style="margin-bottom: 2rem;">
+            <h2 style="font-weight: 800; color: #fff; letter-spacing: -1px;">Basic Settings</h2>
+            <ol class="breadcrumb" style="background: rgba(30,30,45,0.7); border-radius: 8px;">
+                <li><a href="/"><i class="fa fa-home"></i> Selector</a></li>
+                <li><a href="<%=`/manage/${guild.id}/`%>"><%=guild.name%></a></li>
+                <li class="active">Basic</li>
+            </ol>
+        </section>
+        <section class="content">
+            <div class="row" style="gap: 2rem; display: flex; flex-wrap: wrap;">
+                <div class="col-md-6" style="flex:1; min-width:340px;">
+                    <!-- BASIC CONFIGURATION -->
+                    <div class="box box-warning" style="background:rgba(30,30,45,0.95); border-radius:18px; box-shadow:0 8px 32px rgba(88,101,242,0.10); border:none; margin-bottom:2rem;">
+                        <div class="box-header with-border" style="border-bottom:1px solid #404eed;">
+                            <h3 class="box-title" style="font-weight:700; color:#00b0f4;">General</h3>
+                        </div>
+                        <form role="form" action="/manage/<%= guild.id %>/basic/" method="POST" style="padding:1.5rem;">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label style="color:#e3e5e8;">Prefix</label>
+                                    <input type="text" name="prefix" class="form-control" placeholder="<%= guild.prefix %>" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
+                                </div>
+                                <div class="form-group">
+                                    <div class="switch-group">
+                                        <label style="color:#e3e5e8; display:block; margin-bottom:8px;">
+                                            <span class="switch">
+                                                <input type="checkbox" name="flag_translation" id="flag_translation" <% if(guild.flag_translation?.enabled) { %>checked<% } %>>
+                                                <span class="slider"></span>
+                                            </span>
+                                            Flag Translation
+                                        </label>
+                                        <label style="color:#e3e5e8; display:block; margin-bottom:8px;">
+                                            <span class="switch">
+                                                <input type="checkbox" name="invite_tracking" id="invite_tracking" <% if(guild.invite.tracking) { %>checked<% } %>>
+                                                <span class="slider"></span>
+                                            </span>
+                                            Invite Tracking
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-footer" style="text-align:right; background:none; border:none;">
+                                <button type="submit" name="basicUpdate" class="btn" style="background:linear-gradient(90deg,#5865F2,#00b0f4); color:#fff; font-weight:700; border:none; border-radius:10px; padding:10px 28px; box-shadow:0 2px 8px rgba(88,101,242,0.15);">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- STATISTICS CONFIGURATION -->
+                    <div class="box box-warning" style="background:rgba(30,30,45,0.95); border-radius:18px; box-shadow:0 8px 32px rgba(88,101,242,0.10); border:none; margin-bottom:2rem;">
+                        <div class="box-header with-border" style="border-bottom:1px solid #404eed;">
+                            <h3 class="box-title" style="font-weight:700; color:#00b0f4;">Statistics</h3>
+                        </div>
+                        <form role="form" action="/manage/<%= guild.id %>/basic/" method="POST" style="padding:1.5rem;">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <div class="switch-group">
+                                        <label style="color:#e3e5e8; display:block; margin-bottom:8px;">
+                                            <span class="switch">
+                                                <input type="checkbox" name="ranking" id="ranking" <% if(guild.stats && guild.stats.enabled) { %>checked<% } %>>
+                                                <span class="slider"></span>
+                                            </span>
+                                            Tracking
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label style="color:#e3e5e8;">Levelup Message</label>
+                                    <input type="text" name="levelup_message" class="form-control" placeholder="<%= guild.stats && guild.stats.xp ? guild.stats.xp.message : '' %>" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
+                                </div>
+                                <div class="form-group">
+                                    <label style="color:#e3e5e8;">Levelup Channel</label>
+                                    <select class="form-control" name="levelup_channel" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
+                                        <% if(guild.stats && guild.stats.xp && guild.stats.xp.channel && bot.channels.cache.has(guild.stats.xp.channel)){ %>
+                                            <option selected="selected">#<%= bot.channels.cache.get(guild.stats.xp.channel).name %></option>
+                                            <% guild.channels.cache.filter((ch) => ch.type === 0 && ch.id !== guild.stats.xp.channel).forEach((ch) => { %>
+                                                <option>#<%= ch.name %></option>
+                                            <% }); %>
+                                            <option>No channel</option>
+                                        <% } else { %>
+                                            <option disabled selected value> -- select an option -- </option>
+                                            <% guild.channels.cache.filter((ch) => ch.type === 0).forEach((ch) => { %>
+                                                <option>#<%= ch.name %></option>
+                                            <% }); %>
+                                        <% } %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="box-footer" style="text-align:right; background:none; border:none;">
+                                <button type="submit" name="statsUpdate" class="btn" style="background:linear-gradient(90deg,#5865F2,#00b0f4); color:#fff; font-weight:700; border:none; border-radius:10px; padding:10px 28px; box-shadow:0 2px 8px rgba(88,101,242,0.15);">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- TICKET CONFIGURATION -->
+                    <div class="box box-warning" style="background:rgba(30,30,45,0.95); border-radius:18px; box-shadow:0 8px 32px rgba(88,101,242,0.10); border:none; margin-bottom:2rem;">
+                        <div class="box-header with-border" style="border-bottom:1px solid #404eed;">
+                            <h3 class="box-title" style="font-weight:700; color:#00b0f4;">Ticket</h3>
+                        </div>
+                        <form role="form" action="/manage/<%= guild.id %>/basic/" method="POST" style="padding:1.5rem;">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label style="color:#e3e5e8;">Ticket Limit</label>
+                                    <input type="number" name="limit" class="form-control" placeholder="<%= guild.ticket.limit %>" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
+                                </div>
+                                <div class="form-group">
+                                    <label style="color:#e3e5e8;">Ticket Logs</label>
+                                    <select class="form-control" name="channel" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
+                                        <% if(guild.ticket.log_channel && bot.channels.cache.has(guild.ticket.log_channel)){ %>
+                                            <option selected="selected">#<%= bot.channels.cache.get(guild.ticket.log_channel).name %></option>
+                                            <% guild.channels.cache.filter((ch) => ch.type === 0 && ch.id !== guild.ticket.log_channel).forEach((ch) => { %>
+                                                <option>#<%= ch.name %></option>
+                                            <% }); %>
+                                            <option>No channel</option>
+                                        <% } else { %>
+                                            <option disabled selected value> -- select an option -- </option>
+                                            <% guild.channels.cache.filter((ch) => ch.type === 0).forEach((ch) => { %>
+                                                <option>#<%= ch.name %></option>
+                                            <% }); %>
+                                        <% } %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="box-footer" style="text-align:right; background:none; border:none;">
+                                <button type="submit" name="ticketUpdate" class="btn" style="background:linear-gradient(90deg,#5865F2,#00b0f4); color:#fff; font-weight:700; border:none; border-radius:10px; padding:10px 28px; box-shadow:0 2px 8px rgba(88,101,242,0.15);">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6" style="flex:1; min-width:340px;">
+                    <!-- MODERATION CONFIGURATION -->
+                    <div class="box box-warning" style="background:rgba(30,30,45,0.95); border-radius:18px; box-shadow:0 8px 32px rgba(88,101,242,0.10); border:none; margin-bottom:2rem;">
+                        <div class="box-header with-border" style="border-bottom:1px solid #404eed;">
+                            <h3 class="box-title" style="font-weight:700; color:#00b0f4;">Moderation</h3>
+                        </div>
+                        <form role="form" action="/manage/<%= guild.id %>/basic/" method="POST" style="padding:1.5rem;">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label style="color:#e3e5e8;">Max Warnings</label>
+                                    <input type="number" name="max_warnings" class="form-control" placeholder="<%= guild.max_warn.limit %>" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
+                                </div>
+                                <div class="form-group">
+                                    <label style="color:#e3e5e8;">Max Warnings Action</label>
+                                    <select class="form-control" name="max_warn_action" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
+                                        <option selected="selected"><%= guild.max_warn.action %></option>
+                                        <% if(guild.max_warn.action !== "TIMEOUT") { %>
+                                            <option>TIMEOUT</option>
+                                        <% } %>
+                                        <% if(guild.max_warn.action !== "KICK") { %>
+                                            <option>KICK</option>
+                                        <% } %>
+                                        <% if(guild.max_warn.action !== "BAN") { %>
+                                            <option>BAN</option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label style="color:#e3e5e8;">Moderation Logs</label>
+                                    <select class="form-control" name="modlog_channel" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
+                                        <% if(guild.modlog_channel && bot.channels.cache.has(guild.modlog_channel)){ %>
+                                            <option selected="selected">#<%= bot.channels.cache.get(guild.modlog_channel).name %></option>
+                                            <% guild.channels.cache.filter((ch) => ch.type === 0 && ch.id !== guild.modlog_channel).forEach((ch) => { %>
+                                                <option>#<%= ch.name %></option>
+                                            <% }); %>
+                                            <option>No channel</option>
+                                        <% } else { %>
+                                            <option disabled selected value> -- select an option -- </option>
+                                            <% guild.channels.cache.filter((ch) => ch.type === 0).forEach((ch) => { %>
+                                                <option>#<%= ch.name %></option>
+                                            <% }); %>
+                                        <% } %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="box-footer" style="text-align:right; background:none; border:none;">
+                                <button type="submit" name="modUpdate" class="btn" style="background:linear-gradient(90deg,#5865F2,#00b0f4); color:#fff; font-weight:700; border:none; border-radius:10px; padding:10px 28px; box-shadow:0 2px 8px rgba(88,101,242,0.15);">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- AUTOMOD CONFIGURATION -->
+                    <div class="box box-warning" style="background:rgba(30,30,45,0.95); border-radius:18px; box-shadow:0 8px 32px rgba(88,101,242,0.10); border:none; margin-bottom:2rem;">
+                        <div class="box-header with-border" style="border-bottom:1px solid #404eed;">
+                            <h3 class="box-title" style="font-weight:700; color:#00b0f4;">Auto Moderation</h3>
+                        </div>
+                        <form role="form" action="/manage/<%= guild.id %>/basic/" method="POST" style="padding:1.5rem;">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label style="color:#e3e5e8;">Max Strikes</label>
+                                    <input type="number" name="max_strikes" class="form-control" placeholder="<%= guild.automod.strikes %>" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
+                                </div>
+                                <div class="form-group">
+                                    <label style="color:#e3e5e8;">Max Strikes Action</label>
+                                    <select class="form-control" name="automod_action" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
+                                        <option selected="selected"><%= guild.automod.action %></option>
+                                        <% if(guild.automod.action !== "TIMEOUT") { %>
+                                            <option>TIMEOUT</option>
+                                        <% } %>
+                                        <% if(guild.automod.action !== "KICK") { %>
+                                            <option>KICK</option>
+                                        <% } %>
+                                        <% if(guild.automod.action !== "BAN") { %>
+                                            <option>BAN</option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label style="color:#e3e5e8;">Max Lines</label>
+                                    <input type="number" name="max_lines" class="form-control" placeholder="<%= guild.automod.max_lines %>" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
+                                </div>
+                                <div class="form-group">
+                                    <div class="switch-group">
+                                        <label style="color:#e3e5e8; display:block; margin-bottom:8px;">
+                                            <span class="switch">
+                                                <input type="checkbox" name="anti_attachments" id="anti_attachments" <% if(guild.automod.anti_attachments) { %>checked<% } %>>
+                                                <span class="slider"></span>
+                                            </span>
+                                            Anti Attachments
+                                        </label>
+                                        <label style="color:#e3e5e8; display:block; margin-bottom:8px;">
+                                            <span class="switch">
+                                                <input type="checkbox" name="anti_invites" id="anti_invites" <% if(guild.automod.anti_invites) { %>checked<% } %>>
+                                                <span class="slider"></span>
+                                            </span>
+                                            Anti Invites
+                                        </label>
+                                        <label style="color:#e3e5e8; display:block; margin-bottom:8px;">
+                                            <span class="switch">
+                                                <input type="checkbox" name="anti_links" id="anti_links" <% if(guild.automod.anti_links) { %>checked<% } %>>
+                                                <span class="slider"></span>
+                                            </span>
+                                            Anti Links
+                                        </label>
+                                        <label style="color:#e3e5e8; display:block; margin-bottom:8px;">
+                                            <span class="switch">
+                                                <input type="checkbox" name="anti_spam" id="anti_spam" <% if(guild.automod.anti_spam) { %>checked<% } %>>
+                                                <span class="slider"></span>
+                                            </span>
+                                            Anti Spam
+                                        </label>
+                                        <label style="color:#e3e5e8; display:block; margin-bottom:8px;">
+                                            <span class="switch">
+                                                <input type="checkbox" name="anti_ghostping" id="anti_ghostping" <% if(guild.automod.anti_ghostping) { %>checked<% } %>>
+                                                <span class="slider"></span>
+                                            </span>
+                                            Anti Ghostping
+                                        </label>
+                                        <label style="color:#e3e5e8; display:block; margin-bottom:8px;">
+                                            <span class="switch">
+                                                <input type="checkbox" name="anti_massmention" id="anti_massmention" <% if(guild.automod.anti_massmention) { %>checked<% } %>>
+                                                <span class="slider"></span>
+                                            </span>
+                                            Anti Massmention
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label style="color:#e3e5e8;">Whitelisted Channels</label>
+                                    <select class="form-control" name="channels" multiple style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
+                                        <% guild.channels.cache.filter((ch) => ch.type === 0).forEach((ch) => { %>
+                                            <% if(guild.automod.wh_channels.includes(ch.id) ){ %>
+                                                <option selected="selected">#<%= ch.name %></option>
+                                            <% } else { %>
+                                                <option>#<%= ch.name %></option>
+                                            <% } %>
+                                        <% }); %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="box-footer" style="text-align:right; background:none; border:none;">
+                                <button type="submit" name="automodUpdate" class="btn" style="background:linear-gradient(90deg,#5865F2,#00b0f4); color:#fff; font-weight:700; border:none; border-radius:10px; padding:10px 28px; box-shadow:0 2px 8px rgba(88,101,242,0.15);">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <%- include('../includes/footer') %>
+</div>
+<!-- Modern Switch CSS -->
+<style>
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+.switch input {display:none;}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #232336;
+  border: 2px solid #404eed;
+  border-radius: 24px;
+  transition: background 0.3s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 2px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  box-shadow: 0 2px 8px rgba(88,101,242,0.10);
+}
+input:checked + .slider {
+  background: linear-gradient(90deg,#5865F2,#00b0f4);
+}
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+</style>
+</body>
+</html>

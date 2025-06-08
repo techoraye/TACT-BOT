@@ -51,6 +51,12 @@ module.exports = {
     image: "https://www.pinclipart.com/picdir/middle/531-5318253_web-designing-icon-png-clipart.png",
     emoji: "🤴",
   },
+    STATS: {
+    name: "Statistics",
+    enabled: config.STATS.ENABLED,
+    image: "https://icons.iconarchive.com/icons/graphicloads/flat-finance/256/dollar-stats-icon.png",
+    emoji: "📈",
+  },
   TICKET: {
     name: "Ticket",
     enabled: config.TICKET.ENABLED,
@@ -62,5 +68,17 @@ module.exports = {
     enabled: config.TICKET.ENABLED,
     image: "https://icons.iconarchive.com/icons/blackvariant/button-ui-system-folders-alt/128/Utilities-icon.png",
     emoji: "🛠",
+  },
+    MUSIC: {
+    name: "Music",
+    enabled: config.MUSIC.ENABLED,
+    image: "https://icons.iconarchive.com/icons/wwalczyszyn/iwindows/256/Music-Library-icon.png",
+    emoji: "🎵",
+  },
+    SUGGESTION: {
+    name: "Suggestion",
+    enabled: config.SUGGESTIONS.ENABLED,
+    image: "https://cdn-icons-png.flaticon.com/512/1484/1484815.png",
+    emoji: "📝",
   },
 };

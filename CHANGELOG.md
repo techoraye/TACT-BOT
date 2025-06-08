@@ -4,14 +4,23 @@ Stay up to date with the latest features, improvements, and fixes for TACT. We'r
 
 ---
 
-## 🚀 Stable Release: `v1.5.4`
+## 🚀 Stable Release: `v2.0`
 
 **Platform Support:**  
 - Fully compatible with **Linux**, **Windows**, and **WSL**.
 
-**Fixes:**  
-- Fixed `/clear` command spamming the Discord API by properly deferring interactions.  
-- Prevented "Unknown Message" errors during message deletions.
+### 🖥️ Dashboard (Beta)
+- We are excited to introduce the **TACT Dashboard**, now available in beta!  
+  The dashboard brings a powerful, intuitive web interface for managing your server’s moderation, configuration, and analytics.  
+  - **Features:**
+    - Real-time moderation controls and logs.
+    - Effortless role and permission management.
+    - Customizable automod and filter settings.
+    - Visual analytics for server activity and moderation actions.
+    - Secure authentication and granular access controls.
+  - **Status:**  
+    - The dashboard is currently in beta. Some features may be limited or subject to change as we gather feedback and improve stability.
+    - We encourage you to try it out and share your feedback to help us shape the final experience!
 
 ---
 

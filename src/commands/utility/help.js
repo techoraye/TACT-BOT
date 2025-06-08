@@ -131,7 +131,12 @@ async function getHelpMenu({ client, guild }) {
       .setLabel("🌐 Support Server")
       .setStyle(ButtonStyle.Link)
       .setEmoji("🛠️")
-      .setURL(SUPPORT_SERVER)
+      .setURL(SUPPORT_SERVER),
+    new ButtonBuilder()
+      .setLabel("📊 Dashboard")
+      .setStyle(ButtonStyle.Link)
+      .setEmoji("🖥️")
+      .setURL("https://tact-bot.onrender.com/")
   );
 
   const embed = getHomeEmbed(client, guild);
@@ -199,7 +204,12 @@ async function getCategoryHelp(ctx, category, prefix) {
       .setLabel("🌐 Support Server")
       .setStyle(ButtonStyle.Link)
       .setEmoji("🛠️")
-      .setURL(SUPPORT_SERVER)
+      .setURL(SUPPORT_SERVER),
+    new ButtonBuilder()
+      .setLabel("📊 Dashboard")
+      .setStyle(ButtonStyle.Link)
+      .setEmoji("🖥️")
+      .setURL("https://tact-bot.onrender.com/")
   );
 
   // Send the first page and start the waiter for navigation

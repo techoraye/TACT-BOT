@@ -47,7 +47,6 @@ if (!fs.existsSync(blacklistPath)) {
 validateConfiguration();
 
 const client = new BotClient();
-const dashboard = require("./dashboard/index"); // Start the dashboard server
 
 async function shutdown(signal) {
   console.log(`Received ${signal}. Shutting down gracefully...`);
@@ -81,7 +80,21 @@ process.on("SIGTERM", () => shutdown("SIGTERM"));
 (async () => {
   try {
     await checkForUpdates();
+      // start the dashboard
+  if (client.config.DASHBOARD.enabled) {
+    client.logger.log("Launching dashboard");
+    try {
+      const { launch } = require("@root/dashboard/app");
+
+      // let the dashboard initialize the database
+      await launch(client);
+    } catch (ex) {
+      client.logger.error("Failed to launch dashboard", ex);
+    }
+  } else {
+    // initialize the database
     await initializeMongoose();
+  }
     await client.login(process.env.BOT_TOKEN);
 
     client.once("ready", async () => {
