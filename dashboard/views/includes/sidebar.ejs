@@ -1,0 +1,155 @@
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar themed-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="<%= user.displayAvatar %>" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p><%= user.username %></p>
+            </div>
+        </div>
+        <!-- search form -->
+        <form action="/selector" method="get" class="sidebar-form">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search for servers...">
+            <span class="input-group-btn">
+                <button type="submit" id="search-btn" class="btn btn-flat">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">SERVERS MANAGEMENT</li>
+            <li class="treeview menu-open">
+                <li><a href="/selector"><i class="fa fa-home"></i> <span>Selector</span></a></li>
+            </li>
+        </ul>
+        <% if (locals.guild){ %>
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">CONFIGURATION</li>
+            <li class="treeview menu-open">
+                <li><a href="/manage/<%= guild.id %>/basic"><i class="fa fa-gear"></i> <span>Basic</span></a></li>
+                <li><a href="/manage/<%= guild.id %>/greeting"><i class="fa fa-bullhorn"></i> <span>Greeting</span></a></li>
+            </li>
+        </ul>
+        <% } %>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+
+<style>
+  .themed-sidebar {
+    background: #23283b !important;
+    color: #e3e5e8;
+    border-right: 1px solid #2a3145;
+    min-height: 100vh;
+    box-shadow: 2px 0 16px 0 #00000040;
+  }
+  .themed-sidebar .user-panel {
+    background: none;
+    border-bottom: 1px solid #2a3145;
+    margin-bottom: 18px;
+    padding: 18px 10px 10px 10px;
+  }
+  .themed-sidebar .user-panel .image img {
+    border: 2px solid #3a8fff;
+    box-shadow: 0 2px 8px 0 #00000030;
+    width: 54px;
+    height: 54px;
+    object-fit: cover;
+  }
+  .themed-sidebar .user-panel .info p {
+    color: #fff;
+    font-weight: 800;
+    margin: 0 0 0 12px;
+    font-size: 1.25rem;
+    letter-spacing: 0.3px;
+  }
+  .themed-sidebar .sidebar-form {
+    background: none;
+    border: none;
+    margin: 0 0 18px 0;
+    padding: 0 10px;
+  }
+  .themed-sidebar .form-control {
+    background: #181c23;
+    color: #e3e5e8;
+    border: 1px solid #2a3145;
+    border-radius: 8px;
+    font-size: 1rem;
+    padding: 8px 12px;
+  }
+  .themed-sidebar .form-control:focus {
+    background: #23283b;
+    color: #fff;
+    border-color: #3a8fff;
+    outline: none;
+    box-shadow: 0 0 0 2px #3a8fff33;
+  }
+  .themed-sidebar .btn-flat {
+    background: #3a8fff;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    font-weight: 700;
+    transition: background 0.2s;
+  }
+  .themed-sidebar .btn-flat:hover {
+    background: #1fd655;
+    color: #fff;
+  }
+  .themed-sidebar .sidebar-menu > li.header {
+    color: #3a8fff;
+    background: none;
+    font-weight: 900;
+    font-size: 1.18rem;
+    letter-spacing: 0.7px;
+    padding: 14px 10px 4px 22px;
+  }
+  .themed-sidebar .sidebar-menu > li > a {
+    color: #e3e5e8;
+    font-weight: 700;
+    font-size: 1.18rem;
+    padding: 16px 22px;
+    border-radius: 10px;
+    margin: 6px 10px;
+    transition: background 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+  }
+  .themed-sidebar .sidebar-menu > li > a:hover, .themed-sidebar .sidebar-menu > li.active > a {
+    background: #2a3145;
+    color: #3a8fff;
+  }
+  .themed-sidebar .sidebar-menu > li > a > i {
+    margin-right: 14px;
+    color: #3a8fff;
+    font-size: 1.25rem;
+  }
+  @media (max-width: 600px) {
+    .themed-sidebar {
+      min-width: 100px;
+      padding: 0;
+    }
+    .themed-sidebar .sidebar-menu > li > a {
+      font-size: 1rem;
+      padding: 10px 8px;
+    }
+  }
+</style>
+
+<script>
+    $(document).ready(function() {
+        // get current URL path and assign 'active' class
+        let pathname = window.location.pathname;
+        $(`.sidebar-menu > li > a[href="${pathname}"]`).parent().addClass("active");
+        $(`.sidebar-menu > li > ul > li > a[href="${window.location.pathname}"]`).parent().addClass("active");
+        $(`.sidebar-menu > li > a[href="/${window.location.pathname.split("/")[1]}/"]`).parent().addClass("active");
+    });
+</script>

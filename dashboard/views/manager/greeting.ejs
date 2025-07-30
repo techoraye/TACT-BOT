@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+	<%- include('../includes/head') %>
+	
+	<body class="hold-transition skin-blue sidebar-mini">
+
+		<div class="wrapper">
+
+			<!-- The header is the topbar -->
+			<%- include('../includes/header') %>
+
+			<!-- The sidebar includes the menu -->
+			<%- include('../includes/sidebar') %>
+
+			<!-- Content Wrapper. Contains page content -->
+			<div class="content-wrapper">
+
+				<!-- Content Header (Page header) -->
+				<section class="content-header" style="margin-bottom: 0;">
+    <h2 class="dashboard-title">Greeting</h2>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-home"></i> Selector</a></li>
+        <li><a href="<%=`/manage/${guild.id}/`%>"><%=guild.name%></a></li>
+        <li class="active">Greeting</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="modern-card dashboard-card">
+                <div class="box-header with-border">
+                    <h3 class="box-title section-title">Welcome Embed</h3>
+                </div>
+                <form role="form" action="/manage/<%= guild.id %>/greeting" method="POST">
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label>Content</label>
+                                            <% if(guild.welcome.embed.description || guild.welcome.content) {%>
+                                                <textarea rows="3" name="content" class="form-control"><%- guild.welcome.content?.replaceAll(/\\n/g, '&#10;') %></textarea>
+                                            <% } else { %>
+                                                <textarea rows="3" name="content" class="form-control" placeholder="<%= 'Welcome to the server {member:name} 🎉' %>"></textarea>
+                                            <% } %>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea rows="3" name="description" class="form-control"><%- guild.welcome.embed.description?.replaceAll(/\\n/g, '&#10;') %></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Footer</label>
+                                            <input type="text" name="footer" class="form-control" value="<%= guild.welcome.embed.footer %>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Hex Color</label>
+                                            <input type="text" name="hexcolor" class="form-control" value="<%= guild.welcome.embed.color %>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Image URL</label>
+                                            <input type="text" name="image" class="form-control" value="<%= guild.welcome.embed.image %>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Channel</label>
+                                            <select class="form-control" name="channel">
+                                                <% if(bot.channels.cache.has(guild.welcome.channel)){ %>
+                                                    <option selected="selected">#<%= bot.channels.cache.get(guild.welcome.channel).name %></option>
+                                                    <% guild.channels.cache.filter((ch) => ch.id !== guild.welcome.channel && ch.type === 0).forEach((ch) => { %>
+                                                        <option>#<%= ch.name %></option>
+                                                    <% }); } else { %>
+                                                    <option disabled selected value> -- select an option -- </option>
+                                                    <% guild.channels.cache.filter((ch) => ch.id !== guild.channels.cache.first().id && ch.type === 0).forEach((ch) => { %>
+                                                        <option>#<%= ch.name %></option>
+                                                    <% }); %>
+                                                <% } %>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+    <label style="color:#e3e5e8; display:block; margin-bottom:8px;">
+        <span class="switch">
+            <input type="checkbox" name="thumbnail" id="welcome_thumbnail" <% if(guild.welcome.embed.thumbnail) { %>checked<% } %>>
+            <span class="slider"></span>
+        </span>
+        Thumbnail
+    </label>
+</div>
+                                    </div>
+                                    <div class="box-footer">
+                                        <% if(guild.welcome.enabled){ %>
+                                            <button type="submit" name="welcomeDisable" class="btn btn-danger">Disable Messages</button>
+                                            <button type="submit" name="welcomeUpdate" class="btn btn-primary pull-right">Update</button>
+                                        <% } else { %>
+                                            <button type="submit" name="welcomeEnable" class="btn btn-success">Enable Message</button>
+                                        <% } %>
+                                    </div>
+                                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="modern-card dashboard-card">
+                <div class="box-header with-border">
+                    <h3 class="box-title section-title">Farewell Configuration</h3>
+                </div>
+                <form role="form" action="/manage/<%= guild.id %>/greeting" method="POST">
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label>Content</label>
+                                            <% if(guild.farewell.embed.description || guild.farewell.content) {%>
+                                                <textarea rows="3" name="content" class="form-control"><%- guild.farewell.content?.replaceAll(/\\n/g, '&#10;') %></textarea>
+                                            <% } else { %>
+                                                <textarea rows="3" name="content" class="form-control" placeholder="<%= '{member:tag} has left the server 👋' %>"></textarea>
+                                            <% } %>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea rows="3" name="description" class="form-control"><%- guild.farewell.embed.description?.replaceAll(/\\n/g, '&#10;') %></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Footer</label>
+                                            <input type="text" name="footer" class="form-control" value="<%= guild.farewell.embed.footer %>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Hex Color</label>
+                                            <input type="text" name="hexcolor" class="form-control" value="<%= guild.farewell.embed.color %>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Image URL</label>
+                                            <input type="text" name="image" class="form-control" value="<%= guild.farewell.embed.image %>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Channel</label>
+                                            <select class="form-control" name="channel">
+                                                <% if(bot.channels.cache.has(guild.farewell.channel)){ %>
+                                                    <option selected="selected">#<%= bot.channels.cache.get(guild.farewell.channel).name %></option>
+                                                    <% guild.channels.cache.filter((ch) => ch.id !== guild.farewell.channel && ch.type === 0).forEach((ch) => { %>
+                                                        <option>#<%= ch.name %></option>
+                                                    <% }); } else { %>
+                                                        <option disabled selected value> -- select an option -- </option>
+                                                    <% guild.channels.cache.filter((ch) => ch.id !== guild.channels.cache.first().id && ch.type === 0).forEach((ch) => { %>
+                                                        <option>#<%= ch.name %></option>
+                                                    <% }); %>
+                                                <% } %>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+    <label style="color:#e3e5e8; display:block; margin-bottom:8px;">
+        <span class="switch">
+            <input type="checkbox" name="thumbnail" id="farewell_thumbnail" <% if(guild.farewell.embed.thumbnail) { %>checked<% } %>>
+            <span class="slider"></span>
+        </span>
+        Thumbnail
+    </label>
+</div>
+                                    </div>
+                                    <div class="box-footer">
+                                        <% if(guild.farewell.enabled){ %>
+                                            <button type="submit" name="farewellDisable" class="btn btn-danger">Disable Messages</button>
+                                            <button type="submit" name="farewellUpdate" class="btn btn-primary pull-right">Update</button>
+                                        <% } else { %>
+                                            <button type="submit" name="farewellEnable" class="btn btn-success">Enable Message</button>
+                                        <% } %>
+                                    </div>
+                                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+				
+			</div>
+            <!-- /.content-wrapper -->
+
+            <%- include('../includes/footer') %>
+		</div>
+		<!-- ./wrapper -->
+	</body>
+</html>
+
+<style>
+    body {
+        background: #181c23;
+        color: #e3e5e8;
+    }
+    .content-wrapper, .content-header {
+        background: #181c23 !important;
+    }
+    .dashboard-title {
+        color: #fff;
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 18px;
+        letter-spacing: 0.5px;
+    }
+    .section-title {
+        color: #3a8fff;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 18px;
+    }
+    .modern-card.dashboard-card {
+        background: #23283b;
+        border-radius: 18px;
+        box-shadow: 0 2px 16px 0 #00000040;
+        border: 1px solid #2a3145;
+        margin-bottom: 32px;
+        padding: 32px 32px 16px 32px;
+        transition: box-shadow 0.2s;
+    }
+    .modern-card.dashboard-card:hover {
+        box-shadow: 0 4px 32px 0 #00000080;
+    }
+    .box-header.with-border {
+        border-bottom: 1px solid #2a3145;
+        margin-bottom: 18px;
+    }
+    .form-group {
+        margin-bottom: 22px;
+    }
+    .form-control, select.form-control, textarea.form-control {
+        background: #181c23;
+        color: #e3e5e8;
+        border: 1px solid #2a3145;
+        border-radius: 8px;
+        font-size: 1rem;
+        padding: 10px 14px;
+        margin-top: 6px;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-control:focus, select.form-control:focus, textarea.form-control:focus {
+        background: #23283b;
+        color: #fff;
+        border-color: #3a8fff;
+        outline: none;
+        box-shadow: 0 0 0 2px #3a8fff33;
+    }
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 48px;
+        height: 24px;
+        margin-right: 12px;
+        vertical-align: middle;
+    }
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #2a3145;
+        border-radius: 24px;
+        transition: .4s;
+    }
+    .switch input:checked + .slider {
+        background: #3a8fff;
+    }
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background: #fff;
+        border-radius: 50%;
+        transition: .4s;
+    }
+    .switch input:checked + .slider:before {
+        transform: translateX(24px);
+    }
+    .switch .slider {
+        box-shadow: 0 2px 8px 0 #00000030;
+    }
+    .switch input:focus + .slider {
+        box-shadow: 0 0 1px #3a8fff;
+    }
+    .switch input:active + .slider:before {
+        width: 22px;
+    }
+    .switch input:disabled + .slider {
+        background: #444a5a;
+        cursor: not-allowed;
+    }
+    .switch input:disabled + .slider:before {
+        background: #888;
+    }
+    .switch .slider:after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: #fff;
+        opacity: 0.2;
+        transition: width 0.2s, height 0.2s;
+    }
+    .switch input:active + .slider:after {
+        width: 32px;
+        height: 32px;
+    }
+    /* End switch enhancements */
+    .btn-success, .btn-danger, .btn-primary {
+        border-radius: 8px;
+        font-weight: 600;
+        border: none;
+        box-shadow: 0 2px 8px 0 #00000020;
+        font-size: 1rem;
+        padding: 10px 28px;
+        margin-left: 8px;
+        transition: background 0.2s, box-shadow 0.2s;
+        display: none !important; /* Hide ugly buttons */
+    }
+    .btn-success {
+        background: linear-gradient(90deg, #1fd655 0%, #1fa855 100%);
+        color: #fff;
+    }
+    .btn-danger {
+        background: linear-gradient(90deg, #e74c3c 0%, #c0392b 100%);
+        color: #fff;
+    }
+    .btn-primary {
+        background: linear-gradient(90deg, #3a8fff 0%, #0059ff 100%);
+        color: #fff;
+    }
+    .box-title {
+        color: #fff;
+        font-weight: 700;
+    }
+    label {
+        font-weight: 500;
+        color: #e3e5e8;
+    }
+    .box-footer {
+        display: flex;
+        justify-content: flex-end;
+        background: none;
+        border: none;
+        padding: 0 0 8px 0;
+    }
+</style>
