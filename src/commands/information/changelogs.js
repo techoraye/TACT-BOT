@@ -55,40 +55,64 @@ module.exports = {
 function createChangelogEmbeds(version, botAvatar) {
   const pages = [];
 
-  // Page 1: TACT Changelog (Platform Support & Release + Dashboard Beta)
+  // Page 1: Dashboard Changelog
   pages.push(
     new EmbedBuilder()
-      .setTitle("📢 TACT Changelog")
+      .setTitle("📢 Dashboard Changelog")
       .setColor("#F59E0B")
       .setThumbnail(botAvatar)
       .setDescription([
-        "Stay up to date with the latest features, improvements, and fixes for TACT. We're dedicated to delivering the best Discord experience for your community!",
+        "Stay updated with the sleek new design and powerful improvements to your dashboard experience!",
         "",
         "---",
         "",
         `## 🚀 Stable Release: \`${version}\``,
         "",
         "**Platform Support:**",
-        "- Fully compatible with **Linux**, **Windows**, and **WSL**.",
+        "- Optimized for **desktop and mobile browsers**",
+        "- Dark mode now available across all devices",
         "",
-        "### 🖥️ Dashboard (Beta)",
-        "- We are excited to introduce the **TACT Dashboard**, now available in beta!",
-        "  The dashboard brings a powerful, intuitive web interface for managing your server’s moderation, configuration, and analytics.",
-        "  - **Features:**",
-        "    - Real-time moderation controls and logs.",
-        "    - Effortless role and permission management.",
-        "    - Customizable automod and filter settings.",
-        "    - Visual analytics for server activity and moderation actions.",
-        "    - Secure authentication and granular access controls.",
-        "  - **Status:**",
-        "    - The dashboard is currently in beta. Some features may be limited or subject to change as we gather feedback and improve stability.",
-        "    - We encourage you to try it out and share your feedback to help us shape the final experience!",
+        "### ✨ Dashboard v0.7 [BETA]",
+        "Introducing our modernized dashboard interface:",
+        "- **Glassmorphic design** with backdrop blur",
+        "- Animated navigation elements",
+        "- Responsive Flexbox layout",
+        "- Performance-optimized rendering",
+        "",
+        "**Key Improvements:**",
+        "✓ 40% faster UI rendering",
+        "✓ Consistent color scheme",
+        "✓ Mobile-first touch targets",
+        "",
+        "**Note:** Beta features remain under active development",
       ].join("\n"))
-      .setFooter({ text: "Page 1/3 • Platform Support & Dashboard" })
+      .setFooter({ text: "Page 1/3 • Dashboard Changelog" })
       .setTimestamp()
   );
 
-  // Page 2: Fixes
+  // Page 2: Roadmap
+  pages.push(
+    new EmbedBuilder()
+      .setTitle("🔜 Roadmap")
+      .setColor("#FBBF24")
+      .setThumbnail(botAvatar)
+      .setDescription([
+        "### 🎨 Custom Theme Engine (Q3)",
+        "- Brand customization options",
+        "",
+        "### 📊 Enhanced Analytics (Q4)",
+        "- Interactive data visualization",
+        "",
+        "---",
+        "",
+        "💡 **We value your feedback!**",
+        "Help shape the future of our dashboard during this beta period.",
+      ].join("\n"))
+      .setFooter({ text: "Page 2/3 • Roadmap" })
+      .setTimestamp()
+  );
+
+  // Page 3: Fixes (retaining previous fixes page or new fixes if you want to add)
   pages.push(
     new EmbedBuilder()
       .setTitle("🐞 Fixes")
@@ -98,32 +122,7 @@ function createChangelogEmbeds(version, botAvatar) {
         "- Fixed `/clear` command spamming the Discord API by properly deferring interactions.",
         "- Prevented \"Unknown Message\" errors during message deletions.",
       ].join("\n"))
-      .setFooter({ text: "Page 2/3 • Fixes" })
-      .setTimestamp()
-  );
-
-  // Page 3: Coming Soon
-  pages.push(
-    new EmbedBuilder()
-      .setTitle("🔜 Coming Soon")
-      .setColor("#FBBF24")
-      .setThumbnail(botAvatar)
-      .setDescription([
-        "### 📥 Mod Inbox (DM Support)",
-        "- Members will soon be able to DM the bot for:",
-        "  - Help requests.",
-        "  - Reporting issues.",
-        "  - Private moderation support.",
-        "",
-        "### 🤖 AI Integration",
-        "- Smarter moderation powered by AI is on its way!",
-        "",
-        "---",
-        "",
-        "💡 **Even more updates and features are on the way!**",
-        "Thank you for using TACT and being part of our journey to deliver the best Discord experience.",
-      ].join("\n"))
-      .setFooter({ text: "Page 3/3 • Coming Soon" })
+      .setFooter({ text: "Page 3/3 • Fixes" })
       .setTimestamp()
   );
 

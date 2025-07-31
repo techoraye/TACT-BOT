@@ -1,56 +1,312 @@
 <!DOCTYPE html>
 <html>
-  <%- include('includes/head') %>
-
-  <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
-      <!-- The header is the topbar -->
-      <%- include('includes/header') %>
-
-      <!-- The sidebar includes the menu -->
-      <%- include('includes/sidebar') %>
-
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <h1>500 Error Page</h1>
-        </section>
-
-        <!-- Main content -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">s
+<%- include('includes/head') %>
+<body class="hold-transition skin-blue sidebar-mini" style="background: linear-gradient(135deg, #232336 0%, #5865F2 100%); min-height: 100vh;">
+<div class="wrapper">
+    <%- include('includes/header') %>
+    <%- include('includes/sidebar') %>
+    <div class="content-wrapper" style="background: transparent;">
         <section class="content">
-          <div class="error-page">
-            <h2 class="headline text-red">500</h2>
-
-            <div class="error-content">
-              <h3><i class="fa fa-warning text-red"></i> Oops! Something went wrong.</h3>
-
-              <p>
-                We will try to rectify this immediately. In the meantime, you can go back to the selector or try using
-                the search form.
-              </p>
-
-              <form class="search-form" action="/selector">
-                <div class="input-group">
-                  <input type="text" name="q" class="form-control" placeholder="Search for servers..." />
-
-                  <div class="input-group-btn">
-                    <button type="submit" class="btn btn-danger btn-flat"><i class="fa fa-search"></i></button>
-                  </div>
+            <div class="error-container glassmorphic-card">
+                <div class="error-animation">
+                    <div class="error-shape error-shape-1"></div>
+                    <div class="error-shape error-shape-2"></div>
+                    <div class="error-shape error-shape-3"></div>
+                    <div class="error-number">5</div>
+                    <div class="error-number">0</div>
+                    <div class="error-number">0</div>
+                    <div class="error-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
                 </div>
-                <!-- /.input-group -->
-              </form>
+                <div class="error-content">
+                    <h1 class="error-title">Server Error</h1>
+                    <p class="error-message">
+                        We encountered an unexpected error. Our team has been notified and will fix this shortly.
+                        Meanwhile, you can return to the dashboard or search for what you need.
+                    </p>
+                    <div class="error-actions">
+                        <a href="/selector" class="btn btn-primary">
+                            <i class="fas fa-arrow-left"></i> Back to Dashboard
+                        </a>
+                        <form class="search-form" action="/selector">
+                            <div class="input-group">
+                                <input type="text" name="q" class="form-control" placeholder="Search for servers..." />
+                                <button type="submit" class="btn btn-secondary">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <!-- /.error-content -->
-          </div>
-          <!-- /.error-page -->
         </section>
-        <!-- /.content -->
-      </div>
-      <!-- /.content-wrapper -->
-
-      <%- include('includes/footer') -%>
     </div>
-    <!-- ./wrapper -->
-  </body>
+    <%- include('includes/footer') %>
+</div>
+
+<style>
+    /* Base Styles */
+    .error-container {
+        max-width: 800px;
+        margin: 80px auto;
+        padding: 60px;
+        text-align: center;
+        background: rgba(30, 30, 45, 0.85);
+        backdrop-filter: blur(12px);
+        border-radius: 24px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        animation: fadeIn 0.6s ease-out;
+    }
+
+    .error-animation {
+        position: relative;
+        height: 180px;
+        margin-bottom: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .error-shape {
+        position: absolute;
+        background: rgba(231, 76, 60, 0.1);
+        animation: pulse 4s infinite ease-in-out;
+    }
+
+    .error-shape-1 {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        animation-delay: 0s;
+    }
+
+    .error-shape-2 {
+        width: 140px;
+        height: 140px;
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        animation-delay: 0.5s;
+    }
+
+    .error-shape-3 {
+        width: 100px;
+        height: 100px;
+        border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+        animation-delay: 1s;
+    }
+
+    .error-number {
+        font-size: 6rem;
+        font-weight: 900;
+        color: #e74c3c;
+        text-shadow: 0 4px 20px rgba(231, 76, 60, 0.3);
+        margin: 0 10px;
+        position: relative;
+        animation: shake 3s ease-in-out infinite;
+    }
+
+    .error-number:nth-child(4) {
+        animation-delay: 0s;
+    }
+
+    .error-number:nth-child(5) {
+        animation-delay: 0.2s;
+    }
+
+    .error-number:nth-child(6) {
+        animation-delay: 0.4s;
+    }
+
+    .error-icon {
+        position: absolute;
+        font-size: 4rem;
+        color: #e74c3c;
+        animation: pulse 2s infinite;
+    }
+
+    .error-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #e74c3c;
+        margin-bottom: 20px;
+    }
+
+    .error-message {
+        color: #bfc6d5;
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+
+    .error-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .btn {
+        padding: 12px 28px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .btn-primary {
+        background: linear-gradient(90deg, #e74c3c, #c0392b);
+        color: #fff;
+        border: none;
+        box-shadow: 0 4px 16px rgba(231, 76, 60, 0.3);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+    }
+
+    .search-form {
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .input-group {
+        display: flex;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .form-control {
+        flex: 1;
+        padding: 12px 18px;
+        border: none;
+        background: rgba(35, 40, 59, 0.8);
+        color: #fff;
+        font-size: 1rem;
+    }
+
+    .form-control:focus {
+        outline: none;
+        background: rgba(35, 40, 59, 0.9);
+    }
+
+    .btn-secondary {
+        background: rgba(42, 49, 69, 0.8);
+        color: #e74c3c;
+        border: 1px solid #e74c3c;
+        backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+        background: rgba(231, 76, 60, 0.1);
+        color: #fff;
+    }
+
+    /* Animations */
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+            opacity: 0.8;
+        }
+        50% {
+            transform: scale(1.1);
+            opacity: 0.4;
+        }
+    }
+
+    @keyframes shake {
+        0%, 100% {
+            transform: translateY(0) rotate(0deg);
+        }
+        10%, 30%, 50%, 70%, 90% {
+            transform: translateY(-5px) rotate(-2deg);
+        }
+        20%, 40%, 60%, 80% {
+            transform: translateY(5px) rotate(2deg);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .error-container {
+            padding: 40px 30px;
+            margin: 40px 20px;
+        }
+
+        .error-number {
+            font-size: 4rem;
+        }
+
+        .error-title {
+            font-size: 1.8rem;
+        }
+
+        .error-message {
+            font-size: 1rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .error-animation {
+            height: 140px;
+        }
+
+        .error-number {
+            font-size: 3rem;
+            margin: 0 5px;
+        }
+
+        .error-container {
+            padding: 30px 20px;
+        }
+
+        .error-actions {
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add hover effect to buttons
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+            });
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Add animation to error numbers
+        const errorNumbers = document.querySelectorAll('.error-number');
+        errorNumbers.forEach((num, index) => {
+            num.style.animationDelay = `${index * 0.2}s`;
+        });
+    });
+</script>
+</body>
 </html>

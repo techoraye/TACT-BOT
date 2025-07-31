@@ -16,265 +16,159 @@
         </section>
         <section class="content">
             <div class="row" style="gap: 2rem; display: flex; flex-wrap: wrap;">
+                <!-- Left Column -->
                 <div class="col-md-6" style="flex:1; min-width:340px;">
-                    <!-- BASIC CONFIGURATION -->
-                    <div class="box box-warning" style="background:rgba(30,30,45,0.95); border-radius:18px; box-shadow:0 8px 32px rgba(88,101,242,0.10); border:none; margin-bottom:2rem;">
-                        <div class="box-header with-border" style="border-bottom:1px solid #404eed;">
-                            <h3 class="box-title" style="font-weight:700; color:#00b0f4;">General</h3>
+                    <!-- General Configuration -->
+                    <div class="settings-card glassmorphic-card">
+                        <div class="settings-header">
+                            <h3 class="settings-title">General</h3>
+                            <div class="settings-divider"></div>
                         </div>
-                        <form role="form" action="/manage/<%= guild.id %>/basic/" method="POST" style="padding:1.5rem;">
-                            <div class="box-body">
+                        <form role="form" action="/manage/<%= guild.id %>/basic/" method="POST">
+                            <div class="settings-body">
                                 <div class="form-group">
-                                    <label style="color:#e3e5e8;">Prefix</label>
-                                    <input type="text" name="prefix" class="form-control" placeholder="<%= guild.prefix %>" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
+                                    <label class="form-label">Prefix</label>
+                                    <input type="text" name="prefix" class="form-control modern-input" placeholder="<%= guild.prefix %>">
                                 </div>
                                 <div class="form-group">
-                                    <div class="switch-group">
-                                        <label style="color:#e3e5e8; display:block; margin-bottom:8px;">
-                                            <span class="switch">
+                                    <div class="switch-container">
+                                        <label class="switch-label">
+                                            <div class="switch-wrapper">
                                                 <input type="checkbox" name="flag_translation" id="flag_translation" <% if(guild.flag_translation?.enabled) { %>checked<% } %>>
-                                                <span class="slider"></span>
-                                            </span>
-                                            Flag Translation
+                                                <span class="switch-slider"></span>
+                                            </div>
+                                            <span class="switch-text">File Translation</span>
                                         </label>
-                                        <label style="color:#e3e5e8; display:block; margin-bottom:8px;">
-                                            <span class="switch">
+                                        <label class="switch-label nested">
+                                            <div class="switch-wrapper">
                                                 <input type="checkbox" name="invite_tracking" id="invite_tracking" <% if(guild.invite.tracking) { %>checked<% } %>>
-                                                <span class="slider"></span>
-                                            </span>
-                                            Invite Tracking
+                                                <span class="switch-slider"></span>
+                                            </div>
+                                            <span class="switch-text">Inside Tracking</span>
                                         </label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="box-footer" style="text-align:right; background:none; border:none;">
-                                <button type="submit" name="basicUpdate" class="btn" style="background:linear-gradient(90deg,#5865F2,#00b0f4); color:#fff; font-weight:700; border:none; border-radius:10px; padding:10px 28px; box-shadow:0 2px 8px rgba(88,101,242,0.15);">Update</button>
+                            <div class="settings-footer">
+                                <button type="submit" name="basicUpdate" class="btn btn-modern">
+                                    <span class="btn-text">Update</span>
+                                    <i class="fa fa-check-circle btn-icon"></i>
+                                </button>
                             </div>
                         </form>
                     </div>
-                    <!-- STATISTICS CONFIGURATION -->
-                    <div class="box box-warning" style="background:rgba(30,30,45,0.95); border-radius:18px; box-shadow:0 8px 32px rgba(88,101,242,0.10); border:none; margin-bottom:2rem;">
-                        <div class="box-header with-border" style="border-bottom:1px solid #404eed;">
-                            <h3 class="box-title" style="font-weight:700; color:#00b0f4;">Statistics</h3>
+
+                    <!-- Modernization Configuration -->
+                    <div class="settings-card glassmorphic-card">
+                        <div class="settings-header">
+                            <h3 class="settings-title">Modernization Loop</h3>
+                            <div class="settings-divider"></div>
                         </div>
-                        <form role="form" action="/manage/<%= guild.id %>/basic/" method="POST" style="padding:1.5rem;">
-                            <div class="box-body">
+                        <form role="form" action="/manage/<%= guild.id %>/basic/" method="POST">
+                            <div class="settings-body">
                                 <div class="form-group">
-                                    <div class="switch-group">
-                                        <label style="color:#e3e5e8; display:block; margin-bottom:8px;">
-                                            <span class="switch">
-                                                <input type="checkbox" name="ranking" id="ranking" <% if(guild.stats && guild.stats.enabled) { %>checked<% } %>>
-                                                <span class="slider"></span>
-                                            </span>
-                                            Tracking
+                                    <label class="form-label">Max Warnings</label>
+                                    <input type="number" name="max_warnings" class="form-control modern-input" placeholder="<%= guild.max_warn.limit %>">
+                                </div>
+                                <div class="form-group">
+                                    <div class="switch-container">
+                                        <label class="switch-label">
+                                            <div class="switch-wrapper">
+                                                <input type="checkbox" name="max_warn_action" id="max_warn_action" <% if(guild.max_warn.action) { %>checked<% } %>>
+                                                <span class="switch-slider"></span>
+                                            </div>
+                                            <span class="switch-text">Max Warnings Action</span>
                                         </label>
+                                        <div class="nested-option">
+                                            <select class="form-control modern-select" name="max_warn_action_type">
+                                                <option value="NICK" <%= guild.max_warn.action === 'NICK' ? 'selected' : '' %>>NICK</option>
+                                                <option value="TIMEOUT" <%= guild.max_warn.action === 'TIMEOUT' ? 'selected' : '' %>>TIMEOUT</option>
+                                                <option value="KICK" <%= guild.max_warn.action === 'KICK' ? 'selected' : '' %>>KICK</option>
+                                                <option value="BAN" <%= guild.max_warn.action === 'BAN' ? 'selected' : '' %>>BAN</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label style="color:#e3e5e8;">Levelup Message</label>
-                                    <input type="text" name="levelup_message" class="form-control" placeholder="<%= guild.stats && guild.stats.xp ? guild.stats.xp.message : '' %>" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
-                                </div>
-                                <div class="form-group">
-                                    <label style="color:#e3e5e8;">Levelup Channel</label>
-                                    <select class="form-control" name="levelup_channel" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
-                                        <% if(guild.stats && guild.stats.xp && guild.stats.xp.channel && bot.channels.cache.has(guild.stats.xp.channel)){ %>
-                                            <option selected="selected">#<%= bot.channels.cache.get(guild.stats.xp.channel).name %></option>
-                                            <% guild.channels.cache.filter((ch) => ch.type === 0 && ch.id !== guild.stats.xp.channel).forEach((ch) => { %>
-                                                <option>#<%= ch.name %></option>
-                                            <% }); %>
-                                            <option>No channel</option>
-                                        <% } else { %>
-                                            <option disabled selected value> -- select an option -- </option>
-                                            <% guild.channels.cache.filter((ch) => ch.type === 0).forEach((ch) => { %>
-                                                <option>#<%= ch.name %></option>
-                                            <% }); %>
-                                        <% } %>
+                                    <label class="form-label">Modernization Logo</label>
+                                    <select class="form-control modern-select" name="modern_logo">
+                                        <option value="">-- select an option --</option>
+                                        <!-- Add your logo options here -->
                                     </select>
                                 </div>
-                            </div>
-                            <div class="box-footer" style="text-align:right; background:none; border:none;">
-                                <button type="submit" name="statsUpdate" class="btn" style="background:linear-gradient(90deg,#5865F2,#00b0f4); color:#fff; font-weight:700; border:none; border-radius:10px; padding:10px 28px; box-shadow:0 2px 8px rgba(88,101,242,0.15);">Update</button>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- TICKET CONFIGURATION -->
-                    <div class="box box-warning" style="background:rgba(30,30,45,0.95); border-radius:18px; box-shadow:0 8px 32px rgba(88,101,242,0.10); border:none; margin-bottom:2rem;">
-                        <div class="box-header with-border" style="border-bottom:1px solid #404eed;">
-                            <h3 class="box-title" style="font-weight:700; color:#00b0f4;">Ticket</h3>
-                        </div>
-                        <form role="form" action="/manage/<%= guild.id %>/basic/" method="POST" style="padding:1.5rem;">
-                            <div class="box-body">
                                 <div class="form-group">
-                                    <label style="color:#e3e5e8;">Ticket Limit</label>
-                                    <input type="number" name="limit" class="form-control" placeholder="<%= guild.ticket.limit %>" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
-                                </div>
-                                <div class="form-group">
-                                    <label style="color:#e3e5e8;">Ticket Logs</label>
-                                    <select class="form-control" name="channel" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
-                                        <% if(guild.ticket.log_channel && bot.channels.cache.has(guild.ticket.log_channel)){ %>
-                                            <option selected="selected">#<%= bot.channels.cache.get(guild.ticket.log_channel).name %></option>
-                                            <% guild.channels.cache.filter((ch) => ch.type === 0 && ch.id !== guild.ticket.log_channel).forEach((ch) => { %>
-                                                <option>#<%= ch.name %></option>
-                                            <% }); %>
-                                            <option>No channel</option>
-                                        <% } else { %>
-                                            <option disabled selected value> -- select an option -- </option>
-                                            <% guild.channels.cache.filter((ch) => ch.type === 0).forEach((ch) => { %>
-                                                <option>#<%= ch.name %></option>
-                                            <% }); %>
-                                        <% } %>
-                                    </select>
+                                    <div class="switch-container">
+                                        <label class="switch-label">
+                                            <div class="switch-wrapper">
+                                                <input type="checkbox" name="generate_next" id="generate_next">
+                                                <span class="switch-slider"></span>
+                                            </div>
+                                            <span class="switch-text">Generate a "NEXT" name, a "Share"</span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="box-footer" style="text-align:right; background:none; border:none;">
-                                <button type="submit" name="ticketUpdate" class="btn" style="background:linear-gradient(90deg,#5865F2,#00b0f4); color:#fff; font-weight:700; border:none; border-radius:10px; padding:10px 28px; box-shadow:0 2px 8px rgba(88,101,242,0.15);">Update</button>
+                            <div class="settings-footer">
+                                <button type="submit" name="modernUpdate" class="btn btn-modern">
+                                    <span class="btn-text">Update</span>
+                                    <i class="fa fa-check-circle btn-icon"></i>
+                                </button>
                             </div>
                         </form>
                     </div>
                 </div>
+
+                <!-- Right Column -->
                 <div class="col-md-6" style="flex:1; min-width:340px;">
-                    <!-- MODERATION CONFIGURATION -->
-                    <div class="box box-warning" style="background:rgba(30,30,45,0.95); border-radius:18px; box-shadow:0 8px 32px rgba(88,101,242,0.10); border:none; margin-bottom:2rem;">
-                        <div class="box-header with-border" style="border-bottom:1px solid #404eed;">
-                            <h3 class="box-title" style="font-weight:700; color:#00b0f4;">Moderation</h3>
+                    <!-- Interface Configuration -->
+                    <div class="settings-card glassmorphic-card">
+                        <div class="settings-header">
+                            <h3 class="settings-title">Interface</h3>
+                            <div class="settings-divider"></div>
                         </div>
-                        <form role="form" action="/manage/<%= guild.id %>/basic/" method="POST" style="padding:1.5rem;">
-                            <div class="box-body">
+                        <form role="form" action="/manage/<%= guild.id %>/basic/" method="POST">
+                            <div class="settings-body">
                                 <div class="form-group">
-                                    <label style="color:#e3e5e8;">Max Warnings</label>
-                                    <input type="number" name="max_warnings" class="form-control" placeholder="<%= guild.max_warn.limit %>" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
-                                </div>
-                                <div class="form-group">
-                                    <label style="color:#e3e5e8;">Max Warnings Action</label>
-                                    <select class="form-control" name="max_warn_action" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
-                                        <option selected="selected"><%= guild.max_warn.action %></option>
-                                        <% if(guild.max_warn.action !== "TIMEOUT") { %>
-                                            <option>TIMEOUT</option>
-                                        <% } %>
-                                        <% if(guild.max_warn.action !== "KICK") { %>
-                                            <option>KICK</option>
-                                        <% } %>
-                                        <% if(guild.max_warn.action !== "BAN") { %>
-                                            <option>BAN</option>
-                                        <% } %>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label style="color:#e3e5e8;">Moderation Logs</label>
-                                    <select class="form-control" name="modlog_channel" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
-                                        <% if(guild.modlog_channel && bot.channels.cache.has(guild.modlog_channel)){ %>
-                                            <option selected="selected">#<%= bot.channels.cache.get(guild.modlog_channel).name %></option>
-                                            <% guild.channels.cache.filter((ch) => ch.type === 0 && ch.id !== guild.modlog_channel).forEach((ch) => { %>
-                                                <option>#<%= ch.name %></option>
-                                            <% }); %>
-                                            <option>No channel</option>
-                                        <% } else { %>
-                                            <option disabled selected value> -- select an option -- </option>
-                                            <% guild.channels.cache.filter((ch) => ch.type === 0).forEach((ch) => { %>
-                                                <option>#<%= ch.name %></option>
-                                            <% }); %>
-                                        <% } %>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="box-footer" style="text-align:right; background:none; border:none;">
-                                <button type="submit" name="modUpdate" class="btn" style="background:linear-gradient(90deg,#5865F2,#00b0f4); color:#fff; font-weight:700; border:none; border-radius:10px; padding:10px 28px; box-shadow:0 2px 8px rgba(88,101,242,0.15);">Update</button>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- AUTOMOD CONFIGURATION -->
-                    <div class="box box-warning" style="background:rgba(30,30,45,0.95); border-radius:18px; box-shadow:0 8px 32px rgba(88,101,242,0.10); border:none; margin-bottom:2rem;">
-                        <div class="box-header with-border" style="border-bottom:1px solid #404eed;">
-                            <h3 class="box-title" style="font-weight:700; color:#00b0f4;">Auto Moderation</h3>
-                        </div>
-                        <form role="form" action="/manage/<%= guild.id %>/basic/" method="POST" style="padding:1.5rem;">
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label style="color:#e3e5e8;">Max Strikes</label>
-                                    <input type="number" name="max_strikes" class="form-control" placeholder="<%= guild.automod.strikes %>" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
-                                </div>
-                                <div class="form-group">
-                                    <label style="color:#e3e5e8;">Max Strikes Action</label>
-                                    <select class="form-control" name="automod_action" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
-                                        <option selected="selected"><%= guild.automod.action %></option>
-                                        <% if(guild.automod.action !== "TIMEOUT") { %>
-                                            <option>TIMEOUT</option>
-                                        <% } %>
-                                        <% if(guild.automod.action !== "KICK") { %>
-                                            <option>KICK</option>
-                                        <% } %>
-                                        <% if(guild.automod.action !== "BAN") { %>
-                                            <option>BAN</option>
-                                        <% } %>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label style="color:#e3e5e8;">Max Lines</label>
-                                    <input type="number" name="max_lines" class="form-control" placeholder="<%= guild.automod.max_lines %>" style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
-                                </div>
-                                <div class="form-group">
-                                    <div class="switch-group">
-                                        <label style="color:#e3e5e8; display:block; margin-bottom:8px;">
-                                            <span class="switch">
-                                                <input type="checkbox" name="anti_attachments" id="anti_attachments" <% if(guild.automod.anti_attachments) { %>checked<% } %>>
-                                                <span class="slider"></span>
-                                            </span>
-                                            Anti Attachments
-                                        </label>
-                                        <label style="color:#e3e5e8; display:block; margin-bottom:8px;">
-                                            <span class="switch">
-                                                <input type="checkbox" name="anti_invites" id="anti_invites" <% if(guild.automod.anti_invites) { %>checked<% } %>>
-                                                <span class="slider"></span>
-                                            </span>
-                                            Anti Invites
-                                        </label>
-                                        <label style="color:#e3e5e8; display:block; margin-bottom:8px;">
-                                            <span class="switch">
-                                                <input type="checkbox" name="anti_links" id="anti_links" <% if(guild.automod.anti_links) { %>checked<% } %>>
-                                                <span class="slider"></span>
-                                            </span>
-                                            Anti Links
-                                        </label>
-                                        <label style="color:#e3e5e8; display:block; margin-bottom:8px;">
-                                            <span class="switch">
-                                                <input type="checkbox" name="anti_spam" id="anti_spam" <% if(guild.automod.anti_spam) { %>checked<% } %>>
-                                                <span class="slider"></span>
-                                            </span>
-                                            Anti Spam
-                                        </label>
-                                        <label style="color:#e3e5e8; display:block; margin-bottom:8px;">
-                                            <span class="switch">
-                                                <input type="checkbox" name="anti_ghostping" id="anti_ghostping" <% if(guild.automod.anti_ghostping) { %>checked<% } %>>
-                                                <span class="slider"></span>
-                                            </span>
-                                            Anti Ghostping
-                                        </label>
-                                        <label style="color:#e3e5e8; display:block; margin-bottom:8px;">
-                                            <span class="switch">
-                                                <input type="checkbox" name="anti_massmention" id="anti_massmention" <% if(guild.automod.anti_massmention) { %>checked<% } %>>
-                                                <span class="slider"></span>
-                                            </span>
-                                            Anti Massmention
+                                    <div class="switch-container">
+                                        <label class="switch-label">
+                                            <div class="switch-wrapper">
+                                                <input type="checkbox" name="tracking" id="tracking" <% if(guild.stats && guild.stats.enabled) { %>checked<% } %>>
+                                                <span class="switch-slider"></span>
+                                            </div>
+                                            <span class="switch-text">Tracking</span>
                                         </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label style="color:#e3e5e8;">Whitelisted Channels</label>
-                                    <select class="form-control" name="channels" multiple style="border-radius:10px; border:1px solid #404eed; background:#232336; color:#fff;">
-                                        <% guild.channels.cache.filter((ch) => ch.type === 0).forEach((ch) => { %>
-                                            <% if(guild.automod.wh_channels.includes(ch.id) ){ %>
-                                                <option selected="selected">#<%= ch.name %></option>
-                                            <% } else { %>
-                                                <option>#<%= ch.name %></option>
-                                            <% } %>
-                                        <% }); %>
-                                    </select>
+                                    <div class="switch-container">
+                                        <label class="switch-label">
+                                            <div class="switch-wrapper">
+                                                <input type="checkbox" name="auto_modention" id="auto_modention">
+                                                <span class="switch-slider"></span>
+                                            </div>
+                                            <span class="switch-text">Auto Modization</span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="box-footer" style="text-align:right; background:none; border:none;">
-                                <button type="submit" name="automodUpdate" class="btn" style="background:linear-gradient(90deg,#5865F2,#00b0f4); color:#fff; font-weight:700; border:none; border-radius:10px; padding:10px 28px; box-shadow:0 2px 8px rgba(88,101,242,0.15);">Update</button>
+                            <div class="settings-footer">
+                                <button type="submit" name="statsUpdate" class="btn btn-modern">
+                                    <span class="btn-text">Update</span>
+                                    <i class="fa fa-check-circle btn-icon"></i>
+                                </button>
                             </div>
                         </form>
+                    </div>
+
+                    <!-- Backend Section -->
+                    <div class="settings-card glassmorphic-card backend-section">
+                        <div class="settings-header">
+                            <h3 class="settings-title">Backend</h3>
+                            <div class="settings-divider"></div>
+                        </div>
+                        <div class="settings-body">
+                            <p class="backend-text">Backend configuration options would appear here</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -282,44 +176,346 @@
     </div>
     <%- include('../includes/footer') %>
 </div>
-<!-- Modern Switch CSS -->
+
+<!-- CSS Styles -->
 <style>
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 48px;
-  height: 24px;
-  margin-right: 12px;
-  vertical-align: middle;
-}
-.switch input {display:none;}
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: #232336;
-  border: 2px solid #404eed;
-  border-radius: 24px;
-  transition: background 0.3s;
-}
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 2px;
-  background: #fff;
-  border-radius: 50%;
-  transition: transform 0.3s;
-  box-shadow: 0 2px 8px rgba(88,101,242,0.10);
-}
-input:checked + .slider {
-  background: linear-gradient(90deg,#5865F2,#00b0f4);
-}
-input:checked + .slider:before {
-  transform: translateX(24px);
-}
+    /* Base Styles */
+    .glassmorphic-card {
+        background: rgba(30, 30, 45, 0.85);
+        backdrop-filter: blur(12px);
+        border-radius: 18px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        margin-bottom: 2rem;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .glassmorphic-card:hover {
+        box-shadow: 0 12px 40px rgba(88, 101, 242, 0.25);
+        transform: translateY(-2px);
+    }
+
+    .settings-header {
+        padding: 18px 24px;
+        position: relative;
+    }
+
+    .settings-title {
+        font-weight: 700;
+        color: #00b0f4;
+        margin: 0;
+        font-size: 1.2rem;
+        letter-spacing: 0.5px;
+    }
+
+    .settings-divider {
+        height: 2px;
+        background: linear-gradient(90deg, #5865F2 0%, rgba(88, 101, 242, 0) 100%);
+        margin-top: 12px;
+        opacity: 0.5;
+    }
+
+    .settings-body {
+        padding: 20px 24px;
+    }
+
+    .settings-footer {
+        padding: 16px 24px;
+        text-align: right;
+        background: rgba(0, 0, 0, 0.1);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .form-group {
+        margin-bottom: 24px;
+    }
+
+    .form-label {
+        display: block;
+        color: #e3e5e8;
+        margin-bottom: 10px;
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+
+    .modern-input {
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 10px;
+        border: 1px solid rgba(64, 78, 237, 0.3);
+        background: rgba(35, 35, 53, 0.6);
+        color: #fff;
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+
+    .modern-input:focus {
+        outline: none;
+        border-color: #5865F2;
+        box-shadow: 0 0 0 2px rgba(88, 101, 242, 0.2);
+        background: rgba(35, 35, 53, 0.8);
+    }
+
+    .modern-select {
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 10px;
+        border: 1px solid rgba(64, 78, 237, 0.3);
+        background: rgba(35, 35, 53, 0.6);
+        color: #fff;
+        font-size: 14px;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e3e5e8'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 16px;
+    }
+
+    .btn-modern {
+        background: linear-gradient(90deg, #5865F2, #00b0f4);
+        color: #fff;
+        font-weight: 600;
+        border: none;
+        border-radius: 10px;
+        padding: 12px 24px;
+        box-shadow: 0 2px 8px rgba(88, 101, 242, 0.15);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-modern:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 16px rgba(88, 101, 242, 0.25);
+    }
+
+    .btn-modern .btn-text {
+        position: relative;
+        z-index: 1;
+    }
+
+    .btn-modern .btn-icon {
+        margin-left: 8px;
+        font-size: 16px;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Switch Styles */
+    .switch-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .switch-label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        color: #e3e5e8;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+    }
+
+    .switch-label:hover {
+        color: #fff;
+    }
+
+    .switch-wrapper {
+        position: relative;
+        display: inline-block;
+        width: 48px;
+        height: 24px;
+        margin-right: 12px;
+    }
+
+    .switch-wrapper input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .switch-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(35, 35, 53, 0.8);
+        border: 1px solid rgba(64, 78, 237, 0.3);
+        border-radius: 24px;
+        transition: all 0.3s ease;
+    }
+
+    .switch-slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background: #fff;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    input:checked + .switch-slider {
+        background: linear-gradient(90deg, #5865F2, #00b0f4);
+        border-color: transparent;
+    }
+
+    input:checked + .switch-slider:before {
+        transform: translateX(24px);
+    }
+
+    /* Nested Elements */
+    .nested {
+        margin-left: 36px;
+        margin-top: 8px;
+    }
+
+    .nested-option {
+        margin-left: 60px;
+        margin-top: 12px;
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+
+    /* Backend Section */
+    .backend-section .settings-body {
+        color: rgba(227, 229, 232, 0.7);
+        padding: 30px 20px;
+        text-align: center;
+        font-size: 0.95rem;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .row {
+            flex-direction: column;
+        }
+        
+        .col-md-6 {
+            width: 100%;
+            min-width: auto;
+        }
+        
+        .settings-header {
+            padding: 16px 20px;
+        }
+        
+        .settings-body {
+            padding: 16px 20px;
+        }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .settings-card {
+        animation: fadeIn 0.4s ease forwards;
+    }
+
+    .settings-card:nth-child(1) { animation-delay: 0.1s; }
+    .settings-card:nth-child(2) { animation-delay: 0.2s; }
+    .settings-card:nth-child(3) { animation-delay: 0.3s; }
+    .settings-card:nth-child(4) { animation-delay: 0.4s; }
 </style>
+
+<!-- JavaScript -->
+<script>
+    $(document).ready(function() {
+        // Initialize tooltips
+        $('[data-toggle="tooltip"]').tooltip();
+        
+        // Handle form submissions with improved UX
+        $('form').on('submit', function(e) {
+            e.preventDefault();
+            const form = $(this);
+            const button = form.find('button[type="submit"]');
+            const originalText = button.html();
+            
+            // Show loading state
+            button.html('<i class="fa fa-spinner fa-spin"></i> Updating...');
+            button.prop('disabled', true);
+            
+            // Submit form via AJAX
+            $.ajax({
+                url: form.attr('action'),
+                method: form.attr('method'),
+                data: form.serialize(),
+                success: function(response) {
+                    // Show success animation
+                    button.html('<i class="fa fa-check"></i> Success');
+                    setTimeout(() => {
+                        button.html(originalText);
+                        button.prop('disabled', false);
+                        
+                        // Add temporary success glow
+                        button.addClass('btn-success-glow');
+                        setTimeout(() => {
+                            button.removeClass('btn-success-glow');
+                        }, 1000);
+                    }, 1500);
+                },
+                error: function() {
+                    // Show error state
+                    button.html('<i class="fa fa-times"></i> Error');
+                    setTimeout(() => {
+                        button.html(originalText);
+                        button.prop('disabled', false);
+                        
+                        // Add temporary error shake
+                        button.addClass('btn-error-shake');
+                        setTimeout(() => {
+                            button.removeClass('btn-error-shake');
+                        }, 500);
+                    }, 1500);
+                }
+            });
+        });
+        
+        // Toggle nested options with animation
+        $('input[type="checkbox"]').change(function() {
+            const nested = $(this).closest('.switch-label').next('.nested-option');
+            if (nested.length) {
+                if ($(this).is(':checked')) {
+                    nested.slideDown(200);
+                } else {
+                    nested.slideUp(200);
+                }
+            }
+        });
+        
+        // Initialize nested option visibility
+        $('input[type="checkbox"]').each(function() {
+            const nested = $(this).closest('.switch-label').next('.nested-option');
+            if (nested.length) {
+                nested.toggle($(this).is(':checked'));
+            }
+        });
+        
+        // Add hover effect to cards
+        $('.glassmorphic-card').hover(
+            function() {
+                $(this).css('transform', 'translateY(-4px)');
+            },
+            function() {
+                $(this).css('transform', 'translateY(0)');
+            }
+        );
+    });
+</script>
 </body>
 </html>

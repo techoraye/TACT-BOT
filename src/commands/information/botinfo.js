@@ -30,7 +30,7 @@ module.exports = {
       .addFields(
         {
           name: "👤 Developer",
-          value: "[techarye](https://github.com/techarye)",
+          value: "[techarye](https://github.com/techoraye)",
           inline: true,
         }
       )
@@ -41,15 +41,15 @@ module.exports = {
       new ButtonBuilder()
         .setLabel("TikTok")
         .setStyle(ButtonStyle.Link)
-        .setURL("https://www.tiktok.com/@techtact"),
+        .setURL("https://www.tiktok.com/@techoraye"),
       new ButtonBuilder()
         .setLabel("GitHub Repo")
         .setStyle(ButtonStyle.Link)
-        .setURL("https://github.com/techarye/TACT-BOT"),
+        .setURL("https://github.com/techoraye/TACT-BOT"),
       new ButtonBuilder()
         .setLabel("Hosting")
         .setStyle(ButtonStyle.Link)
-        .setURL("https://ngrok.com/")
+        .setURL("https://bot-hosting.net/")
     );
 
     await message.channel.send({ embeds: [embed], components: [row] });
@@ -63,7 +63,7 @@ module.exports = {
       .addFields(
         {
           name: "👤 Developer",
-          value: "[techarye](https://github.com/techarye)",
+          value: "[techarye](https://github.com/techoraye)",
           inline: true,
         }
       )
@@ -74,15 +74,15 @@ module.exports = {
       new ButtonBuilder()
         .setLabel("TikTok")
         .setStyle(ButtonStyle.Link)
-        .setURL("https://www.tiktok.com/@techtact"),
+        .setURL("https://www.tiktok.com/@techoraye"),
       new ButtonBuilder()
         .setLabel("GitHub Repo")
         .setStyle(ButtonStyle.Link)
-        .setURL("https://github.com/techarye/TACT-BOT"),
+        .setURL("https://github.com/techoraye/TACT-BOT"),
       new ButtonBuilder()
         .setLabel("Hosting")
         .setStyle(ButtonStyle.Link)
-        .setURL("https://ngrok.com/")
+        .setURL("https://bot-hosting.net/")
     );
 
     // Avoid replying twice

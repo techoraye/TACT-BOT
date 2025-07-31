@@ -1,41 +1,40 @@
-# 📢 TACT Changelog
+# 📢 Dashboard Changelog  
 
-Stay up to date with the latest features, improvements, and fixes for TACT. We're dedicated to delivering the best Discord experience for your community!
+Stay updated with the sleek new design and powerful improvements to your dashboard experience!  
 
 ---
 
-## 🚀 Stable Release: `v2.0`
+## 🚀 Stable Release: `v2.1.0`  
 
 **Platform Support:**  
-- Fully compatible with **Linux**, **Windows**, and **WSL**.
+- Optimized for **desktop and mobile browsers**  
+- Dark mode now available across all devices  
 
-### 🖥️ Dashboard (Beta)
-- We are excited to introduce the **TACT Dashboard**, now available in beta!  
-  The dashboard brings a powerful, intuitive web interface for managing your server’s moderation, configuration, and analytics.  
-  - **Features:**
-    - Real-time moderation controls and logs.
-    - Effortless role and permission management.
-    - Customizable automod and filter settings.
-    - Visual analytics for server activity and moderation actions.
-    - Secure authentication and granular access controls.
-  - **Status:**  
-    - The dashboard is currently in beta. Some features may be limited or subject to change as we gather feedback and improve stability.
-    - We encourage you to try it out and share your feedback to help us shape the final experience!
+### ✨ Dashboard v0.7 [BETA]  
+Introducing our modernized dashboard interface:  
+- **Glassmorphic design** with backdrop blur  
+- Animated navigation elements  
+- Responsive Flexbox layout  
+- Performance-optimized rendering  
 
----
+**Key Improvements:**  
+✓ 40% faster UI rendering  
+✓ Consistent color scheme  
+✓ Mobile-first touch targets  
 
-## 🔜 Coming Soon
-
-### 📥 Mod Inbox (DM Support)
-- Members will soon be able to DM the bot for:
-  - Help requests.
-  - Reporting issues.
-  - Private moderation support.
-
-### 🤖 AI Integration
-- Smarter moderation powered by AI is on its way!
+**Note:** Beta features remain under active development  
 
 ---
 
-💡 **Even more updates and features are on the way!**  
-Thank you for using TACT and being part of our journey to deliver the best Discord experience.
+## 🔜 Roadmap  
+
+### 🎨 Custom Theme Engine (Q3)  
+- Brand customization options  
+
+### 📊 Enhanced Analytics (Q4)  
+- Interactive data visualization  
+
+---  
+
+💡 **We value your feedback!**  
+Help shape the future of our dashboard during this beta period.  

@@ -30,17 +30,17 @@ module.exports = {
       .addFields(
         {
           name: "💻 GitHub",
-          value: "[github.com/techarye](https://github.com/techarye)",
+          value: "[github.com/techoraye](https://github.com/techoraye)",
           inline: true,
         },
         {
           name: "🎵 TikTok",
-          value: "[tiktok.com/@techarye](https://www.tiktok.com/@techoraye)",
+          value: "[tiktok.com/@techoraye](https://www.tiktok.com/@techoraye)",
           inline: true,
         },
         {
           name: "🕹️ Discord",
-          value: "[techarye](https://discord.com/users/1132413940693995541)",
+          value: "[techoraye](https://discord.com/users/1132413940693995541)",
           inline: true,
         }
       )
@@ -58,17 +58,17 @@ module.exports = {
       .addFields(
         {
           name: "💻 GitHub",
-          value: "[github.com/techarye](https://github.com/techarye)",
+          value: "[github.com/techoraye](https://github.com/techoraye)",
           inline: true,
         },
         {
           name: "🎵 TikTok",
-          value: "[tiktok.com/@techarye](https://www.tiktok.com/@techoraye)",
+          value: "[tiktok.com/@techoraye](https://www.tiktok.com/@techoraye)",
           inline: true,
         },
         {
           name: "🕹️ Discord",
-          value: "[techarye](https://discord.com/users/1132413940693995541)",
+          value: "[techoraye](https://discord.com/users/1132413940693995541)",
           inline: true,
         }
       )

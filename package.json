@@ -1,6 +1,6 @@
 {
   "name": "tactbot",
-  "version": "2.0",
+  "version": "2.1.0",
   "description": "An open-source, multipurpose discord bot built using discord-js",
   "main": "node bot.js",
   "author": "TACT Team",
@@ -13,7 +13,7 @@
     "start": "node bot.js",
     "format": "prettier --write src",
     "docker:package": "tar -cf techactivitybot.tar dashboard logs src bot.js config.js dockerfile package.json package-lock.json",
-    "docker:build": "docker build -t techarye/techactivitybot:2.0",
+    "docker:build": "docker build -t techarye/techactivitybot:2.1.0",
     "dashboard": "node dashboard/client/src/App.js"
   },
   "homepage": "https://github.com/techarye/TACT-BOT#readme",

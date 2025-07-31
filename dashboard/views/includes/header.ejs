@@ -1,24 +1,36 @@
-<header class="main-header themed-header">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<header class="main-header glassmorphic-header">
   <!-- Logo -->
-  <a href="/" class="logo themed-logo">
+  <a href="/" class="logo glassmorphic-logo">
     <span class="logo-mini"><b>TACT</b></span>
     <span class="logo-lg"><b>TACT Dashboard</b></span>
   </a>
-  <nav class="navbar navbar-static-top themed-navbar">
+  <nav class="navbar navbar-static-top glassmorphic-navbar">
     <a class="sidebar-toggle" data-toggle="push-menu" role="button">
       <span class="sr-only">Toggle navigation</span>
+      <i class="fas fa-bars"></i>
     </a>
     <div class="navbar-custom-menu">
       <ul class="nav navbar-nav">
         <li class="dropdown user user-menu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <a href="#" class="dropdown-toggle user-profile" data-toggle="dropdown">
             <img src="<%= user.displayAvatar %>" class="user-image" alt="User Image" />
-            <span class="hidden-xs"><%= user.tag %></span>
+            <span class="hidden-xs username"><%= user.tag %></span>
+            <i class="fas fa-caret-down dropdown-icon"></i>
           </a>
-          <ul class="dropdown-menu">
-            <li class="user-footer" style="min-width: auto !important">
-              <div>
-                <a href="/logout" class="btn btn-default btn-flat btn-block themed-logout">Sign out</a>
+          <ul class="dropdown-menu user-dropdown">
+            <li class="user-header">
+              <img src="<%= user.displayAvatar %>" class="img-circle profile-img" alt="User Image">
+              <p class="profile-info">
+                <span class="profile-name"><%= user.username %></span>
+                <small class="profile-role">Administrator</small>
+              </p>
+            </li>
+            <li class="user-footer">
+              <div class="logout-container">
+                <a href="/logout" class="btn btn-logout">
+                  <i class="fas fa-sign-out-alt"></i> Sign Out
+                </a>
               </div>
             </li>
           </ul>
@@ -27,92 +39,271 @@
     </div>
   </nav>
 </header>
+
 <style>
-  .themed-header {
-    background: #23283b;
+  /* Base Header Styles */
+  .glassmorphic-header {
+    background: rgba(35, 40, 59, 0.9);
+    backdrop-filter: blur(12px);
     color: #e3e5e8;
-    border-bottom: 1px solid #2a3145;
-    box-shadow: 0 2px 16px 0 #00000040;
+    border-bottom: 1px solid rgba(42, 49, 69, 0.6);
+    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
     padding: 0;
-    min-height: 60px;
+    min-height: 54px;
+    height: 54px;
+    position: relative;
+    z-index: 1030;
+    transition: all 0.3s ease;
   }
-  .themed-logo {
-    background: #23283b !important;
+
+  /* Logo Styles */
+  .glassmorphic-logo {
+    background: rgba(35, 40, 59, 0.95) !important;
     color: #3a8fff !important;
-    border-right: 1px solid #2a3145;
-    font-size: 1.3rem;
+    border-right: 1px solid rgba(42, 49, 69, 0.6);
+    font-size: 1.1rem;
     font-weight: 800;
     letter-spacing: 0.5px;
-    padding: 0 24px;
-    height: 60px;
+    padding: 0 18px;
+    height: 54px;
     display: flex;
     align-items: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
   }
-  .themed-logo .logo-mini, .themed-logo .logo-lg {
+
+  .glassmorphic-logo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #3a8fff 0%, rgba(58, 143, 255, 0) 80%);
+    opacity: 0.6;
+  }
+
+  .glassmorphic-logo:hover {
+    background: rgba(35, 40, 59, 0.85) !important;
+  }
+
+  .glassmorphic-logo .logo-mini,
+  .glassmorphic-logo .logo-lg {
     color: #3a8fff !important;
     font-weight: 800;
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     letter-spacing: 0.5px;
+    transition: all 0.3s ease;
   }
-  .themed-navbar {
-    background: #23283b !important;
+
+  /* Navbar Styles */
+  .glassmorphic-navbar {
+    background: transparent !important;
     border: none;
-    min-height: 60px;
+    min-height: 54px;
+    height: 54px;
     box-shadow: none;
     margin-left: 0;
+    padding-right: 12px;
   }
-  .themed-navbar .navbar-custom-menu > .nav > li > a {
+
+  /* Sidebar Toggle */
+  .sidebar-toggle {
+    color: #e3e5e8;
+    padding: 0 12px;
+    font-size: 1.1rem;
+    line-height: 54px;
+    height: 54px;
+    transition: all 0.3s ease;
+  }
+
+  .sidebar-toggle:hover {
+    color: #3a8fff;
+    background: rgba(42, 49, 69, 0.4);
+  }
+
+  /* User Profile Section */
+  .user-profile {
     color: #e3e5e8;
     font-weight: 600;
-    font-size: 1.1rem;
-    padding: 16px 18px;
-    transition: background 0.2s, color 0.2s;
+    font-size: 1rem;
+    padding: 0 10px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
   }
-  .themed-navbar .navbar-custom-menu > .nav > li > a:hover {
-    background: #2a3145;
+
+  .user-profile:hover {
+    background: rgba(42, 49, 69, 0.4);
     color: #3a8fff;
   }
-  .themed-navbar .user-image {
+
+  .username {
+    margin: 0 8px;
+  }
+
+  .dropdown-icon {
+    font-size: 0.8rem;
+    margin-left: 4px;
+    transition: transform 0.3s ease;
+  }
+
+  .user-profile:hover .dropdown-icon {
+    transform: rotate(180deg);
+  }
+
+  /* User Image */
+  .user-image {
     border-radius: 50%;
     border: 2px solid #3a8fff;
-    box-shadow: 0 2px 8px 0 #00000030;
-    width: 32px;
-    height: 32px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    width: 28px;
+    height: 28px;
     object-fit: cover;
     margin-right: 8px;
+    transition: all 0.3s ease;
   }
-  .themed-navbar .dropdown-menu {
-    background: #23283b;
-    border: 1px solid #2a3145;
+
+  .user-profile:hover .user-image {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(58, 143, 255, 0.3);
+  }
+
+  /* Dropdown Menu */
+  .user-dropdown {
+    background: rgba(35, 40, 59, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(42, 49, 69, 0.6);
     color: #e3e5e8;
-    min-width: 140px;
-    box-shadow: 0 2px 16px 0 #00000040;
+    min-width: 220px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 8px;
+    padding: 0;
   }
-  .themed-navbar .dropdown-menu .user-footer {
-    background: none;
-    border: none;
+
+  .user-header {
+    padding: 20px;
+    text-align: center;
+    background: rgba(42, 49, 69, 0.4);
   }
-  .themed-logout {
-    background: #3a8fff;
+
+  .profile-img {
+    width: 64px;
+    height: 64px;
+    border: 2px solid #3a8fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+  }
+
+  .profile-info {
+    margin: 10px 0;
+  }
+
+  .profile-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: block;
+    color: #fff;
+  }
+
+  .profile-role {
+    font-size: 0.9rem;
+    color: #3a8fff;
+    display: block;
+    margin-top: 4px;
+  }
+
+  /* Logout Button */
+  .logout-container {
+    padding: 15px;
+    text-align: center;
+  }
+
+  .btn-logout {
+    background: linear-gradient(90deg, #3a8fff, #2a7ae9);
     color: #fff !important;
     border-radius: 8px;
     font-weight: 700;
     border: none;
-    margin-top: 8px;
-    transition: background 0.2s;
+    padding: 10px 24px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 12px rgba(58, 143, 255, 0.3);
   }
-  .themed-logout:hover {
-    background: #1fd655;
-    color: #fff !important;
+
+  .btn-logout:hover {
+    background: linear-gradient(90deg, #e74c3c, #c0392b);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(231, 76, 60, 0.3);
   }
-  @media (max-width: 600px) {
-    .themed-logo {
-      font-size: 1rem;
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .glassmorphic-logo {
       padding: 0 10px;
-    }
-    .themed-navbar .navbar-custom-menu > .nav > li > a {
       font-size: 1rem;
-      padding: 12px 8px;
+    }
+    .glassmorphic-logo .logo-mini,
+    .glassmorphic-logo .logo-lg {
+      font-size: 0.95rem;
+    }
+    .user-profile {
+      padding: 0 6px;
+      font-size: 0.95rem;
+    }
+    .user-image {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .glassmorphic-header {
+      min-height: 44px;
+      height: 44px;
+    }
+    .glassmorphic-logo {
+      height: 44px;
+      padding: 0 6px;
+      font-size: 0.95rem;
+    }
+    .sidebar-toggle {
+      line-height: 44px;
+      height: 44px;
+      padding: 0 8px;
+    }
+    .user-profile {
+      height: 44px;
+    }
+    .user-image {
+      width: 20px;
+      height: 20px;
     }
   }
 </style>
+
+<script>
+  $(document).ready(function() {
+    // Add animation to user dropdown
+    $('.user-menu').hover(
+      function() {
+        $(this).find('.dropdown-menu').stop(true, true).fadeIn(200);
+      },
+      function() {
+        $(this).find('.dropdown-menu').stop(true, true).fadeOut(200);
+      }
+    );
+    
+    // Add pulse animation to logo on page load
+    $('.glassmorphic-logo').addClass('animate__animated animate__pulse');
+    setTimeout(function() {
+      $('.glassmorphic-logo').removeClass('animate__animated animate__pulse');
+    }, 1000);
+  });
+</script>
