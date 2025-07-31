@@ -1,0 +1,589 @@
+<% var activePage = typeof activePage !== 'undefined' ? activePage : ''; %>
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar glassmorphic-sidebar">
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel modern-user-panel">
+            <div class="modern-avatar" title="<%= user.username %>">
+                <img src="<%= user.displayAvatar %>" alt="User Image" class="modern-avatar-img">
+                <div class="modern-avatar-border"></div>
+                <div class="modern-avatar-pulse"></div>
+            </div>
+            <div class="modern-user-info">
+                <p class="modern-username"><%= user.username %></p>
+                <p class="modern-user-status">Administrator</p>
+            </div>
+        </div>
+        
+        <!-- Sidebar menu -->
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">SERVERS MANAGEMENT</li>
+            <li class="<%= activePage === 'selector' ? 'active' : '' %>">
+                <a href="/selector"><i class="fa fa-home"></i> <span>Selector</span></a>
+            </li>
+            
+            <% if (locals.guild){ %>
+            <li class="header">CONFIGURATION</li>
+            <li class="<%= activePage === 'basic' ? 'active' : '' %>">
+                <a href="/manage/<%= guild.id %>/basic"><i class="fa fa-gear"></i> <span>Basic</span></a>
+            </li>
+            <li class="<%= activePage === 'greeting' ? 'active' : '' %>">
+                <a href="/manage/<%= guild.id %>/greeting"><i class="fa fa-bullhorn"></i> <span>Greeting</span></a>
+            </li>
+            <% } %>
+        </ul>
+    </section>
+</aside>
+
+<style>
+/* Base Styles */
+.glassmorphic-sidebar {
+    background: rgba(35, 40, 59, 0.85);
+    backdrop-filter: blur(12px) saturate(1.2);
+    color: #e3e5e8;
+    border-right: 1px solid rgba(42, 49, 69, 0.6);
+    min-height: 100vh;
+    box-shadow: 2px 0 16px rgba(0, 0, 0, 0.25),
+                inset -1px 0 0 rgba(255, 255, 255, 0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 250px;
+    transition: all 0.35s cubic-bezier(0.4, 1.4, 0.6, 1);
+}
+
+/* Collapsed State */
+.main-sidebar.collapsed,
+.glassmorphic-sidebar.collapsed {
+    width: 80px;
+    min-width: 80px;
+    max-width: 80px;
+    overflow: visible;
+}
+
+/* User Panel */
+.modern-user-panel {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: rgba(35, 40, 59, 0.7);
+    border-bottom: 1px solid rgba(42, 49, 69, 0.6);
+    margin-bottom: 24px;
+    padding: 28px 20px 20px 20px;
+    border-radius: 0 0 24px 24px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15),
+                0 2px 0 rgba(58, 143, 255, 0.1);
+    animation: userPanelSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 1.4, 0.6, 1);
+}
+
+.modern-user-panel::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #3a8fff 0%, rgba(58, 143, 255, 0) 80%);
+    opacity: 0.6;
+}
+
+/* Avatar Styles */
+.modern-avatar {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #23283b 0%, #181c23 100%);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(58, 143, 255, 0.2);
+    z-index: 1;
+    transition: all 0.3s cubic-bezier(0.4, 1.4, 0.6, 1);
+    animation: avatarFloatIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+.modern-avatar:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 24px rgba(58, 143, 255, 0.4),
+                0 0 0 1px rgba(58, 143, 255, 0.3);
+}
+
+.modern-avatar-img {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    border: none;
+    z-index: 2;
+    background: #23283b;
+    transition: all 0.3s cubic-bezier(0.4, 1.4, 0.6, 1);
+    animation: avatarImgAppear 0.7s cubic-bezier(0.4, 1.4, 0.6, 1) 0.3s both;
+}
+
+.modern-avatar-border {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: 50%;
+    border: 2px solid rgba(58, 143, 255, 0.6);
+    pointer-events: none;
+    z-index: 1;
+    animation: borderPulse 3s cubic-bezier(0.4, 1.4, 0.6, 1) infinite;
+}
+
+.modern-avatar-pulse {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    border-radius: 50%;
+    border: 1px solid rgba(58, 143, 255, 0.3);
+    pointer-events: none;
+    z-index: 0;
+    animation: borderPulse2 3.5s cubic-bezier(0.4, 1.4, 0.6, 1) infinite 0.5s;
+}
+
+/* User Info */
+.modern-user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    animation: userInfoSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+    transition: opacity 0.2s ease;
+}
+
+.modern-username {
+    color: #fff;
+    font-weight: 800;
+    margin: 0 0 4px 0;
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+.modern-user-status {
+    color: #3a8fff;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin: 0;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Search Form */
+.sidebar-form {
+    margin: 0 0 24px 0;
+    padding: 0 16px;
+    animation: formSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+    transition: all 0.3s ease;
+}
+
+.form-control {
+    background: rgba(24, 28, 35, 0.6);
+    color: #e3e5e8;
+    border: 1px solid rgba(42, 49, 69, 0.6);
+    border-radius: 10px;
+    font-size: 1rem;
+    padding: 10px 14px;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+    background: rgba(35, 40, 59, 0.8);
+    color: #fff;
+    border-color: #3a8fff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(58, 143, 255, 0.2),
+                inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-flat {
+    background: linear-gradient(135deg, #3a8fff 0%, #2a7ae9 100%);
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(58, 143, 255, 0.3);
+}
+
+.btn-flat:hover {
+    background: linear-gradient(135deg, #1fd655 0%, #1ac74e 100%);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(31, 214, 85, 0.4);
+}
+
+/* Menu Styles */
+.sidebar-menu > li.header {
+    color: #3a8fff;
+    background: none;
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: 0.8px;
+    padding: 18px 16px 8px 24px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: headerFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+    transition: all 0.3s ease;
+}
+
+.sidebar-menu > li > a {
+    color: #e3e5e8;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 16px 24px;
+    border-radius: 12px;
+    margin: 8px 12px;
+    transition: all 0.3s cubic-bezier(0.4, 1.4, 0.6, 1);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: menuItemFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.sidebar-menu > li > a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: #3a8fff;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-menu > li > a:hover,
+.sidebar-menu > li.active > a {
+    background: rgba(42, 49, 69, 0.6);
+    color: #3a8fff;
+    transform: translateX(4px);
+}
+
+.sidebar-menu > li > a:hover::before,
+.sidebar-menu > li.active > a::before {
+    transform: scaleY(1);
+}
+
+.sidebar-menu > li > a > i {
+    margin-right: 16px;
+    color: #3a8fff;
+    font-size: 1.3rem;
+    width: 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.sidebar-menu > li > a:hover > i,
+.sidebar-menu > li.active > a > i {
+    transform: scale(1.1);
+    color: #1fd655;
+}
+
+/* Collapsed State Adjustments */
+.main-sidebar.collapsed .modern-user-panel,
+.glassmorphic-sidebar.collapsed .modern-user-panel {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 24px 0 16px 0;
+    margin-bottom: 16px;
+}
+
+.main-sidebar.collapsed .modern-avatar,
+.glassmorphic-sidebar.collapsed .modern-avatar {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    margin: 0 auto 8px auto;
+}
+
+.main-sidebar.collapsed .modern-avatar-img,
+.glassmorphic-sidebar.collapsed .modern-avatar-img {
+    width: 44px;
+    height: 44px;
+}
+
+.main-sidebar.collapsed .modern-user-info,
+.glassmorphic-sidebar.collapsed .modern-user-info {
+    display: none;
+}
+
+.main-sidebar.collapsed .sidebar-form,
+.glassmorphic-sidebar.collapsed .sidebar-form {
+    padding: 0 8px;
+    margin-bottom: 16px;
+}
+
+.main-sidebar.collapsed .sidebar-form .input-group,
+.glassmorphic-sidebar.collapsed .sidebar-form .input-group {
+    display: flex;
+    justify-content: center;
+}
+
+.main-sidebar.collapsed .sidebar-form .form-control,
+.glassmorphic-sidebar.collapsed .sidebar-form .form-control {
+    display: none;
+}
+
+.main-sidebar.collapsed .sidebar-form .input-group-btn,
+.glassmorphic-sidebar.collapsed .sidebar-form .input-group-btn {
+    margin: 0;
+    width: 100%;
+}
+
+.main-sidebar.collapsed .sidebar-form .btn-flat,
+.glassmorphic-sidebar.collapsed .sidebar-form .btn-flat {
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.main-sidebar.collapsed .sidebar-menu > li > a,
+.glassmorphic-sidebar.collapsed .sidebar-menu > li > a {
+    padding: 14px 0;
+    margin: 8px 12px;
+    justify-content: center;
+    border-radius: 12px;
+    width: calc(100% - 24px);
+}
+
+.main-sidebar.collapsed .sidebar-menu > li > a > span,
+.glassmorphic-sidebar.collapsed .sidebar-menu > li > a > span {
+    display: none;
+}
+
+.main-sidebar.collapsed .sidebar-menu > li > a > i,
+.glassmorphic-sidebar.collapsed .sidebar-menu > li > a > i {
+    margin-right: 0;
+    font-size: 1.4rem;
+}
+
+.main-sidebar.collapsed .sidebar-menu > li.header,
+.glassmorphic-sidebar.collapsed .sidebar-menu > li.header {
+    padding: 12px 0 4px 0;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 8px;
+    border-bottom: 1px solid rgba(58, 143, 255, 0.2);
+}
+
+/* Tooltip for collapsed state */
+.main-sidebar.collapsed .sidebar-menu > li > a::after,
+.glassmorphic-sidebar.collapsed .sidebar-menu > li > a::after {
+    content: attr(data-title);
+    position: absolute;
+    left: calc(100% + 16px);
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(35, 40, 59, 0.95);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(58, 143, 255, 0.2);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    z-index: 1000;
+    min-width: max-content;
+}
+
+.main-sidebar.collapsed .sidebar-menu > li > a:hover::after,
+.glassmorphic-sidebar.collapsed .sidebar-menu > li > a:hover::after {
+    opacity: 1;
+    left: calc(100% + 20px);
+}
+
+/* Better Menu Item Hover States */
+.main-sidebar.collapsed .sidebar-menu > li > a:hover,
+.glassmorphic-sidebar.collapsed .sidebar-menu > li > a:hover,
+.main-sidebar.collapsed .sidebar-menu > li.active > a,
+.glassmorphic-sidebar.collapsed .sidebar-menu > li.active > a {
+    background: rgba(58, 143, 255, 0.15);
+    transform: none;
+    box-shadow: inset 0 0 0 1px rgba(58, 143, 255, 0.3);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .glassmorphic-sidebar {
+        width: 80px !important;
+        min-width: 80px !important;
+        max-width: 80px !important;
+    }
+    
+    .modern-user-panel {
+        flex-direction: column;
+        padding: 20px 0 12px 0;
+        margin-bottom: 16px;
+    }
+    
+    .modern-avatar {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
+        margin-bottom: 8px;
+    }
+    
+    .modern-avatar-img {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .sidebar-form {
+        padding: 0 8px;
+    }
+    
+    .sidebar-menu > li > a {
+        padding: 14px 0;
+        margin: 8px 0;
+        justify-content: center;
+    }
+    
+    .sidebar-menu > li > a > span {
+        display: none;
+    }
+    
+    .sidebar-menu > li > a > i {
+        margin-right: 0;
+        font-size: 1.4rem;
+    }
+    
+    .sidebar-menu > li.header {
+        padding: 12px 0 4px 0;
+        font-size: 0.7rem;
+    }
+}
+
+/* Keyframes */
+@keyframes userPanelSlideIn {
+    0% { opacity: 0; transform: translateY(-30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes avatarFloatIn {
+    0% { opacity: 0; transform: scale(0.8) translateY(20px) rotate(-10deg); }
+    80% { transform: scale(1.05) rotate(2deg); }
+    100% { opacity: 1; transform: scale(1) translateY(0) rotate(0); }
+}
+
+@keyframes avatarImgAppear {
+    0% { opacity: 0; filter: blur(4px) brightness(1.2); }
+    100% { opacity: 1; filter: blur(0) brightness(1); }
+}
+
+@keyframes borderPulse {
+    0% { opacity: 0.8; transform: scale(1); border-width: 2px; }
+    50% { opacity: 0.4; transform: scale(1.05); border-width: 3px; }
+    100% { opacity: 0.8; transform: scale(1); border-width: 2px; }
+}
+
+@keyframes borderPulse2 {
+    0% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.1; transform: scale(1.1); }
+    100% { opacity: 0.4; transform: scale(1); }
+}
+
+@keyframes userInfoSlideIn {
+    0% { opacity: 0; transform: translateX(-20px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes formSlideIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes headerFadeIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes menuItemFadeIn {
+    0% { opacity: 0; transform: translateX(-10px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+/* Animation delays */
+.sidebar-menu > li:nth-child(1) > a { animation-delay: 0.7s; }
+.sidebar-menu > li:nth-child(2) > a { animation-delay: 0.75s; }
+.sidebar-menu > li:nth-child(3) > a { animation-delay: 0.8s; }
+</style>
+
+<script>
+$(document).ready(function() {
+    // Add data-title attributes for tooltips
+    $('.sidebar-menu > li > a').each(function() {
+        const text = $(this).find('span').text();
+        $(this).attr('data-title', text);
+    });
+    
+    // Set active menu item
+    const pathname = window.location.pathname;
+    $(`.sidebar-menu > li > a[href="${pathname}"]`).parent().addClass("active");
+    $(`.sidebar-menu > li > ul > li > a[href="${window.location.pathname}"]`).parent().addClass("active");
+    $(`.sidebar-menu > li > a[href="/${window.location.pathname.split("/")[1]}/"]`).parent().addClass("active");
+    
+    // Add hover effect for tooltips
+    let hoverTimeout;
+    $('.main-sidebar.collapsed .sidebar-menu > li > a, .glassmorphic-sidebar.collapsed .sidebar-menu > li > a').hover(
+        function() {
+            hoverTimeout = setTimeout(() => {
+                $(this).addClass('hover-active');
+            }, 200);
+        },
+        function() {
+            clearTimeout(hoverTimeout);
+            $(this).removeClass('hover-active');
+        }
+    );
+    
+    // Toggle sidebar collapse
+    $('[data-toggle="collapse-sidebar"]').click(function() {
+        $('.main-sidebar, .glassmorphic-sidebar').toggleClass('collapsed');
+        $('.content-wrapper').toggleClass('collapsed');
+        localStorage.setItem('sidebarCollapsed', $('.main-sidebar').hasClass('collapsed'));
+    });
+    
+    // Check saved state
+    if (localStorage.getItem('sidebarCollapsed') === 'true') {
+        $('.main-sidebar, .glassmorphic-sidebar').addClass('collapsed');
+        $('.content-wrapper').addClass('collapsed');
+    }
+});
+</script>

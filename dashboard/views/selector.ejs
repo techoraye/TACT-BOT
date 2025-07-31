@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<%- include('includes/head') %>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <%- include('includes/header') %>
+    <%- include('includes/sidebar') %>
+    
+    <!-- Content Wrapper -->
+    <div class="content-wrapper selector-wrapper">
+        <!-- Content Header -->
+        <section class="content-header animated-header">
+            <h1>Selector <small>Version 0.7-beta</small></h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <a href="/"><i class="fa fa-home"></i> Selector</a>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Main Content -->
+        <section class="content">
+            <% if(user.displayedGuilds && user.displayedGuilds.length) { %>
+                <div class="server-grid">
+                    <% user.displayedGuilds.forEach(function(guild, index) { %>
+                        <div class="server-card" data-aos="fade-up" data-aos-delay="<%= index * 50 %>">
+                            <div class="server-card-header">
+                                <% if(guild.owner) { %>
+                                    <i class="fas fa-crown server-badge"></i>
+                                <% } %>
+                                <div class="server-icon-container">
+                                    <img src="<%= guild.iconURL %>" class="server-icon" alt="<%= guild.name %>"/>
+                                    <div class="server-icon-border"></div>
+                                    <div class="server-icon-pulse"></div>
+                                </div>
+                                <h3 class="server-name"><%= guild.name %></h3>
+                            </div>
+                            
+                            <div class="server-card-footer">
+                                <% if(guild.settingsUrl.includes('discordapp.com')) { %>
+                                    <a href="<%= guild.settingsUrl %>" class="btn-invite">
+                                        <span>Invite</span>
+                                        <i class="fas fa-user-plus"></i>
+                                    </a>
+                                <% } else { %>
+                                    <a href="<%= guild.settingsUrl %>" class="btn-manage">
+                                        <span>Manage</span>
+                                        <i class="fas fa-cog"></i>
+                                    </a>
+                                <% } %>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            <% } else { %>
+                <div class="no-servers" data-aos="fade-in">
+                    <div class="no-servers-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>No servers found</h3>
+                    <p>Make sure you're logged in with the right account</p>
+                </div>
+            <% } %>
+        </section>
+    </div>
+    
+    <%- include('includes/footer') %>
+</div>
+
+<!-- CSS Styles -->
+<style>
+/* Base Styles */
+.selector-wrapper {
+    background: linear-gradient(135deg, #0f1117 0%, #23283b 100%);
+    color: #e3e5e8;
+    min-height: 100vh;
+}
+
+.animated-header {
+    animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slideDown {
+    0% { opacity: 0; transform: translateY(-30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Server Grid Layout */
+.server-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    padding: 20px 0;
+}
+
+/* Server Card */
+.server-card {
+    background: rgba(35, 40, 59, 0.7);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    border: 1px solid rgba(42, 49, 69, 0.6);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 1.4, 0.6, 1);
+    position: relative;
+}
+
+.server-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(58, 143, 255, 0.4);
+}
+
+.server-card-header {
+    padding: 30px 20px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.server-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #ffcc00;
+    font-size: 1.2rem;
+}
+
+.server-icon-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 15px;
+}
+
+.server-icon {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+    z-index: 2;
+    border: 3px solid #23283b;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.server-icon-border {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    border: 2px solid rgba(58, 143, 255, 0.6);
+    z-index: 1;
+    animation: borderPulse 3s infinite;
+}
+
+.server-icon-pulse {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border-radius: 50%;
+    border: 1px solid rgba(58, 143, 255, 0.3);
+    z-index: 0;
+    animation: borderPulse2 3.5s infinite 0.5s;
+}
+
+@keyframes borderPulse {
+    0% { opacity: 0.8; transform: scale(1); border-width: 2px; }
+    50% { opacity: 0.4; transform: scale(1.05); border-width: 3px; }
+    100% { opacity: 0.8; transform: scale(1); border-width: 2px; }
+}
+
+@keyframes borderPulse2 {
+    0% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.1; transform: scale(1.1); }
+    100% { opacity: 0.4; transform: scale(1); }
+}
+
+.server-name {
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 15px 0 0;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.server-card-footer {
+    padding: 0 20px 25px;
+    text-align: center;
+}
+
+/* Buttons */
+.btn-invite, .btn-manage {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-invite {
+    background: linear-gradient(90deg, #3a8fff 0%, #0059ff 100%);
+    color: #fff;
+}
+
+.btn-manage {
+    background: linear-gradient(90deg, #1fd655 0%, #1fa855 100%);
+    color: #fff;
+}
+
+.btn-invite span, .btn-manage span {
+    position: relative;
+    z-index: 2;
+    margin-right: 8px;
+}
+
+.btn-invite i, .btn-manage i {
+    position: relative;
+    z-index: 2;
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-invite:hover, .btn-manage:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-invite:hover i, .btn-manage:hover i {
+    transform: translateX(3px);
+}
+
+.btn-invite::after, .btn-manage::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.btn-invite:hover::after, .btn-manage:hover::after {
+    opacity: 1;
+}
+
+/* No Servers State */
+.no-servers {
+    text-align: center;
+    padding: 60px 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.no-servers-icon {
+    font-size: 3rem;
+    color: #3a8fff;
+    margin-bottom: 20px;
+}
+
+.no-servers h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.no-servers p {
+    color: #e3e5e8;
+    opacity: 0.8;
+    font-size: 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .server-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+    
+    .server-icon-container {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .server-name {
+        font-size: 1.1rem;
+    }
+}
+
+/* AOS Animation Adjustments */
+[data-aos] {
+    transition-property: transform, opacity;
+}
+</style>
+
+<!-- JavaScript -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    $(document).ready(function() {
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 600,
+            easing: 'ease-out-quad',
+            once: true,
+            offset: 120
+        });
+        
+        // Add hover effect to server cards
+        $('.server-card').hover(
+            function() {
+                $(this).find('.server-icon').css('transform', 'scale(1.05)');
+                $(this).find('.server-name').css('color', '#3a8fff');
+            },
+            function() {
+                $(this).find('.server-icon').css('transform', 'scale(1)');
+                $(this).find('.server-name').css('color', '#fff');
+            }
+        );
+    });
+</script>
+</body>
+</html>

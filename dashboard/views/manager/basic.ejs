@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<%- include('../includes/head') %>
+<body class="hold-transition skin-blue sidebar-mini" style="background: linear-gradient(135deg, #232336 0%, #5865F2 100%); min-height: 100vh;">
+<div class="wrapper">
+    <%- include('../includes/header') %>
+    <%- include('../includes/sidebar') %>
+    <div class="content-wrapper" style="background: transparent;">
+        <section class="content-header" style="margin-bottom: 2rem;">
+            <h2 style="font-weight: 800; color: #fff; letter-spacing: -1px;">Basic Settings</h2>
+            <ol class="breadcrumb" style="background: rgba(30,30,45,0.7); border-radius: 8px;">
+                <li><a href="/"><i class="fa fa-home"></i> Selector</a></li>
+                <li><a href="<%=`/manage/${guild.id}/`%>"><%=guild.name%></a></li>
+                <li class="active">Basic</li>
+            </ol>
+        </section>
+        <section class="content">
+            <div class="row" style="gap: 2rem; display: flex; flex-wrap: wrap;">
+                <!-- Left Column -->
+                <div class="col-md-6" style="flex:1; min-width:340px;">
+                    <!-- General Configuration -->
+                    <div class="settings-card glassmorphic-card">
+                        <div class="settings-header">
+                            <h3 class="settings-title">General</h3>
+                            <div class="settings-divider"></div>
+                        </div>
+                        <form role="form" action="/manage/<%= guild.id %>/basic/" method="POST">
+                            <div class="settings-body">
+                                <div class="form-group">
+                                    <label class="form-label">Prefix</label>
+                                    <input type="text" name="prefix" class="form-control modern-input" placeholder="<%= guild.prefix %>">
+                                </div>
+                                <div class="form-group">
+                                    <div class="switch-container">
+                                        <label class="switch-label">
+                                            <div class="switch-wrapper">
+                                                <input type="checkbox" name="flag_translation" id="flag_translation" <% if(guild.flag_translation?.enabled) { %>checked<% } %>>
+                                                <span class="switch-slider"></span>
+                                            </div>
+                                            <span class="switch-text">File Translation</span>
+                                        </label>
+                                        <label class="switch-label nested">
+                                            <div class="switch-wrapper">
+                                                <input type="checkbox" name="invite_tracking" id="invite_tracking" <% if(guild.invite.tracking) { %>checked<% } %>>
+                                                <span class="switch-slider"></span>
+                                            </div>
+                                            <span class="switch-text">Inside Tracking</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="settings-footer">
+                                <button type="submit" name="basicUpdate" class="btn btn-modern">
+                                    <span class="btn-text">Update</span>
+                                    <i class="fa fa-check-circle btn-icon"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Modernization Configuration -->
+                    <div class="settings-card glassmorphic-card">
+                        <div class="settings-header">
+                            <h3 class="settings-title">Modernization Loop</h3>
+                            <div class="settings-divider"></div>
+                        </div>
+                        <form role="form" action="/manage/<%= guild.id %>/basic/" method="POST">
+                            <div class="settings-body">
+                                <div class="form-group">
+                                    <label class="form-label">Max Warnings</label>
+                                    <input type="number" name="max_warnings" class="form-control modern-input" placeholder="<%= guild.max_warn.limit %>">
+                                </div>
+                                <div class="form-group">
+                                    <div class="switch-container">
+                                        <label class="switch-label">
+                                            <div class="switch-wrapper">
+                                                <input type="checkbox" name="max_warn_action" id="max_warn_action" <% if(guild.max_warn.action) { %>checked<% } %>>
+                                                <span class="switch-slider"></span>
+                                            </div>
+                                            <span class="switch-text">Max Warnings Action</span>
+                                        </label>
+                                        <div class="nested-option">
+                                            <select class="form-control modern-select" name="max_warn_action_type">
+                                                <option value="NICK" <%= guild.max_warn.action === 'NICK' ? 'selected' : '' %>>NICK</option>
+                                                <option value="TIMEOUT" <%= guild.max_warn.action === 'TIMEOUT' ? 'selected' : '' %>>TIMEOUT</option>
+                                                <option value="KICK" <%= guild.max_warn.action === 'KICK' ? 'selected' : '' %>>KICK</option>
+                                                <option value="BAN" <%= guild.max_warn.action === 'BAN' ? 'selected' : '' %>>BAN</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Modernization Logo</label>
+                                    <select class="form-control modern-select" name="modern_logo">
+                                        <option value="">-- select an option --</option>
+                                        <!-- Add your logo options here -->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <div class="switch-container">
+                                        <label class="switch-label">
+                                            <div class="switch-wrapper">
+                                                <input type="checkbox" name="generate_next" id="generate_next">
+                                                <span class="switch-slider"></span>
+                                            </div>
+                                            <span class="switch-text">Generate a "NEXT" name, a "Share"</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="settings-footer">
+                                <button type="submit" name="modernUpdate" class="btn btn-modern">
+                                    <span class="btn-text">Update</span>
+                                    <i class="fa fa-check-circle btn-icon"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="col-md-6" style="flex:1; min-width:340px;">
+                    <!-- Interface Configuration -->
+                    <div class="settings-card glassmorphic-card">
+                        <div class="settings-header">
+                            <h3 class="settings-title">Interface</h3>
+                            <div class="settings-divider"></div>
+                        </div>
+                        <form role="form" action="/manage/<%= guild.id %>/basic/" method="POST">
+                            <div class="settings-body">
+                                <div class="form-group">
+                                    <div class="switch-container">
+                                        <label class="switch-label">
+                                            <div class="switch-wrapper">
+                                                <input type="checkbox" name="tracking" id="tracking" <% if(guild.stats && guild.stats.enabled) { %>checked<% } %>>
+                                                <span class="switch-slider"></span>
+                                            </div>
+                                            <span class="switch-text">Tracking</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="switch-container">
+                                        <label class="switch-label">
+                                            <div class="switch-wrapper">
+                                                <input type="checkbox" name="auto_modention" id="auto_modention">
+                                                <span class="switch-slider"></span>
+                                            </div>
+                                            <span class="switch-text">Auto Modization</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="settings-footer">
+                                <button type="submit" name="statsUpdate" class="btn btn-modern">
+                                    <span class="btn-text">Update</span>
+                                    <i class="fa fa-check-circle btn-icon"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Backend Section -->
+                    <div class="settings-card glassmorphic-card backend-section">
+                        <div class="settings-header">
+                            <h3 class="settings-title">Backend</h3>
+                            <div class="settings-divider"></div>
+                        </div>
+                        <div class="settings-body">
+                            <p class="backend-text">Backend configuration options would appear here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <%- include('../includes/footer') %>
+</div>
+
+<!-- CSS Styles -->
+<style>
+    /* Base Styles */
+    .glassmorphic-card {
+        background: rgba(30, 30, 45, 0.85);
+        backdrop-filter: blur(12px);
+        border-radius: 18px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        margin-bottom: 2rem;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .glassmorphic-card:hover {
+        box-shadow: 0 12px 40px rgba(88, 101, 242, 0.25);
+        transform: translateY(-2px);
+    }
+
+    .settings-header {
+        padding: 18px 24px;
+        position: relative;
+    }
+
+    .settings-title {
+        font-weight: 700;
+        color: #00b0f4;
+        margin: 0;
+        font-size: 1.2rem;
+        letter-spacing: 0.5px;
+    }
+
+    .settings-divider {
+        height: 2px;
+        background: linear-gradient(90deg, #5865F2 0%, rgba(88, 101, 242, 0) 100%);
+        margin-top: 12px;
+        opacity: 0.5;
+    }
+
+    .settings-body {
+        padding: 20px 24px;
+    }
+
+    .settings-footer {
+        padding: 16px 24px;
+        text-align: right;
+        background: rgba(0, 0, 0, 0.1);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .form-group {
+        margin-bottom: 24px;
+    }
+
+    .form-label {
+        display: block;
+        color: #e3e5e8;
+        margin-bottom: 10px;
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+
+    .modern-input {
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 10px;
+        border: 1px solid rgba(64, 78, 237, 0.3);
+        background: rgba(35, 35, 53, 0.6);
+        color: #fff;
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+
+    .modern-input:focus {
+        outline: none;
+        border-color: #5865F2;
+        box-shadow: 0 0 0 2px rgba(88, 101, 242, 0.2);
+        background: rgba(35, 35, 53, 0.8);
+    }
+
+    .modern-select {
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 10px;
+        border: 1px solid rgba(64, 78, 237, 0.3);
+        background: rgba(35, 35, 53, 0.6);
+        color: #fff;
+        font-size: 14px;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e3e5e8'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 16px;
+    }
+
+    .btn-modern {
+        background: linear-gradient(90deg, #5865F2, #00b0f4);
+        color: #fff;
+        font-weight: 600;
+        border: none;
+        border-radius: 10px;
+        padding: 12px 24px;
+        box-shadow: 0 2px 8px rgba(88, 101, 242, 0.15);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-modern:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 16px rgba(88, 101, 242, 0.25);
+    }
+
+    .btn-modern .btn-text {
+        position: relative;
+        z-index: 1;
+    }
+
+    .btn-modern .btn-icon {
+        margin-left: 8px;
+        font-size: 16px;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Switch Styles */
+    .switch-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .switch-label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        color: #e3e5e8;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+    }
+
+    .switch-label:hover {
+        color: #fff;
+    }
+
+    .switch-wrapper {
+        position: relative;
+        display: inline-block;
+        width: 48px;
+        height: 24px;
+        margin-right: 12px;
+    }
+
+    .switch-wrapper input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .switch-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(35, 35, 53, 0.8);
+        border: 1px solid rgba(64, 78, 237, 0.3);
+        border-radius: 24px;
+        transition: all 0.3s ease;
+    }
+
+    .switch-slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background: #fff;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    input:checked + .switch-slider {
+        background: linear-gradient(90deg, #5865F2, #00b0f4);
+        border-color: transparent;
+    }
+
+    input:checked + .switch-slider:before {
+        transform: translateX(24px);
+    }
+
+    /* Nested Elements */
+    .nested {
+        margin-left: 36px;
+        margin-top: 8px;
+    }
+
+    .nested-option {
+        margin-left: 60px;
+        margin-top: 12px;
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+
+    /* Backend Section */
+    .backend-section .settings-body {
+        color: rgba(227, 229, 232, 0.7);
+        padding: 30px 20px;
+        text-align: center;
+        font-size: 0.95rem;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .row {
+            flex-direction: column;
+        }
+        
+        .col-md-6 {
+            width: 100%;
+            min-width: auto;
+        }
+        
+        .settings-header {
+            padding: 16px 20px;
+        }
+        
+        .settings-body {
+            padding: 16px 20px;
+        }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .settings-card {
+        animation: fadeIn 0.4s ease forwards;
+    }
+
+    .settings-card:nth-child(1) { animation-delay: 0.1s; }
+    .settings-card:nth-child(2) { animation-delay: 0.2s; }
+    .settings-card:nth-child(3) { animation-delay: 0.3s; }
+    .settings-card:nth-child(4) { animation-delay: 0.4s; }
+</style>
+
+<!-- JavaScript -->
+<script>
+    $(document).ready(function() {
+        // Initialize tooltips
+        $('[data-toggle="tooltip"]').tooltip();
+        
+        // Handle form submissions with improved UX
+        $('form').on('submit', function(e) {
+            e.preventDefault();
+            const form = $(this);
+            const button = form.find('button[type="submit"]');
+            const originalText = button.html();
+            
+            // Show loading state
+            button.html('<i class="fa fa-spinner fa-spin"></i> Updating...');
+            button.prop('disabled', true);
+            
+            // Submit form via AJAX
+            $.ajax({
+                url: form.attr('action'),
+                method: form.attr('method'),
+                data: form.serialize(),
+                success: function(response) {
+                    // Show success animation
+                    button.html('<i class="fa fa-check"></i> Success');
+                    setTimeout(() => {
+                        button.html(originalText);
+                        button.prop('disabled', false);
+                        
+                        // Add temporary success glow
+                        button.addClass('btn-success-glow');
+                        setTimeout(() => {
+                            button.removeClass('btn-success-glow');
+                        }, 1000);
+                    }, 1500);
+                },
+                error: function() {
+                    // Show error state
+                    button.html('<i class="fa fa-times"></i> Error');
+                    setTimeout(() => {
+                        button.html(originalText);
+                        button.prop('disabled', false);
+                        
+                        // Add temporary error shake
+                        button.addClass('btn-error-shake');
+                        setTimeout(() => {
+                            button.removeClass('btn-error-shake');
+                        }, 500);
+                    }, 1500);
+                }
+            });
+        });
+        
+        // Toggle nested options with animation
+        $('input[type="checkbox"]').change(function() {
+            const nested = $(this).closest('.switch-label').next('.nested-option');
+            if (nested.length) {
+                if ($(this).is(':checked')) {
+                    nested.slideDown(200);
+                } else {
+                    nested.slideUp(200);
+                }
+            }
+        });
+        
+        // Initialize nested option visibility
+        $('input[type="checkbox"]').each(function() {
+            const nested = $(this).closest('.switch-label').next('.nested-option');
+            if (nested.length) {
+                nested.toggle($(this).is(':checked'));
+            }
+        });
+        
+        // Add hover effect to cards
+        $('.glassmorphic-card').hover(
+            function() {
+                $(this).css('transform', 'translateY(-4px)');
+            },
+            function() {
+                $(this).css('transform', 'translateY(0)');
+            }
+        );
+    });
+</script>
+</body>
+</html>

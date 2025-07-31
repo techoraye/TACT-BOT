@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<%- include('../includes/head') %>
+<body class="hold-transition skin-blue sidebar-mini" style="background: linear-gradient(135deg, #232336 0%, #5865F2 100%); min-height: 100vh;">
+<div class="wrapper">
+    <%- include('../includes/header') %>
+    <%- include('../includes/sidebar') %>
+    <div class="content-wrapper" style="background: transparent;">
+        <!-- Content Header -->
+        <section class="content-header" style="margin-bottom: 2rem;">
+            <h2 style="font-weight: 800; color: #fff; letter-spacing: -1px;">Greeting Settings</h2>
+            <ol class="breadcrumb" style="background: rgba(30,30,45,0.7); border-radius: 8px;">
+                <li><a href="/"><i class="fa fa-home"></i> Selector</a></li>
+                <li><a href="<%=`/manage/${guild.id}/`%>"><%=guild.name%></a></li>
+                <li class="active">Greeting</li>
+            </ol>
+        </section>
+
+        <!-- Main Content -->
+        <section class="content">
+            <div class="row" style="gap: 2rem; display: flex; flex-wrap: wrap;">
+                <!-- Welcome Card -->
+                <div class="col-md-6" style="flex:1; min-width:340px;">
+                    <div class="settings-card glassmorphic-card">
+                        <div class="settings-header">
+                            <h3 class="settings-title">Welcome Embed</h3>
+                            <div class="settings-divider"></div>
+                        </div>
+                        <form role="form" action="/manage/<%= guild.id %>/greeting" method="POST">
+                            <div class="settings-body">
+                                <div class="form-group">
+                                    <label class="form-label">Content</label>
+                                    <% if(guild.welcome.embed.description || guild.welcome.content) {%>
+                                        <textarea rows="3" name="content" class="form-control modern-input"><%- guild.welcome.content?.replaceAll(/\\n/g, '&#10;') %></textarea>
+                                    <% } else { %>
+                                        <textarea rows="3" name="content" class="form-control modern-input" placeholder="Welcome to the server {member:name} 🎉"></textarea>
+                                    <% } %>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Description</label>
+                                    <textarea rows="3" name="description" class="form-control modern-input"><%- guild.welcome.embed.description?.replaceAll(/\\n/g, '&#10;') %></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Footer</label>
+                                    <input type="text" name="footer" class="form-control modern-input" value="<%= guild.welcome.embed.footer %>">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Hex Color</label>
+                                    <div class="color-input-group">
+                                        <input type="text" name="hexcolor" class="form-control modern-input" value="<%= guild.welcome.embed.color %>">
+                                        <div class="color-preview" style="background-color: <%= guild.welcome.embed.color || '#3a8fff' %>;"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Image URL</label>
+                                    <input type="text" name="image" class="form-control modern-input" value="<%= guild.welcome.embed.image %>">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Channel</label>
+                                    <select class="form-control modern-select" name="channel">
+                                        <% if(bot.channels.cache.has(guild.welcome.channel)){ %>
+                                            <option selected="selected">#<%= bot.channels.cache.get(guild.welcome.channel).name %></option>
+                                            <% guild.channels.cache.filter((ch) => ch.id !== guild.welcome.channel && ch.type === 0).forEach((ch) => { %>
+                                                <option>#<%= ch.name %></option>
+                                            <% }); } else { %>
+                                            <option disabled selected value> -- select an option -- </option>
+                                            <% guild.channels.cache.filter((ch) => ch.id !== guild.channels.cache.first().id && ch.type === 0).forEach((ch) => { %>
+                                                <option>#<%= ch.name %></option>
+                                            <% }); %>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="switch-label">
+                                        <div class="switch-wrapper">
+                                            <input type="checkbox" name="thumbnail" id="welcome_thumbnail" <% if(guild.welcome.embed.thumbnail) { %>checked<% } %>>
+                                            <span class="switch-slider"></span>
+                                        </div>
+                                        <span class="switch-text">Thumbnail</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="settings-footer">
+                                <% if(guild.welcome.enabled){ %>
+                                    <button type="submit" name="welcomeDisable" class="btn btn-modern btn-danger">
+                                        <span class="btn-text">Disable</span>
+                                        <i class="fa fa-times-circle btn-icon"></i>
+                                    </button>
+                                    <button type="submit" name="welcomeUpdate" class="btn btn-modern btn-primary">
+                                        <span class="btn-text">Update</span>
+                                        <i class="fa fa-check-circle btn-icon"></i>
+                                    </button>
+                                <% } else { %>
+                                    <button type="submit" name="welcomeEnable" class="btn btn-modern btn-success">
+                                        <span class="btn-text">Enable</span>
+                                        <i class="fa fa-check-circle btn-icon"></i>
+                                    </button>
+                                <% } %>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Farewell Card -->
+                <div class="col-md-6" style="flex:1; min-width:340px;">
+                    <div class="settings-card glassmorphic-card">
+                        <div class="settings-header">
+                            <h3 class="settings-title">Farewell Embed</h3>
+                            <div class="settings-divider"></div>
+                        </div>
+                        <form role="form" action="/manage/<%= guild.id %>/greeting" method="POST">
+                            <div class="settings-body">
+                                <div class="form-group">
+                                    <label class="form-label">Content</label>
+                                    <% if(guild.farewell.embed.description || guild.farewell.content) {%>
+                                        <textarea rows="3" name="content" class="form-control modern-input"><%- guild.farewell.content?.replaceAll(/\\n/g, '&#10;') %></textarea>
+                                    <% } else { %>
+                                        <textarea rows="3" name="content" class="form-control modern-input" placeholder="{member:tag} has left the server 👋"></textarea>
+                                    <% } %>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Description</label>
+                                    <textarea rows="3" name="description" class="form-control modern-input"><%- guild.farewell.embed.description?.replaceAll(/\\n/g, '&#10;') %></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Footer</label>
+                                    <input type="text" name="footer" class="form-control modern-input" value="<%= guild.farewell.embed.footer %>">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Hex Color</label>
+                                    <div class="color-input-group">
+                                        <input type="text" name="hexcolor" class="form-control modern-input" value="<%= guild.farewell.embed.color %>">
+                                        <div class="color-preview" style="background-color: <%= guild.farewell.embed.color || '#e74c3c' %>;"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Image URL</label>
+                                    <input type="text" name="image" class="form-control modern-input" value="<%= guild.farewell.embed.image %>">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Channel</label>
+                                    <select class="form-control modern-select" name="channel">
+                                        <% if(bot.channels.cache.has(guild.farewell.channel)){ %>
+                                            <option selected="selected">#<%= bot.channels.cache.get(guild.farewell.channel).name %></option>
+                                            <% guild.channels.cache.filter((ch) => ch.id !== guild.farewell.channel && ch.type === 0).forEach((ch) => { %>
+                                                <option>#<%= ch.name %></option>
+                                            <% }); } else { %>
+                                            <option disabled selected value> -- select an option -- </option>
+                                            <% guild.channels.cache.filter((ch) => ch.id !== guild.channels.cache.first().id && ch.type === 0).forEach((ch) => { %>
+                                                <option>#<%= ch.name %></option>
+                                            <% }); %>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="switch-label">
+                                        <div class="switch-wrapper">
+                                            <input type="checkbox" name="thumbnail" id="farewell_thumbnail" <% if(guild.farewell.embed.thumbnail) { %>checked<% } %>>
+                                            <span class="switch-slider"></span>
+                                        </div>
+                                        <span class="switch-text">Thumbnail</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="settings-footer">
+                                <% if(guild.farewell.enabled){ %>
+                                    <button type="submit" name="farewellDisable" class="btn btn-modern btn-danger">
+                                        <span class="btn-text">Disable</span>
+                                        <i class="fa fa-times-circle btn-icon"></i>
+                                    </button>
+                                    <button type="submit" name="farewellUpdate" class="btn btn-modern btn-primary">
+                                        <span class="btn-text">Update</span>
+                                        <i class="fa fa-check-circle btn-icon"></i>
+                                    </button>
+                                <% } else { %>
+                                    <button type="submit" name="farewellEnable" class="btn btn-modern btn-success">
+                                        <span class="btn-text">Enable</span>
+                                        <i class="fa fa-check-circle btn-icon"></i>
+                                    </button>
+                                <% } %>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <%- include('../includes/footer') %>
+</div>
+
+<!-- CSS Styles -->
+<style>
+    /* Base Glassmorphic Card Styles */
+    .glassmorphic-card {
+        background: rgba(30, 30, 45, 0.85);
+        backdrop-filter: blur(12px);
+        border-radius: 18px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        margin-bottom: 2rem;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .glassmorphic-card:hover {
+        box-shadow: 0 12px 40px rgba(88, 101, 242, 0.25);
+        transform: translateY(-2px);
+    }
+
+    /* Card Header Styles */
+    .settings-header {
+        padding: 18px 24px;
+        position: relative;
+    }
+
+    .settings-title {
+        font-weight: 700;
+        color: #00b0f4;
+        margin: 0;
+        font-size: 1.2rem;
+        letter-spacing: 0.5px;
+    }
+
+    .settings-divider {
+        height: 2px;
+        background: linear-gradient(90deg, #5865F2 0%, rgba(88, 101, 242, 0) 100%);
+        margin-top: 12px;
+        opacity: 0.5;
+    }
+
+    /* Card Body Styles */
+    .settings-body {
+        padding: 20px 24px;
+    }
+
+    /* Form Elements */
+    .form-group {
+        margin-bottom: 24px;
+    }
+
+    .form-label {
+        display: block;
+        color: #e3e5e8;
+        margin-bottom: 10px;
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+
+    .modern-input {
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 10px;
+        border: 1px solid rgba(64, 78, 237, 0.3);
+        background: rgba(35, 35, 53, 0.6);
+        color: #fff;
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+
+    .modern-input:focus {
+        outline: none;
+        border-color: #5865F2;
+        box-shadow: 0 0 0 2px rgba(88, 101, 242, 0.2);
+        background: rgba(35, 35, 53, 0.8);
+    }
+
+    .color-input-group {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .color-preview {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        flex-shrink: 0;
+    }
+
+    .modern-select {
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 10px;
+        border: 1px solid rgba(64, 78, 237, 0.3);
+        background: rgba(35, 35, 53, 0.6);
+        color: #fff;
+        font-size: 14px;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e3e5e8'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 16px;
+    }
+
+    /* Switch Styles */
+    .switch-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .switch-label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        color: #e3e5e8;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+    }
+
+    .switch-label:hover {
+        color: #fff;
+    }
+
+    .switch-wrapper {
+        position: relative;
+        display: inline-block;
+        width: 48px;
+        height: 24px;
+        margin-right: 12px;
+    }
+
+    .switch-wrapper input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .switch-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(35, 35, 53, 0.8);
+        border: 1px solid rgba(64, 78, 237, 0.3);
+        border-radius: 24px;
+        transition: all 0.3s ease;
+    }
+
+    .switch-slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background: #fff;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    input:checked + .switch-slider {
+        background: linear-gradient(90deg, #5865F2, #00b0f4);
+        border-color: transparent;
+    }
+
+    input:checked + .switch-slider:before {
+        transform: translateX(24px);
+    }
+
+    /* Button Styles */
+    .settings-footer {
+        padding: 16px 24px;
+        text-align: right;
+        background: rgba(0, 0, 0, 0.1);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+    }
+
+    .btn-modern {
+        border: none;
+        border-radius: 10px;
+        padding: 12px 24px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-modern .btn-text {
+        position: relative;
+        z-index: 1;
+    }
+
+    .btn-modern .btn-icon {
+        margin-left: 8px;
+        font-size: 16px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .btn-primary {
+        background: linear-gradient(90deg, #5865F2, #00b0f4);
+        color: #fff;
+    }
+
+    .btn-success {
+        background: linear-gradient(90deg, #1fd655, #1ac74e);
+        color: #fff;
+    }
+
+    .btn-danger {
+        background: linear-gradient(90deg, #e74c3c, #c0392b);
+        color: #fff;
+    }
+
+    .btn-modern:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .settings-card {
+        animation: fadeIn 0.4s ease forwards;
+    }
+
+    .settings-card:nth-child(1) { animation-delay: 0.1s; }
+    .settings-card:nth-child(2) { animation-delay: 0.2s; }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .row {
+            flex-direction: column;
+        }
+        
+        .col-md-6 {
+            width: 100%;
+            min-width: auto;
+        }
+        
+        .settings-header {
+            padding: 16px 20px;
+        }
+        
+        .settings-body {
+            padding: 16px 20px;
+        }
+    }
+</style>
+
+<!-- JavaScript -->
+<script>
+    $(document).ready(function() {
+        // Initialize tooltips
+        $('[data-toggle="tooltip"]').tooltip();
+        
+        // Handle form submissions with improved UX
+        $('form').on('submit', function(e) {
+            e.preventDefault();
+            const form = $(this);
+            const button = form.find('button[type="submit"]');
+            const originalText = button.html();
+            
+            // Show loading state
+            button.html('<i class="fa fa-spinner fa-spin"></i> Processing...');
+            button.prop('disabled', true);
+            
+            // Submit form via AJAX
+            $.ajax({
+                url: form.attr('action'),
+                method: form.attr('method'),
+                data: form.serialize(),
+                success: function(response) {
+                    // Show success animation
+                    button.html('<i class="fa fa-check"></i> Success');
+                    setTimeout(() => {
+                        button.html(originalText);
+                        button.prop('disabled', false);
+                        
+                        // Add temporary success glow
+                        button.addClass('btn-success-glow');
+                        setTimeout(() => {
+                            button.removeClass('btn-success-glow');
+                        }, 1000);
+                    }, 1500);
+                },
+                error: function() {
+                    // Show error state
+                    button.html('<i class="fa fa-times"></i> Error');
+                    setTimeout(() => {
+                        button.html(originalText);
+                        button.prop('disabled', false);
+                        
+                        // Add temporary error shake
+                        button.addClass('btn-error-shake');
+                        setTimeout(() => {
+                            button.removeClass('btn-error-shake');
+                        }, 500);
+                    }, 1500);
+                }
+            });
+        });
+        
+        // Color input preview update
+        $('input[name="hexcolor"]').on('input', function() {
+            const color = $(this).val();
+            $(this).siblings('.color-preview').css('background-color', color || '#3a8fff');
+        });
+        
+        // Add hover effect to cards
+        $('.glassmorphic-card').hover(
+            function() {
+                $(this).css('transform', 'translateY(-4px)');
+            },
+            function() {
+                $(this).css('transform', 'translateY(0)');
+            }
+        );
+    });
+</script>
+</body>
+</html>
